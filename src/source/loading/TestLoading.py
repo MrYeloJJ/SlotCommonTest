@@ -23,7 +23,7 @@ class TestLoading(unittest.TestCase, Common):
 
     # 验证是否进入载入场景
     def test1_loading_showing(self):
-        sleep(0.5)
+        sleep(1)
         showing = Common.loading_showing(self.driver)
         try:
             self.assertEqual(showing, True, "没有进入载入场景！")
@@ -33,7 +33,7 @@ class TestLoading(unittest.TestCase, Common):
 
     # 验证载入场景进度条
     def test2_loading_bar(self):
-        sleep(0.5)
+        sleep(1)
         tip = Common.loading_bar(self.driver)
         try:
             self.assertEqual(tip, "100%", "进度条走满后，百分比不是100%")
@@ -43,8 +43,9 @@ class TestLoading(unittest.TestCase, Common):
 
     # 验证载入场景进度条100%后是否进入主场景
     def test3_enter_main_scence(self):
+        sleep(1)
         Common.loading_bar(self.driver)
-        sleep(0.5)
+        sleep(1)
         showing = Common.enter_main_scence(self.driver)
         try:
             self.assertEqual(showing, None, "载入完成后不会进入主场景")
