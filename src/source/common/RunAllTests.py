@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import unittest
-import HTMLTestReportCN
+from src.Lib import HTMLTestReportCN
 import datetime
 
 if __name__ == "__main__":
