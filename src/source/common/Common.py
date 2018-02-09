@@ -14,7 +14,10 @@ class Common(object):
 
     # 进入大厅并打开游戏
     def start(self, driver):
-        message = Data().get_excel_message()
+        # 初始化测试环境 SIT, UAT, PSIT
+        environment = "UAT"
+
+        message = Data(environment).get_message()
         lobby = message[0]
         game = message[1]
 
