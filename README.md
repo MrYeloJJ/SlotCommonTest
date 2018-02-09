@@ -1,2 +1,2 @@
 # SlotCommonTest
-Slot公共模块自动化测试
+Slot公共模块测试
