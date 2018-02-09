@@ -105,4 +105,4 @@ venv.bak/
 .mypy_cache/
 
 SlotCommonTest_report_*.html
-.idea/workspace.xml
+.idea/workspace.xml*
