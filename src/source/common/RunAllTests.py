@@ -1,5 +1,11 @@
 # coding=utf-8
 
+""""
+
+运行source目录下所有测试用例，并生成HTML测试报告文件
+
+"""
+
 import unittest
 from src.Lib import HTMLTestReportCN
 import datetime
