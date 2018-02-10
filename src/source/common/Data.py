@@ -13,18 +13,17 @@ import xml.dom.minidom
 
 class Data(object):
 
-    def __init__(self, environment):
-        self.environment = environment
-
-    def get_message(self):
+    @staticmethod
+    def get_message():
         dom_tree = xml.dom.minidom.parse("../../assets/data.xml")
         collection = dom_tree.documentElement
 
+        target = collection.getElementsByTagName("target")[0].childNodes[0].data
         messages = collection.getElementsByTagName("data")
 
         for msg in messages:
             environment = msg.getAttribute("environment")
-            if environment == self.environment:
+            if environment == target:
                 lobby = msg.getElementsByTagName("lobby")[0].childNodes[0].data
                 game = msg.getElementsByTagName("game")[0].childNodes[0].data
 

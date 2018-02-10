@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collection>
+    <!-- 想要测试的环境（SIT、UAT、PSIT） -->
+    <target>UAT</target>
+
+    <!-- SIT环境 -->
     <data environment="SIT">
         <lobby>https://lobby.fg.blizzmi.cn</lobby>
         <game>希腊传说</game>
     </data>
+    <!-- UAT环境 -->
     <data environment="UAT">
         <lobby>https://lobby.98078.net</lobby>
         <game>希腊传说</game>
     </data>
+    <!-- PSIT环境 -->
     <data environment="PSIT">
         <lobby>https://lobby.psit.blizzmi.net</lobby>
         <game>希腊传说</game>
