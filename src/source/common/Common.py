@@ -11,90 +11,85 @@ from time import sleep
 
 
 class Common(object):
+    # 初始化driver、lobby和game等数据
+    def __init__(self, driver):
+        self.message = Data().get_message()
+        self.lobby = self.message[0]
+        self.game = self.message[1]
+        self.driver = driver
 
     # 进入大厅并打开游戏
-    def start(self, driver):
-
-        message = Data().get_message()
-        lobby = message[0]
-        game = message[1]
-
-        self.get_lobby(driver, lobby)
-        self.switch_page(driver)
-        self.find_game(driver, game)
-        self.switch_game_window(driver)
+    def start(self):
+        self.get_lobby()
+        self.switch_page()
+        self.find_game()
+        self.switch_game_window()
 
     # 进入大厅并判断是否正常进入
-    def get_lobby(self, driver, lobby):
+    def get_lobby(self):
         try:
-            driver.get(lobby)
+            self.driver.get(self.lobby)
             sleep(1)
-            title = driver.title
-            self.assertEqual(title, "as", "进入大厅失败！")
-        except AssertionError as e:
-            print(e)
+            title = self.driver.title
+            assert title == "as"
+        except AssertionError:
+            raise
 
     # 切换到slot标签页
-    @staticmethod
-    def switch_page(driver):
+    def switch_page(self):
         try:
             sleep(1)
-            driver.find_element_by_css_selector("a[href = '#type_107']").click()
-        except Exception as e:
-            print(e)
+            self.driver.find_element_by_css_selector("a[href = '#type_107']").click()
+        except Exception:
+            raise
 
     # 根据游戏名字查找并打开游戏
-    @staticmethod
-    def find_game(driver, game):
+    def find_game(self):
         try:
             sleep(1)
-            driver.find_element_by_link_text(game).click()
-        except Exception as e:
-            print(e)
+            self.driver.find_element_by_link_text(self.game).click()
+        except Exception:
+            raise
 
     # 切换到游戏窗口
-    @staticmethod
-    def switch_game_window(driver):
+    def switch_game_window(self):
         try:
-            game_window = driver.window_handles[-1]
-            driver.switch_to.window(game_window)
-        except Exception as e:
-            print(e)
+            game_window = self.driver.window_handles[-1]
+            self.driver.switch_to.window(game_window)
+        except Exception:
+            raise
 
     # 进入载入场景
-    @staticmethod
-    def loading_showing(driver):
+    def loading_view_showing(self):
         try:
             showing_js = "var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);return loading.isShowing;"
-            showing = driver.execute_script(showing_js)
+            showing = self.driver.execute_script(showing_js)
             return showing
-        except Exception as e:
-            print(e)
+        except Exception:
+            raise
 
     # 载入场景进度条
-    @staticmethod
-    def loading_bar(driver):
+    def loading_bar(self):
+
         while True:
             try:
-                progress_bar = driver.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
-                                                     "return loading.contentPane.m_progressBar.value;")
-            except Exception as e:
-                print(e)
+                progress_bar = self.driver.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
+                                                          "return loading.contentPane.m_progressBar.value;")
+            except Exception:
+                raise
 
             if progress_bar == 100:
                 try:
-                    tip = driver.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
-                                                "return loading.contentPane.m_progressBar.m_title.textField.text;")
+                    tip = self.driver.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
+                                                     "return loading.contentPane.m_progressBar.m_title.textField.text;")
                     return tip
-                except Exception as e:
-                    print(e)
-                break
+                except Exception:
+                    raise
 
-    # 载入完成后进入主场景
-    @staticmethod
-    def enter_main_scence(driver):
+    # 载入场景消失
+    def loading_view_dispear(self):
         try:
-            showing = driver.execute_script("return UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
+            showing = self.driver.execute_script("return UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
             return showing
-        except Exception as e:
-            print(e)
+        except Exception:
+            raise

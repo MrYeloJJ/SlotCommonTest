@@ -13,7 +13,7 @@ import datetime
 if __name__ == "__main__":
     test_suite = unittest.TestLoader().discover("../../source")
 
-    now = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    now = str(datetime.datetime.now().strftime("%Y-%m-%d(%H-%M-%S)"))
     file_path = "..\\..\\assets\\report\\SlotCommonTest_report_" + now + ".html"
 
     fp = open(file_path, "wb")
