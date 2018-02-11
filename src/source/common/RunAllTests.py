@@ -7,7 +7,7 @@
 """
 
 import unittest
-from src.Lib import HTMLTestReportCN
+from src.lib import HTMLTestReportCN
 import datetime
 
 if __name__ == "__main__":
