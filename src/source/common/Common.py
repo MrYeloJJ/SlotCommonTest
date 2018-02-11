@@ -31,7 +31,7 @@ class Common(object):
             self.driver.get(self.lobby)
             sleep(1)
             title = self.driver.title
-            assert title == "as"
+            assert title == "as", "进入大厅失败！"
         except AssertionError:
             raise
 
