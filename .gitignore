@@ -105,5 +105,6 @@ venv.bak/
 .mypy_cache/
 
 SlotCommonTest_report_*.html
+*.png
 .idea/workspace.xml*
 .idea/dictionaries/

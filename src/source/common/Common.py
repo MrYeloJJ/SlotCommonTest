@@ -7,6 +7,7 @@
 """
 
 from src.source.common.Data import Data
+from src.source.common.DirAndFiles import DirAndFiles
 from time import sleep
 
 
@@ -17,6 +18,7 @@ class Common(object):
         self.lobby = self.message[0]
         self.game = self.message[1]
         self.driver = driver
+        self.dir_and_files = DirAndFiles(self.driver)
 
     # 进入大厅并打开游戏
     def start(self):
@@ -33,6 +35,7 @@ class Common(object):
             title = self.driver.title
             assert title == "as", "进入大厅失败！"
         except AssertionError:
+            self.dir_and_files.get_screen_shot()
             raise
 
     # 切换到slot标签页
@@ -41,6 +44,7 @@ class Common(object):
             sleep(1)
             self.driver.find_element_by_css_selector("a[href = '#type_107']").click()
         except Exception:
+            self.dir_and_files.get_screen_shot()
             raise
 
     # 根据游戏名字查找并打开游戏
@@ -49,6 +53,7 @@ class Common(object):
             sleep(1)
             self.driver.find_element_by_link_text(self.game).click()
         except Exception:
+            self.dir_and_files.get_screen_shot()
             raise
 
     # 切换到游戏窗口
@@ -57,6 +62,7 @@ class Common(object):
             game_window = self.driver.window_handles[-1]
             self.driver.switch_to.window(game_window)
         except Exception:
+            self.dir_and_files.get_screen_shot()
             raise
 
     # 进入载入场景
@@ -66,6 +72,7 @@ class Common(object):
             showing = self.driver.execute_script(showing_js)
             return showing
         except Exception:
+            self.dir_and_files.get_screen_shot()
             raise
 
     # 载入场景进度条
@@ -76,6 +83,7 @@ class Common(object):
                 progress_bar = self.driver.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
                                                           "return loading.contentPane.m_progressBar.value;")
             except Exception:
+                self.dir_and_files.get_screen_shot()
                 raise
 
             if progress_bar == 100:
@@ -84,6 +92,7 @@ class Common(object):
                                                      "return loading.contentPane.m_progressBar.m_title.textField.text;")
                     return tip
                 except Exception:
+                    self.dir_and_files.get_screen_shot()
                     raise
 
     # 载入场景消失
@@ -92,4 +101,5 @@ class Common(object):
             showing = self.driver.execute_script("return UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
             return showing
         except Exception:
+            self.dir_and_files.get_screen_shot()
             raise
