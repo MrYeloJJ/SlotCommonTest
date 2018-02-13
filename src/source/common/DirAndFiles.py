@@ -7,8 +7,7 @@ import os
 
 class DirAndFiles(object):
 
-    def __init__(self, driver):
-        self.driver = driver
+    def __init__(self):
         self.path = "../../assets/report/"
 
     def create_dir(self):
@@ -28,7 +27,7 @@ class DirAndFiles(object):
         new_folder = os.path.join(self.path, lists[-1])
         return new_folder
 
-    def get_screen_shot(self):
+    def get_screen_shot(self, driver):
         # 获取调用此函数的函数名
         func_name = inspect.stack()[1][3]
 
@@ -46,4 +45,4 @@ class DirAndFiles(object):
             else:
                 break
 
-        self.driver.get_screenshot_as_file(img_path)
+        driver.get_screenshot_as_file(img_path)

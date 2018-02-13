@@ -19,7 +19,7 @@ class TestLoading(unittest.TestCase):
         self.driver = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
         self.common = Common(self.driver)
         self.common.start()
-        self.dir_and_files = DirAndFiles(self.driver)
+        self.daf = DirAndFiles()
 
     def tearDown(self):
         self.driver.quit()
@@ -31,7 +31,7 @@ class TestLoading(unittest.TestCase):
         try:
             self.assertEqual(showing, True, "没有进入载入场景！")
         except AssertionError:
-            self.dir_and_files.get_screen_shot()
+            self.daf.get_screen_shot(self.driver)
             raise
 
     # 验证载入场景进度条
@@ -41,7 +41,7 @@ class TestLoading(unittest.TestCase):
         try:
             self.assertEqual(tip, "100%", "进度条走满后，百分比不是100%！")
         except AssertionError:
-            self.dir_and_files.get_screen_shot()
+            self.daf.get_screen_shot(self.driver)
             raise
 
     # 验证载入场景进度条100%后是否消失
@@ -53,11 +53,11 @@ class TestLoading(unittest.TestCase):
         try:
             self.assertEqual(showing, None, "载入完成后载入场景不会消失！")
         except AssertionError:
-            self.dir_and_files.get_screen_shot()
+            self.daf.get_screen_shot(self.driver)
             raise
 
 
 if __name__ == "__main__":
     # 启动测试时创建文件夹
-    DirAndFiles(0).create_dir()
+    DirAndFiles().create_dir()
     unittest.main()
