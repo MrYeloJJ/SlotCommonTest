@@ -106,3 +106,4 @@ venv.bak/
 
 SlotCommonTest_report_*.html
 .idea/workspace.xml*
+.idea/dictionaries/

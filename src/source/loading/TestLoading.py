@@ -15,7 +15,7 @@ from time import sleep
 class TestLoading(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
         self.common = Common(self.driver)
         self.common.start()
 
