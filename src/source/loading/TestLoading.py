@@ -58,5 +58,6 @@ class TestLoading(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    # 启动测试时创建文件夹
     DirAndFiles(0).create_dir()
     unittest.main()
