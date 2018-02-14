@@ -27,7 +27,7 @@ class DirAndFiles(object):
         new_dir = os.path.join(self.path, lists[-1])
         return new_dir
 
-    def get_screen_shot(self, driver):
+    def get_screen_shot(self, browser):
         # 获取调用此函数的函数名
         func_name = inspect.stack()[1][3]
 
@@ -45,4 +45,4 @@ class DirAndFiles(object):
             else:
                 break
 
-        driver.get_screenshot_as_file(img_path)
+        browser.get_screenshot_as_file(img_path)
