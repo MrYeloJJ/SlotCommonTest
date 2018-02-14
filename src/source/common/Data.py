@@ -13,9 +13,11 @@ import xml.dom.minidom
 
 class Data(object):
 
-    @staticmethod
-    def get_message():
-        dom_tree = xml.dom.minidom.parse("../../assets/data.xml")
+    def __init__(self):
+        self.xml = "../../assets/data.xml"
+
+    def get_message(self):
+        dom_tree = xml.dom.minidom.parse(self.xml)
         collection = dom_tree.documentElement
 
         target = collection.getElementsByTagName("target")[0].childNodes[0].data
