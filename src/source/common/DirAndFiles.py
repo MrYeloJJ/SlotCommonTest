@@ -19,28 +19,28 @@ class DirAndFiles(object):
         if not is_dir:
             os.makedirs(dir_path)
 
-    def get_new_folder(self):
+    def get_new_dir(self):
         lists = os.listdir(self.path)
         # 按时间排序
         lists.sort(key=lambda fn: os.path.getmtime(self.path + "\\" + fn))
         # 获取最新文件或文件夹
-        new_folder = os.path.join(self.path, lists[-1])
-        return new_folder
+        new_dir = os.path.join(self.path, lists[-1])
+        return new_dir
 
     def get_screen_shot(self, driver):
         # 获取调用此函数的函数名
         func_name = inspect.stack()[1][3]
 
         # 获取最新文件夹的名字，并将截图保存在该文件夹下
-        new_folder = self.get_new_folder()
-        img_path = new_folder + "/" + func_name + ".png"
+        new_dir = self.get_new_dir()
+        img_path = new_dir + "/" + func_name + ".png"
 
         # 有可能同个测试步骤出错，截图名字一样导致覆盖文件，所以名字存在则增加id
         i = 1
         while True:
             is_file = os.path.isfile(img_path)
             if is_file:
-                img_path = new_folder + "/" + func_name + "_" + str(i) + ".png"
+                img_path = new_dir + "/" + func_name + "_" + str(i) + ".png"
                 i += 1
             else:
                 break
