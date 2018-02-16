@@ -10,7 +10,7 @@ import os
 class DirAndFiles(object):
 
     def __init__(self):
-        self.path = "../../assets/report/"
+        self.path = "../../result/"
 
     def create_dir(self):
         now = str(datetime.datetime.now().strftime("%Y-%m-%d(%H-%M-%S)"))
