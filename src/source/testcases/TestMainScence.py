@@ -30,8 +30,8 @@ class TestLoading(unittest.TestCase):
         common_view = self.common.common_view_visible()
 
         try:
-            self.assertEqual(main_view, True, "正常显示主视图")
-            self.assertEqual(common_view, True, "正常显示公共视图")
+            self.assertEqual(main_view, True, "没有显示主视图！")
+            self.assertEqual(common_view, True, "没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
             raise
