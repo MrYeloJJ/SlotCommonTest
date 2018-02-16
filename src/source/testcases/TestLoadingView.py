@@ -9,7 +9,7 @@ from src.source.common.Common import Common
 from src.source.common.DirAndFiles import DirAndFiles
 
 
-class TestLoading(unittest.TestCase):
+class TestLoadingView(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
