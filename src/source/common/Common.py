@@ -107,3 +107,21 @@ class Common(object):
         except Exception:
             self.daf.get_screen_shot(self.browser)
             raise
+
+    # 显示主视图
+    def main_view_visible(self):
+        try:
+            main_view = self.browser.execute_script("return UIManager.instance.mainViewContainer.visible;")
+            return main_view
+        except Exception:
+            self.daf.get_screen_shot(self.browser)
+            raise
+
+    # 显示主场景和公共模块
+    def common_view_visible(self):
+        try:
+            common_view = self.browser.execute_script("return UIManager.instance.commonView.visible;")
+            return common_view
+        except Exception:
+            self.daf.get_screen_shot(self.browser)
+            raise
