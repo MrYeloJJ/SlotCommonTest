@@ -1,6 +1,6 @@
 # coding=utf-8
 
-""""" 载入场景测试用例 """""
+""""" 主场景视图测试用例 """""
 
 import unittest
 from time import sleep
@@ -32,6 +32,78 @@ class TestLoading(unittest.TestCase):
         try:
             self.assertEqual(main_view, True, "没有显示主视图！")
             self.assertEqual(common_view, True, "没有显示公共视图！")
+        except AssertionError:
+            self.daf.get_screen_shot(self.browser)
+            raise
+
+    # 竖屏进入，测试是否正常显示主场景
+    def test2_main_scence_on_vertical_screen(self):
+        self.common.set_window_to_vertical_screen()
+        sleep(2)
+        self.common.loading_bar()
+
+        sleep(2)
+        main_view = self.common.main_view_visible()
+        common_view = self.common.common_view_visible()
+
+        try:
+            self.assertEqual(main_view, True, "竖屏没有显示主视图！")
+            self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
+        except AssertionError:
+            self.daf.get_screen_shot(self.browser)
+            raise
+
+    # 横屏进入，来回切换横竖屏，主场景显示正常
+    def test3_main_scence_switch_screen_h_first(self):
+        sleep(2)
+        self.common.loading_bar()
+
+        sleep(2)
+        main_view = self.common.main_view_visible()
+        common_view = self.common.common_view_visible()
+
+        try:
+            self.assertEqual(main_view, True, "横屏没有显示主视图！")
+            self.assertEqual(common_view, True, "横屏没有显示公共视图！")
+        except AssertionError:
+            self.daf.get_screen_shot(self.browser)
+            raise
+
+        self.common.set_window_to_vertical_screen()
+        main_view = self.common.main_view_visible()
+        common_view = self.common.common_view_visible()
+
+        try:
+            self.assertEqual(main_view, True, "竖屏没有显示主视图！")
+            self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
+        except AssertionError:
+            self.daf.get_screen_shot(self.browser)
+            raise
+
+    # 竖屏进入，来回切换横竖屏，主场景显示正常
+    def test4_main_scence_switch_screen_v_first(self):
+        self.common.set_window_to_vertical_screen()
+        sleep(2)
+        self.common.loading_bar()
+
+        sleep(2)
+        main_view = self.common.main_view_visible()
+        common_view = self.common.common_view_visible()
+
+        try:
+            self.assertEqual(main_view, True, "竖屏没有显示主视图！")
+            self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
+        except AssertionError:
+            self.daf.get_screen_shot(self.browser)
+            raise
+
+        self.common.set_window_to_horizontal_screen()
+        main_view = self.common.main_view_visible()
+        common_view = self.common.common_view_visible()
+
+        try:
+            self.assertEqual(main_view, True, "横屏没有显示主视图！")
+            self.assertEqual(common_view, True, "横屏没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
             raise
