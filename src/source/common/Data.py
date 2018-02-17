@@ -24,4 +24,4 @@ class Data(object):
                 lobby = msg.getElementsByTagName("lobby")[0].childNodes[0].data
                 game = msg.getElementsByTagName("game")[0].childNodes[0].data
 
-                return lobby, game
+                return {"lobby": lobby, "game": game}

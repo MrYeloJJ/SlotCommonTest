@@ -11,8 +11,8 @@ class Common(object):
     # 初始化browser、lobby和game等数据
     def __init__(self, browser):
         self.message = Data().get_message()
-        self.lobby = self.message[0]
-        self.game = self.message[1]
+        self.lobby = self.message["lobby"]
+        self.game = self.message["game"]
         self.browser = browser
         self.daf = DirAndFiles()
 
