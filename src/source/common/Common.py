@@ -72,8 +72,8 @@ class Common(object):
     # 进入载入场景
     def loading_view_showing(self):
         try:
-            showing_js = "var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);return loading.isShowing;"
-            showing = self.browser.execute_script(showing_js)
+            showing = self.browser.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
+                                                  "return loading.isShowing;")
             return showing
         except Exception:
             self.daf.get_screen_shot(self.browser)
