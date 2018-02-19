@@ -22,6 +22,7 @@ class TestMainAndCommonView(unittest.TestCase):
         
     # 测试XXXXXXX
     def test1_XXXX_XXXX(self):
+        sleep(1)
         a = 1
         b = 2
     
