@@ -14,7 +14,6 @@ class RunAllTests(object):
         self.test_case_path = "../../source"
         self.title = "SlotCommonTest Report"
         self.description = "Slot游戏公共模块测试报告"
-        self.tester = input("请输入你的名字：")
 
     def run(self):
         test_suite = unittest.TestLoader().discover(self.test_case_path)
@@ -29,7 +28,7 @@ class RunAllTests(object):
         file_path = new_dir + "/SlotCommonTest_report_" + now + ".html"
 
         fp = open(file_path, "wb")
-        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, title=self.title, description=self.description, tester=self.tester)
+        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, title=self.title, description=self.description, tester=input("请输入你的名字："))
         runner.run(test_suite)
         fp.close()
 
