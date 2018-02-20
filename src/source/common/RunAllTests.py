@@ -5,7 +5,6 @@
 import unittest
 import datetime
 from src.lib import HTMLTestReportCN
-from src.source.common.DirAndFiles import DirAndFiles
 
 
 class RunAllTests(object):
@@ -19,7 +18,7 @@ class RunAllTests(object):
         test_suite = unittest.TestLoader().discover(self.test_case_path)
 
         # 启动测试时创建文件夹并获取最新文件夹的名字
-        daf = DirAndFiles()
+        daf = HTMLTestReportCN.DirAndFiles()
         daf.create_dir()
         new_dir = daf.get_new_dir()
 

@@ -3,7 +3,7 @@
 """"" 公共操作类，包括验证大厅、打开游戏、游戏内按钮点击等操作 """""
 
 from src.source.common.Data import Data
-from src.source.common.DirAndFiles import DirAndFiles
+from src.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 
 
@@ -30,9 +30,10 @@ class Common(object):
             sleep(1)
             title = self.browser.title
             assert title == "as", "进入大厅失败！"
-        except AssertionError:
+        except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 切换到slot标签页
     def switch_page(self):
@@ -41,7 +42,8 @@ class Common(object):
             self.browser.find_element_by_css_selector("a[href = '#type_107']").click()
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 根据游戏名字查找并打开游戏
     def find_game(self):
@@ -50,7 +52,8 @@ class Common(object):
             self.browser.find_element_by_link_text(self.game).click()
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 切换到游戏窗口
     def switch_game_window(self):
@@ -59,7 +62,8 @@ class Common(object):
             self.browser.switch_to.window(game_window)
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 设置当前分辨率为横屏
     def set_window_to_horizontal_screen(self):
@@ -77,7 +81,8 @@ class Common(object):
             return showing
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 载入场景进度条
     def loading_bar(self):
@@ -88,7 +93,8 @@ class Common(object):
                                                            "return loading.contentPane.m_progressBar.value;")
             except Exception:
                 self.daf.get_screen_shot(self.browser)
-                raise
+                file_name = self.daf.get_new_file()
+                raise Exception(file_name)
 
             if progress_bar == 100:
                 try:
@@ -97,7 +103,8 @@ class Common(object):
                     return tip
                 except Exception:
                     self.daf.get_screen_shot(self.browser)
-                    raise
+                    file_name = self.daf.get_new_file()
+                    raise Exception(file_name)
 
     # 载入场景消失
     def loading_view_dispear(self):
@@ -106,7 +113,8 @@ class Common(object):
             return showing
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 显示主视图
     def main_view_visible(self):
@@ -115,7 +123,8 @@ class Common(object):
             return main_view
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)
 
     # 显示主场景和公共模块
     def common_view_visible(self):
@@ -124,4 +133,5 @@ class Common(object):
             return common_view
         except Exception:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise Exception(file_name)

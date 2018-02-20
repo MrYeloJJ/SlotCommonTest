@@ -6,7 +6,7 @@ import unittest
 from time import sleep
 from selenium import webdriver
 from src.source.common.Common import Common
-from src.source.common.DirAndFiles import DirAndFiles
+from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestMainAndCommonView(unittest.TestCase):
@@ -34,7 +34,8 @@ class TestMainAndCommonView(unittest.TestCase):
             self.assertEqual(common_view, True, "没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise AssertionError(file_name)
 
     # 竖屏进入，测试是否正常显示主场景
     def test2_main_scence_on_vertical_screen(self):
@@ -51,7 +52,8 @@ class TestMainAndCommonView(unittest.TestCase):
             self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise AssertionError(file_name)
 
     # 横屏进入，来回切换横竖屏，主场景显示正常
     def test3_main_scence_switch_screen_h_first(self):
@@ -67,7 +69,8 @@ class TestMainAndCommonView(unittest.TestCase):
             self.assertEqual(common_view, True, "横屏没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise AssertionError(file_name)
 
         self.common.set_window_to_vertical_screen()
         main_view = self.common.main_view_visible()
@@ -78,7 +81,8 @@ class TestMainAndCommonView(unittest.TestCase):
             self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise AssertionError(file_name)
 
     # 竖屏进入，来回切换横竖屏，主场景显示正常
     def test4_main_scence_switch_screen_v_first(self):
@@ -95,7 +99,8 @@ class TestMainAndCommonView(unittest.TestCase):
             self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise AssertionError(file_name)
 
         self.common.set_window_to_horizontal_screen()
         main_view = self.common.main_view_visible()
@@ -106,7 +111,8 @@ class TestMainAndCommonView(unittest.TestCase):
             self.assertEqual(common_view, True, "横屏没有显示公共视图！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
-            raise
+            file_name = self.daf.get_new_file()
+            raise AssertionError(file_name)
 
 
 if __name__ == "__main__":

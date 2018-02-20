@@ -108,6 +108,7 @@ import unittest
 from xml.sax import saxutils
 import sys
 import re
+import os
 
 # ------------------------------------------------------------------------
 # The redirectors below are used to capture output during testing. Output
@@ -209,12 +210,12 @@ class Template_mixin(object):
 <script language="javascript" type="text/javascript">
 output_list = Array();
 
-/*level 调整增加只显示通过用例的分类 --Findyou
+/*level 调整增加只显示通过用例的分类 --Findyou / 修复筛选显示bug --Gelomen
 0:Summary //all hiddenRow
-1:Failed  //pt hiddenRow, ft none
-2:Pass    //pt none, ft hiddenRow
-3:All     //pt none, ft none
-4:Error   //pt diddenRow, et none
+1:Failed  //pt&et hiddenRow, ft none
+2:Pass    //pt none, ft&et hiddenRow
+3:Error   //pt&ft hiddenRow, et none
+4:All     //all none
 */
 function showCase(level) {
     trs = document.getElementsByTagName("tr");
@@ -222,7 +223,7 @@ function showCase(level) {
         tr = trs[i];
         id = tr.id;
         if (id.substr(0,2) == 'ft') {
-            if (level == 2 || level == 0 || level ==4) {
+            if (level == 2 || level == 0 || level == 3) {
                 tr.className = 'hiddenRow';
             }
             else {
@@ -230,7 +231,7 @@ function showCase(level) {
             }
         }
         if (id.substr(0,2) == 'pt') {
-            if (level == 1 || level == 0 || level == 4) {
+            if (level == 1 || level == 0 || level == 3) {
                 tr.className = 'hiddenRow';
             }
             else {
@@ -238,7 +239,7 @@ function showCase(level) {
             }
         }
         if (id.substr(0,2) == 'et') {
-            if (level < 4) {
+            if (level == 1 || level == 0 || level == 2) {
                 tr.className = 'hiddenRow';
             }
             else {
@@ -372,8 +373,8 @@ table       { font-size: 100%; }
 <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ %(passrate)s }</a>
 <a class="btn btn-success" href='javascript:showCase(2)'>通过{ %(Pass)s }</a>
 <a class="btn btn-warning" href='javascript:showCase(1)'>失败{ %(fail)s }</a>
-<a class="btn btn-danger" href='javascript:showCase(4)'>错误{ %(error)s }</a>
-<a class="btn btn-info" href='javascript:showCase(3)'>所有{ %(count)s }</a>
+<a class="btn btn-danger" href='javascript:showCase(3)'>错误{ %(error)s }</a>
+<a class="btn btn-info" href='javascript:showCase(4)'>所有{ %(count)s }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
 <colgroup>
@@ -418,30 +419,31 @@ table       { font-size: 100%; }
 </tr>
 """ # variables: (style, desc, count, Pass, fail, error, cid)
 
-    #失败 的样式，去掉原来JS效果，美化展示效果  -Findyou
+    #失败 的样式，去掉原来JS效果，美化展示效果  -Findyou / 美化类名上下居中 -- Gelomen
     REPORT_TEST_WITH_OUTPUT_TMPL = r"""
 <tr id='%(tid)s' class='%(Class)s'>
-    <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
+    <td class='%(style)s' style="vertical-align: middle"><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_%(tid)s' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_%(tid)s'>%(status)s</button>
     <div id='div_%(tid)s' class="collapse">  -->
 
-    <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_%(tid)s' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_%(tid)s'>%(status)s</button>
+    <!-- 默认展开错误信息 -Findyou /  修复失败按钮的颜色 -- Gelomen -->
+    <button id='btn_%(tid)s' type="button"  class="btn btn-warning btn-xs" data-toggle="collapse" data-target='#div_%(tid)s'>%(status)s</button>
     <div id='div_%(tid)s' class="collapse in">
     <pre style="text-align:left">
     %(script)s
     </pre>
     </div>
     </td>
+    <td class="text-center" style="vertical-align: middle"><a href="%(screenShot)s" target="_blank">截图_%(screenShot)s</a></td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
 
-    # 通过 的样式，加标签效果  -Findyou
+    # 通过 的样式，加标签效果  -Findyou / 美化类名上下居中 -- Gelomen
     REPORT_TEST_NO_OUTPUT_TMPL = r"""
 <tr id='%(tid)s' class='%(Class)s'>
-    <td class='%(style)s'><div class='testcase'>%(desc)s</div></td>
+    <td class='%(style)s' style="vertical-align: middle"><div class='testcase'>%(desc)s</div></td>
     <td colspan='5' align='center'><span class="label label-success success">%(status)s</span></td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
@@ -791,6 +793,10 @@ class HTMLTestRunner(Template_mixin):
             output = saxutils.escape(uo+ue),
         )
 
+        # 截图名字通过抛出异常存放在u，通过截取字段获得截图名字
+        u = uo+ue
+        screen_shot = u[u.find('fileStart')+9:u.find('fileEnd')]
+
         row = tmpl % dict(
             tid = tid,
             Class = (n == 0 and 'hiddenRow' or 'none'),
@@ -798,6 +804,8 @@ class HTMLTestRunner(Template_mixin):
             desc = desc,
             script = script,
             status = self.STATUS[n],
+            # 添加截图字段
+            screenShot = screen_shot
         )
         rows.append(row)
         if not has_output:
@@ -805,6 +813,56 @@ class HTMLTestRunner(Template_mixin):
 
     def _generate_ending(self):
         return self.ENDING_TMPL
+
+
+# 集成创建文件夹、保存截图、获得截图名字的类
+class DirAndFiles(object):
+
+    def __init__(self):
+        self.path = "../../result/"
+
+    def create_dir(self):
+        now = str(datetime.datetime.now().strftime("%Y-%m-%d(%H-%M-%S)"))
+        dir_path = self.path + now
+
+        # 判断文件夹是否存在，不存在则创建
+        is_dir = os.path.isdir(dir_path)
+        if not is_dir:
+            os.makedirs(dir_path)
+
+    def get_new_dir(self):
+        lists = os.listdir(self.path)
+        # 按时间排序
+        lists.sort(key=lambda fn: os.path.getmtime(self.path + "\\" + fn))
+        # 获取最新文件或文件夹
+        new_dir = os.path.join(self.path, lists[-1])
+        return new_dir
+
+    def get_new_file(self):
+        new_dir = self.get_new_dir()
+        lists = os.listdir(new_dir)
+        # 按时间排序
+        lists.sort(key=lambda fn: os.path.getmtime(new_dir + "\\" + fn))
+        new_file = lists[-1]
+        return "fileStart" + new_file + "fileEnd"
+
+    def get_screen_shot(self, browser):
+
+        # 获取最新文件夹的名字，并将截图保存在该文件夹下
+        i = 1
+        new_dir = self.get_new_dir()
+        img_path = new_dir + "/" + str(i) + ".png"
+
+        # 有可能同个测试步骤出错，截图名字一样导致覆盖文件，所以名字存在则增加id
+        while True:
+            is_file = os.path.isfile(img_path)
+            if is_file:
+                i += 1
+                img_path = new_dir + "/" + str(i) + ".png"
+            else:
+                break
+
+        browser.get_screenshot_as_file(img_path)
 
 
 ##############################################################################
