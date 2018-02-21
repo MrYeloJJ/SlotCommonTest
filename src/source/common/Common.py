@@ -31,8 +31,8 @@ class Common(object):
             title = self.browser.title
             assert title == "as", "进入大厅失败！"
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 切换到slot标签页
     def switch_page(self):
@@ -40,8 +40,8 @@ class Common(object):
             sleep(1)
             self.browser.find_element_by_css_selector("a[href = '#type_107']").click()
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 根据游戏名字查找并打开游戏
     def find_game(self):
@@ -49,8 +49,8 @@ class Common(object):
             sleep(1)
             self.browser.find_element_by_link_text(self.game).click()
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 切换到游戏窗口
     def switch_game_window(self):
@@ -58,8 +58,8 @@ class Common(object):
             game_window = self.browser.window_handles[-1]
             self.browser.switch_to.window(game_window)
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 设置当前分辨率为横屏
     def set_window_to_horizontal_screen(self):
@@ -76,8 +76,8 @@ class Common(object):
                                                   "return loading.isShowing;")
             return showing
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 载入场景进度条
     def loading_bar(self):
@@ -87,8 +87,8 @@ class Common(object):
                 progress_bar = self.browser.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
                                                            "return loading.contentPane.m_progressBar.value;")
             except Exception:
-                file_name = self.daf.get_screen_shot(self.browser)
-                raise Exception(file_name)
+                img_name = self.daf.get_screen_shot(self.browser)
+                raise Exception(img_name)
 
             if progress_bar == 100:
                 try:
@@ -96,8 +96,8 @@ class Common(object):
                                                       "return loading.contentPane.m_progressBar.m_title.textField.text;")
                     return tip
                 except Exception:
-                    file_name = self.daf.get_screen_shot(self.browser)
-                    raise Exception(file_name)
+                    img_name = self.daf.get_screen_shot(self.browser)
+                    raise Exception(img_name)
 
     # 载入场景消失
     def loading_view_dispear(self):
@@ -105,8 +105,8 @@ class Common(object):
             showing = self.browser.execute_script("return UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
             return showing
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 显示主视图
     def main_view_visible(self):
@@ -114,8 +114,8 @@ class Common(object):
             main_view = self.browser.execute_script("return UIManager.instance.mainViewContainer.visible;")
             return main_view
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
 
     # 显示主场景和公共模块
     def common_view_visible(self):
@@ -123,5 +123,5 @@ class Common(object):
             common_view = self.browser.execute_script("return UIManager.instance.commonView.visible;")
             return common_view
         except Exception:
-            file_name = self.daf.get_screen_shot(self.browser)
-            raise Exception(file_name)
+            img_name = self.daf.get_screen_shot(self.browser)
+            raise Exception(img_name)
