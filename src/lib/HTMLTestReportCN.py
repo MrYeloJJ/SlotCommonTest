@@ -372,8 +372,8 @@ table       { font-size: 100%; }
 <p id='show_detail_line'>
 <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ %(passrate)s }</a>
 <a class="btn btn-success" href='javascript:showCase(2)'>通过{ %(Pass)s }</a>
-<a class="btn btn-warning" href='javascript:showCase(1)'>失败{ %(fail)s }</a>
-<a class="btn btn-danger" href='javascript:showCase(3)'>错误{ %(error)s }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ %(fail)s }</a>
+<a class="btn btn-warning" href='javascript:showCase(3)'>错误{ %(error)s }</a>
 <a class="btn btn-info" href='javascript:showCase(4)'>所有{ %(count)s }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
@@ -429,7 +429,7 @@ table       { font-size: 100%; }
     <div id='div_%(tid)s' class="collapse">  -->
 
     <!-- 默认展开错误信息 -Findyou /  修复失败按钮的颜色 -- Gelomen -->
-    <button id='btn_%(tid)s' type="button"  class="btn btn-warning btn-xs" data-toggle="collapse" data-target='#div_%(tid)s'>%(status)s</button>
+    <button id='btn_%(tid)s' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_%(tid)s'>%(status)s</button>
     <div id='div_%(tid)s' class="collapse in">
     <pre style="text-align:left">
     %(script)s
@@ -795,7 +795,7 @@ class HTMLTestRunner(Template_mixin):
 
         # 截图名字通过抛出异常存放在u，通过截取字段获得截图名字
         u = uo+ue
-        screen_shot = u[u.find('fileStart')+9:u.find('fileEnd')]
+        screen_shot = u[u.find('fileStart[')+10:u.find(']fileEnd')]
 
         row = tmpl % dict(
             tid = tid,
@@ -815,7 +815,7 @@ class HTMLTestRunner(Template_mixin):
         return self.ENDING_TMPL
 
 
-# 集成创建文件夹、保存截图、获得截图名字的类
+# 集成创建文件夹、保存截图、获得截图名字的类 -- Gelomen
 class DirAndFiles(object):
 
     def __init__(self):
@@ -844,7 +844,7 @@ class DirAndFiles(object):
         # 按时间排序
         lists.sort(key=lambda fn: os.path.getmtime(new_dir + "\\" + fn))
         new_file = lists[-1]
-        return "fileStart" + new_file + "fileEnd"
+        return "fileStart[" + new_file + "]fileEnd"
 
     def get_screen_shot(self, browser):
 
@@ -863,6 +863,8 @@ class DirAndFiles(object):
                 break
 
         browser.get_screenshot_as_file(img_path)
+        new_file = self.get_new_file()
+        return new_file
 
 
 ##############################################################################
