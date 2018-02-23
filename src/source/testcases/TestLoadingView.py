@@ -28,7 +28,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(showing, True, "没有进入载入场景！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
     # 验证载入场景进度条
     def test2_loading_bar(self):
@@ -38,7 +39,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(tip, "100%", "进度条走满后，百分比不是100%！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
     # 验证载入场景进度条100%后是否消失
     def test3_loading_view_dispear(self):
@@ -50,7 +52,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(showing, None, "载入完成后载入场景不会消失！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
     # 验证竖屏进入载入画面，是否显示载入场景、进度条以及进度条走满后是否消失
     def test4_loading_on_vertical_screen(self):
@@ -62,14 +65,16 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(showing, True, "竖屏没有进入载入场景！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
         tip = self.common.loading_bar()
         try:
             self.assertEqual(tip, "100%", "竖屏进度条走满后，百分比不是100%！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
         sleep(1)
         showing = self.common.loading_view_dispear()
@@ -77,7 +82,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(showing, None, "竖屏载入完成后载入场景不会消失！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
     # 验证载入场景来回切换横竖屏显示正常
     def test5_loading_switch_screen(self):
@@ -94,7 +100,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(showing, True, "来回切换横竖屏没有进入载入场景！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
         # 切换竖屏
         self.common.set_window_to_vertical_screen()
@@ -104,7 +111,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(tip, "100%", "竖屏进度条走满后，百分比不是100%！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
         # 切换横屏
         self.common.set_window_to_horizontal_screen()
@@ -116,7 +124,8 @@ class TestLoadingView(unittest.TestCase):
             self.assertEqual(showing, None, "来回切换横竖屏，载入完成后载入场景不会消失！")
         except AssertionError:
             img_name = self.daf.get_screen_shot(self.browser)
-            raise AssertionError(img_name)
+            print(img_name)
+            raise
 
 
 if __name__ == "__main__":
