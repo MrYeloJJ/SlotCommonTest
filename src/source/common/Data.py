@@ -13,15 +13,11 @@ class Data(object):
 
     def get_message(self):
         dom_tree = xml.dom.minidom.parse(self.xml)
-        collection = dom_tree.documentElement
+        data = dom_tree.documentElement
 
-        target = collection.getElementsByTagName("target")[0].childNodes[0].data
-        messages = collection.getElementsByTagName("data")
+        lobby = data.getElementsByTagName("lobby")[0].childNodes[0].data
+        game = data.getElementsByTagName("game")[0].childNodes[0].data
+        line_num = data.getElementsByTagName("lineNum")[0].childNodes[0].data
+        line_bet = data.getElementsByTagName("lineBet")[0].childNodes[0].data
 
-        for msg in messages:
-            environment = msg.getAttribute("environment")
-            if environment == target:
-                lobby = msg.getElementsByTagName("lobby")[0].childNodes[0].data
-                game = msg.getElementsByTagName("game")[0].childNodes[0].data
-
-                return {"lobby": lobby, "game": game}
+        return {"lobby": lobby, "game": game, "line_num": line_num, "line_bet": line_bet}
