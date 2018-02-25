@@ -31,8 +31,7 @@ class Common(object):
             title = self.browser.title
             assert title == "as", "进入大厅失败！"
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 切换到slot标签页
@@ -41,8 +40,7 @@ class Common(object):
             sleep(1)
             self.browser.find_element_by_css_selector("a[href = '#type_107']").click()
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 根据游戏名字查找并打开游戏
@@ -51,8 +49,7 @@ class Common(object):
             sleep(1)
             self.browser.find_element_by_link_text(self.game).click()
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 切换到游戏窗口
@@ -61,8 +58,7 @@ class Common(object):
             game_window = self.browser.window_handles[-1]
             self.browser.switch_to.window(game_window)
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 设置当前分辨率为横屏
@@ -80,8 +76,7 @@ class Common(object):
                                                   "return loading.isShowing;")
             return showing
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 载入场景进度条
@@ -92,8 +87,7 @@ class Common(object):
                 progress_bar = self.browser.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
                                                            "return loading.contentPane.m_progressBar.value;")
             except Exception:
-                img_name = self.daf.get_screen_shot(self.browser)
-                print(img_name)
+                self.daf.get_screen_shot(self.browser)
                 raise
 
             if progress_bar == 100:
@@ -102,8 +96,7 @@ class Common(object):
                                                       "return loading.contentPane.m_progressBar.m_title.textField.text;")
                     return tip
                 except Exception:
-                    img_name = self.daf.get_screen_shot(self.browser)
-                    print(img_name)
+                    self.daf.get_screen_shot(self.browser)
                     raise
 
     # 载入场景消失
@@ -112,8 +105,7 @@ class Common(object):
             showing = self.browser.execute_script("return UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
             return showing
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 显示主视图
@@ -122,8 +114,7 @@ class Common(object):
             main_view = self.browser.execute_script("return UIManager.instance.mainViewContainer.visible;")
             return main_view
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
 
     # 显示主场景和公共模块
@@ -132,6 +123,5 @@ class Common(object):
             common_view = self.browser.execute_script("return UIManager.instance.commonView.visible;")
             return common_view
         except Exception:
-            img_name = self.daf.get_screen_shot(self.browser)
-            print(img_name)
+            self.daf.get_screen_shot(self.browser)
             raise
