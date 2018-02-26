@@ -1,15 +1,15 @@
 # coding=utf-8
 
-""""" XXX测试用例 """""
+""""" XXXX测试用例 """""
 
 import unittest
 from time import sleep
 from selenium import webdriver
 from src.source.common.Common import Common
-from src.source.common.DirAndFiles import DirAndFiles
+from src.lib.HTMLTestReportCN import DirAndFiles
 
 
-class TestMainAndCommonView(unittest.TestCase):
+class TestLoadingView(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -19,15 +19,13 @@ class TestMainAndCommonView(unittest.TestCase):
 
     def tearDown(self):
         self.browser.quit()
-        
-    # 测试XXXXXXX
-    def test1_XXXX_XXXX(self):
+
+    # 验证是否进入载入场景
+    def test1_loading_view_showing(self):
         sleep(1)
-        a = 1
-        b = 2
-    
+        showing = self.common.loading_view_showing()
         try:
-            self.assertEqual(a, b, "XXX错误!")
+            self.assertEqual(showing, True, "没有进入载入场景！")
         except AssertionError:
             self.daf.get_screen_shot(self.browser)
             raise
