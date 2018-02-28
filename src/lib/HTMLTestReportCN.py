@@ -65,12 +65,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # URL: http://tungwaiyip.info/software/HTMLTestRunner.html
 
-__author__ = "Wai Yip Tung,  Findyou"
+__author__ = "Wai Yip Tung,  Findyou, GelomenChen"
 __version__ = "0.8.2.2"
 
 
 """
 Change History
+Version 0.9.1 -Gelomen
+* 使用UI自动化测试时，增加 错误、失败 详细信息的 浏览器类型和版本
+
+Version 0.9.0 -Gelomen
+* 增加 失败 和 错误 详细信息的 截图链接
+
+Version 0.8.4 -Gelomen
+* 删除 失败模块 的显示
+
+Version 0.8.3 -Gelomen
+* 修复 测试结果 的筛选
+* 优化 失败、错误 小图标的颜色
+* 增加表格 最后一列 的显示，以美化表格
+
 Version 0.8.2.1 -Findyou
 * 改为支持python3
 
@@ -436,7 +450,7 @@ table       { font-size: 100%; }
     </pre>
     </div>
     </td>
-    <td class="text-center" style="vertical-align: middle"><a href="%(screenShot)s" target="_blank">截图_%(screenShot)s</a></td>
+    <td class="text-center" style="vertical-align: middle">浏览器版本：%(browser)s</br></br><a href="%(screenshot)s" target="_blank">截图_%(screenshot)s</a></td>
 </tr>
 """ # variables: (tid, Class, style, desc, status)
 
@@ -597,12 +611,12 @@ class _TestResult(TestResult):
             sys.stderr.write('\n')
 
 
-# 新增 need_screen_shot 参数，0为无需截图，1为需要截图  -- Gelomen
+# 新增 need_screenshot 参数，0为无需截图，1为需要截图  -- Gelomen
 class HTMLTestRunner(Template_mixin):
     """
     """
-    def __init__(self, stream=sys.stdout, verbosity=2, need_screen_shot=None,title=None,description=None,tester=None):
-        self.need_screen_shot = need_screen_shot
+    def __init__(self, stream=sys.stdout, verbosity=2, need_screenshot=None,title=None,description=None,tester=None):
+        self.need_screenshot = need_screenshot
         self.stream = stream
         self.verbosity = verbosity
         if title is None:
@@ -627,7 +641,9 @@ class HTMLTestRunner(Template_mixin):
         test(result)
         self.stopTime = datetime.datetime.now()
         self.generateReport(test, result)
-        print('\nTime Elapsed: %s' % (self.stopTime-self.startTime), file=sys.stderr)
+        print("\033[36;0m--------------------- 测试结束 ---------------------\033[0m")
+        print()
+        print('\033[36;0m------------- 合计耗时: %s -------------\033[0m' % (self.stopTime-self.startTime), file=sys.stderr)
         return result
 
 
@@ -666,28 +682,12 @@ class HTMLTestRunner(Template_mixin):
                 self.passrate = "0.00 %"
         else:
             status = 'none'
-        # 失败模块列表统计逻辑start
-        # 为了发邮件的时候确定知道哪个模块失败了，这里在报告的头里面单独添加一行失败模块的列表
-        # 把用例结果和对应的模块名称单独提取到一个list
-        module_result_list = [(status, re.split(" |\(|\.", str(name))[2]) for status, name, _, _, _ in result.result]
-        failed_report_module_list = []  # 初始化模块失败列表
-        for module_result in module_result_list:
-            if module_result[0] != 0:  # 如果结果是失败的，则把模块名字放到失败模块列表
-                failed_report_module_list.append(module_result[1])
-        failed_report_module_list = list(set(failed_report_module_list))  # 去重
-        if len(failed_report_module_list) == 0:  # 如果没有失败的模块，失败模块日志为固定描述，否则用“，”连接
-            failed_string = "无失败模块"
-        elif len(failed_report_module_list) == 1:
-            failed_string = "".join(failed_report_module_list)
-        else:
-            failed_string = ",".join(failed_report_module_list)
-        # 失败模块列表统计逻辑end
+
         return [
             ('测试人员', self.tester),
             ('开始时间',startTime),
             ('合计耗时',duration),
-            ('测试结果',status + "，通过率 = "+self.passrate),
-            ('失败的模块', failed_string)
+            ('测试结果',status + "，通过率 = "+self.passrate)
         ]
 
     def generateReport(self, test, result):
@@ -793,7 +793,7 @@ class HTMLTestRunner(Template_mixin):
         name = t.id().split('.')[-1]
         doc = t.shortDescription() or ""
         desc = doc and ('%s: %s' % (name, doc)) or name
-        if self.need_screen_shot >= 1:
+        if self.need_screenshot >= 1:
             tmpl = has_output and self.REPORT_TEST_WITH_OUTPUT_TMPL_1 or self.REPORT_TEST_NO_OUTPUT_TMPL
         else:
             tmpl = has_output and self.REPORT_TEST_WITH_OUTPUT_TMPL_0 or self.REPORT_TEST_NO_OUTPUT_TMPL
@@ -820,10 +820,11 @@ class HTMLTestRunner(Template_mixin):
             output = saxutils.escape(uo+ue),
         )
 
-        if self.need_screen_shot >= 1:
+        if self.need_screenshot >= 1:
             # 截图名字通过抛出异常存放在u，通过截取字段获得截图名字  -- Gelomen
             u = uo + ue
-            screen_shot = u[u.find('imgStart[') + 9:u.find(']imgEnd')]
+            screenshot = u[u.find('errorImg[') + 9:u.find(']errorImg')]
+            browser = u[u.find('browser[') + 8:u.find(']browser')]
 
             row = tmpl % dict(
                 tid=tid,
@@ -833,9 +834,10 @@ class HTMLTestRunner(Template_mixin):
                 script=script,
                 status=self.STATUS[n],
                 # 添加截图字段
-                screenShot=screen_shot
+                screenshot=screenshot,
+                # 添加浏览器版本字段
+                browser=browser
             )
-            rows.append(row)
         else:
             row = tmpl % dict(
                 tid=tid,
@@ -845,7 +847,7 @@ class HTMLTestRunner(Template_mixin):
                 script=script,
                 status=self.STATUS[n],
             )
-            rows.append(row)
+        rows.append(row)
 
         if not has_output:
             return
@@ -877,7 +879,7 @@ class DirAndFiles(object):
         new_dir = os.path.join(self.path, lists[-1])
         return new_dir
 
-    def get_screen_shot(self, browser):
+    def get_screenshot(self, browser):
 
         # 获取最新文件夹的名字，并将截图保存在该文件夹下
         i = 1
@@ -895,7 +897,12 @@ class DirAndFiles(object):
 
         browser.get_screenshot_as_file(img_path)
         img_name = str(i) + ".png"
-        print("imgStart[" + img_name + "]imgEnd")
+
+        browser_type = str(browser).split(".")[2]
+        browser_version = browser.capabilities["version"]
+        browser_msg = browser_type + "(" + browser_version + ")"
+
+        print("errorImg[" + img_name + "]errorImg, browser[" + browser_msg + "]browser")
 
 
 ##############################################################################
