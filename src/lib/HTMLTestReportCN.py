@@ -67,11 +67,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # URL: https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
 
 __author__ = "Wai Yip Tung,  Findyou,  Gelomen"
-__version__ = "0.9.1"
+__version__ = "0.9.3"
 
 
 """
 Change History
+Version 0.9.3 -- Gelomen
+* 修复点击失败或错误按钮后，浏览器版本和截图的列不会隐藏的bug
+
+Version 0.9.2 -- Gelomen
+* 美化 浏览器版本 和 截图 的显示
+
 Version 0.9.1 -- Gelomen
 * 使用UI自动化测试时，增加 错误、失败 详细信息的 浏览器类型和版本
 
@@ -340,7 +346,7 @@ function html_escape(s) {
 
     STYLESHEET_TMPL = """
 <style type="text/css" media="screen">
-body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+body        { font-family: Microsoft YaHei;padding: 20px; font-size: 100%; }
 table       { font-size: 100%; }
 
 /* -- heading ---------------------------------------------------------------------- */
@@ -361,6 +367,10 @@ table       { font-size: 100%; }
 .errorCase  { color: #f0ad4e; font-weight: bold; }
 .hiddenRow  { display: none; }
 .testcase   { margin-left: 2em; }
+.screenshot:link { text-decoration: none;color: deeppink; }
+.screenshot:visited { text-decoration: none;color: deeppink; }
+.screenshot:hover { text-decoration: none;color: darkcyan; }
+.screenshot:active { text-decoration: none;color: deeppink; }
 </style>
 """
 
@@ -444,14 +454,14 @@ table       { font-size: 100%; }
     <div id='div_%(tid)s' class="collapse">  -->
 
     <!-- 默认展开错误信息 -Findyou /  修复失败按钮的颜色 -- Gelomen -->
-    <button id='btn_%(tid)s' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_%(tid)s'>%(status)s</button>
+    <button id='btn_%(tid)s' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_%(tid)s,#div_%(tid)s_screenshot'>%(status)s</button>
     <div id='div_%(tid)s' class="collapse in">
     <pre style="text-align:left">
     %(script)s
     </pre>
     </div>
     </td>
-    <td class="text-center" style="vertical-align: middle">浏览器版本：%(browser)s</br></br><a href="%(screenshot)s" target="_blank">截图_%(screenshot)s</a></td>
+    <td class="text-center" style="vertical-align: middle"><div id='div_%(tid)s_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">%(browser)s</div></br>截图：<a class="screenshot" href="%(screenshot)s" target="_blank">img_%(screenshot)s</a></div></td>
 </tr>
 """  # variables: (tid, Class, style, desc, status)
 
@@ -640,9 +650,7 @@ class HTMLTestRunner(Template_mixin):
         test(result)
         self.stopTime = datetime.datetime.now()
         self.generateReport(test, result)
-        print("\033[36;0m--------------------- 测试结束 ---------------------\033[0m")
-        print()
-        print('\033[36;0m------------- 合计耗时: %s -------------\033[0m' % (self.stopTime - self.startTime), file=sys.stderr)
+        print("\n\033[36;0m--------------------- 测试结束 ---------------------\n------------- 合计耗时: %s -------------\033[0m" % (self.stopTime - self.startTime), file=sys.stderr)
         return result
 
     def sortResult(self, result_list):
