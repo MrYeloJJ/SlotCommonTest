@@ -65,22 +65,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # URL: http://tungwaiyip.info/software/HTMLTestRunner.html
 
-__author__ = "Wai Yip Tung,  Findyou, GelomenChen"
-__version__ = "0.8.2.2"
+__author__ = "Wai Yip Tung,  Findyou, Gelomen"
+__version__ = "0.9.1"
 
 
 """
 Change History
-Version 0.9.1 -Gelomen
+Version 0.9.1 -- Gelomen
 * 使用UI自动化测试时，增加 错误、失败 详细信息的 浏览器类型和版本
 
-Version 0.9.0 -Gelomen
+Version 0.9.0 -- Gelomen
+* 可通过 `need_screenshot=1` 作为开关，将报告开启截图功能
 * 增加 失败 和 错误 详细信息的 截图链接
 
-Version 0.8.4 -Gelomen
+Version 0.8.4 -- Gelomen
 * 删除 失败模块 的显示
 
-Version 0.8.3 -Gelomen
+Version 0.8.3 -- Gelomen
 * 修复 测试结果 的筛选
 * 优化 失败、错误 小图标的颜色
 * 增加表格 最后一列 的显示，以美化表格
