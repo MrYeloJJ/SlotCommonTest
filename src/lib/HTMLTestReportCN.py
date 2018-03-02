@@ -67,11 +67,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # URL: https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
 
 __author__ = "Wai Yip Tung,  Findyou,  Gelomen"
-__version__ = "0.9.4"
+__version__ = "0.9.5"
 
 
 """
 Change History
+Version 0.9.5 -- Gelomen
+* heading新增 失败 和 错误 测试用例合集
+
 Version 0.9.4 -- Gelomen
 * 修复失败和错误用例里对应按钮的颜色
 
@@ -236,8 +239,8 @@ class Template_mixin(object):
 <body >
 <script language="javascript" type="text/javascript">
 
-// 修改 失败 和 错误 用例里对应按钮的颜色ClassName为动态加载 -- Gelomen
-$(function(){
+    $(function(){
+        // 修改 失败 和 错误 用例里对应按钮的颜色ClassName为动态加载 -- Gelomen
     	$("button").each(function () {
     	    var text = $(this).text();
     	    if(text == "失败"){
@@ -247,7 +250,12 @@ $(function(){
             }
         })
 
+        // 给失败和错误合集加样式 -- Gelomen
+        var p_attribute = $("p.attribute")
+        p_attribute.eq(4).addClass("failCollection")
+        p_attribute.eq(5).addClass("errorCollection")
     })
+    
     
 output_list = Array();
 
@@ -375,6 +383,13 @@ table       { font-size: 100%; }
 .heading .description {
     margin-top: 4ex;
     margin-bottom: 6ex;
+    clear: both;
+}
+
+/* --- 失败和错误合集样式 -- Gelomen --- */
+.failCollection, .errorCollection {
+    width: 100px;
+    float: left;
 }
 
 /* -- report ------------------------------------------------------------------------ */
@@ -556,6 +571,11 @@ class _TestResult(TestResult):
         # 增加一个测试通过率 --Findyou
         self.passrate = float(0)
 
+        # 增加失败用例合集
+        self.failCase = ""
+        # 增加错误用例合集
+        self.errorCase = ""
+
     def startTest(self, test):
         stream = sys.stderr
         # stdout_content = " Testing: " + str(test)
@@ -599,11 +619,11 @@ class _TestResult(TestResult):
         use_time = round(self.test_end_time - self.test_start_time, 2)
         self.result.append((0, test, output, '', use_time))
         if self.verbosity > 1:
-            sys.stderr.write('  S ')
+            sys.stderr.write('  S  ')
             sys.stderr.write(str(test))
             sys.stderr.write('\n')
         else:
-            sys.stderr.write('  S ')
+            sys.stderr.write('  S  ')
             sys.stderr.write('\n')
 
     def addError(self, test, err):
@@ -621,6 +641,9 @@ class _TestResult(TestResult):
             sys.stderr.write('  E  ')
             sys.stderr.write('\n')
 
+        # 添加收集错误用例名字 -- Gelomen
+        self.errorCase += "<li>" + str(test) + "</li>"
+
     def addFailure(self, test, err):
         self.failure_count += 1
         TestResult.addFailure(self, test, err)
@@ -635,6 +658,9 @@ class _TestResult(TestResult):
         else:
             sys.stderr.write('  F  ')
             sys.stderr.write('\n')
+
+        # 添加收集失败用例名字 -- Gelomen
+        self.failCase += "<li>" + str(test) + "</li>"
 
 
 # 新增 need_screenshot 参数，0为无需截图，1为需要截图  -- Gelomen
@@ -667,6 +693,7 @@ class HTMLTestRunner(Template_mixin):
         test(result)
         self.stopTime = datetime.datetime.now()
         self.generateReport(test, result)
+        # 优化测试结束后打印蓝色提示文字 -- Gelomen
         print("\n\033[36;0m--------------------- 测试结束 ---------------------\n------------- 合计耗时: %s -------------\033[0m" % (self.stopTime - self.startTime), file=sys.stderr)
         return result
 
@@ -709,11 +736,23 @@ class HTMLTestRunner(Template_mixin):
         else:
             status = 'none'
 
+        if len(result.failCase) > 0:
+            failCase = result.failCase
+        else:
+            failCase = "无"
+
+        if len(result.errorCase) > 0:
+            errorCase = result.errorCase
+        else:
+            errorCase = "无"
+
         return [
             ('测试人员', self.tester),
             ('开始时间', startTime),
             ('合计耗时', duration),
-            ('测试结果', status + "，通过率 = " + self.passrate)
+            ('测试结果', status + "，通过率 = " + self.passrate),
+            ('失败用例合集', failCase),
+            ('错误用例合集', errorCase),
         ]
 
     def generateReport(self, test, result):
@@ -740,9 +779,16 @@ class HTMLTestRunner(Template_mixin):
     def _generate_heading(self, report_attrs):
         a_lines = []
         for name, value in report_attrs:
-            line = self.HEADING_ATTRIBUTE_TMPL % dict(
-                name=saxutils.escape(name),
-                value=saxutils.escape(value),
+            # 如果是 失败用例 或 错误用例合集，则不进行转义 -- Gelomen
+            if name == "失败用例合集" or name == "错误用例合集":
+                line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                    name=name,
+                    value="<ol style='float: left; margin-right: 40px;'>" + value + "</ol>",
+                    )
+            else:
+                line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                    name=saxutils.escape(name),
+                    value=saxutils.escape(value),
                 )
             a_lines.append(line)
         heading = self.HEADING_TMPL % dict(
