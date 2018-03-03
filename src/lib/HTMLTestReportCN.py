@@ -292,6 +292,11 @@ class Template_mixin(object):
                 $("#toTop").css("display", "none")
             }
         })
+        
+        // 增加回到顶部过程的动画，以看上去不会那么生硬  -- Gelomen
+        $("#toTop").click(function() {
+            $("html,body").animate({"scrollTop":0}, 700)
+        })
     });
     
     
@@ -617,7 +622,7 @@ table       { font-size: 100%; }
     # 增加返回顶部按钮  --Findyou
     ENDING_TMPL = """<div id='ending'>&nbsp;</div>
     <div id="toTop" style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer; display: none">
-    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    <a><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
     </span></a></div>
     """
 
