@@ -281,6 +281,14 @@ class Template_mixin(object):
             $('.pic_looper').fadeOut(200);
             $('.pic_show').fadeOut(200)
         });
+        
+        // 改变窗口大小时，自动改变图片与顶部的距离  -- Gelomen
+        $(window).resize(function(){
+            var browserHeight = $(window).height();
+            var pic_boxHeight = $(".pic_box").height();
+            var top = (browserHeight - pic_boxHeight)/2;
+            $('.pic_box').css("margin-top", top + "px")
+        });
 
         // 距离顶部超过浏览器窗口一屏时，回到顶部按钮才出现  -- Gelomen
         $(window).scroll(function(){
@@ -464,15 +472,16 @@ table       { font-size: 100%; }
 }
 
 .pic_box{
-    width:80%;
-    height:80%;
+    width:90%;
+    height:90%;
     margin:40px auto;
     text-align: center;
     overflow: hidden;
 }
 
 .pic_box img{
-    max-width:1020px;
+    width: auto;
+    height: 100%;
 }
 
 /* -- report ------------------------------------------------------------------------ */
