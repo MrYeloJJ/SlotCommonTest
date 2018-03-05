@@ -9,7 +9,7 @@ from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
 
 
-class TestMainAndCommonView(unittest.TestCase):
+class TestMainAndComView(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
