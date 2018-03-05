@@ -104,7 +104,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-SlotCommonTest_report_*.html
+*公共模块测试报告_*.html
 *.png
 .idea/workspace.xml*
 .idea/dictionaries/
