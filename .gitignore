@@ -104,7 +104,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-*公共模块测试报告_*.html
+*.html
 image/
 *.png
 .idea/workspace.xml*
