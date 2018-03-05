@@ -76,6 +76,7 @@ Version 0.9.9 -- Gelomen
 * 优化报告文件夹命名
 * 优化截图存放的目录
 * 增加图片阴影边框以突出图片
+* 优化 失败用例合集 和 错误用例合集 显示的颜色
 
 Version 0.9.8 -- Gelomen
 * 优化回到顶部按钮的显示方式
@@ -446,6 +447,12 @@ table       { font-size: 100%; }
 .failCollection, .errorCollection {
     width: 100px;
     float: left;
+}
+.failCaseOl li {
+    color: red
+}
+.errorCaseOl li {
+    color: orange
 }
 
 /* --- 打开截图特效样式 -- Gelomen --- */
@@ -879,14 +886,20 @@ class HTMLTestRunner(Template_mixin):
         return self.STYLESHEET_TMPL
 
     # 增加Tester显示 -Findyou
+    # 增加 失败用例合集 和 错误用例合集 的显示  -- Gelomen
     def _generate_heading(self, report_attrs):
         a_lines = []
         for name, value in report_attrs:
             # 如果是 失败用例 或 错误用例合集，则不进行转义 -- Gelomen
-            if name == "失败用例合集" or name == "错误用例合集":
+            if name == "失败用例合集":
                 line = self.HEADING_ATTRIBUTE_TMPL % dict(
                     name=name,
-                    value="<ol style='float: left; margin-right: 100px;'>" + value + "</ol>",
+                    value="<ol class='failCaseOl' style='float: left; margin-right: 100px;'>" + value + "</ol>",
+                    )
+            elif name == "错误用例合集":
+                line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                    name=name,
+                    value="<ol class='errorCaseOl' style='float: left; margin-right: 100px;'>" + value + "</ol>",
                     )
             else:
                 line = self.HEADING_ATTRIBUTE_TMPL % dict(
