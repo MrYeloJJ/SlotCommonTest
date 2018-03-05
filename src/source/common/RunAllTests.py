@@ -12,6 +12,7 @@ class RunAllTests(object):
 
     def __init__(self):
         self.test_case_path = "../../source"
+        self.tester = input("请输入你的名字：")
 
         # 将游戏名字放入报告里
         self.game = Data().get_message()["game"]
@@ -32,7 +33,7 @@ class RunAllTests(object):
         file_path = new_dir + "/【" + self.game + "】公共模块测试报告_" + now + ".html"
 
         fp = open(file_path, "wb")
-        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, need_screenshot=1, title=self.title, description=self.description, tester=input("请输入你的名字："))
+        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, need_screenshot=1, title=self.title, description=self.description, tester=self.tester)
         runner.run(test_suite)
         fp.close()
 
