@@ -105,6 +105,7 @@ venv.bak/
 .mypy_cache/
 
 *公共模块测试报告_*.html
+image/
 *.png
 .idea/workspace.xml*
 .idea/dictionaries/
