@@ -55,7 +55,7 @@ class TestLoadingView(unittest.TestCase):
     # 验证竖屏进入载入画面，是否显示载入场景、进度条以及进度条走满后是否消失
     def test4_loading_on_vertical_screen(self):
         # 切换竖屏
-        self.common.set_window_to_vertical_screen()
+        self.common.portrait()
 
         showing = self.common.loading_view_showing()
         try:
@@ -82,12 +82,12 @@ class TestLoadingView(unittest.TestCase):
     # 验证载入场景来回切换横竖屏显示正常
     def test5_loading_switch_screen(self):
         # 切换竖屏
-        self.common.set_window_to_vertical_screen()
+        self.common.portrait()
 
         sleep(1)
 
         # 切换横屏
-        self.common.set_window_to_horizontal_screen()
+        self.common.landscape()
 
         showing = self.common.loading_view_showing()
         try:
@@ -97,7 +97,7 @@ class TestLoadingView(unittest.TestCase):
             raise
 
         # 切换竖屏
-        self.common.set_window_to_vertical_screen()
+        self.common.portrait()
 
         tip = self.common.loading_bar()
         try:
@@ -107,7 +107,7 @@ class TestLoadingView(unittest.TestCase):
             raise
 
         # 切换横屏
-        self.common.set_window_to_horizontal_screen()
+        self.common.landscape()
 
         sleep(2)
 

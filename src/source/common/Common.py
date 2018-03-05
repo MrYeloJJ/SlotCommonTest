@@ -62,11 +62,11 @@ class Common(object):
             raise
 
     # 设置当前分辨率为横屏
-    def set_window_to_horizontal_screen(self):
+    def landscape(self):
         self.browser.set_window_size(width=1100, height=894, windowHandle="current")
 
     # 设置当前分辨率为竖屏
-    def set_window_to_vertical_screen(self):
+    def portrait(self):
         self.browser.set_window_size(width=413, height=894, windowHandle="current")
 
     # 进入载入场景

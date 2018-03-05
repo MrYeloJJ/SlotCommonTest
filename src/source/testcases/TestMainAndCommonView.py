@@ -37,8 +37,8 @@ class TestMainAndCommonView(unittest.TestCase):
             raise
 
     # 竖屏进入，测试是否正常显示主场景
-    def test2_main_scence_on_vertical_screen(self):
-        self.common.set_window_to_vertical_screen()
+    def test2_main_scence_in_portrait(self):
+        self.common.portrait()
         sleep(2)
         self.common.loading_bar()
 
@@ -54,7 +54,7 @@ class TestMainAndCommonView(unittest.TestCase):
             raise
 
     # 横屏进入，来回切换横竖屏，主场景显示正常
-    def test3_main_scence_switch_screen_h_first(self):
+    def test3_main_scence_landscape_mod_switch(self):
         sleep(2)
         self.common.loading_bar()
 
@@ -69,7 +69,7 @@ class TestMainAndCommonView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-        self.common.set_window_to_vertical_screen()
+        self.common.portrait()
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
 
@@ -81,8 +81,8 @@ class TestMainAndCommonView(unittest.TestCase):
             raise
 
     # 竖屏进入，来回切换横竖屏，主场景显示正常
-    def test4_main_scence_switch_screen_v_first(self):
-        self.common.set_window_to_vertical_screen()
+    def test4_main_scence_portrait_mod_switch(self):
+        self.common.portrait()
         sleep(2)
         self.common.loading_bar()
 
@@ -97,7 +97,7 @@ class TestMainAndCommonView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-        self.common.set_window_to_horizontal_screen()
+        self.common.landscape()
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
 
