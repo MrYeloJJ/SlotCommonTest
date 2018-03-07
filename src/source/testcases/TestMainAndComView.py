@@ -22,7 +22,7 @@ class TestMainAndComView(unittest.TestCase):
 
     # 测试是否正常显示主场景
     def test1_main_scence_visible(self):
-        sleep(2)
+        sleep(1)
         self.common.loading_bar()
 
         sleep(2)
@@ -39,7 +39,7 @@ class TestMainAndComView(unittest.TestCase):
     # 竖屏进入，测试是否正常显示主场景
     def test2_main_scence_in_portrait(self):
         self.common.portrait()
-        sleep(2)
+        sleep(1)
         self.common.loading_bar()
 
         sleep(2)
@@ -55,7 +55,7 @@ class TestMainAndComView(unittest.TestCase):
 
     # 横屏进入，来回切换横竖屏，主场景显示正常
     def test3_main_scence_landscape_mod_switch(self):
-        sleep(2)
+        sleep(1)
         self.common.loading_bar()
 
         sleep(2)
@@ -83,7 +83,7 @@ class TestMainAndComView(unittest.TestCase):
     # 竖屏进入，来回切换横竖屏，主场景显示正常
     def test4_main_scence_portrait_mod_switch(self):
         self.common.portrait()
-        sleep(2)
+        sleep(1)
         self.common.loading_bar()
 
         sleep(2)
