@@ -4,7 +4,7 @@
 * 生成报告的插件：https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
 
 #### 目录结构
-```
+```python
 SlotCommonTest
     |
     +-- src
