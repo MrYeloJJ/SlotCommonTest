@@ -14,6 +14,7 @@ SlotCommonTest
     |    |    +-- chromedriver.exe
     |    |    +-- HTMLTestReportCN.py
     |    +-- result                                 // 测试报告目录
+    |    |    +-- sample                            // 测试报告例子
     |    |    +-- README.md
     |    +-- source                                 // 源码目录
     |    |    +-- common                            // 公共类目录
