@@ -25,6 +25,7 @@ SlotCommonTest
     |    |    |    +-- TestLoadingView.py
     |    |    |    +-- TestMainAndComView.py
     |    |    |    +-- ...
+    |    |    |    +-- ...
     +-- venv                                        // 虚拟环境目录
     +-- .gitignore
     +-- README.md
