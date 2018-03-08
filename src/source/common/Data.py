@@ -17,7 +17,5 @@ class Data(object):
 
         lobby = data.getElementsByTagName("lobby")[0].childNodes[0].data
         game = data.getElementsByTagName("game")[0].childNodes[0].data
-        line_num = data.getElementsByTagName("lineNum")[0].childNodes[0].data
-        line_bet = data.getElementsByTagName("lineBet")[0].childNodes[0].data
 
-        return {"lobby": lobby, "game": game, "line_num": line_num, "line_bet": line_bet}
+        return {"lobby": lobby, "game": game}
