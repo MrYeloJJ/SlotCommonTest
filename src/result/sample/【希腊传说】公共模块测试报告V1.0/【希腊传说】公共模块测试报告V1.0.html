@@ -3,11 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>【希腊传说】公共模块测试报告</title>
-    <meta name="generator" content="HTMLTestRunner 1.0.1"/>
+    <meta name="generator" content="HTMLTestRunner 1.0.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
     
 <style type="text/css" media="screen">
 body        { font-family: Microsoft YaHei;padding: 20px; font-size: 100%; }
@@ -51,6 +53,7 @@ table       { font-size: 100%; }
     opacity: 0.6;
     background: #000;
     display: none;
+    z-index: 100;
 }
 
 .pic_show{
@@ -63,6 +66,7 @@ table       { font-size: 100%; }
     margin:auto;
     text-align: center;
     display: none;
+    z-index: 100;
 }
 
 .pic_box{
@@ -80,6 +84,14 @@ table       { font-size: 100%; }
     -moz-box-shadow: 0px 0px 20px 0px #000;
     -webkit-box-shadow: 0px 0px 20px 0px #000;
     box-shadow: 0px 0px 20px 0px #000;
+}
+
+/* --- 饼状图div样式 -- Gelomen --- */
+#container {
+    width: 450px;
+    height: 400px;
+    float: left;
+    margin-left: 15%;
 }
 
 /* -- report ------------------------------------------------------------------------ */
@@ -156,6 +168,72 @@ table       { font-size: 100%; }
         $("#toTop").click(function() {
             $("html,body").animate({"scrollTop":0}, 700)
         })
+        
+        // 增加饼状图  -- Gelomen
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                spacing : [100, 0 , 40, 0]
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                floating:true,
+                text: '测试结果占比'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    colors: ['#81ca9d', '#fdc68c', '#f16d7e'],
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    },
+                    point: {
+                        events: {
+                            mouseOver: function(e) {  // 鼠标滑过时动态更新标题
+                                chart.setTitle({
+                                    text: e.target.name+ '\t'+ e.target.y + ' 个'
+                                });
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                name: '比例',
+                data: [
+                    ['通过', 6],
+                    ['错误', 2],
+                    {
+                        name: '失败',
+                        y: 1,
+                        sliced: true,
+                        selected: true
+                    }
+                ]
+            }]
+        }, function(c) {
+            // 环形图圆心
+            var centerY = c.series[0].center[1],
+                titleHeight = parseInt(c.title.styles.fontSize);
+            c.setTitle({
+                y:centerY + titleHeight/2
+            });
+            chart = c;
+        });
     });
     
     
@@ -179,6 +257,9 @@ function showCase(level) {
             }
             else {
                 tr.className = '';
+                // 切换筛选时只显示预览   -- Gelomen
+                $("div[id^='div_ft']").attr("class", "collapse");
+                $("div[id^='div_et']").attr("class", "collapse");
             }
         }
         if (id.substr(0,2) == 'pt') {
@@ -187,6 +268,9 @@ function showCase(level) {
             }
             else {
                 tr.className = '';
+                // 切换筛选时只显示预览   -- Gelomen
+                $("div[id^='div_ft']").attr("class", "collapse");
+                $("div[id^='div_et']").attr("class", "collapse");
             }
         }
         if (id.substr(0,2) == 'et') {
@@ -195,6 +279,9 @@ function showCase(level) {
             }
             else {
                 tr.className = '';
+                // 切换筛选时只显示预览   -- Gelomen
+                $("div[id^='div_ft']").attr("class", "collapse");
+                $("div[id^='div_et']").attr("class", "collapse");
             }
         }
     }
@@ -258,14 +345,17 @@ function html_escape(s) {
 </script>
 <div class='pic_looper'></div> <div class='pic_show'><div class='pic_box'><img src=''/></div> </div>
 <div class='heading'>
-<h1 style="font-family: Microsoft YaHei">【希腊传说】公共模块测试报告</h1>
-<p class='attribute'><strong>测试人员 : </strong> Gelomen</p>
-<p class='attribute'><strong>开始时间 : </strong> 2018-03-11 18:16:25</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:03:06.352360</p>
+<div style="width: 700px ;float: left;">
+    <h1 style="font-family: Microsoft YaHei">【希腊传说】公共模块测试报告</h1>
+    <p class='attribute'><strong>测试人员 : </strong> Gelomen</p>
+<p class='attribute'><strong>开始时间 : </strong> 2018-03-12 16:39:41</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:02:39.858504</p>
 <p class='attribute'><strong>测试结果 : </strong> 共 9，通过 6，失败 1，错误 2，通过率 = 66.67%</p>
 <p class='attribute'><strong>失败用例合集 : </strong> <ol class='failCaseOl' style='float: left; margin-right: 100px;'><li>test5_loading_switch_screen (testcases.TestLoadingView.TestLoadingView)</li></ol></p>
 <p class='attribute'><strong>错误用例合集 : </strong> <ol class='errorCaseOl' style='float: left; margin-right: 100px;'><li>test3_loading_view_dispear (testcases.TestLoadingView.TestLoadingView)</li><li>test4_loading_on_vertical_screen (testcases.TestLoadingView.TestLoadingView)</li></ol></p>
 
+</div>
+<div id="container"></div>
 <p class='description'>Slot游戏公共模块测试报告</p>
 </div>
 
@@ -303,7 +393,7 @@ function html_escape(s) {
     <td class="text-center">2</td>
     <td class="text-center">1</td>
     <td class="text-center">2</td>
-    <td class="text-center">97.58秒</td>
+    <td class="text-center">83.54秒</td>
     <td class="text-center"><a href="javascript:showClassDetail('c1',5)" class="detail" id='c1'>详细</a></td>
 </tr>
 
@@ -331,20 +421,20 @@ function html_escape(s) {
     <div id='div_et1_3' class="collapse in">
     <pre style="text-align:left">
     
-et1_3: errorImg[1.png]errorImg, browser[chrome(63.0.3239.132)]browser
+et1_3: errorImg[1.png]errorImg, browser[chrome(64.0.3282.186)]browser
 Traceback (most recent call last):
-  File "G:\PycharmProject\SlotCommonTest\src\source\testcases\TestLoadingView.py", line 48, in test3_loading_view_dispear
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\src\source\testcases\TestLoadingView.py", line 48, in test3_loading_view_dispear
     showing = self.common.loading_view_dispear()
-  File "G:\PycharmProject\SlotCommonTest\src\source\common\Common.py", line 105, in loading_view_dispear
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\src\source\common\Common.py", line 105, in loading_view_dispear
     showing = self.browser.execute_script("return UI1Manager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
-  File "G:\PycharmProject\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 627, in execute_script
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 627, in execute_script
     'args': converted_args})['value']
-  File "G:\PycharmProject\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 312, in execute
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 312, in execute
     self.error_handler.check_response(response)
-  File "G:\PycharmProject\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
     raise exception_class(message, screen, stacktrace)
 selenium.common.exceptions.WebDriverException: Message: unknown error: UI1Manager is not defined
-  (Session info: chrome=63.0.3239.132)
+  (Session info: chrome=64.0.3282.186)
   (Driver info: chromedriver=2.35.528161 (5b82f2d2aae0ca24b877009200ced9065a772e73),platform=Windows NT 10.0.16299 x86_64)
 
 
@@ -352,7 +442,7 @@ selenium.common.exceptions.WebDriverException: Message: unknown error: UI1Manage
     </pre>
     </div>
     </td>
-    <td class="text-center" style="vertical-align: middle"><div id='div_et1_3_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(63.0.3239.132)</div></br>截图：<a class="screenshot" href="javascript:void(0)" img="image/1.png">img_1.png</a></div></td>
+    <td class="text-center" style="vertical-align: middle"><div id='div_et1_3_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(64.0.3282.186)</div></br>截图：<a class="screenshot" href="javascript:void(0)" img="image/1.png">img_1.png</a></div></td>
 </tr>
 
 <tr id='et1_4' class='none'>
@@ -367,20 +457,20 @@ selenium.common.exceptions.WebDriverException: Message: unknown error: UI1Manage
     <div id='div_et1_4' class="collapse in">
     <pre style="text-align:left">
     
-et1_4: errorImg[2.png]errorImg, browser[chrome(63.0.3239.132)]browser
+et1_4: errorImg[2.png]errorImg, browser[chrome(64.0.3282.186)]browser
 Traceback (most recent call last):
-  File "G:\PycharmProject\SlotCommonTest\src\source\testcases\TestLoadingView.py", line 75, in test4_loading_on_vertical_screen
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\src\source\testcases\TestLoadingView.py", line 75, in test4_loading_on_vertical_screen
     showing = self.common.loading_view_dispear()
-  File "G:\PycharmProject\SlotCommonTest\src\source\common\Common.py", line 105, in loading_view_dispear
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\src\source\common\Common.py", line 105, in loading_view_dispear
     showing = self.browser.execute_script("return UI1Manager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
-  File "G:\PycharmProject\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 627, in execute_script
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 627, in execute_script
     'args': converted_args})['value']
-  File "G:\PycharmProject\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 312, in execute
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 312, in execute
     self.error_handler.check_response(response)
-  File "G:\PycharmProject\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
     raise exception_class(message, screen, stacktrace)
 selenium.common.exceptions.WebDriverException: Message: unknown error: UI1Manager is not defined
-  (Session info: chrome=63.0.3239.132)
+  (Session info: chrome=64.0.3282.186)
   (Driver info: chromedriver=2.35.528161 (5b82f2d2aae0ca24b877009200ced9065a772e73),platform=Windows NT 10.0.16299 x86_64)
 
 
@@ -388,7 +478,7 @@ selenium.common.exceptions.WebDriverException: Message: unknown error: UI1Manage
     </pre>
     </div>
     </td>
-    <td class="text-center" style="vertical-align: middle"><div id='div_et1_4_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(63.0.3239.132)</div></br>截图：<a class="screenshot" href="javascript:void(0)" img="image/2.png">img_2.png</a></div></td>
+    <td class="text-center" style="vertical-align: middle"><div id='div_et1_4_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(64.0.3282.186)</div></br>截图：<a class="screenshot" href="javascript:void(0)" img="image/2.png">img_2.png</a></div></td>
 </tr>
 
 <tr id='ft1_5' class='none'>
@@ -403,9 +493,9 @@ selenium.common.exceptions.WebDriverException: Message: unknown error: UI1Manage
     <div id='div_ft1_5' class="collapse in">
     <pre style="text-align:left">
     
-ft1_5: errorImg[3.png]errorImg, browser[chrome(63.0.3239.132)]browser
+ft1_5: errorImg[3.png]errorImg, browser[chrome(64.0.3282.186)]browser
 Traceback (most recent call last):
-  File "G:\PycharmProject\SlotCommonTest\src\source\testcases\TestLoadingView.py", line 94, in test5_loading_switch_screen
+  File "E:\Gelomen\PycharmProjects\SlotCommonTest\src\source\testcases\TestLoadingView.py", line 94, in test5_loading_switch_screen
     self.assertEqual(showing, "True", "来回切换横竖屏没有进入载入场景！")
 AssertionError: True != 'True' : 来回切换横竖屏没有进入载入场景！
 
@@ -413,7 +503,7 @@ AssertionError: True != 'True' : 来回切换横竖屏没有进入载入场景�
     </pre>
     </div>
     </td>
-    <td class="text-center" style="vertical-align: middle"><div id='div_ft1_5_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(63.0.3239.132)</div></br>截图：<a class="screenshot" href="javascript:void(0)" img="image/3.png">img_3.png</a></div></td>
+    <td class="text-center" style="vertical-align: middle"><div id='div_ft1_5_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(64.0.3282.186)</div></br>截图：<a class="screenshot" href="javascript:void(0)" img="image/3.png">img_3.png</a></div></td>
 </tr>
 
 <tr class='passClass warning'>
@@ -422,7 +512,7 @@ AssertionError: True != 'True' : 来回切换横竖屏没有进入载入场景�
     <td class="text-center">4</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">88.77秒</td>
+    <td class="text-center">76.32秒</td>
     <td class="text-center"><a href="javascript:showClassDetail('c2',4)" class="detail" id='c2'>详细</a></td>
 </tr>
 
@@ -456,7 +546,7 @@ AssertionError: True != 'True' : 来回切换横竖屏没有进入载入场景�
     <td>6</td>
     <td>1</td>
     <td>2</td>
-    <td>186.35秒</td>
+    <td>159.86秒</td>
     <td>通过率：66.67%</td>
 </tr>
 </table>
