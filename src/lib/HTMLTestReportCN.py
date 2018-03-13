@@ -169,7 +169,7 @@ _global_dict = {}
 
 
 # 让新建的报告文件夹路径存入全局变量       -- Gelomen
-class GlobalVar(object):
+class GlobalMsg(object):
     def __init__(self):
         global _global_dict
         _global_dict = {}
@@ -324,12 +324,30 @@ class Template_mixin(object):
             $('.pic_show').fadeOut(200)
         });
         
-        // 改变窗口大小时，自动改变图片与顶部的距离  -- Gelomen
+        var browserWidth = $(window).width();
+        var margin_left = browserWidth/2 - 450;
+        if(margin_left <= 240){
+            $("#container").css("margin", "auto");
+        }else {
+            $("#container").css("margin-left", margin_left + "px");
+        }
+
         $(window).resize(function(){
+            // 改变窗口大小时，自动改变图片与顶部的距离  -- Gelomen
             var browserHeight = $(window).height();
             var pic_boxHeight = $(".pic_box").height();
             var top = (browserHeight - pic_boxHeight)/2;
-            $('.pic_box').css("margin-top", top + "px")
+            $('.pic_box').css("margin-top", top + "px");
+
+
+            // 改变窗口大小时，自动改变饼图的边距  -- Gelomen
+            var browserWidth = $(window).width();
+            var margin_left = browserWidth/2 - 450;
+            if(margin_left <= 240){
+                $("#container").css("margin", "auto");
+            }else {
+                $("#container").css("margin-left", margin_left + "px");
+            }
         });
 
         // 距离顶部超过浏览器窗口一屏时，回到顶部按钮才出现  -- Gelomen
@@ -354,7 +372,7 @@ class Template_mixin(object):
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                spacing : [100, 0 , 40, 0]
+                spacing : [0, 0, 0, 0]
             },
             credits: {
                 enabled: false
@@ -418,6 +436,15 @@ class Template_mixin(object):
             });
             chart = c;
         });
+        
+        // 查看 失败 和 错误 合集链接文字切换  -- Gelomen
+        $(".showDetail").click(function () {
+            if($(this).html() == "点击查看"){
+                $(this).html("点击收起")
+            }else {
+                $(this).html("点击查看")
+            }
+        })
     });
     
     
@@ -548,14 +575,7 @@ body        { font-family: Microsoft YaHei;padding: 20px; font-size: 100%; }
 table       { font-size: 100%; }
 
 /* -- heading ---------------------------------------------------------------------- */
-.heading {
-    margin-top: 0ex;
-    margin-bottom: 1ex;
-}
-
-.heading .description {
-    margin-top: 4ex;
-    margin-bottom: 6ex;
+.heading .description, .attribute {
     clear: both;
 }
 
@@ -564,10 +584,10 @@ table       { font-size: 100%; }
     width: 100px;
     float: left;
 }
-.failCaseOl li {
+#failCaseOl li {
     color: red
 }
-.errorCaseOl li {
+#errorCaseOl li {
     color: orange
 }
 
@@ -621,9 +641,8 @@ table       { font-size: 100%; }
 /* --- 饼状图div样式 -- Gelomen --- */
 #container {
     width: 450px;
-    height: 400px;
+    height: 300px;
     float: left;
-    margin-left: 15%;
 }
 
 /* -- report ------------------------------------------------------------------------ */
@@ -647,12 +666,12 @@ table       { font-size: 100%; }
     # 添加显示截图 和 饼状图 的div  -- Gelomen
     HEADING_TMPL = """<div class='pic_looper'></div> <div class='pic_show'><div class='pic_box'><img src=''/></div> </div>
 <div class='heading'>
-<div style="width: 700px ;float: left;">
+<div style="width: 650px; float: left;">
     <h1 style="font-family: Microsoft YaHei">%(title)s</h1>
     %(parameters)s
+    <p class='description'>%(description)s</p>
 </div>
 <div id="container"></div>
-<p class='description'>%(description)s</p>
 </div>
 
 """  # variables: (title, parameters, description)
@@ -665,6 +684,7 @@ table       { font-size: 100%; }
     #
     # 汉化,加美化效果 --Findyou
     REPORT_TMPL = """
+<div style="width: 500px; clear: both;">
 <p id='show_detail_line'>
 <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ %(passrate)s }</a>
 <a class="btn btn-success" href='javascript:showCase(2)'>通过{ %(Pass)s }</a>
@@ -672,6 +692,7 @@ table       { font-size: 100%; }
 <a class="btn btn-warning" href='javascript:showCase(3)'>错误{ %(error)s }</a>
 <a class="btn btn-info" href='javascript:showCase(4)'>所有{ %(count)s }</a>
 </p>
+</div>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
 <colgroup>
 <col align='left' />
@@ -1030,14 +1051,28 @@ class HTMLTestRunner(Template_mixin):
         for name, value in report_attrs:
             # 如果是 失败用例 或 错误用例合集，则不进行转义 -- Gelomen
             if name == "失败用例合集":
-                line = self.HEADING_ATTRIBUTE_TMPL % dict(
-                    name=name,
-                    value="<ol class='failCaseOl' style='float: left; margin-right: 100px;'>" + value + "</ol>",
+                if value == "无":
+                    line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                        name=name,
+                        value="<ol style='float: left;'>" + value + "</ol>",
+                    )
+                else:
+                    line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                        name=name,
+                        value="<div class='panel-default' style='float: left;'><a class='showDetail' data-toggle='collapse' href='#failCaseOl' style='text-decoration: none;'>点击查看</a></div>"
+                              "<ol id='failCaseOl' class='collapse' style='float: left;'>" + value + "</ol>",
                     )
             elif name == "错误用例合集":
-                line = self.HEADING_ATTRIBUTE_TMPL % dict(
-                    name=name,
-                    value="<ol class='errorCaseOl' style='float: left; margin-right: 100px;'>" + value + "</ol>",
+                if value == "无":
+                    line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                        name=name,
+                        value="<ol style='float: left;'>" + value + "</ol>",
+                    )
+                else:
+                    line = self.HEADING_ATTRIBUTE_TMPL % dict(
+                        name=name,
+                        value="<div class='panel-default' style='float: left;'><a class='showDetail' data-toggle='collapse' href='#errorCaseOl' style='text-decoration: none;'>点击查看</a></div>"
+                              "<ol id='errorCaseOl' class='collapse' style='float: left;'>" + value + "</ol>",
                     )
             else:
                 line = self.HEADING_ATTRIBUTE_TMPL % dict(
@@ -1217,15 +1252,15 @@ class DirAndFiles(object):
         report_path = dir_path + "/" + self.title + "V" + str(round(i, 1)) + ".html"
 
         # 将新建的 文件夹路径 和 报告路径 存入全局变量
-        GlobalVar.set_value("dir_path", dir_path)
-        GlobalVar.set_value("report_path", report_path)
+        GlobalMsg.set_value("dir_path", dir_path)
+        GlobalMsg.set_value("report_path", report_path)
 
     @staticmethod
     def get_screenshot(browser):
         i = 1
 
         # 通过全局变量获取文件夹路径
-        new_dir = GlobalVar.get_value("dir_path")
+        new_dir = GlobalMsg.get_value("dir_path")
 
         img_dir = new_dir + "/image"
         # 判断文件夹是否存在，不存在则创建

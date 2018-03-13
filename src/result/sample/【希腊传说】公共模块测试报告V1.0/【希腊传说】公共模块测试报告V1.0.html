@@ -16,14 +16,7 @@ body        { font-family: Microsoft YaHei;padding: 20px; font-size: 100%; }
 table       { font-size: 100%; }
 
 /* -- heading ---------------------------------------------------------------------- */
-.heading {
-    margin-top: 0ex;
-    margin-bottom: 1ex;
-}
-
-.heading .description {
-    margin-top: 4ex;
-    margin-bottom: 6ex;
+.heading .description, .attribute {
     clear: both;
 }
 
@@ -32,10 +25,10 @@ table       { font-size: 100%; }
     width: 100px;
     float: left;
 }
-.failCaseOl li {
+#failCaseOl li {
     color: red
 }
-.errorCaseOl li {
+#errorCaseOl li {
     color: orange
 }
 
@@ -89,9 +82,8 @@ table       { font-size: 100%; }
 /* --- 饼状图div样式 -- Gelomen --- */
 #container {
     width: 450px;
-    height: 400px;
+    height: 300px;
     float: left;
-    margin-left: 15%;
 }
 
 /* -- report ------------------------------------------------------------------------ */
@@ -145,12 +137,30 @@ table       { font-size: 100%; }
             $('.pic_show').fadeOut(200)
         });
         
-        // 改变窗口大小时，自动改变图片与顶部的距离  -- Gelomen
+        var browserWidth = $(window).width();
+        var margin_left = browserWidth/2 - 450;
+        if(margin_left <= 240){
+            $("#container").css("margin", "auto");
+        }else {
+            $("#container").css("margin-left", margin_left + "px");
+        }
+
         $(window).resize(function(){
+            // 改变窗口大小时，自动改变图片与顶部的距离  -- Gelomen
             var browserHeight = $(window).height();
             var pic_boxHeight = $(".pic_box").height();
             var top = (browserHeight - pic_boxHeight)/2;
-            $('.pic_box').css("margin-top", top + "px")
+            $('.pic_box').css("margin-top", top + "px");
+
+
+            // 改变窗口大小时，自动改变饼图的边距  -- Gelomen
+            var browserWidth = $(window).width();
+            var margin_left = browserWidth/2 - 450;
+            if(margin_left <= 240){
+                $("#container").css("margin", "auto");
+            }else {
+                $("#container").css("margin-left", margin_left + "px");
+            }
         });
 
         // 距离顶部超过浏览器窗口一屏时，回到顶部按钮才出现  -- Gelomen
@@ -175,7 +185,7 @@ table       { font-size: 100%; }
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                spacing : [100, 0 , 40, 0]
+                spacing : [0, 0, 0, 0]
             },
             credits: {
                 enabled: false
@@ -239,6 +249,15 @@ table       { font-size: 100%; }
             });
             chart = c;
         });
+        
+        // 查看 失败 和 错误 合集链接文字切换  -- Gelomen
+        $(".showDetail").click(function () {
+            if($(this).html() == "点击查看"){
+                $(this).html("点击收起")
+            }else {
+                $(this).html("点击查看")
+            }
+        })
     });
     
     
@@ -350,22 +369,23 @@ function html_escape(s) {
 </script>
 <div class='pic_looper'></div> <div class='pic_show'><div class='pic_box'><img src=''/></div> </div>
 <div class='heading'>
-<div style="width: 700px ;float: left;">
+<div style="width: 650px; float: left;">
     <h1 style="font-family: Microsoft YaHei">【希腊传说】公共模块测试报告</h1>
     <p class='attribute'><strong>测试人员 : </strong> Gelomen</p>
-<p class='attribute'><strong>开始时间 : </strong> 2018-03-12 17:08:36</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:02:43.918543</p>
+<p class='attribute'><strong>开始时间 : </strong> 2018-03-13 17:02:59</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:02:43.858342</p>
 <p class='attribute'><strong>测试结果 : </strong> 共 9，通过 6，失败 1，错误 2，通过率 = 66.67%</p>
-<p class='attribute'><strong>失败用例合集 : </strong> <ol class='failCaseOl' style='float: left; margin-right: 100px;'><li>test5_loading_switch_screen (testcases.TestLoadingView.TestLoadingView)</li></ol></p>
-<p class='attribute'><strong>错误用例合集 : </strong> <ol class='errorCaseOl' style='float: left; margin-right: 100px;'><li>test3_loading_view_dispear (testcases.TestLoadingView.TestLoadingView)</li><li>test4_loading_on_vertical_screen (testcases.TestLoadingView.TestLoadingView)</li></ol></p>
+<p class='attribute'><strong>失败用例合集 : </strong> <div class='panel-default' style='float: left;'><a class='showDetail' data-toggle='collapse' href='#failCaseOl' style='text-decoration: none;'>点击查看</a></div><ol id='failCaseOl' class='collapse' style='float: left;'><li>test5_loading_switch_screen (TestLoadingView.TestLoadingView)</li></ol></p>
+<p class='attribute'><strong>错误用例合集 : </strong> <div class='panel-default' style='float: left;'><a class='showDetail' data-toggle='collapse' href='#errorCaseOl' style='text-decoration: none;'>点击查看</a></div><ol id='errorCaseOl' class='collapse' style='float: left;'><li>test3_loading_view_dispear (TestLoadingView.TestLoadingView)</li><li>test4_loading_on_vertical_screen (TestLoadingView.TestLoadingView)</li></ol></p>
 
+    <p class='description'>Slot游戏公共模块测试报告</p>
 </div>
 <div id="container"></div>
-<p class='description'>Slot游戏公共模块测试报告</p>
 </div>
 
 
 
+<div style="width: 500px; clear: both;">
 <p id='show_detail_line'>
 <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 66.67% }</a>
 <a class="btn btn-success" href='javascript:showCase(2)'>通过{ 6 }</a>
@@ -373,6 +393,7 @@ function html_escape(s) {
 <a class="btn btn-warning" href='javascript:showCase(3)'>错误{ 2 }</a>
 <a class="btn btn-info" href='javascript:showCase(4)'>所有{ 9 }</a>
 </p>
+</div>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
 <colgroup>
 <col align='left' />
@@ -393,12 +414,12 @@ function html_escape(s) {
 </tr>
 
 <tr class='errorClass warning'>
-    <td>testcases.TestLoadingView.TestLoadingView</td>
+    <td>TestLoadingView.TestLoadingView</td>
     <td class="text-center">5</td>
     <td class="text-center">2</td>
     <td class="text-center">1</td>
     <td class="text-center">2</td>
-    <td class="text-center">85.93秒</td>
+    <td class="text-center">86.34秒</td>
     <td class="text-center"><a href="javascript:showClassDetail('c1',5)" class="detail" id='c1'>详细</a></td>
 </tr>
 
@@ -512,12 +533,12 @@ AssertionError: True != 'True' : 来回切换横竖屏没有进入载入场景�
 </tr>
 
 <tr class='passClass warning'>
-    <td>testcases.TestMainAndComView.TestMainAndComView</td>
+    <td>TestMainAndComView.TestMainAndComView</td>
     <td class="text-center">4</td>
     <td class="text-center">4</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">77.99秒</td>
+    <td class="text-center">77.52秒</td>
     <td class="text-center"><a href="javascript:showClassDetail('c2',4)" class="detail" id='c2'>详细</a></td>
 </tr>
 
@@ -551,7 +572,7 @@ AssertionError: True != 'True' : 来回切换横竖屏没有进入载入场景�
     <td>6</td>
     <td>1</td>
     <td>2</td>
-    <td>163.92秒</td>
+    <td>163.86秒</td>
     <td>通过率：66.67%</td>
 </tr>
 </table>

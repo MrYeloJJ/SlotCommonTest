@@ -10,7 +10,7 @@ from src.source.common.Data import Data
 class RunAllTests(object):
 
     def __init__(self):
-        self.test_case_path = "../../source"
+        self.test_case_path = "../testcases/"
         self.tester = input("请输入你的名字：")
 
         # 将游戏名字放入报告里
@@ -25,7 +25,7 @@ class RunAllTests(object):
         # 启动测试时创建文件夹并获取最新文件夹的名字
         daf = HTMLTestReportCN.DirAndFiles()
         daf.create_dir(title=self.title)
-        report_path = HTMLTestReportCN.GlobalVar.get_value("report_path")
+        report_path = HTMLTestReportCN.GlobalMsg.get_value("report_path")
 
         fp = open(report_path, "wb")
 
