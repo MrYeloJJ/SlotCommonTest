@@ -29,7 +29,7 @@ class RunAllTests(object):
 
         fp = open(report_path, "wb")
 
-        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, need_screenshot=1, title=self.title, description=self.description, tester=self.tester)
+        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, title=self.title, description=self.description, tester=self.tester)
         runner.run(test_suite)
         fp.close()
 
