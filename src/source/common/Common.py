@@ -125,3 +125,33 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
+
+    # 显示声音开关提示窗口
+    def sound_window_showing(self):
+        try:
+            showing = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer);"
+                                                  "return soundWindow.isShowing;")
+            return showing
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 声音开关提示窗口的标题文字
+    def sound_window_text(self):
+        try:
+            sound_window_text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+                                                            "return soundWindow.m_n4.text;")
+            return sound_window_text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 声音开关提示窗口，切换按钮的文字
+    def sound_window_toggle_text(self):
+        try:
+            sound_window_toggle_text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+                                                                   "return soundWindow.m_n7.text;")
+            return sound_window_toggle_text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
