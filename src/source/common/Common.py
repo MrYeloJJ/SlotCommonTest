@@ -145,7 +145,7 @@ class Common(object):
     #
 
     # 显示声音开关提示窗口
-    def sound_window_showing(self):
+    def sound_view_showing(self):
         try:
             showing = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer);"
                                                   "return soundWindow.isShowing;")
@@ -155,17 +155,16 @@ class Common(object):
             raise
 
     # 声音开关提示窗口消失
-    def sound_window_dispear(self):
+    def sound_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer);"
-                                                  "return soundWindow;")
+            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
     # 声音开关提示窗口的标题文字
-    def sound_window_text(self):
+    def sound_view_text(self):
         try:
             text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                             "return soundWindow.m_n4.text;")
@@ -175,7 +174,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，切换按钮
-    def sound_window_toggle_button_visible(self):
+    def sound_view_toggle_button_visible(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                                 "return soundWindow.m_showingToggle.finalVisible;")
@@ -185,7 +184,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，切换按钮可点击
-    def sound_window_toggle_button_touchable(self):
+    def sound_view_toggle_button_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                     "return soundWindow.m_showingToggle.touchable;")
@@ -195,7 +194,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，切换按钮的文字
-    def sound_window_toggle_text(self):
+    def sound_view_toggle_text(self):
         try:
             text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                       "return soundWindow.m_n7.text;")
@@ -205,7 +204,7 @@ class Common(object):
             raise
 
     # 点击声音开关提示窗口的切换按钮
-    def sound_window_toggle_click(self):
+    def sound_view_toggle_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                        "return soundWindow.m_showingToggle.displayObject.event('click');")
@@ -215,7 +214,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，切换按钮状态，0代表开启，1代表关闭
-    def sound_window_toggle_status(self):
+    def sound_view_toggle_status(self):
         try:
             status = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                         "return soundWindow.m_showingToggle.m_button.selectedIndex;")
@@ -225,7 +224,7 @@ class Common(object):
             raise
 
     # 显示声音开关提示窗口的 “是” 按钮
-    def sound_window_yes_button_showing(self):
+    def sound_view_yes_button_showing(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                              "return soundWindow.m_yesBtn.finalVisible;")
@@ -235,7 +234,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，“是”按钮可点击
-    def sound_window_yes_button_touchable(self):
+    def sound_view_yes_button_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                                "return soundWindow.m_yesBtn.touchable;")
@@ -245,7 +244,7 @@ class Common(object):
             raise
 
     # 点击声音开关提示窗口的 “是” 按钮
-    def sound_window_yes_button_click(self):
+    def sound_view_yes_button_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                            "return soundWindow.m_yesBtn.displayObject.event('click');")
@@ -255,7 +254,7 @@ class Common(object):
             raise
 
     # 显示声音开关提示窗口的 “否” 按钮
-    def sound_window_no_button_showing(self):
+    def sound_view_no_button_showing(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                             "return soundWindow.m_noBtn.finalVisible;")
@@ -265,7 +264,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，“是”按钮可点击
-    def sound_window_no_button_touchable(self):
+    def sound_view_no_button_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                               "return soundWindow.m_noBtn.touchable;")
@@ -275,7 +274,7 @@ class Common(object):
             raise
 
     # 点击声音开关提示窗口的 “是” 按钮
-    def sound_window_no_button_click(self):
+    def sound_view_no_button_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                           "return soundWindow.m_noBtn.displayObject.event('click');")
@@ -505,4 +504,252 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
+
+    #
+    #
+    # ------------------------------------------------------------------------ 右侧游戏控制按钮 ------------------------------------------------------------------------
+    #
+    #
+
+    # 显示线数线注设置按钮
+    def setting_button_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置按钮可点击否
+    def setting_button_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击线数线注设置按钮
+    def setting_button_click(self):
+        try:
+            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示线数线注设置窗口
+    def setting_view_showing(self):
+        try:
+            showing = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer);"
+                                                  "return settingView.isShowing;")
+            return showing
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口消失
+    def setting_view_dispear(self):
+        try:
+            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer);")
+            return dispear
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口的线数标题
+    def setting_view_line_num_text(self):
+        try:
+            text = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                               "return settingView.m_n52.textField.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口的线数数值
+    def setting_view_line_num(self):
+        try:
+            num = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                              "return settingView.m_lineNumLabel.textField.text;")
+            return num
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，显示线数 - 按钮
+    def setting_view_line_num_min_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return settingView.m_lineMinusBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，线数 - 按钮 可点击否
+    def setting_view_line_num_min_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return settingView.m_lineMinusBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，点击 线数 - 按钮
+    def setting_view_line_num_min_btn_click(self):
+        try:
+            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return settingView.m_lineMinusBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，显示线数 + 按钮
+    def setting_view_line_num_plus_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return settingView.m_linePlusBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，线数 + 按钮 可点击否
+    def setting_view_line_num_plus_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return settingView.m_linePlusBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，点击 线数 + 按钮
+    def setting_view_line_num_plus_btn_click(self):
+        try:
+            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return settingView.m_linePlusBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口的线注标题
+    def setting_view_line_cost_text(self):
+        try:
+            text = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                               "return settingView.m_n54.textField.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口的线注数值
+    def setting_view_line_cost(self):
+        try:
+            num = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                              "return settingView.m_lineCostLabel.textField.text;")
+            return num
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，显示线注 - 按钮
+    def setting_view_line_cost_min_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return settingView.m_lineCostMinusBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，线注 - 按钮 可点击否
+    def setting_view_line_cost_min_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return settingView.m_lineCostMinusBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，点击 线注 - 按钮
+    def setting_view_line_cost_min_btn_click(self):
+        try:
+            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return settingView.m_lineCostMinusBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，显示线注 + 按钮
+    def setting_view_line_cost_plus_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return settingView.m_lineCostPlusBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，线注 + 按钮 可点击否
+    def setting_view_line_cost_plus_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return settingView.m_lineCostPlusBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置窗口，点击 线注 + 按钮
+    def setting_view_line_cost_plus_btn_click(self):
+        try:
+            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return settingView.m_lineCostPlusBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
