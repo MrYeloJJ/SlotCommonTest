@@ -123,8 +123,8 @@ class Common(object):
     # 显示主视图
     def main_view_visible(self):
         try:
-            main_view = self.browser.execute_script("return UIManager.instance.mainViewContainer.visible;")
-            return main_view
+            final_visible = self.browser.execute_script("return UIManager.instance.mainViewContainer.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -132,8 +132,8 @@ class Common(object):
     # 显示主场景和公共模块
     def common_view_visible(self):
         try:
-            common_view = self.browser.execute_script("return UIManager.instance.commonView.visible;")
-            return common_view
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -167,9 +167,9 @@ class Common(object):
     # 声音开关提示窗口的标题文字
     def sound_window_text(self):
         try:
-            sound_window_text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                             "return soundWindow.m_n4.text;")
-            return sound_window_text
+            return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -177,9 +177,9 @@ class Common(object):
     # 声音开关提示窗口，切换按钮
     def sound_window_toggle_button_visible(self):
         try:
-            toggle_button_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                                "return soundWindow.m_showingToggle.visible;")
-            return toggle_button_visible
+            final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+                                                                "return soundWindow.m_showingToggle.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -187,9 +187,9 @@ class Common(object):
     # 声音开关提示窗口，切换按钮可点击
     def sound_window_toggle_button_touchable(self):
         try:
-            toggle_button_touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                                  "return soundWindow.m_showingToggle.touchable;")
-            return toggle_button_touchable
+            touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+                                                    "return soundWindow.m_showingToggle.touchable;")
+            return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -197,9 +197,9 @@ class Common(object):
     # 声音开关提示窗口，切换按钮的文字
     def sound_window_toggle_text(self):
         try:
-            toggle_text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                       "return soundWindow.m_n7.text;")
-            return toggle_text
+            return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -207,9 +207,9 @@ class Common(object):
     # 点击声音开关提示窗口的切换按钮
     def sound_window_toggle_click(self):
         try:
-            toggle_click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                        "return soundWindow.m_showingToggle.displayObject.event('click');")
-            return toggle_click
+            return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -217,9 +217,9 @@ class Common(object):
     # 声音开关提示窗口，切换按钮状态，0代表开启，1代表关闭
     def sound_window_toggle_status(self):
         try:
-            toggle_status = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            status = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                         "return soundWindow.m_showingToggle.m_button.selectedIndex;")
-            return toggle_status
+            return status
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -227,9 +227,9 @@ class Common(object):
     # 显示声音开关提示窗口的 “是” 按钮
     def sound_window_yes_button_showing(self):
         try:
-            yes_button_showing = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                             "return soundWindow.m_yesBtn.visible;")
-            return yes_button_showing
+            final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+                                                             "return soundWindow.m_yesBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -237,9 +237,9 @@ class Common(object):
     # 声音开关提示窗口，“是”按钮可点击
     def sound_window_yes_button_touchable(self):
         try:
-            yes_button_touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                                "return soundWindow.m_yesBtn.touchable;")
-            return yes_button_touchable
+            return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -247,9 +247,9 @@ class Common(object):
     # 点击声音开关提示窗口的 “是” 按钮
     def sound_window_yes_button_click(self):
         try:
-            yes_button_click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                            "return soundWindow.m_yesBtn.displayObject.event('click');")
-            return yes_button_click
+            return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -257,9 +257,9 @@ class Common(object):
     # 显示声音开关提示窗口的 “否” 按钮
     def sound_window_no_button_showing(self):
         try:
-            no_button_showing = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                            "return soundWindow.m_noBtn.visible;")
-            return no_button_showing
+            final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+                                                            "return soundWindow.m_noBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -267,9 +267,9 @@ class Common(object):
     # 声音开关提示窗口，“是”按钮可点击
     def sound_window_no_button_touchable(self):
         try:
-            no_button_touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                               "return soundWindow.m_noBtn.touchable;")
-            return no_button_touchable
+            return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -277,9 +277,9 @@ class Common(object):
     # 点击声音开关提示窗口的 “是” 按钮
     def sound_window_no_button_click(self):
         try:
-            no_button_click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
+            click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
                                                           "return soundWindow.m_noBtn.displayObject.event('click');")
-            return no_button_click
+            return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -293,8 +293,8 @@ class Common(object):
     # 显示左侧主菜单
     def main_menu_button_visible(self):
         try:
-            main_menu_button_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.visible;")
-            return main_menu_button_visible
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -329,8 +329,8 @@ class Common(object):
     # 显示奖金表按钮
     def info_button_visible(self):
         try:
-            visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.visible;")
-            return visible
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -356,8 +356,8 @@ class Common(object):
     # 显示帮助按钮
     def help_button_visible(self):
         try:
-            visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.visible;")
-            return visible
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -383,8 +383,8 @@ class Common(object):
     # 显示声音开关按钮
     def voice_button_visible(self):
         try:
-            visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.visible;")
-            return visible
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -419,8 +419,8 @@ class Common(object):
     # 显示快速切换按钮
     def turbo_button_visible(self):
         try:
-            visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.visible;")
-            return visible
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.finalVisible;")
+            return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -448,6 +448,60 @@ class Common(object):
         try:
             status = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedIndex;")
             return status
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示返回大厅按钮
+    def home_button_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 返回大厅按钮可点击否
+    def home_button_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击返回大厅按钮
+    def home_button_click(self):
+        try:
+            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示游戏记录按钮
+    def game_record_button_enable(self):
+        try:
+            enable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.enabled;")
+            return enable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 游戏记录按钮可点击否
+    def game_record_button_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击游戏记录按钮
+    def game_record_button_click(self):
+        try:
+            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.displayObject.event('click');")
+            return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
