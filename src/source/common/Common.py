@@ -57,6 +57,9 @@ class Common(object):
         try:
             game_window = self.browser.window_handles[-1]
             self.browser.switch_to.window(game_window)
+            # 多开是需要做跳转
+            # pre_url = self.browser.current_url
+            # self.browser.get(pre_url + "&view=single")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
