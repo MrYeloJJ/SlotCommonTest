@@ -167,7 +167,7 @@ class Common(object):
     def sound_view_text(self):
         try:
             text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                            "return soundWindow.m_n4.text;")
+                                               "return soundWindow.m_n4.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -177,7 +177,7 @@ class Common(object):
     def sound_view_toggle_button_visible(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                                "return soundWindow.m_showingToggle.finalVisible;")
+                                                        "return soundWindow.m_showingToggle.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -197,7 +197,7 @@ class Common(object):
     def sound_view_toggle_text(self):
         try:
             text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                      "return soundWindow.m_n7.text;")
+                                               "return soundWindow.m_n7.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -207,7 +207,7 @@ class Common(object):
     def sound_view_toggle_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                       "return soundWindow.m_showingToggle.displayObject.event('click');")
+                                                "return soundWindow.m_showingToggle.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -217,7 +217,7 @@ class Common(object):
     def sound_view_toggle_status(self):
         try:
             status = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return soundWindow.m_showingToggle.m_button.selectedIndex;")
+                                                 "return soundWindow.m_showingToggle.m_button.selectedIndex;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -227,7 +227,7 @@ class Common(object):
     def sound_view_yes_button_showing(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                             "return soundWindow.m_yesBtn.finalVisible;")
+                                                        "return soundWindow.m_yesBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -237,7 +237,7 @@ class Common(object):
     def sound_view_yes_button_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                               "return soundWindow.m_yesBtn.touchable;")
+                                                    "return soundWindow.m_yesBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -247,7 +247,7 @@ class Common(object):
     def sound_view_yes_button_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                           "return soundWindow.m_yesBtn.displayObject.event('click');")
+                                                "return soundWindow.m_yesBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -257,7 +257,7 @@ class Common(object):
     def sound_view_no_button_showing(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                            "return soundWindow.m_noBtn.finalVisible;")
+                                                        "return soundWindow.m_noBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -267,7 +267,7 @@ class Common(object):
     def sound_view_no_button_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                              "return soundWindow.m_noBtn.touchable;")
+                                                    "return soundWindow.m_noBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -277,7 +277,7 @@ class Common(object):
     def sound_view_no_button_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                          "return soundWindow.m_noBtn.displayObject.event('click');")
+                                                "return soundWindow.m_noBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -716,40 +716,3 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
