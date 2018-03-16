@@ -13,6 +13,7 @@ class Common(object):
         self.message = Data().get_message()
         self.lobby = self.message["lobby"]
         self.game = self.message["game"]
+        # self.url_data = None
         self.browser = browser
         self.daf = DirAndFiles()
 
@@ -47,6 +48,7 @@ class Common(object):
     def find_game(self):
         try:
             sleep(1)
+            # self.url_data = self.browser.find_element_by_link_text(self.game).get_attribute("urldata")
             self.browser.find_element_by_link_text(self.game).click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -55,11 +57,10 @@ class Common(object):
     # 切换到游戏窗口
     def switch_game_window(self):
         try:
-            game_window = self.browser.window_handles[-1]
-            self.browser.switch_to.window(game_window)
-            # 多开是需要做跳转
-            # pre_url = self.browser.current_url
-            # self.browser.get(pre_url + "&view=single")
+            new_handle = self.browser.window_handles[-1]
+            self.browser.switch_to.window(new_handle)
+            # 多开时需要做跳转
+            # self.browser.get(self.url_data + "&view=single")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
