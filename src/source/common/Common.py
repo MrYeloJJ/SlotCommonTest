@@ -832,7 +832,65 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 自动游戏设置面板，显示旋转小图标
+    def auto_game_view_icon_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return autoGameView.m_n50.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
 
+    # 自动游戏设置面板，自动次数文字
+    def auto_game_view_auto_time_text(self):
+        try:
+            text = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                               "return autoGameView.m_autoTimesLabel.textField.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，显示拖动条
+    def auto_game_view_slider_bar_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return autoGameView.m_slider.m_bar.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，显示拖动条按钮
+    def auto_game_view_slider_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return autoGameView.m_slider.m_grip.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，显示开始按钮
+    def auto_game_view_start_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return autoGameView.m_startBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，开始按钮文字
+    def auto_game_view_start_btn_text(self):
+        try:
+            text = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                               "return autoGameView.m_startBtn.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise 
 
 
 
