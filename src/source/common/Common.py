@@ -511,7 +511,7 @@ class Common(object):
 
     #
     #
-    # ------------------------------------------------------------------------ 右侧游戏控制按钮 ------------------------------------------------------------------------
+    # ------------------------------------------------------------------------ 右侧线数线注设置 ------------------------------------------------------------------------
     #
     #
 
@@ -542,7 +542,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示线数线注设置窗口
+    # 显示线数线注设置面板
     def setting_view_showing(self):
         try:
             showing = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer);"
@@ -552,7 +552,37 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口消失
+    # 线数线注设置面板，显示关闭按钮
+    def setting_view_close_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return settingView.m_frame.m_closeButton.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置面板，关闭按钮可点击否
+    def setting_view_close_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return settingView.m_frame.m_closeButton.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置面板，点击关闭按钮
+    def setting_view_close_btn_click(self):
+        try:
+            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return settingView.m_frame.m_closeButton.displayObject.event('click')")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数线注设置面板消失
     def setting_view_dispear(self):
         try:
             dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer);")
@@ -561,7 +591,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口的线数标题
+    # 线数线注设置面板的线数标题
     def setting_view_line_num_text(self):
         try:
             text = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -571,7 +601,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口的线数数值
+    # 线数线注设置面板的线数数值
     def setting_view_line_num(self):
         try:
             num = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -581,7 +611,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，显示线数 - 按钮
+    # 线数线注设置面板，显示线数 - 按钮
     def setting_view_line_num_min_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -591,7 +621,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，线数 - 按钮 可点击否
+    # 线数线注设置面板，线数 - 按钮 可点击否
     def setting_view_line_num_min_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -601,7 +631,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，点击 线数 - 按钮
+    # 线数线注设置面板，点击 线数 - 按钮
     def setting_view_line_num_min_btn_click(self):
         try:
             click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -611,7 +641,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，显示线数 + 按钮
+    # 线数线注设置面板，显示线数 + 按钮
     def setting_view_line_num_plus_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -621,7 +651,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，线数 + 按钮 可点击否
+    # 线数线注设置面板，线数 + 按钮 可点击否
     def setting_view_line_num_plus_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -631,7 +661,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，点击 线数 + 按钮
+    # 线数线注设置面板，点击 线数 + 按钮
     def setting_view_line_num_plus_btn_click(self):
         try:
             click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -641,7 +671,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口的线注标题
+    # 线数线注设置面板的线注标题
     def setting_view_line_cost_text(self):
         try:
             text = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -651,7 +681,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口的线注数值
+    # 线数线注设置面板的线注数值
     def setting_view_line_cost(self):
         try:
             num = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -661,7 +691,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，显示线注 - 按钮
+    # 线数线注设置面板，显示线注 - 按钮
     def setting_view_line_cost_min_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -671,7 +701,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，线注 - 按钮 可点击否
+    # 线数线注设置面板，线注 - 按钮 可点击否
     def setting_view_line_cost_min_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -681,7 +711,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，点击 线注 - 按钮
+    # 线数线注设置面板，点击 线注 - 按钮
     def setting_view_line_cost_min_btn_click(self):
         try:
             click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -691,7 +721,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，显示线注 + 按钮
+    # 线数线注设置面板，显示线注 + 按钮
     def setting_view_line_cost_plus_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -701,7 +731,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，线注 + 按钮 可点击否
+    # 线数线注设置面板，线注 + 按钮 可点击否
     def setting_view_line_cost_plus_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -711,7 +741,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置窗口，点击 线注 + 按钮
+    # 线数线注设置面板，点击 线注 + 按钮
     def setting_view_line_cost_plus_btn_click(self):
         try:
             click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
@@ -720,3 +750,132 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
+
+    #
+    #
+    # ------------------------------------------------------------------------ 右侧自动游戏设置 ------------------------------------------------------------------------
+    #
+    #
+
+    # 显示自动游戏按钮
+    def auto_game_button_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏按钮可点击否
+    def auto_game_button_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击自动游戏按钮
+    def auto_game_button_click(self):
+        try:
+            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示自动游戏设置面板
+    def auto_game_view_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer);")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，显示关闭按钮
+    def auto_game_view_close_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                        "return autoGameView.m_frame.m_closeButton.finalVisible")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，关闭按钮可点击否
+    def auto_game_view_close_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return autoGameView.m_frame.m_closeButton.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板，点击关闭按钮
+    def auto_game_view_close_btn_click(self):
+        try:
+            click = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return autoGameView.m_frame.m_closeButton.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏设置面板消失
+    def auto_game_view_dispear(self):
+        try:
+            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer);")
+            return dispear
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
