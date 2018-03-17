@@ -2,7 +2,7 @@
 
 """"" 公共操作类，包括验证大厅、打开游戏、游戏内按钮点击等操作 """""
 
-from src.source.common.Data import Data
+from src.source.common.Config import Config
 from src.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 
@@ -10,7 +10,7 @@ from time import sleep
 class Common(object):
     # 初始化browser、lobby和game等数据
     def __init__(self, browser):
-        self.message = Data().get_message()
+        self.message = Config().get_message()
         self.lobby = self.message["lobby"]
         self.game = self.message["game"]
         # self.url_data = None

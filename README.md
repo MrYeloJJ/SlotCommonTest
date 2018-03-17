@@ -35,7 +35,7 @@ SlotCommonTest
 
 #### 使用说明
 ##### 1. 配置
-进入数据目录，打开 `data.xml`，修改 *`lobby`* 和 *`game`* 为目标数据
+进入数据目录，打开 `config.ini`，修改 *`lobby`* 和 *`game`* 为目标数据
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
