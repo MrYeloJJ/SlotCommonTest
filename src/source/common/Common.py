@@ -11,8 +11,14 @@ class Common(object):
     # 初始化browser、lobby和game等数据
     def __init__(self, browser):
         self.message = Config().get_message()
-        self.lobby = self.message["lobby"]
-        self.game = self.message["game"]
+        self.lobby = self.message["lobby"]                      # 大厅地址
+        self.game_id = self.message["game_id"]                  # 游戏id
+        self.game_name = self.message["game_name"]              # 游戏名字
+        self.full_line = self.message["full_line"]              # 是否满线
+        self.line_num_min = self.message["line_num_min"]        # 最小线数
+        self.line_num_max = self.message["line_num_max"]        # 最大线数
+        self.line_cost = self.message["line_cost"]              # 所有线注
+        self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
 
@@ -47,7 +53,7 @@ class Common(object):
     def find_game(self):
         try:
             sleep(1)
-            self.browser.find_element_by_link_text(self.game).click()
+            self.browser.find_element_by_link_text(self.game_name).click()
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -68,6 +74,60 @@ class Common(object):
     # 设置当前分辨率为竖屏
     def portrait(self):
         self.browser.set_window_size(width=413, height=894)
+
+    #
+    #
+    # ------------------------------------------------------------------------ 游戏基本参数 ------------------------------------------------------------------------
+    #
+    #
+
+    # 游戏id
+    def get_game_id(self):
+        try:
+            game_id = self.browser.execute_script("return DataGame.getIds(DataGame.getKeys())[0];")
+            return game_id
+        except Exception:
+            raise
+
+    # 游戏名字
+    def get_game_name(self):
+        try:
+            game_name = self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['name'];")
+            return game_name
+        except Exception:
+            raise
+
+    # 最大线数
+    def get_max_line_num(self):
+        try:
+            max_line_num = self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['maxLines'];")
+            return max_line_num
+        except Exception:
+            raise
+
+    # 最小线数
+    def get_min_line_num(self):
+        try:
+            min_line_num = self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['minLines'];")
+            return min_line_num
+        except Exception:
+            raise
+
+    # 线注列表
+    def get_line_cost_list(self):
+        try:
+            line_cost_list = eval(self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['lineValue'];"))
+            return line_cost_list
+        except Exception:
+            raise
+
+    # 自动游戏次数列表
+    def get_auto_game_times_list(self):
+        try:
+            auto_game_times_list = eval(self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['autoSpinTimes'];"))
+            return auto_game_times_list
+        except Exception:
+            raise
 
     #
     #
@@ -134,6 +194,33 @@ class Common(object):
         try:
             final_visible = self.browser.execute_script("return UIManager.instance.commonView.finalVisible;")
             return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示灰色蒙板
+    def mask_view_showing(self):
+        try:
+            showing = self.browser.execute_script("return UIManager.instance.maskView.isShowing;")
+            return showing
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 灰色蒙板可点击否
+    def mask_view_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return UIManager.instance.maskView.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击灰色蒙板
+    def mask_view_click(self):
+        try:
+            click = self.browser.execute_script("return UIManager.instance.maskView.displayObject.event('click')")
+            return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -352,6 +439,80 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 显示奖金表场景
+    def info_view_showing(self):
+        try:
+            showing = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+                                                  "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
+                                                  "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                  "url = Common.FUINewInfoView.URL;}"
+                                                  "else{url = Common.FUIInfoView.URL;}"
+                                                  "return UIManager.instance.getWindowByName(url);}());"
+                                                  "return infoView.isShowing")
+            return showing
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示奖金表场景的返回按钮
+    def info_view_return_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+                                                        "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
+                                                        "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                        "url = Common.FUINewInfoView.URL;}"
+                                                        "else{url = Common.FUIInfoView.URL;}"
+                                                        "return UIManager.instance.getWindowByName(url);}());"
+                                                        "return infoView.contentPane.m_returnBtnContainer.m_returnBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 奖金表场景，返回按钮可点击否
+    def info_view_return_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+                                                    "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
+                                                    "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                    "url = Common.FUINewInfoView.URL;}"
+                                                    "else{url = Common.FUIInfoView.URL;}"
+                                                    "return UIManager.instance.getWindowByName(url);}());"
+                                                    "return infoView.contentPane.m_returnBtnContainer.m_returnBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 奖金表场景，点击返回按钮
+    def info_view_return_btn_click(self):
+        try:
+            click = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+                                                "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
+                                                "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                "url = Common.FUINewInfoView.URL;}"
+                                                "else{url = Common.FUIInfoView.URL;}"
+                                                "return UIManager.instance.getWindowByName(url);}());"
+                                                "return infoView.contentPane.m_returnBtnContainer.m_returnBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 奖金表场景消失
+    def info_view_dispear(self):
+        try:
+            dispear = self.browser.execute_script("return (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+                                                  "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
+                                                  "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                  "url = Common.FUINewInfoView.URL;}"
+                                                  "else{url = Common.FUIInfoView.URL;}"
+                                                  "return UIManager.instance.getWindowByName(url);}());")
+            return dispear
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 显示帮助按钮
     def help_button_visible(self):
         try:
@@ -375,6 +536,70 @@ class Common(object):
         try:
             click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.displayObject.event('click');")
             return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示帮助场景
+    def help_view_showing(self):
+        try:
+            showing = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+                                                  "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                  "else{url = Common.FUIHelpView.URL}"
+                                                  "return UIManager.instance.getWindowByName(url);}())"
+                                                  "return helpView.isShowing;")
+            return showing
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 帮助场景，显示返回按钮
+    def help_view_return_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+                                                        "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                        "else{url = Common.FUIHelpView.URL}"
+                                                        "return UIManager.instance.getWindowByName(url);}())"
+                                                        "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 帮助场景，返回按钮可点击否
+    def help_view_return_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+                                                    "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                    "else{url = Common.FUIHelpView.URL}"
+                                                    "return UIManager.instance.getWindowByName(url);}())"
+                                                    "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 帮助场景，点击返回按钮
+    def help_view_return_btn_click(self):
+        try:
+            click = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+                                                "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                "else{url = Common.FUIHelpView.URL}"
+                                                "return UIManager.instance.getWindowByName(url);}())"
+                                                "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 帮助场景消失
+    def help_view_dispear(self):
+        try:
+            dispear = self.browser.execute_script("return (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+                                                  "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                  "else{url = Common.FUIHelpView.URL}"
+                                                  "return UIManager.instance.getWindowByName(url);}())")
+            return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -868,6 +1093,18 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 自动游戏设置面板，改变自动次数，并返回面板上的自动次数 “25次旋转”
+    def auto_game_view_change_auto_time(self, index):
+        try:
+            text = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                               "var i = " + str(index) + ";SpinManager.instance.autoTimes = DataGame.getData(DataGame.getKeys())['autoSpinTimes'][i];"
+                                               "autoGameView.m_slider.value = 100 * i / DataGame.getData(DataGame.getKeys())['autoSpinTimes'].length;"
+                                               "return autoGameView.m_autoTimesLabel.textField.text")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 自动游戏设置面板，显示开始按钮
     def auto_game_view_start_btn_visible(self):
         try:
@@ -897,6 +1134,18 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
+
+    # 自动游戏设置面板，点击开始按钮
+    def auto_game_view_start_btn_click(self):
+        try:
+            click = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                "return autoGameView.m_startBtn.displayObject.event('click')；")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+
 
     
 
