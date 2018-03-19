@@ -13,7 +13,6 @@ class Common(object):
         self.message = Config().get_message()
         self.lobby = self.message["lobby"]
         self.game = self.message["game"]
-        # self.url_data = None
         self.browser = browser
         self.daf = DirAndFiles()
 
@@ -48,7 +47,6 @@ class Common(object):
     def find_game(self):
         try:
             sleep(1)
-            # self.url_data = self.browser.find_element_by_link_text(self.game).get_attribute("urldata")
             self.browser.find_element_by_link_text(self.game).click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -59,8 +57,6 @@ class Common(object):
         try:
             new_handle = self.browser.window_handles[-1]
             self.browser.switch_to.window(new_handle)
-            # 多开时需要做跳转
-            # self.browser.get(self.url_data + "&view=single")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -892,7 +888,17 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise 
 
+    # 自动游戏设置面板，开始按钮可点击否
+    def auto_game_view_start_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
+                                                    "return autoGameView.m_startBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
 
+    
 
 
 
