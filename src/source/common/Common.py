@@ -21,6 +21,7 @@ class Common(object):
         self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
+        self.add_script = ""                                    # 多开情况需改为 "window.frames[0].frames."
 
     # 进入大厅并打开游戏
     def start(self):
@@ -81,50 +82,50 @@ class Common(object):
     #
     #
 
-    # 游戏id
+    # 游戏id, [tuple]
     def get_game_id(self):
         try:
-            game_id = self.browser.execute_script("return DataGame.getIds(DataGame.getKeys())[0];")
+            game_id = self.browser.execute_script("return " + self.add_script + "DataGame.getIds(" + self.add_script + "DataGame.getKeys())[0];")
             return game_id
         except Exception:
             raise
 
-    # 游戏名字
+    # 游戏名字, [str]
     def get_game_name(self):
         try:
-            game_name = self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['name'];")
+            game_name = self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['name'];")
             return game_name
         except Exception:
             raise
 
-    # 最大线数
+    # 最大线数, [tuple]
     def get_max_line_num(self):
         try:
-            max_line_num = self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['maxLines'];")
+            max_line_num = self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['maxLines'];")
             return max_line_num
         except Exception:
             raise
 
-    # 最小线数
+    # 最小线数, [tuple]
     def get_min_line_num(self):
         try:
-            min_line_num = self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['minLines'];")
+            min_line_num = self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['minLines'];")
             return min_line_num
         except Exception:
             raise
 
-    # 线注列表
+    # 线注列表, [list]
     def get_line_cost_list(self):
         try:
-            line_cost_list = eval(self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['lineValue'];"))
+            line_cost_list = eval(self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['lineValue'];"))
             return line_cost_list
         except Exception:
             raise
 
-    # 自动游戏次数列表
+    # 自动游戏次数列表, [list]
     def get_auto_game_times_list(self):
         try:
-            auto_game_times_list = eval(self.browser.execute_script("return DataGame.getData(DataGame.getKeys())['autoSpinTimes'];"))
+            auto_game_times_list = eval(self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['autoSpinTimes'];"))
             return auto_game_times_list
         except Exception:
             raise
@@ -135,40 +136,41 @@ class Common(object):
     #
     #
 
-    # 进入载入场景
+    # 进入载入场景, [tuple: True, False]
     def loading_view_showing(self):
         try:
-            showing = self.browser.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
-                                                  "return loading.isShowing;")
+            showing = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                  + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 载入场景进度条
+    # 载入场景进度条, [str]
     def loading_bar(self):
 
         while True:
             try:
-                progress_bar = self.browser.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
-                                                           "return loading.contentPane.m_progressBar.value;")
+                progress_bar = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                           + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.value;")
             except Exception:
                 self.daf.get_screenshot(self.browser)
                 raise
 
             if progress_bar == 100:
                 try:
-                    tip = self.browser.execute_script("var loading = UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);"
-                                                      "return loading.contentPane.m_progressBar.m_title.textField.text;")
+                    tip = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                      + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.m_title.textField.text;")
                     return tip
                 except Exception:
                     self.daf.get_screenshot(self.browser)
                     raise
 
-    # 载入场景消失
+    # 载入场景消失, [tuple: None]
     def loading_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(window.Loading.FUILoadingView.URL, UIManager.instance.commonView);")
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                  + self.add_script + "UIManager.instance.commonView);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -180,46 +182,73 @@ class Common(object):
     #
     #
 
-    # 显示主视图
+    # 显示主视图, [tuple: True, False]
     def main_view_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.mainViewContainer.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainViewContainer.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示主场景和公共模块
+    # 显示主场景和公共模块, [tuple: True, False]
     def common_view_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示灰色蒙板
+    # 显示滚轴, [tuple: True, False]
+    def slot_machine_view_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.contentPane.m_slotMachineView.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示主场景背景图片, [tuple: True, False]
+    def bg_view_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.contentPane.m_bgView.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示主场景底部背景图片, [tuple: True, False]
+    def bottom_bg_view_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.contentPane.m_bottomBgP.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示灰色蒙板, [tuple: True, False]
     def mask_view_showing(self):
         try:
-            showing = self.browser.execute_script("return UIManager.instance.maskView.isShowing;")
+            showing = self.browser.execute_script("return " + self.add_script + "UIManager.instance.maskView.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 灰色蒙板可点击否
+    # 灰色蒙板可点击否, [tuple: True, False]
     def mask_view_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.maskView.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.maskView.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击灰色蒙板
+    # 点击灰色蒙板, [tuple: True, False]
     def mask_view_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.maskView.displayObject.event('click')")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.maskView.displayObject.event('click')")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -231,140 +260,141 @@ class Common(object):
     #
     #
 
-    # 显示声音开关提示窗口
+    # 显示声音开关提示窗口, [tuple: True, False]
     def sound_view_showing(self):
         try:
-            showing = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer);"
-                                                  "return soundWindow.isShowing;")
+            showing = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                  + self.add_script + "UIManager.instance.tipsLayer);return soundWindow.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口消失
+    # 声音开关提示窗口消失, [tuple: None]
     def sound_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer);")
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                  + self.add_script + "UIManager.instance.tipsLayer);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口的标题文字
+    # 声音开关提示窗口的标题文字, [str]
     def sound_view_text(self):
         try:
-            text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                               "return soundWindow.m_n4.text;")
+            text = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                               + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_n4.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，切换按钮
+    # 声音开关提示窗口，显示切换按钮, [tuple: True, False]
     def sound_view_toggle_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return soundWindow.m_showingToggle.finalVisible;")
+            final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，切换按钮可点击
+    # 声音开关提示窗口，切换按钮可点击, [tuple: True, False]
     def sound_view_toggle_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                    "return soundWindow.m_showingToggle.touchable;")
+            touchable = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                    + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，切换按钮的文字
+    # 声音开关提示窗口，切换按钮的文字, [str]
     def sound_view_toggle_text(self):
         try:
-            text = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                               "return soundWindow.m_n7.text;")
+            text = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                               + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_n7.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击声音开关提示窗口的切换按钮
+    # 点击声音开关提示窗口的切换按钮, [tuple: True, False]
     def sound_view_toggle_click(self):
         try:
-            click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return soundWindow.m_showingToggle.displayObject.event('click');")
+            click = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，切换按钮状态，0代表开启，1代表关闭
+    # 声音开关提示窗口，切换按钮状态, [tuple: 1, 0], 0代表开启，1代表关闭
     def sound_view_toggle_status(self):
         try:
-            status = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                 "return soundWindow.m_showingToggle.m_button.selectedIndex;")
+            status = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                 + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.m_button.selectedIndex;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示声音开关提示窗口的 “是” 按钮
+    # 显示声音开关提示窗口的 “是” 按钮, [tuple: True, False]
     def sound_view_yes_button_showing(self):
         try:
-            final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return soundWindow.m_yesBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，“是”按钮可点击
+    # 声音开关提示窗口，“是”按钮可点击, [tuple: True, False]
     def sound_view_yes_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                    "return soundWindow.m_yesBtn.touchable;")
+            touchable = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                    + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击声音开关提示窗口的 “是” 按钮
+    # 点击声音开关提示窗口的 “是” 按钮, [tuple: True, False]
     def sound_view_yes_button_click(self):
         try:
-            click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return soundWindow.m_yesBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示声音开关提示窗口的 “否” 按钮
+    # 显示声音开关提示窗口的 “否” 按钮, [tuple: True, False]
     def sound_view_no_button_showing(self):
         try:
-            final_visible = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return soundWindow.m_noBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，“是”按钮可点击
+    # 声音开关提示窗口，“是”按钮可点击, [tuple: True, False]
     def sound_view_no_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                    "return soundWindow.m_noBtn.touchable;")
+            touchable = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                    + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击声音开关提示窗口的 “是” 按钮
+    # 点击声音开关提示窗口的 “是” 按钮, [tuple: True, False]
     def sound_view_no_button_click(self):
         try:
-            click = self.browser.execute_script("var soundWindow = UIManager.instance.getWindowByName(Common.FUIEnableSoundView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return soundWindow.m_noBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -376,355 +406,373 @@ class Common(object):
     #
     #
 
-    # 显示左侧主菜单
+    # 显示左侧主菜单, [tuple: True, False]
     def main_menu_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 左侧主菜单展开状态，1为折叠，2为展开
+    # 左侧主菜单展开状态, [tuple: 1, 2], 1为折叠，2为展开
     def main_menu_expand(self):
         try:
-            expand = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedIndex;")
+            expand = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedIndex;")
             return expand
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 左侧主菜单展开方向，往下为1，往右为4
+    # 左侧主菜单展开方向, [tuple: 1, 4], 往下为1，往右为4
     def main_menu_expand_direction(self):
         try:
-            direction = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedIndex;")
+            direction = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedIndex;")
             return direction
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击左侧主菜单按钮
-    def main_menu_button_click(self):
+    # 整个左侧菜单可点击否, [tuple: True, False]
+    def main_menu_touchable(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.displayObject.event('click');")
-            return click
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 显示奖金表按钮
-    def info_button_visible(self):
-        try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.finalVisible;")
-            return final_visible
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 奖金表按钮可点击否
-    def info_button_touchable(self):
-        try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击奖金表按钮
-    def info_button_click(self):
+    # 点击左侧主菜单按钮, [tuple: True, False]
+    def main_menu_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示奖金表场景
+    # 显示奖金表按钮, [tuple: True, False]
+    def info_button_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 奖金表按钮可点击否, [tuple: True, False]
+    def info_button_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击奖金表按钮, [tuple: True, False]
+    def info_button_click(self):
+        try:
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示奖金表场景, [tuple: True, False]
     def info_view_showing(self):
         try:
-            showing = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+            showing = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = " + self.add_script + "Application.instance.mainModule.FUIInfoView; var url;"
                                                   "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
-                                                  "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
-                                                  "url = Common.FUINewInfoView.URL;}"
-                                                  "else{url = Common.FUIInfoView.URL;}"
-                                                  "return UIManager.instance.getWindowByName(url);}());"
+                                                  "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                  "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
+                                                  "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                   "return infoView.isShowing")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示奖金表场景的返回按钮
+    # 显示奖金表场景的返回按钮, [tuple: True, False]
     def info_view_return_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+            final_visible = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = " + self.add_script + "Application.instance.mainModule.FUIInfoView; var url;"
                                                         "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
-                                                        "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
-                                                        "url = Common.FUINewInfoView.URL;}"
-                                                        "else{url = Common.FUIInfoView.URL;}"
-                                                        "return UIManager.instance.getWindowByName(url);}());"
+                                                        "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                        "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
+                                                        "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
+                                                        "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                         "return infoView.contentPane.m_returnBtnContainer.m_returnBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 奖金表场景，返回按钮可点击否
+    # 奖金表场景，返回按钮可点击否, [tuple: True, False]
     def info_view_return_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+            touchable = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = " + self.add_script + "Application.instance.mainModule.FUIInfoView; var url;"
                                                     "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
-                                                    "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
-                                                    "url = Common.FUINewInfoView.URL;}"
-                                                    "else{url = Common.FUIInfoView.URL;}"
-                                                    "return UIManager.instance.getWindowByName(url);}());"
+                                                    "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                    "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
+                                                    "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
+                                                    "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                     "return infoView.contentPane.m_returnBtnContainer.m_returnBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 奖金表场景，点击返回按钮
+    # 奖金表场景，点击返回按钮, [tuple: True, False]
     def info_view_return_btn_click(self):
         try:
-            click = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+            click = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = " + self.add_script + "Application.instance.mainModule.FUIInfoView; var url;"
                                                 "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
-                                                "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
-                                                "url = Common.FUINewInfoView.URL;}"
-                                                "else{url = Common.FUIInfoView.URL;}"
-                                                "return UIManager.instance.getWindowByName(url);}());"
+                                                "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
+                                                "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
+                                                "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                 "return infoView.contentPane.m_returnBtnContainer.m_returnBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 奖金表场景消失
+    # 奖金表场景消失, [tuple: None]
     def info_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return (function () {var CustomInfoViewClass = Application.instance.mainModule.FUIInfoView; var url;"
+            dispear = self.browser.execute_script("return (function () {var CustomInfoViewClass = " + self.add_script + "Application.instance.mainModule.FUIInfoView; var url;"
                                                   "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
-                                                  "else if(Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
-                                                  "url = Common.FUINewInfoView.URL;}"
-                                                  "else{url = Common.FUIInfoView.URL;}"
+                                                  "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
+                                                  "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
+                                                  "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
                                                   "return UIManager.instance.getWindowByName(url);}());")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示帮助按钮
+    # 显示帮助按钮, [tuple: True, False]
     def help_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 帮助按钮可点击否
+    # 帮助按钮可点击否, [tuple: True, False]
     def help_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击帮助按钮
+    # 点击帮助按钮, [tuple: True, False]
     def help_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示帮助场景
+    # 显示帮助场景, [tuple: True, False]
     def help_view_showing(self):
         try:
-            showing = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+            showing = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                   "if(CustomHelpClass){url = CustomHelpClass.URL }"
-                                                  "else{url = Common.FUIHelpView.URL}"
-                                                  "return UIManager.instance.getWindowByName(url);}())"
+                                                  "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
                                                   "return helpView.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 帮助场景，显示返回按钮
+    # 帮助场景，显示返回按钮, [tuple: True, False]
     def help_view_return_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+            final_visible = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                         "if(CustomHelpClass){url = CustomHelpClass.URL }"
-                                                        "else{url = Common.FUIHelpView.URL}"
-                                                        "return UIManager.instance.getWindowByName(url);}())"
+                                                        "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
+                                                        "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
                                                         "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 帮助场景，返回按钮可点击否
+    # 帮助场景，返回按钮可点击否, [tuple: True, False]
     def help_view_return_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+            touchable = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                     "if(CustomHelpClass){url = CustomHelpClass.URL }"
-                                                    "else{url = Common.FUIHelpView.URL}"
-                                                    "return UIManager.instance.getWindowByName(url);}())"
+                                                    "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
+                                                    "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
                                                     "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 帮助场景，点击返回按钮
+    # 帮助场景，点击返回按钮, [tuple: True, False]
     def help_view_return_btn_click(self):
         try:
-            click = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
+            click = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                 "if(CustomHelpClass){url = CustomHelpClass.URL }"
-                                                "else{url = Common.FUIHelpView.URL}"
-                                                "return UIManager.instance.getWindowByName(url);}())"
+                                                "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
+                                                "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
                                                 "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 帮助场景消失
+    # 帮助场景消失, [tuple: None]
     def help_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return (function a() {var CustomHelpClass = Application.instance.mainModule.FUIHelpView; var url;"
-                                                  "if(CustomHelpClass){url = CustomHelpClass.URL }"
-                                                  "else{url = Common.FUIHelpView.URL}"
-                                                  "return UIManager.instance.getWindowByName(url);}())")
+            dispear = self.browser.execute_script("return (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
+                                                  "if(CustomHelpClass){url = " + self.add_script + "CustomHelpClass.URL }"
+                                                  "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示声音开关按钮
+    # 显示声音开关按钮, [tuple: True, False]
     def voice_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关按钮可点击否
+    # 声音开关按钮可点击否, [tuple: True, False]
     def voice_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击声音开关按钮
+    # 点击声音开关按钮, [tuple: True, False]
     def voice_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关按钮状态，打开状态为0，关闭状态为1
+    # 声音开关按钮状态, [tuple: 0, 1], 打开状态为0，关闭状态为1
     def voice_button_status(self):
         try:
-            status = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.m_iconCtl.selectedIndex;")
+            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.m_iconCtl.selectedIndex;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示快速切换按钮
+    # 声音开关、播放状态, [tuple: True, False], true为关闭，false为开启
+    def sound_status(self):
+        try:
+            status = self.browser.execute_script("return " + self.add_script + "SoundManager.instance.ismanualColseMusic;")
+            return status
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示快速切换按钮, [tuple: True, False]
     def turbo_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 快速切换按钮可点击否
+    # 快速切换按钮可点击否, [tuple: True, False]
     def turbo_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击快速切换按钮
+    # 点击快速切换按钮, [tuple: True, False]
     def turbo_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 快速切换按钮状态，普通转为0，快速转为1
+    # 快速切换按钮状态, [tuple: 0, 1], 普通转为0，快速转为1
     def turbo_button_status(self):
         try:
-            status = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedIndex;")
+            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedIndex;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示返回大厅按钮
+    # 显示返回大厅按钮, [tuple: True, False]
     def home_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 返回大厅按钮可点击否
+    # 返回大厅按钮可点击否, [tuple: True, False]
     def home_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击返回大厅按钮
+    # 点击返回大厅按钮, [tuple: True, False]
     def home_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示游戏记录按钮
+    # 显示游戏记录按钮, [tuple: True, False]
     def game_record_button_enable(self):
         try:
-            enable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.enabled;")
+            enable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.enabled;")
             return enable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 游戏记录按钮可点击否
+    # 游戏记录按钮可点击否, [tuple: True, False]
     def game_record_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击游戏记录按钮
+    # 点击游戏记录按钮, [tuple: True, False]
     def game_record_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -736,237 +784,238 @@ class Common(object):
     #
     #
 
-    # 显示线数线注设置按钮
+    # 显示线数线注设置按钮, [tuple: True, False]
     def setting_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置按钮可点击否
+    # 线数线注设置按钮可点击否, [tuple: True, False]
     def setting_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击线数线注设置按钮
+    # 点击线数线注设置按钮, [tuple: True, False]
     def setting_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示线数线注设置面板
+    # 显示线数线注设置面板, [tuple: True, False]
     def setting_view_showing(self):
         try:
-            showing = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer);"
-                                                  "return settingView.isShowing;")
+            showing = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                  + self.add_script + "UIManager.instance.commonUILayer);return settingView.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，显示关闭按钮
+    # 线数线注设置面板，显示关闭按钮, [tuple: True, False]
     def setting_view_close_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return settingView.m_frame.m_closeButton.finalVisible;")
+            final_visible = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_frame.m_closeButton.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，关闭按钮可点击否
+    # 线数线注设置面板，关闭按钮可点击否, [tuple: True, False]
     def setting_view_close_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return settingView.m_frame.m_closeButton.touchable;")
+            touchable = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_frame.m_closeButton.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，点击关闭按钮
+    # 线数线注设置面板，点击关闭按钮, [tuple: True, False]
     def setting_view_close_btn_click(self):
         try:
-            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return settingView.m_frame.m_closeButton.displayObject.event('click')")
+            click = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_frame.m_closeButton.displayObject.event('click')")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板消失
+    # 线数线注设置面板消失, [tuple: None]
     def setting_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer);")
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                  + self.add_script + "UIManager.instance.commonUILayer);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板的线数标题
+    # 线数线注设置面板的线数标题, [str]
     def setting_view_line_num_text(self):
         try:
-            text = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                               "return settingView.m_n52.textField.text;")
+            text = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                               + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_n52.textField.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板的线数数值
+    # 线数线注设置面板的线数数值, [str]
     def setting_view_line_num(self):
         try:
-            num = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                              "return settingView.m_lineNumLabel.textField.text;")
+            num = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                              + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineNumLabel.textField.text;")
             return num
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，显示线数 - 按钮
+    # 线数线注设置面板，显示线数 - 按钮, [tuple: True, False]
     def setting_view_line_num_min_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return settingView.m_lineMinusBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineMinusBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，线数 - 按钮 可点击否
+    # 线数线注设置面板，线数 - 按钮 可点击否, [tuple: True, False]
     def setting_view_line_num_min_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return settingView.m_lineMinusBtn.touchable;")
+            touchable = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineMinusBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，点击 线数 - 按钮
+    # 线数线注设置面板，点击 线数 - 按钮, [tuple: True, False]
     def setting_view_line_num_min_btn_click(self):
         try:
-            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return settingView.m_lineMinusBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineMinusBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，显示线数 + 按钮
+    # 线数线注设置面板，显示线数 + 按钮, [tuple: True, False]
     def setting_view_line_num_plus_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return settingView.m_linePlusBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_linePlusBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，线数 + 按钮 可点击否
+    # 线数线注设置面板，线数 + 按钮 可点击否, [tuple: True, False]
     def setting_view_line_num_plus_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return settingView.m_linePlusBtn.touchable;")
+            touchable = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_linePlusBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，点击 线数 + 按钮
+    # 线数线注设置面板，点击 线数 + 按钮, [tuple: True, False]
     def setting_view_line_num_plus_btn_click(self):
         try:
-            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return settingView.m_linePlusBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_linePlusBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板的线注标题
+    # 线数线注设置面板的线注标题, [str]
     def setting_view_line_cost_text(self):
         try:
-            text = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                               "return settingView.m_n54.textField.text;")
+            text = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                               + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_n54.textField.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板的线注数值
+    # 线数线注设置面板的线注数值, [str]
     def setting_view_line_cost(self):
         try:
-            num = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                              "return settingView.m_lineCostLabel.textField.text;")
+            num = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                              + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostLabel.textField.text;")
             return num
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，显示线注 - 按钮
+    # 线数线注设置面板，显示线注 - 按钮, [tuple: True, False]
     def setting_view_line_cost_min_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return settingView.m_lineCostMinusBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostMinusBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，线注 - 按钮 可点击否
+    # 线数线注设置面板，线注 - 按钮 可点击否, [tuple: True, False]
     def setting_view_line_cost_min_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return settingView.m_lineCostMinusBtn.touchable;")
+            touchable = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostMinusBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，点击 线注 - 按钮
+    # 线数线注设置面板，点击 线注 - 按钮, [tuple: True, False]
     def setting_view_line_cost_min_btn_click(self):
         try:
-            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return settingView.m_lineCostMinusBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostMinusBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，显示线注 + 按钮
+    # 线数线注设置面板，显示线注 + 按钮, [tuple: True, False]
     def setting_view_line_cost_plus_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return settingView.m_lineCostPlusBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostPlusBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，线注 + 按钮 可点击否
+    # 线数线注设置面板，线注 + 按钮 可点击否, [tuple: True, False]
     def setting_view_line_cost_plus_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return settingView.m_lineCostPlusBtn.touchable;")
+            touchable = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostPlusBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 线数线注设置面板，点击 线注 + 按钮
+    # 线数线注设置面板，点击 线注 + 按钮, [tuple: True, False]
     def setting_view_line_cost_plus_btn_click(self):
         try:
-            click = self.browser.execute_script("var settingView = UIManager.instance.getWindowByName(Common.FUILineSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return settingView.m_lineCostPlusBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var settingView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILineSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return settingView.m_lineCostPlusBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -978,176 +1027,244 @@ class Common(object):
     #
     #
 
-    # 显示自动游戏按钮
+    # 显示自动游戏按钮, [tuple: True, False]
     def auto_game_button_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.finalVisible;")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏按钮可点击否
+    # 自动游戏按钮可点击否, [tuple: True, False]
     def auto_game_button_touchable(self):
         try:
-            touchable = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.touchable;")
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击自动游戏按钮
+    # 点击自动游戏按钮, [tuple: True, False]
     def auto_game_button_click(self):
         try:
-            click = self.browser.execute_script("return UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.displayObject.event('click');")
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示自动游戏设置面板
+    # 显示自动游戏设置面板, [tuple: True, False]
     def auto_game_view_visible(self):
         try:
-            final_visible = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer);")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer);")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，显示关闭按钮
+    # 自动游戏设置面板，显示关闭按钮, [tuple: True, False]
     def auto_game_view_close_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return autoGameView.m_frame.m_closeButton.finalVisible")
+            final_visible = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_frame.m_closeButton.finalVisible")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，关闭按钮可点击否
+    # 自动游戏设置面板，关闭按钮可点击否, [tuple: True, False]
     def auto_game_view_close_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return autoGameView.m_frame.m_closeButton.touchable;")
+            touchable = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_frame.m_closeButton.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，点击关闭按钮
+    # 自动游戏设置面板，点击关闭按钮, [tuple: True, False]
     def auto_game_view_close_btn_click(self):
         try:
-            click = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return autoGameView.m_frame.m_closeButton.displayObject.event('click');")
+            click = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_frame.m_closeButton.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板消失
+    # 自动游戏设置面板消失, [tuple: None]
     def auto_game_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer);")
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                  + self.add_script + "UIManager.instance.commonUILayer);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，显示旋转小图标
+    # 自动游戏设置面板，显示旋转小图标, [tuple: True, False]
     def auto_game_view_icon_visible(self):
         try:
-            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return autoGameView.m_n50.finalVisible;")
+            final_visible = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_n50.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，自动次数文字
+    # 自动游戏设置面板，自动次数文字, [str]
     def auto_game_view_auto_time_text(self):
         try:
-            text = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                               "return autoGameView.m_autoTimesLabel.textField.text;")
+            text = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                               + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_autoTimesLabel.textField.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，显示拖动条
+    # 自动游戏设置面板，显示拖动条, [tuple: True, False]
     def auto_game_view_slider_bar_visible(self):
         try:
-            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return autoGameView.m_slider.m_bar.finalVisible;")
+            final_visible = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_slider.m_bar.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，显示拖动条按钮
+    # 自动游戏设置面板，显示拖动条按钮, [tuple: True, False]
     def auto_game_view_slider_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return autoGameView.m_slider.m_grip.finalVisible;")
+            final_visible = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_slider.m_grip.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，改变自动次数，并返回面板上的自动次数 “25次旋转”
+    # 自动游戏设置面板，改变自动次数，并返回面板上的自动次数, [str: “25次旋转”]
     def auto_game_view_change_auto_time(self, index):
         try:
-            text = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                               "var i = " + str(index) + ";SpinManager.instance.autoTimes = DataGame.getData(DataGame.getKeys())['autoSpinTimes'][i];"
-                                               "autoGameView.m_slider.value = 100 * i / DataGame.getData(DataGame.getKeys())['autoSpinTimes'].length;"
+            text = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                               + self.add_script + "UIManager.instance.commonUILayer).contentPane;"
+                                               "var i = " + str(index) + ";" + self.add_script + "SpinManager.instance.autoTimes = " + self.add_script + "DataGame.getData("
+                                               + self.add_script + "DataGame.getKeys())['autoSpinTimes'][i];"
+                                               "autoGameView.m_slider.value = 100 * i / " + self.add_script + "DataGame.getData(DataGame.getKeys())['autoSpinTimes'].length;"
                                                "return autoGameView.m_autoTimesLabel.textField.text")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，显示开始按钮
+    # 自动游戏设置面板，显示开始按钮, [tuple: True, False]
     def auto_game_view_start_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                        "return autoGameView.m_startBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_startBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，开始按钮文字
+    # 自动游戏设置面板，开始按钮文字, [str]
     def auto_game_view_start_btn_text(self):
         try:
-            text = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                               "return autoGameView.m_startBtn.text;")
+            text = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                               + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_startBtn.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise 
 
-    # 自动游戏设置面板，开始按钮可点击否
+    # 自动游戏设置面板，开始按钮可点击否, [tuple: True, False]
     def auto_game_view_start_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                    "return autoGameView.m_startBtn.touchable;")
+            touchable = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                    + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_startBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，点击开始按钮
+    # 自动游戏设置面板，点击开始按钮, [tuple: True, False]
     def auto_game_view_start_btn_click(self):
         try:
-            click = self.browser.execute_script("var autoGameView = UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer).contentPane;"
-                                                "return autoGameView.m_startBtn.displayObject.event('click')；")
+            click = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_startBtn.displayObject.event('click')；")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
 
+    #
+    #
+    # ------------------------------------------------------------------------ 旋转按钮 及 旋转状态 ------------------------------------------------------------------------
+    #
+    #
 
+    # 显示旋转按钮, [tuple: True, False]
+    def start_btn_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
 
-    
+    # 旋转按钮可点击否, [tuple: True, False]
+    def start_btn_touchable(self):
+        try:
+            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.touchable;")
+            return touchable
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击旋转按钮, [tuple: True, False]
+    def start_btn_click(self):
+        try:
+            click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.displayObject.event('click');")
+            return click
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 滚轴滚动状态, [tuple: True, False]
+    def slot_machine_rolling(self):
+        try:
+            rolling = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.slotMachine.isRolling;")
+            return rolling
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 快速模式状态, [tuple: True, False]
+    def spin_is_turbo(self):
+        try:
+            turbo = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.isInTurbo;")
+            return turbo
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动旋转状态, [tuple: True, False]
+    def spin_is_in_auto(self):
+        try:
+            auto = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.isInAuto;")
+            return auto
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 自动游戏过程，停止按钮上的文字或次数
+    def in_auto_spin_btn_text(self):
+        try:
+            text = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.m_autoTimesLabel.textField.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
 
 
 

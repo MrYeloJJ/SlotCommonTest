@@ -28,10 +28,16 @@ class TestMainAndComView(unittest.TestCase):
         sleep(2)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
+        slot_machine_view = self.common.slot_machine_view_visible()
+        bg_view = self.common.bg_view_visible()
+        bottom_bg_view = self.common.bottom_bg_view_visible()
 
         try:
             self.assertEqual(main_view, True, "没有显示主视图！")
             self.assertEqual(common_view, True, "没有显示公共视图！")
+            self.assertEqual(slot_machine_view, True, "没有显示滚轴！")
+            self.assertEqual(bg_view, True, "没有显示背景图片！")
+            self.assertEqual(bottom_bg_view, True, "没有显示底部背景图片！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -45,10 +51,16 @@ class TestMainAndComView(unittest.TestCase):
         sleep(2)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
+        slot_machine_view = self.common.slot_machine_view_visible()
+        bg_view = self.common.bg_view_visible()
+        bottom_bg_view = self.common.bottom_bg_view_visible()
 
         try:
             self.assertEqual(main_view, True, "竖屏没有显示主视图！")
             self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
+            self.assertEqual(slot_machine_view, True, "竖屏没有显示滚轴！")
+            self.assertEqual(bg_view, True, "竖屏没有显示背景图片！")
+            self.assertEqual(bottom_bg_view, True, "竖屏没有显示底部背景图片！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -61,10 +73,16 @@ class TestMainAndComView(unittest.TestCase):
         sleep(2)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
+        slot_machine_view = self.common.slot_machine_view_visible()
+        bg_view = self.common.bg_view_visible()
+        bottom_bg_view = self.common.bottom_bg_view_visible()
 
         try:
             self.assertEqual(main_view, True, "横屏没有显示主视图！")
             self.assertEqual(common_view, True, "横屏没有显示公共视图！")
+            self.assertEqual(slot_machine_view, True, "横屏没有显示滚轴！")
+            self.assertEqual(bg_view, True, "横屏没有显示背景图片！")
+            self.assertEqual(bottom_bg_view, True, "横屏没有显示底部背景图片！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -72,10 +90,16 @@ class TestMainAndComView(unittest.TestCase):
         self.common.portrait()
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
+        slot_machine_view = self.common.slot_machine_view_visible()
+        bg_view = self.common.bg_view_visible()
+        bottom_bg_view = self.common.bottom_bg_view_visible()
 
         try:
             self.assertEqual(main_view, True, "竖屏没有显示主视图！")
             self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
+            self.assertEqual(slot_machine_view, True, "竖屏没有显示滚轴！")
+            self.assertEqual(bg_view, True, "竖屏没有显示背景图片！")
+            self.assertEqual(bottom_bg_view, True, "竖屏没有显示底部背景图片！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -89,10 +113,16 @@ class TestMainAndComView(unittest.TestCase):
         sleep(2)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
+        slot_machine_view = self.common.slot_machine_view_visible()
+        bg_view = self.common.bg_view_visible()
+        bottom_bg_view = self.common.bottom_bg_view_visible()
 
         try:
             self.assertEqual(main_view, True, "竖屏没有显示主视图！")
             self.assertEqual(common_view, True, "竖屏没有显示公共视图！")
+            self.assertEqual(slot_machine_view, True, "竖屏没有显示滚轴！")
+            self.assertEqual(bg_view, True, "竖屏没有显示背景图片！")
+            self.assertEqual(bottom_bg_view, True, "竖屏没有显示底部背景图片！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -100,10 +130,16 @@ class TestMainAndComView(unittest.TestCase):
         self.common.landscape()
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
+        slot_machine_view = self.common.slot_machine_view_visible()
+        bg_view = self.common.bg_view_visible()
+        bottom_bg_view = self.common.bottom_bg_view_visible()
 
         try:
             self.assertEqual(main_view, True, "横屏没有显示主视图！")
             self.assertEqual(common_view, True, "横屏没有显示公共视图！")
+            self.assertEqual(slot_machine_view, True, "横屏没有显示滚轴！")
+            self.assertEqual(bg_view, True, "横屏没有显示背景图片！")
+            self.assertEqual(bottom_bg_view, True, "横屏没有显示底部背景图片！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
