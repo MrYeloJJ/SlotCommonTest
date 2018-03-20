@@ -291,7 +291,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，显示切换按钮, [tuple: True, False]
-    def sound_view_toggle_button_visible(self):
+    def sound_view_toggle_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                         + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.finalVisible;")
@@ -301,7 +301,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，切换按钮可点击, [tuple: True, False]
-    def sound_view_toggle_button_touchable(self):
+    def sound_view_toggle_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                     + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.touchable;")
@@ -341,7 +341,7 @@ class Common(object):
             raise
 
     # 显示声音开关提示窗口的 “是” 按钮, [tuple: True, False]
-    def sound_view_yes_button_showing(self):
+    def sound_view_yes_btn_showing(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                         + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.finalVisible;")
@@ -351,7 +351,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，“是”按钮可点击, [tuple: True, False]
-    def sound_view_yes_button_touchable(self):
+    def sound_view_yes_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                     + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.touchable;")
@@ -361,7 +361,7 @@ class Common(object):
             raise
 
     # 点击声音开关提示窗口的 “是” 按钮, [tuple: True, False]
-    def sound_view_yes_button_click(self):
+    def sound_view_yes_btn_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                 + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.displayObject.event('click');")
@@ -371,7 +371,7 @@ class Common(object):
             raise
 
     # 显示声音开关提示窗口的 “否” 按钮, [tuple: True, False]
-    def sound_view_no_button_showing(self):
+    def sound_view_no_btn_showing(self):
         try:
             final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                         + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.finalVisible;")
@@ -381,7 +381,7 @@ class Common(object):
             raise
 
     # 声音开关提示窗口，“是”按钮可点击, [tuple: True, False]
-    def sound_view_no_button_touchable(self):
+    def sound_view_no_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                     + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.touchable;")
@@ -391,7 +391,7 @@ class Common(object):
             raise
 
     # 点击声音开关提示窗口的 “是” 按钮, [tuple: True, False]
-    def sound_view_no_button_click(self):
+    def sound_view_no_btn_click(self):
         try:
             click = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                 + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.displayObject.event('click');")
@@ -407,7 +407,7 @@ class Common(object):
     #
 
     # 显示左侧主菜单, [tuple: True, False]
-    def main_menu_button_visible(self):
+    def main_menu_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.finalVisible;")
             return final_visible
@@ -443,7 +443,7 @@ class Common(object):
             raise
 
     # 点击左侧主菜单按钮, [tuple: True, False]
-    def main_menu_button_click(self):
+    def main_menu_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_mainMenuBtn.displayObject.event('click');")
             return click
@@ -452,7 +452,7 @@ class Common(object):
             raise
 
     # 显示奖金表按钮, [tuple: True, False]
-    def info_button_visible(self):
+    def info_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.finalVisible;")
             return final_visible
@@ -461,7 +461,7 @@ class Common(object):
             raise
 
     # 奖金表按钮可点击否, [tuple: True, False]
-    def info_button_touchable(self):
+    def info_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.touchable;")
             return touchable
@@ -470,7 +470,7 @@ class Common(object):
             raise
 
     # 点击奖金表按钮, [tuple: True, False]
-    def info_button_click(self):
+    def info_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_infoBtn.displayObject.event('click');")
             return click
@@ -553,7 +553,7 @@ class Common(object):
             raise
 
     # 显示帮助按钮, [tuple: True, False]
-    def help_button_visible(self):
+    def help_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.finalVisible;")
             return final_visible
@@ -562,7 +562,7 @@ class Common(object):
             raise
 
     # 帮助按钮可点击否, [tuple: True, False]
-    def help_button_touchable(self):
+    def help_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.touchable;")
             return touchable
@@ -571,7 +571,7 @@ class Common(object):
             raise
 
     # 点击帮助按钮, [tuple: True, False]
-    def help_button_click(self):
+    def help_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_helpBtn.displayObject.event('click');")
             return click
@@ -644,7 +644,7 @@ class Common(object):
             raise
 
     # 显示声音开关按钮, [tuple: True, False]
-    def voice_button_visible(self):
+    def voice_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.finalVisible;")
             return final_visible
@@ -653,7 +653,7 @@ class Common(object):
             raise
 
     # 声音开关按钮可点击否, [tuple: True, False]
-    def voice_button_touchable(self):
+    def voice_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.touchable;")
             return touchable
@@ -662,7 +662,7 @@ class Common(object):
             raise
 
     # 点击声音开关按钮, [tuple: True, False]
-    def voice_button_click(self):
+    def voice_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.displayObject.event('click');")
             return click
@@ -671,7 +671,7 @@ class Common(object):
             raise
 
     # 声音开关按钮状态, [tuple: 0, 1], 打开状态为0，关闭状态为1
-    def voice_button_status(self):
+    def voice_btn_status(self):
         try:
             status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.m_iconCtl.selectedIndex;")
             return status
@@ -689,7 +689,7 @@ class Common(object):
             raise
 
     # 显示快速切换按钮, [tuple: True, False]
-    def turbo_button_visible(self):
+    def turbo_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.finalVisible;")
             return final_visible
@@ -698,7 +698,7 @@ class Common(object):
             raise
 
     # 快速切换按钮可点击否, [tuple: True, False]
-    def turbo_button_touchable(self):
+    def turbo_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.touchable;")
             return touchable
@@ -707,7 +707,7 @@ class Common(object):
             raise
 
     # 点击快速切换按钮, [tuple: True, False]
-    def turbo_button_click(self):
+    def turbo_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.displayObject.event('click');")
             return click
@@ -716,7 +716,7 @@ class Common(object):
             raise
 
     # 快速切换按钮状态, [tuple: 0, 1], 普通转为0，快速转为1
-    def turbo_button_status(self):
+    def turbo_btn_status(self):
         try:
             status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedIndex;")
             return status
@@ -725,7 +725,7 @@ class Common(object):
             raise
 
     # 显示返回大厅按钮, [tuple: True, False]
-    def home_button_visible(self):
+    def home_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.finalVisible;")
             return final_visible
@@ -734,7 +734,7 @@ class Common(object):
             raise
 
     # 返回大厅按钮可点击否, [tuple: True, False]
-    def home_button_touchable(self):
+    def home_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.touchable;")
             return touchable
@@ -743,7 +743,7 @@ class Common(object):
             raise
 
     # 点击返回大厅按钮, [tuple: True, False]
-    def home_button_click(self):
+    def home_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_homeBtn.displayObject.event('click');")
             return click
@@ -752,7 +752,7 @@ class Common(object):
             raise
 
     # 显示游戏记录按钮, [tuple: True, False]
-    def game_record_button_enable(self):
+    def game_record_btn_enable(self):
         try:
             enable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.enabled;")
             return enable
@@ -761,7 +761,7 @@ class Common(object):
             raise
 
     # 游戏记录按钮可点击否, [tuple: True, False]
-    def game_record_button_touchable(self):
+    def game_record_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.touchable;")
             return touchable
@@ -770,7 +770,7 @@ class Common(object):
             raise
 
     # 点击游戏记录按钮, [tuple: True, False]
-    def game_record_button_click(self):
+    def game_record_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_gameRecordBtn.displayObject.event('click');")
             return click
@@ -785,7 +785,7 @@ class Common(object):
     #
 
     # 显示线数线注设置按钮, [tuple: True, False]
-    def setting_button_visible(self):
+    def setting_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.finalVisible;")
             return final_visible
@@ -794,7 +794,7 @@ class Common(object):
             raise
 
     # 线数线注设置按钮可点击否, [tuple: True, False]
-    def setting_button_touchable(self):
+    def setting_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.touchable;")
             return touchable
@@ -803,7 +803,7 @@ class Common(object):
             raise
 
     # 点击线数线注设置按钮, [tuple: True, False]
-    def setting_button_click(self):
+    def setting_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_settingBtn.displayObject.event('click');")
             return click
@@ -1028,7 +1028,7 @@ class Common(object):
     #
 
     # 显示自动游戏按钮, [tuple: True, False]
-    def auto_game_button_visible(self):
+    def auto_game_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.finalVisible;")
             return final_visible
@@ -1037,7 +1037,7 @@ class Common(object):
             raise
 
     # 自动游戏按钮可点击否, [tuple: True, False]
-    def auto_game_button_touchable(self):
+    def auto_game_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.touchable;")
             return touchable
@@ -1046,7 +1046,7 @@ class Common(object):
             raise
 
     # 点击自动游戏按钮, [tuple: True, False]
-    def auto_game_button_click(self):
+    def auto_game_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_autoGameSettingBtn.displayObject.event('click');")
             return click
@@ -1230,6 +1230,24 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 旋转按钮状态, [str: stopped, playing]
+    def start_btn_status(self):
+        try:
+            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.m_autoGameCtl.selectedPage;")
+            return status
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 旋转按钮图标url, [str], 旋转前后分别获得返回值，再进行比较，不一致则代表旋转和停止图标不一致
+    def start_btn_icon_url(self):
+        try:
+            url = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.m_n22.url;")
+            return url
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 滚轴滚动状态, [tuple: True, False]
     def slot_machine_rolling(self):
         try:
@@ -1257,7 +1275,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏过程，停止按钮上的文字或次数
+    # 自动游戏过程，停止按钮上的文字或次数, [str: 199, 直到]
     def in_auto_spin_btn_text(self):
         try:
             text = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.m_autoTimesLabel.textField.text;")
@@ -1266,6 +1284,173 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    #
+    #
+    # ------------------------------------------------------------------------ 下导航栏 ------------------------------------------------------------------------
+    #
+    #
+
+    # 显示提示文字, [tuple, True, False]
+    def banner_tips_label_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_bannerTipsLabel.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 提示文字内容, [str]
+    def banner_tips_label(self):
+        try:
+            label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_bannerTipsLabel.textField.text;")
+            return label
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示余额标题, [tuple: True, False]
+    def has_money_title_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_hasMoneyTitleL.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 余额标题文字, [str]
+    def has_money_title(self):
+        try:
+            title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_hasMoneyTitleL.textField.text;")
+            return title
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示余额, [tuple: True, False]
+    def has_money_label_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_hasMoneyLabelL.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 余额数值, [str]
+    def has_money_label(self):
+        try:
+            label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_hasMoneyLabelL.textField.text;")
+            return label
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示线数标题, [tuple: True, False]
+    def line_num_title_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineNumTitle.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数标题文字, [str]
+    def line_num_title(self):
+        try:
+            title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineNumTitle.textField.text;")
+            return title
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示线数数值, [tuple: True, False]
+    def line_num_label_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineNumLabel.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线数数值, [str]
+    def line_num_label(self):
+        try:
+            label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineNumLabel.textField.text;")
+            return label
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示线注标题, [tuple: True, False]
+    def line_cost_title_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineCostTitle.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线注标题文字, [str]
+    def line_cost_title(self):
+        try:
+            title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineCostTitle.textField.text;")
+            return title
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示线注数值, [tuple: True, False]
+    def line_cost_label_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineCostLabel.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 线注数值, [str]
+    def line_cost_label(self):
+        try:
+            label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineCostLabel.textField.text;")
+            return label
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示总赌注标题, [tuple: True, False]
+    def bet_money_title_visible(self):
+        try:
+            finale_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_betTitle.finalVisible;")
+            return finale_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 总赌注标题文字, [str]
+    def bet_money_title(self):
+        try:
+            title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_betTitle.textField.text;")
+            return title
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示总赌注数值, [tuple: True, False]
+    def bet_money_label_visible(self):
+        try:
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_betMoneyLabel.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 总赌注数值, [str]
+    def bet_money_label(self):
+        try:
+            label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_betMoneyLabel.textField.text;")
+            return label
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
 
 
 
