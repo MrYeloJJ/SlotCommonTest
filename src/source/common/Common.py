@@ -1057,7 +1057,8 @@ class Common(object):
     # 显示自动游戏设置面板, [tuple: True, False]
     def auto_game_view_visible(self):
         try:
-            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIAutoGameSettingView.URL, UIManager.instance.commonUILayer);")
+            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer);")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1380,8 +1381,8 @@ class Common(object):
     # 显示快速模式窗口, [tuple: True, False]
     def turbo_mode_view_showing(self):
         try:
-            showing = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer);"
-                                                  "return turboView.isShowing;")
+            showing = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                  + self.add_script + "UIManager.instance.tipsLayer);return turboView.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1390,8 +1391,8 @@ class Common(object):
     # 快速模式窗口，显示关闭按钮, [tuple: True, False]
     def turbo_mode_view_close_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return turboView.m_frame.m_closeButton.finalVisible;")
+            final_visible = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_frame.m_closeButton.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1400,8 +1401,8 @@ class Common(object):
     # 快速模式窗口，关闭按钮可点击否, [tuple: True, False]
     def turbo_mode_view_close_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                    "return turboView.m_frame.m_closeButton.touchable;")
+            touchable = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                    + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_frame.m_closeButton.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1410,8 +1411,8 @@ class Common(object):
     # 快速模式窗口，点击关闭按钮, [tuple: True, False]
     def turbo_mode_view_close_btn_click(self):
         try:
-            click = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return turboView.m_frame.m_closeButton.displayObject.event('click');")
+            click = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_frame.m_closeButton.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1420,7 +1421,8 @@ class Common(object):
     # 快速模式窗口消失, [tuple: None]
     def turbo_mode_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer);")
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                  + self.add_script + "UIManager.instance.tipsLayer);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1429,8 +1431,8 @@ class Common(object):
     # 快速模式窗口，提示文字（长）, [str]
     def turbo_mode_view_title_long(self):
         try:
-            title = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return turboView.m_n4.textField.text;")
+            title = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_n4.textField.text;")
             return title
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1439,8 +1441,8 @@ class Common(object):
     #  快速模式窗口，提示文字（短）, [str]
     def turbo_mode_view_title_short(self):
         try:
-            title = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return turboView.m_n6.textField.text;")
+            title = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_n6.textField.text;")
             return title
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1449,8 +1451,8 @@ class Common(object):
     # 快速模式窗口，显示启动按钮, [tuple: True, False]
     def turbo_mode_view_enable_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return turboView.m_enableBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_enableBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1459,8 +1461,8 @@ class Common(object):
     # 快速模式窗口，启动按钮提示文字, [str]
     def turbo_mode_view_enable_btn_text(self):
         try:
-            text = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                               "return turboView.m_enableBtn.m_title.textField.text;")
+            text = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                               + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_enableBtn.m_title.textField.text;")
             return text
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1469,8 +1471,8 @@ class Common(object):
     # 快速模式窗口，启动按钮可点击否, [tuple: True, False]
     def turbo_mode_view_enable_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                    "return turboView.m_enableBtn.touchable;")
+            touchable = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                    + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_enableBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1479,8 +1481,8 @@ class Common(object):
     # 快速模式窗口，点击启动按钮, [tuple: True, False]
     def turbo_mode_view_enable_btn_click(self):
         try:
-            click = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUIEnableTurboModeView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return turboView.m_enableBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var turboView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableTurboModeView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return turboView.m_enableBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1495,8 +1497,8 @@ class Common(object):
     # 显示余额不足窗口, [tuple: True, False]
     def lack_of_money_view_showing(self):
         try:
-            showing = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer);"
-                                                  "return lackMoneyView.isShowing;")
+            showing = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                  + self.add_script + "UIManager.instance.tipsLayer);return lackMoneyView.isShowing;")
             return showing
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1505,8 +1507,8 @@ class Common(object):
     # 余额不足窗口，显示标题文字, [str]
     def lack_of_money_title(self):
         try:
-            title = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return lackMoneyView.m_n1.textField.text;")
+            title = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return lackMoneyView.m_n1.textField.text;")
             return title
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1515,8 +1517,8 @@ class Common(object):
     # 余额不足窗口，显示确定按钮, [tuple: True, False]
     def lack_of_money_ok_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                        "return lackMoneyView.m_okBtn.finalVisible;")
+            final_visible = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;return lackMoneyView.m_okBtn.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1525,8 +1527,8 @@ class Common(object):
     # 余额不足窗口，确定按钮文字, [str]
     def lack_of_money_ok_btn_title(self):
         try:
-            title = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return lackMoneyView.m_okBtn.m_title.textField.text;")
+            title = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return lackMoneyView.m_okBtn.m_title.textField.text;")
             return title
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1535,8 +1537,8 @@ class Common(object):
     # 余额不足窗口，确定按钮可点击否, [tuple: True, False]
     def lack_of_money_ok_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                    "return lackMoneyView.m_okBtn.touchable;")
+            touchable = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                    + self.add_script + "UIManager.instance.tipsLayer).contentPane;return lackMoneyView.m_okBtn.touchable;")
             return touchable
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1545,8 +1547,8 @@ class Common(object):
     # 余额不足窗口，点击确定按钮, [tuple: True, False]
     def lack_of_money_ok_btn_click(self):
         try:
-            click = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer).contentPane;"
-                                                "return lackMoneyView.m_okBtn.displayObject.event('click');")
+            click = self.browser.execute_script("var lackMoneyView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                + self.add_script + "UIManager.instance.tipsLayer).contentPane;return lackMoneyView.m_okBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -1555,7 +1557,8 @@ class Common(object):
     # 余额不足窗口消失, [tuple: None]
     def lack_of_money_dispear(self):
         try:
-            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(Common.FUILackOfMoneyAlertView.URL, UIManager.instance.tipsLayer);")
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
+                                                  + self.add_script + "UIManager.instance.tipsLayer);")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
