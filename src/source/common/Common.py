@@ -330,11 +330,11 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关提示窗口，切换按钮状态, [tuple: 1, 0], 0代表开启，1代表关闭
+    # 声音开关提示窗口，切换按钮状态, [str: down, up]
     def sound_view_toggle_status(self):
         try:
             status = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
-                                                 + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.m_button.selectedIndex;")
+                                                 + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_showingToggle.m_button.selectedPage;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -435,20 +435,11 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 左侧主菜单展开状态, [tuple: 1, 2], 1为折叠，2为展开
+    # 左侧主菜单展开状态, [str: retractL, expandLPC, retractP, expandPPC] expandLPC：横展， retractL：横叠， expandPPC：竖展， retractP：竖叠
     def main_menu_expand(self):
         try:
-            expand = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedIndex;")
+            expand = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedPage;")
             return expand
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 左侧主菜单展开方向, [tuple: 1, 4], 往下为1，往右为4
-    def main_menu_expand_direction(self):
-        try:
-            direction = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_expandCtl.selectedIndex;")
-            return direction
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -690,10 +681,10 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 声音开关按钮状态, [tuple: 0, 1], 打开状态为0，关闭状态为1
+    # 声音开关按钮状态, [str: normal, silience]
     def voice_btn_status(self):
         try:
-            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.m_iconCtl.selectedIndex;")
+            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_voiceBtn.m_iconCtl.selectedPage;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -735,10 +726,10 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 快速切换按钮状态, [tuple: 0, 1], 普通转为0，快速转为1
+    # 快速切换按钮状态, [str: 1x, 2x]
     def turbo_btn_status(self):
         try:
-            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedIndex;")
+            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedPage;")
             return status
         except Exception:
             self.daf.get_screenshot(self.browser)
