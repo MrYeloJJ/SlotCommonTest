@@ -350,6 +350,16 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 显示声音开关提示窗口的 “是” 按钮, [str: 是]
+    def sound_view_yes_btn_text(self):
+        try:
+            text = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                               + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_yesBtn.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 声音开关提示窗口，“是”按钮可点击, [tuple: True, False]
     def sound_view_yes_btn_touchable(self):
         try:
@@ -376,6 +386,16 @@ class Common(object):
             final_visible = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
                                                         + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.finalVisible;")
             return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 显示声音开关提示窗口的 “否” 按钮, [str: 否]
+    def sound_view_no_btn_text(self):
+        try:
+            text = self.browser.execute_script("var soundWindow = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIEnableSoundView.URL, "
+                                               + self.add_script + "UIManager.instance.tipsLayer).contentPane;return soundWindow.m_noBtn.text;")
+            return text
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
