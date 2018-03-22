@@ -117,16 +117,16 @@ class Common(object):
     # 线注列表, [list]
     def get_line_cost_list(self):
         try:
-            line_cost_list = eval(self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['lineValue'];"))
-            return line_cost_list
+            line_cost_list = self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['lineValue'];")
+            return tuple(line_cost_list)
         except Exception:
             raise
 
     # 自动游戏次数列表, [list]
     def get_auto_game_times_list(self):
         try:
-            auto_game_times_list = eval(self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['autoSpinTimes'];"))
-            return auto_game_times_list
+            auto_game_times_list = self.browser.execute_script("return " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['autoSpinTimes'];")
+            return tuple(auto_game_times_list)
         except Exception:
             raise
 

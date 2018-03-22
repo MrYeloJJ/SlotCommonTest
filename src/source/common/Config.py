@@ -14,11 +14,11 @@ class Config(object):
     def get_message(self):
 
         lobby = self.config.get(self.section, "lobby")
-        game_id = self.config.get(self.section, "gameId")
+        game_id = eval(self.config.get(self.section, "gameId"))
         game_name = self.config.get(self.section, "gameName")
         full_line = self.config.get(self.section, "fullLine")
-        line_num_min = self.config.get(self.section, "lineNumMin")
-        line_num_max = self.config.get(self.section, "lineNumMax")
+        line_num_min = eval(self.config.get(self.section, "lineNumMin"))
+        line_num_max = eval(self.config.get(self.section, "lineNumMax"))
         line_cost = eval(self.config.get(self.section, "lineCost"))
         auto_game_times = eval(self.config.get(self.section, "autoGameTimes"))
 

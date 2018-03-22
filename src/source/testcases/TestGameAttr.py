@@ -17,8 +17,6 @@ class TestGameAttr(unittest.TestCase):
         self.common.start()
         self.daf = DirAndFiles()
         self.common.loading_bar()
-        sleep(1)
-        self.common.loading_view_dispear()
 
     def tearDown(self):
         self.browser.quit()
@@ -69,7 +67,7 @@ class TestGameAttr(unittest.TestCase):
         current_line_cost = self.common.get_line_cost_list()
         target_line_cost = self.common.line_cost
         try:
-            self.assertEqual(eval(current_line_cost), target_line_cost, "线注不一致！")
+            self.assertEqual(current_line_cost, target_line_cost, "线注不一致！")
         except AssertionError:
             raise
 
@@ -79,7 +77,7 @@ class TestGameAttr(unittest.TestCase):
         current_auto_game_times = self.common.get_auto_game_times_list()
         target_auto_game_times = self.common.auto_game_times
         try:
-            self.assertEqual(eval(current_auto_game_times), target_auto_game_times, "自动次数不一致！")
+            self.assertEqual(current_auto_game_times, target_auto_game_times, "自动次数不一致！")
         except AssertionError:
             raise
 
