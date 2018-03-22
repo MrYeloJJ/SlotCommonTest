@@ -21,7 +21,7 @@ class TestLoadingView(unittest.TestCase):
         self.browser.quit()
 
     # 验证是否进入载入场景
-    def test1_loading_view_showing(self):
+    def test_loading_view_showing(self):
         sleep(1)
         showing = self.common.loading_view_showing()
         try:
@@ -31,7 +31,7 @@ class TestLoadingView(unittest.TestCase):
             raise
 
     # 验证载入场景进度条
-    def test2_loading_bar(self):
+    def test_loading_bar(self):
         sleep(1)
         tip = self.common.loading_bar()
         try:
@@ -41,7 +41,7 @@ class TestLoadingView(unittest.TestCase):
             raise
 
     # 验证载入场景进度条100%后是否消失
-    def test3_loading_view_dispear(self):
+    def test_loading_view_dispear(self):
         sleep(1)
         self.common.loading_bar()
         sleep(1)
@@ -53,7 +53,7 @@ class TestLoadingView(unittest.TestCase):
             raise
 
     # 验证竖屏进入载入画面，是否显示载入场景、进度条以及进度条走满后是否消失
-    def test4_loading_on_vertical_screen(self):
+    def test_loading_on_vertical_screen(self):
         # 切换竖屏
         self.common.portrait()
 
@@ -80,7 +80,7 @@ class TestLoadingView(unittest.TestCase):
             raise
 
     # 验证载入场景来回切换横竖屏显示正常
-    def test5_loading_switch_screen(self):
+    def test_loading_switch_screen(self):
         # 切换竖屏
         self.common.portrait()
 

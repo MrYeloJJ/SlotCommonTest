@@ -22,7 +22,7 @@ class TestGameAttr(unittest.TestCase):
         self.browser.quit()
 
     # 验证游戏id
-    def test1_game_id(self):
+    def test_game_id(self):
         sleep(1)
         current_game_id = self.common.get_game_id()
         target_game_id = self.common.game_id
@@ -32,7 +32,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     # 验证游戏名字
-    def test2_game_name(self):
+    def test_game_name(self):
         sleep(1)
         current_game_name = self.common.get_game_name()
         target_game_name = self.common.game_name
@@ -42,7 +42,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     # 验证最小线数
-    def test3_min_line_num(self):
+    def test_min_line_num(self):
         sleep(1)
         current_min_line_num = self.common.get_min_line_num()
         target_min_line_num = self.common.line_num_min
@@ -52,7 +52,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     # 验证最大线数
-    def test4_max_line_num(self):
+    def test_max_line_num(self):
         sleep(1)
         current_max_line_num = self.common.get_max_line_num()
         target_max_line_num = self.common.line_num_max
@@ -62,7 +62,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     # 验证线注
-    def test5_line_cost(self):
+    def test_line_cost(self):
         sleep(1)
         current_line_cost = self.common.get_line_cost_list()
         target_line_cost = self.common.line_cost
@@ -72,7 +72,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     # 验证自动次数
-    def test6_auto_game_times(self):
+    def test_auto_game_times(self):
         sleep(1)
         current_auto_game_times = self.common.get_auto_game_times_list()
         target_auto_game_times = self.common.auto_game_times
