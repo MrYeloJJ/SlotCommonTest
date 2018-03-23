@@ -236,15 +236,6 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 灰色蒙板可点击否, [tuple: True, False]
-    def mask_view_touchable(self):
-        try:
-            touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.maskView.touchable;")
-            return touchable
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
-
     # 点击灰色蒙板, [tuple: True, False]
     def mask_view_click(self):
         try:
