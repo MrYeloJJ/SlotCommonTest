@@ -548,7 +548,7 @@ class Common(object):
                                                   "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
                                                   "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
                                                   "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
-                                                  "return UIManager.instance.getWindowByName(url);}());")
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
