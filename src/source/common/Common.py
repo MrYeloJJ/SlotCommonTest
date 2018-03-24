@@ -21,7 +21,7 @@ class Common(object):
         self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
-        self.add_script = ""                                    # 多开情况需改为 "window.frames[0].frames."
+        self.add_script = "window.frames[0].frames."                                    # 多开情况需改为 "window.frames[0].frames."
 
     # 进入大厅并打开游戏
     def start(self):
@@ -690,7 +690,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示快速切换按钮, [tuple: True, False]
+    # 显示快速模式按钮, [tuple: True, False]
     def turbo_btn_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.finalVisible;")
@@ -699,7 +699,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 快速切换按钮可点击否, [tuple: True, False]
+    # 快速模式按钮可点击否, [tuple: True, False]
     def turbo_btn_touchable(self):
         try:
             touchable = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.touchable;")
@@ -708,7 +708,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 点击快速切换按钮, [tuple: True, False]
+    # 点击快速模式按钮, [tuple: True, False]
     def turbo_btn_click(self):
         try:
             click = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.displayObject.event('click');")
@@ -717,7 +717,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 快速切换按钮状态, [str: 1x, 2x]
+    # 快速模式按钮状态, [str: 1x, 2x]
     def turbo_btn_status(self):
         try:
             status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_mainMenuL.m_turboBtn.m_iconCtl.selectedPage;")
@@ -1261,7 +1261,7 @@ class Common(object):
             raise
 
     # 快速模式状态, [tuple: True, False]
-    def spin_is_turbo(self):
+    def spin_is_in_turbo(self):
         try:
             turbo = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.isInTurbo;")
             return turbo
