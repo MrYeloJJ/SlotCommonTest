@@ -148,7 +148,7 @@ class Common(object):
 
     # 载入场景进度条, [str]
     def loading_bar(self):
-
+        sleep(1)
         while True:
             try:
                 progress_bar = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
