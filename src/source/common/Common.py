@@ -148,7 +148,7 @@ class Common(object):
 
     # 载入场景进度条, [str]
     def loading_bar(self):
-
+        sleep(1)
         while True:
             try:
                 progress_bar = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
@@ -547,7 +547,7 @@ class Common(object):
                                                   "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
                                                   "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
                                                   "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
-                                                  "return UIManager.instance.getWindowByName(url);}());")
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -583,10 +583,12 @@ class Common(object):
     # 显示帮助场景, [tuple: True, False]
     def help_view_showing(self):
         try:
-            showing = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
+            showing = self.browser.execute_script("var helpView = (function () {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                   "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                  "else if(" + self.add_script + "Application.instance.mainModule.HelpView['templateType'] == 'NewHelpView'){"
+                                                  "url = " + self.add_script + "Common.FUINewHelpView.URL;}"
                                                   "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
-                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                   "return helpView.isShowing;")
             return showing
         except Exception:
@@ -596,10 +598,12 @@ class Common(object):
     # 帮助场景，显示返回按钮, [tuple: True, False]
     def help_view_return_btn_visible(self):
         try:
-            final_visible = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
+            final_visible = self.browser.execute_script("var helpView = (function () {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                         "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                        "else if(" + self.add_script + "Application.instance.mainModule.HelpView['templateType'] == 'NewHelpView'){"
+                                                        "url = " + self.add_script + "Common.FUINewHelpView.URL;}"
                                                         "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
-                                                        "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
+                                                        "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                         "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.finalVisible;")
             return final_visible
         except Exception:
@@ -609,10 +613,12 @@ class Common(object):
     # 帮助场景，返回按钮可点击否, [tuple: True, False]
     def help_view_return_btn_touchable(self):
         try:
-            touchable = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
+            touchable = self.browser.execute_script("var helpView = (function () {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                     "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                    "else if(" + self.add_script + "Application.instance.mainModule.HelpView['templateType'] == 'NewHelpView'){"
+                                                    "url = " + self.add_script + "Common.FUINewHelpView.URL;}"
                                                     "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
-                                                    "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
+                                                    "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                     "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.touchable;")
             return touchable
         except Exception:
@@ -622,10 +628,12 @@ class Common(object):
     # 帮助场景，点击返回按钮, [tuple: True, False]
     def help_view_return_btn_click(self):
         try:
-            click = self.browser.execute_script("var helpView = (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
+            click = self.browser.execute_script("var helpView = (function () {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                 "if(CustomHelpClass){url = CustomHelpClass.URL }"
+                                                "else if(" + self.add_script + "Application.instance.mainModule.HelpView['templateType'] == 'NewHelpView'){"
+                                                "url = " + self.add_script + "Common.FUINewHelpView.URL;}"
                                                 "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
-                                                "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())"
+                                                "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
                                                 "return helpView.contentPane.m_returnBtnContainer.m_returnBtn.displayObject.event('click');")
             return click
         except Exception:
@@ -635,10 +643,12 @@ class Common(object):
     # 帮助场景消失, [tuple: None]
     def help_view_dispear(self):
         try:
-            dispear = self.browser.execute_script("return (function a() {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
+            dispear = self.browser.execute_script("return (function () {var CustomHelpClass = " + self.add_script + "Application.instance.mainModule.FUIHelpView; var url;"
                                                   "if(CustomHelpClass){url = " + self.add_script + "CustomHelpClass.URL }"
+                                                  "else if(" + self.add_script + "Application.instance.mainModule.HelpView['templateType'] == 'NewHelpView'){"
+                                                  "url = " + self.add_script + "Common.FUINewHelpView.URL;}"
                                                   "else{url = " + self.add_script + "Common.FUIHelpView.URL}"
-                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}())")
+                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());")
             return dispear
         except Exception:
             self.daf.get_screenshot(self.browser)
