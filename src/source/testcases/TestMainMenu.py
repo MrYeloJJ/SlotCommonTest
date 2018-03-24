@@ -19,6 +19,7 @@ class TestMainMenu(unittest.TestCase):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
+        sleep(1)
 
     def tearDown(self):
         self.browser.quit()
@@ -71,6 +72,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏点击左侧主菜单按钮后是否折叠
     def test_main_menu_btn_click_status(self):
         self.common.main_menu_btn_click()
+        sleep(1)
         status = self.common.main_menu_expand()
         info_btn = self.common.info_btn_visible()
         help_btn = self.common.help_btn_visible()
@@ -93,8 +95,9 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏点击左侧主菜单按钮两次后恢复展开状态
     def test_main_menu_btn_click_twice_status(self):
         self.common.main_menu_btn_click()
-        sleep(0.5)
+        sleep(1)
         self.common.main_menu_btn_click()
+        sleep(1)
         status = self.common.main_menu_expand()
         info_btn = self.common.info_btn_visible()
         help_btn = self.common.help_btn_visible()
@@ -263,6 +266,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏声音开关按钮点击后，按钮状态改变，声音关闭
     def test_voice_btn_click_status(self):
         self.common.voice_btn_click()
+        sleep(1)
         voice_status = self.common.voice_btn_status()
         sound_status = self.common.sound_status()
         try:
@@ -275,8 +279,9 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏声音开关按钮点击两次后，按钮状态恢复打开，声音开启
     def test_voice_btn_click_twice_status(self):
         self.common.voice_btn_click()
-        sleep(0.5)
+        sleep(1)
         self.common.voice_btn_click()
+        sleep(1)
         voice_status = self.common.voice_btn_status()
         sound_status = self.common.sound_status()
         try:
@@ -318,6 +323,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏启动快速模式，快速模式按钮状态为2x，滚轴滚动方式为快速
     def test_turbo_btn_click_status(self):
         self.common.turbo_btn_click()
+        sleep(1)
         turbo_btn_status = self.common.turbo_btn_status()
         spin_status = self.common.spin_is_in_turbo()
         try:
