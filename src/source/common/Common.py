@@ -483,15 +483,14 @@ class Common(object):
     # 显示奖金表场景, [tuple: True, False]
     def info_view_showing(self):
         try:
-            showing = self.browser.execute_script("var infoView = (function () {var CustomInfoViewClass = " + self.add_script + "Application.instance.mainModule.FUIInfoView; var url;"
-                                                  "if(CustomInfoViewClass){url = CustomInfoViewClass.URL;}"
-                                                  "else if(" + self.add_script + "Application.instance.mainModule.InfoView['templateType'] == 'NewInfoView'){"
-                                                  "url = " + self.add_script + "Common.FUINewInfoView.URL;}"
-                                                  "else{url = " + self.add_script + "Common.FUIInfoView.URL;}"
-                                                  "return " + self.add_script + "UIManager.instance.getWindowByName(url);}());"
-                                                  "return infoView.isShowing")
+            showing = self.browser.execute_script("var infoView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Application.instance.mainModule.FUIInfoView.URL);"
+                                                  "return infoView.isShowing;")
             return showing
         except Exception:
+            showing = self.browser.execute_script("var infoView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUINewInfoView.URL);"
+                                                  "return infoView.isShowing;")
+            return showing
+        except:
             self.daf.get_screenshot(self.browser)
             raise
 
