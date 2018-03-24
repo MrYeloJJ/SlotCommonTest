@@ -135,6 +135,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏点击奖金表按钮后，显示奖金表场景
     def test_info_btn_click_info_view_showing(self):
         self.common.info_btn_click()
+        sleep(1)
         showing = self.common.info_view_showing()
         try:
             self.assertEqual(showing, True, "横屏点击奖金表按钮后，不会显示奖金表场景！")
@@ -145,6 +146,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏奖金表场景显示返回按钮
     def test_info_view_return_btn_visible(self):
         self.common.info_btn_click()
+        sleep(1)
         visible = self.common.info_view_return_btn_visible()
         try:
             self.assertEqual(visible, True, "横屏奖金表场景，不会显示返回按钮！")
@@ -155,6 +157,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏奖金表场景返回按钮可点击否
     def test_info_view_return_btn_touchable(self):
         self.common.info_btn_click()
+        sleep(1)
         touchable = self.common.info_view_return_btn_touchable()
         try:
             self.assertEqual(touchable, True, "横屏奖金表场景返回按钮不可点击！")
@@ -165,7 +168,9 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏点击奖金表返回按钮，奖金表场景消失
     def test_return_btn_click_info_view_dispear(self):
         self.common.info_btn_click()
+        sleep(1)
         self.common.info_view_return_btn_click()
+        sleep(1)
         dispear = self.common.info_view_dispear()
         try:
             self.assertEqual(dispear, None, "横屏点击奖金表返回按钮，奖金表场景不会消失！")
@@ -194,6 +199,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏点击帮助按钮后，显示帮助场景
     def test_help_btn_click_help_view_showing(self):
         self.common.help_btn_click()
+        sleep(1)
         showing = self.common.help_view_showing()
         try:
             self.assertEqual(showing, True, "横屏点击帮助按钮后，不会显示帮助场景！")
@@ -204,6 +210,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏帮助场景显示返回按钮
     def test_help_view_return_btn_visible(self):
         self.common.help_btn_click()
+        sleep(1)
         visible = self.common.help_view_return_btn_visible()
         try:
             self.assertEqual(visible, True, "横屏帮助场景不会显示返回按钮！")
@@ -214,6 +221,7 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏帮助场景返回按钮可点击否
     def test_help_view_return_btn_touchable(self):
         self.common.help_btn_click()
+        sleep(1)
         touchable = self.common.help_view_return_btn_touchable()
         try:
             self.assertEqual(touchable, True, "横屏帮助场景返回按钮不可点击！")
@@ -224,7 +232,9 @@ class TestMainMenu(unittest.TestCase):
     # 验证横屏点击帮助场景返回按钮，帮助场景消失
     def test_return_btn_click_help_view_dispear(self):
         self.common.help_btn_click()
+        sleep(1)
         self.common.help_view_return_btn_click()
+        sleep(1)
         dispear = self.common.help_view_dispear()
         try:
             self.assertEqual(dispear, None, "横屏点击帮助场景返回按钮，帮助场景不会消失！")
@@ -334,8 +344,6 @@ class TestMainMenu(unittest.TestCase):
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise 
-
-
 
 
 if __name__ == "__main__":
