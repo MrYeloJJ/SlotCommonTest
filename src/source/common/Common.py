@@ -21,7 +21,7 @@ class Common(object):
         self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
-        self.add_script = "window.frames[0].frames."                                    # 多开情况需改为 "window.frames[0].frames."
+        self.add_script = "window.frames[0].frames."            # 多开情况需改为 "window.frames[0].frames."
 
     # 进入大厅并打开游戏
     def start(self):
