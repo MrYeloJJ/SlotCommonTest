@@ -22,10 +22,9 @@ class TestMainAndComView(unittest.TestCase):
 
     # 测试是否正常显示主场景
     def test_main_scence_visible(self):
-        sleep(1)
         self.common.loading_bar()
 
-        sleep(2)
+        sleep(1)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
         slot_machine_view = self.common.slot_machine_view_visible()
@@ -45,10 +44,9 @@ class TestMainAndComView(unittest.TestCase):
     # 竖屏进入，测试是否正常显示主场景
     def test_main_scence_in_portrait(self):
         self.common.portrait()
-        sleep(1)
         self.common.loading_bar()
 
-        sleep(2)
+        sleep(1)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
         slot_machine_view = self.common.slot_machine_view_visible()
@@ -67,10 +65,9 @@ class TestMainAndComView(unittest.TestCase):
 
     # 横屏进入，来回切换横竖屏，主场景显示正常
     def test_main_scence_landscape_mod_switch(self):
-        sleep(1)
         self.common.loading_bar()
 
-        sleep(2)
+        sleep(1)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
         slot_machine_view = self.common.slot_machine_view_visible()
@@ -107,10 +104,9 @@ class TestMainAndComView(unittest.TestCase):
     # 竖屏进入，来回切换横竖屏，主场景显示正常
     def test_main_scence_portrait_mod_switch(self):
         self.common.portrait()
-        sleep(1)
         self.common.loading_bar()
 
-        sleep(2)
+        sleep(1)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
         slot_machine_view = self.common.slot_machine_view_visible()

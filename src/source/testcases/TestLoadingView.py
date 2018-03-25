@@ -32,7 +32,6 @@ class TestLoadingView(unittest.TestCase):
 
     # 验证载入场景进度条
     def test_loading_bar(self):
-        sleep(1)
         tip = self.common.loading_bar()
         try:
             self.assertEqual(tip, "100%", "进度条走满后，百分比不是100%！")
@@ -42,7 +41,6 @@ class TestLoadingView(unittest.TestCase):
 
     # 验证载入场景进度条100%后是否消失
     def test_loading_view_dispear(self):
-        sleep(1)
         self.common.loading_bar()
         sleep(1)
         showing = self.common.loading_view_dispear()
