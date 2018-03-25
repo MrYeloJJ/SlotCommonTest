@@ -85,6 +85,7 @@ class TestMainAndComView(unittest.TestCase):
             raise
 
         self.common.portrait()
+        sleep(1)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
         slot_machine_view = self.common.slot_machine_view_visible()
@@ -124,6 +125,7 @@ class TestMainAndComView(unittest.TestCase):
             raise
 
         self.common.landscape()
+        sleep(1)
         main_view = self.common.main_view_visible()
         common_view = self.common.common_view_visible()
         slot_machine_view = self.common.slot_machine_view_visible()
