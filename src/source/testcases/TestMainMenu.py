@@ -223,11 +223,11 @@ class TestMainMenu(unittest.TestCase):
 
     # 验证横屏显示帮助按钮
     def test_help_btn_visible(self):
-        visible = self.common.help_btn_visible()
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
+        visible = self.common.help_btn_visible()
         try:
             self.assertEqual(visible, True, "横屏不会显示帮助按钮！")
         except AssertionError:
