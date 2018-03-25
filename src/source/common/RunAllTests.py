@@ -4,7 +4,7 @@
 
 import unittest
 from src.lib import HTMLTestReportCN
-from src.source.common.Data import Data
+from src.source.common.Config import Config
 
 
 class RunAllTests(object):
@@ -14,7 +14,7 @@ class RunAllTests(object):
         self.tester = input("请输入你的名字：")
 
         # 将游戏名字放入报告里
-        self.game = Data().get_message()["game"]
+        self.game = Config().get_message()["game"]
         self.title = "【" + self.game + "】公共模块测试报告"
 
         self.description = "Slot游戏公共模块测试报告"
