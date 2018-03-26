@@ -21,7 +21,7 @@ class Common(object):
         self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
-        self.add_script = "window.frames[0].frames."                                    # 多开情况需改为 "window.frames[0].frames."
+        self.add_script = "window.frames[0].frames."            # 多开情况需改为 "window.frames[0].frames."
 
     # 进入大厅并打开游戏
     def start(self):
@@ -209,7 +209,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示主场景背景图片, [tuple: True, False]
+    # 显示主场景横屏背景图片, [tuple: True, False]
     def bg_view_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.contentPane.m_bgView.finalVisible;")
@@ -218,7 +218,7 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 显示主场景底部背景图片, [tuple: True, False]
+    # 显示主场景竖屏背景图片, [tuple: True, False]
     def bottom_bg_view_visible(self):
         try:
             final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.contentPane.m_bottomBgP.finalVisible;")

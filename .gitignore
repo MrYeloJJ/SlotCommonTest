@@ -105,7 +105,9 @@ venv.bak/
 .mypy_cache/
 
 
-!result/sample/*.html
-result/sample/image/*.png
+!src/result/sample/*.html
+!src/result/sample/*.png
+src/result/*/*.html
+src/result/*/*.png
 .idea/workspace.xml*
 .idea/dictionaries/
