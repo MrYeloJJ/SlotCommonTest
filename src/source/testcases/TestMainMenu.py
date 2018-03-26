@@ -20,8 +20,6 @@ class TestMainMenu(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-<<<<<<< HEAD
-=======
     #
     #
     # ------------------------------------------------------------------------ 横屏模式 ------------------------------------------------------------------------
@@ -161,7 +159,6 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
->>>>>>> master
     # 验证横屏点击奖金表按钮后，显示奖金表场景
     def test_info_btn_click_info_view_showing(self):
         self.common.loading_bar()
@@ -177,8 +174,6 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-<<<<<<< HEAD
-=======
     # 验证横屏奖金表场景显示返回按钮
     def test_info_view_return_btn_visible(self):
         self.common.loading_bar()
@@ -460,9 +455,6 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise 
 
-<<<<<<< HEAD
->>>>>>> master
-=======
     #
     #
     # ------------------------------------------------------------------------ 竖屏模式 ------------------------------------------------------------------------
@@ -925,7 +917,6 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
->>>>>>> master
 
 if __name__ == "__main__":
     # 启动测试时创建文件夹
