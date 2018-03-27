@@ -1303,7 +1303,7 @@ class Common(object):
     #
 
     # 提示文字内容, [str]
-    def banner_tips_label(self):
+    def info_bar_view_banner_tips_label(self):
         try:
             label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_bannerTipsLabel.textField.text;")
             return label
@@ -1312,7 +1312,7 @@ class Common(object):
             raise
 
     # 余额标题文字, [str]
-    def has_money_title(self):
+    def info_bar_view_has_money_title(self):
         try:
             title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_hasMoneyTitleL.textField.text;")
             return title
@@ -1321,7 +1321,7 @@ class Common(object):
             raise
 
     # 余额数值, [str]
-    def has_money_label(self):
+    def info_bar_view_has_money_label(self):
         try:
             label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_hasMoneyLabelL.textField.text;")
             return label
@@ -1330,7 +1330,7 @@ class Common(object):
             raise
 
     # 线数标题文字, [str]
-    def line_num_title(self):
+    def info_bar_view_line_num_title(self):
         try:
             title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineNumTitle.textField.text;")
             return title
@@ -1339,7 +1339,7 @@ class Common(object):
             raise
 
     # 线数数值, [str]
-    def line_num_label(self):
+    def info_bar_view_line_num_label(self):
         try:
             label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineNumLabel.textField.text;")
             return label
@@ -1348,7 +1348,7 @@ class Common(object):
             raise
 
     # 线注标题文字, [str]
-    def line_cost_title(self):
+    def info_bar_view_line_cost_title(self):
         try:
             title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineCostTitle.textField.text;")
             return title
@@ -1357,7 +1357,7 @@ class Common(object):
             raise
 
     # 线注数值, [str]
-    def line_cost_label(self):
+    def info_bar_view_line_cost_label(self):
         try:
             label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_lineCostLabel.textField.text;")
             return label
@@ -1366,7 +1366,7 @@ class Common(object):
             raise
 
     # 总赌注标题文字, [str]
-    def bet_money_title(self):
+    def info_bar_view_bet_money_title(self):
         try:
             title = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_betTitle.textField.text;")
             return title
@@ -1375,7 +1375,7 @@ class Common(object):
             raise
 
     # 总赌注数值, [str]
-    def bet_money_label(self):
+    def info_bar_view_bet_money_label(self):
         try:
             label = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_infoBarViewL.m_betMoneyLabel.textField.text;")
             return label
