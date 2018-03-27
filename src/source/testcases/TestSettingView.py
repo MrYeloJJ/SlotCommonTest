@@ -412,7 +412,7 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         touchable = self.common.setting_view_line_cost_plus_btn_touchable()
         try:
-            self.assertEqual(touchable, False, "横屏线数线注设置面板，线注 + 按钮默认不可以点击！")
+            self.assertEqual(touchable, True, "横屏线数线注设置面板，线注 + 按钮默认不可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
