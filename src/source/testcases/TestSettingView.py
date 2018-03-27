@@ -292,7 +292,9 @@ class TestSettingView(unittest.TestCase):
         for i in range(1, int(target_line_num)):
             self.common.setting_view_line_num_min_btn_click()
 
-        for i in range(1, int(target_line_num)):
+        sleep(1)
+
+        for i in range(2, int(target_line_num)):
             self.common.setting_view_line_num_plus_btn_click()
             sleep(1)
             line_num = i
