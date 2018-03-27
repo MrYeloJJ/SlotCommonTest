@@ -9,7 +9,7 @@ from time import sleep
 
 class Common(object):
     # 初始化browser、lobby和game等数据
-    def __init__(self, browser):
+    def __init__(self, browser=None):
         self.message = Config().get_message()
         self.lobby = self.message["lobby"]                      # 大厅地址
         self.game_id = self.message["game_id"]                  # 游戏id
