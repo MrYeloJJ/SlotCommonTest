@@ -251,7 +251,7 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
 
         target_line_num = self.common.line_num_max
-        for i in reversed(range(int(target_line_num), 1)):
+        for i in reversed(range(1, int(target_line_num))):
             self.common.setting_view_line_num_min_btn_click()
             sleep(1)
             current_line_num = self.common.setting_view_line_num()
@@ -294,7 +294,7 @@ class TestSettingView(unittest.TestCase):
 
         sleep(1)
 
-        for i in range(2, int(target_line_num)):
+        for i in range(2, int(target_line_num)+1):
             self.common.setting_view_line_num_plus_btn_click()
             sleep(1)
             current_line_num = self.common.setting_view_line_num()
@@ -743,7 +743,7 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
 
         target_line_num = self.common.line_num_max
-        for i in reversed(range(int(target_line_num), 1)):
+        for i in reversed(range(1, int(target_line_num))):
             self.common.setting_view_line_num_min_btn_click()
             sleep(1)
             current_line_num = self.common.setting_view_line_num()
@@ -787,7 +787,7 @@ class TestSettingView(unittest.TestCase):
 
         sleep(1)
 
-        for i in range(2, int(target_line_num)):
+        for i in range(2, int(target_line_num)+1):
             self.common.setting_view_line_num_plus_btn_click()
             sleep(1)
             current_line_num = self.common.setting_view_line_num()
@@ -1171,7 +1171,7 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
 
         target_line_num = self.common.line_num_max
-        for i in reversed(range(int(target_line_num), 1)):
+        for i in reversed(range(1, int(target_line_num))):
             self.common.setting_view_line_num_min_btn_click()
             sleep(1)
 
@@ -1188,7 +1188,7 @@ class TestSettingView(unittest.TestCase):
             line_num_plus_touchable = self.common.setting_view_line_num_plus_btn_touchable()
             if i > 1:
                 try:
-                    self.assertEqual(current_line_num, i, "点击线数线注设置面板的 - 按钮，横竖屏切换，线数错误！")
+                    self.assertEqual(current_line_num, str(i), "点击线数线注设置面板的 - 按钮，横竖屏切换，线数错误！")
                     self.assertEqual(info_bar_line_num, current_line_num, "点击线数线注设置面板的 - 按钮，横竖屏切换，面板线数与下导航栏的线数不一致！")
                     self.assertEqual(line_num_min_touchable, True, "点击线数线注设置面板的 - 按钮，横竖屏切换，线数不是最小值，- 按钮不可以点击！")
                     self.assertEqual(line_num_plus_touchable, True, "点击线数线注设置面板的 - 按钮，横竖屏切换，线数不是最大值，+ 按钮不可以点击！")
@@ -1197,7 +1197,7 @@ class TestSettingView(unittest.TestCase):
                     raise
             else:
                 try:
-                    self.assertEqual(current_line_num, i, "点击线数线注设置面板的 - 按钮，横竖屏切换，线数错误！")
+                    self.assertEqual(current_line_num, str(i), "点击线数线注设置面板的 - 按钮，横竖屏切换，线数错误！")
                     self.assertEqual(info_bar_line_num, current_line_num, "点击线数线注设置面板的 - 按钮，横竖屏切换，面板线数与下导航栏的线数不一致！")
                     self.assertEqual(line_num_min_touchable, False, "点击线数线注设置面板的 - 按钮，横竖屏切换，线数是最小值，- 按钮可以点击！")
                     self.assertEqual(line_num_plus_touchable, True, "点击线数线注设置面板的 - 按钮，横竖屏切换，线数不是最大值，+ 按钮不可以点击！")
@@ -1222,7 +1222,7 @@ class TestSettingView(unittest.TestCase):
 
         sleep(1)
 
-        for i in range(2, int(target_line_num)):
+        for i in range(2, int(target_line_num)+1):
             self.common.setting_view_line_num_plus_btn_click()
             sleep(1)
 
@@ -1359,9 +1359,9 @@ class TestSettingView(unittest.TestCase):
             sleep(1)
 
             if i % 2 == 0:
-                self.common.portrait()
-            else:
                 self.common.landscape()
+            else:
+                self.common.portrait()
 
             sleep(1)
 
@@ -1413,9 +1413,9 @@ class TestSettingView(unittest.TestCase):
             sleep(1)
 
             if i % 2 == 0:
-                self.common.portrait()
-            else:
                 self.common.landscape()
+            else:
+                self.common.portrait()
 
             sleep(1)
 
