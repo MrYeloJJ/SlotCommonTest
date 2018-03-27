@@ -141,7 +141,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置面板线数标题文字
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_text(self):
         self.common.loading_bar()
         sleep(1)
@@ -157,7 +157,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置面板默认的线数数值
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_default_line_num(self):
         self.common.loading_bar()
         sleep(1)
@@ -176,7 +176,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置面板 - 按钮显示
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_min_btn_visible(self):
         self.common.loading_bar()
         sleep(1)
@@ -192,7 +192,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置面板 - 按钮默认可点击否
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_min_btn_touchable(self):
         self.common.loading_bar()
         sleep(1)
@@ -208,7 +208,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置按钮 + 按钮显示
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_plus_btn_visible(self):
         self.common.loading_bar()
         sleep(1)
@@ -224,7 +224,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置面板 + 按钮默认可点击否
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_plus_btn_touchable(self):
         self.common.loading_bar()
         sleep(1)
@@ -240,7 +240,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     # 验证横屏 设置面板 - 按钮点击，显示正确
-    @unittest.skipIf(full_line is True, "满线项目不测试线数")
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_min_btn_click(self):
         self.common.loading_bar()
         sleep(1)
@@ -262,7 +262,7 @@ class TestSettingView(unittest.TestCase):
                 try:
                     self.assertEqual(current_line_num, str(line_num), "横屏点击线数线注设置面板的 - 按钮，线数错误！")
                     self.assertEqual(info_bar_line_num, current_line_num, "横屏点击线数线注设置面板的 - 按钮，面板线数与下导航栏的线数不一致！")
-                    self.assertEqual(line_num_min_touchable, True, "横屏点击线数线注设置面板的 - 按钮，线数还不是最小值，- 按钮不可以点击！")
+                    self.assertEqual(line_num_min_touchable, True, "横屏点击线数线注设置面板的 - 按钮，线数不是最小值，- 按钮不可以点击！")
                     self.assertEqual(line_num_plus_touchable, True, "横屏点击线数线注设置面板的 - 按钮，线数不是最大值，+ 按钮不可以点击！")
                 except AssertionError:
                     self.daf.get_screenshot(self.browser)
@@ -273,6 +273,48 @@ class TestSettingView(unittest.TestCase):
                     self.assertEqual(info_bar_line_num, current_line_num, "横屏点击线数线注设置面板的 - 按钮，面板线数与下导航栏的线数不一致！")
                     self.assertEqual(line_num_min_touchable, False, "横屏点击线数线注设置面板的 - 按钮，线数是最小值，- 按钮可以点击！")
                     self.assertEqual(line_num_plus_touchable, True, "横屏点击线数线注设置面板的 - 按钮，线数不是最大值，+ 按钮不可以点击！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+
+    # 验证横屏 设置面板 + 按钮点击，显示正确
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
+    def test_setting_view_line_num_plus_btn_click(self):
+        self.common.loading_bar()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
+        self.common.setting_btn_click()
+        sleep(1)
+
+        target_line_num = self.common.line_num_max
+
+        for i in range(1, int(target_line_num)):
+            self.common.setting_view_line_num_min_btn_click()
+
+        for i in range(1, int(target_line_num)):
+            self.common.setting_view_line_num_plus_btn_click()
+            sleep(1)
+            line_num = i
+            current_line_num = self.common.setting_view_line_num()
+            info_bar_line_num = self.common.info_bar_view_line_num_label()
+            line_num_min_touchable = self.common.setting_view_line_num_min_btn_touchable()
+            line_num_plus_touchable = self.common.setting_view_line_num_plus_btn_touchable()
+            if line_num < int(target_line_num):
+                try:
+                    self.assertEqual(current_line_num, str(line_num), "横屏点击线数线注设置面板的 + 按钮，线数错误！")
+                    self.assertEqual(info_bar_line_num, current_line_num, "横屏点击线数线注设置面板的 + 按钮，面板线数与下导航栏的线数不一致！")
+                    self.assertEqual(line_num_min_touchable, True, "横屏点击线数线注设置面板的 + 按钮，线数不是最小值，- 按钮不可以点击！")
+                    self.assertEqual(line_num_plus_touchable, True, "横屏点击线数线注设置面板的 + 按钮，线数不是最大值，+ 按钮不可以点击！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+            else:
+                try:
+                    self.assertEqual(current_line_num, str(line_num), "横屏点击线数线注设置面板的 + 按钮，线数错误！")
+                    self.assertEqual(info_bar_line_num, current_line_num, "横屏点击线数线注设置面板的 + 按钮，面板线数与下导航栏的线数不一致！")
+                    self.assertEqual(line_num_min_touchable, True, "横屏点击线数线注设置面板的 + 按钮，线数不是最小值，- 按钮不可以点击！")
+                    self.assertEqual(line_num_plus_touchable, False, "横屏点击线数线注设置面板的 + 按钮，线数是最大值，+ 按钮可以点击！")
                 except AssertionError:
                     self.daf.get_screenshot(self.browser)
                     raise
