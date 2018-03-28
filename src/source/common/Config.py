@@ -25,7 +25,3 @@ class Config(object):
         return {"lobby": lobby, "game_id": game_id, "game_name": game_name, "full_line": full_line,
                 "line_num_min": line_num_min, "line_num_max": line_num_max, "line_cost": line_cost,
                 "auto_game_times": auto_game_times}
-
-
-if __name__ == "__main__":
-    Config().get_message()
