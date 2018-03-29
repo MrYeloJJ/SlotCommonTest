@@ -1068,8 +1068,9 @@ class Common(object):
     # 显示自动游戏设置面板, [tuple: True, False]
     def auto_game_view_visible(self):
         try:
-            final_visible = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
-                                                        + self.add_script + "UIManager.instance.commonUILayer);")
+            final_visible = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;"
+                                                        "return autoGameView.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
