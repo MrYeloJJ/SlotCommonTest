@@ -219,14 +219,16 @@ class TestAutoGameView(unittest.TestCase):
         target_time_len = len(self.common.auto_game_times)
 
         for i in reversed(range(target_time_len)):
+            self.common.auto_game_view_change_auto_time(i)
             sleep(1)
+
+            current_time = self.common.auto_game_view_auto_time_text()
             target_time = self.common.auto_game_times[i]
+            
             if target_time is -1:
                 target_time = "直到环节"
             else:
                 target_time = str(target_time) + "次旋转"
-
-            current_time = self.common.auto_game_view_change_auto_time(i)
 
             try:
                 self.assertEqual(current_time, target_time, "横屏自动游戏设置面板，改变自动次数后与策划的不一致！")

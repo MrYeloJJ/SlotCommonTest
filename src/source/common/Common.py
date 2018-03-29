@@ -1166,16 +1166,14 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 自动游戏设置面板，改变自动次数，并返回面板上的自动次数, [str: “25次旋转”]
+    # 自动游戏设置面板，改变自动次数
     def auto_game_view_change_auto_time(self, index):
         try:
-            text = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
-                                               + self.add_script + "UIManager.instance.commonUILayer).contentPane;"
-                                               "var i = " + str(index) + ";" + self.add_script + "SpinManager.instance.autoTimes = " + self.add_script + "DataGame.getData("
-                                               + self.add_script + "DataGame.getKeys())['autoSpinTimes'][i];"
-                                               "autoGameView.m_slider.value = 100 * i / " + self.add_script + "DataGame.getData(DataGame.getKeys())['autoSpinTimes'].length;"
-                                               "return autoGameView.m_autoTimesLabel.textField.text")
-            return text
+            self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                        + self.add_script + "UIManager.instance.commonUILayer).contentPane;"
+                                        "var i = " + str(index) + ";" + self.add_script + "SpinManager.instance.autoTimes = " + self.add_script + "DataGame.getData("
+                                        + self.add_script + "DataGame.getKeys())['autoSpinTimes'][i];"
+                                        "autoGameView.m_slider.value = 100 * i / " + self.add_script + "DataGame.getData(" + self.add_script + "DataGame.getKeys())['autoSpinTimes'].length;")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
