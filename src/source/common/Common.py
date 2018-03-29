@@ -1155,6 +1155,16 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 自动游戏设置面板，拖动条按钮在拖动条的位置, [tuple: 100(default)]
+    def auto_game_view_slider_value(self):
+        try:
+            value = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_slider.value;")
+            return value
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 自动游戏设置面板，改变自动次数，并返回面板上的自动次数, [str: “25次旋转”]
     def auto_game_view_change_auto_time(self, index):
         try:
