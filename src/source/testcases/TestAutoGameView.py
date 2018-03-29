@@ -1,6 +1,6 @@
 # coding=utf-8
 
-""""" 线数、线注设置验证 """""
+""""" 自动游戏验证 """""
 
 import unittest
 from time import sleep
