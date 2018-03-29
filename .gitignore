@@ -106,8 +106,8 @@ venv.bak/
 
 
 !src/result/sample/*.html
-!src/result/sample/*.png
+!src/result/sample/image/*.png
 src/result/*/*.html
-src/result/*/*.png
+src/result/*/image/*.png
 .idea/workspace.xml*
 .idea/dictionaries/
