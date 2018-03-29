@@ -232,7 +232,7 @@ class TestAutoGameView(unittest.TestCase):
                 self.assertEqual(current_time, target_time, "横屏自动游戏设置面板，改变自动次数后与策划的不一致！")
             except AssertionError:
                 self.daf.get_screenshot(self.browser)
-                range
+                raise
 
 
 
