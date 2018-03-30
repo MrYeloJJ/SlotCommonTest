@@ -338,22 +338,27 @@ class TestAutoGameView(unittest.TestCase):
             self.common.auto_game_view_start_btn_click()
             sleep(1)
 
-            for y in range(2):
+            for y in range(3):
+
+                while True:
+                    slot_status = self.common.slot_machine_rolling()
+                    if slot_status:
+                        break
 
                 # 获取停止旋转按钮上的剩余次数
                 current_spin_time = self.common.in_auto_spin_btn_text()
                 current_info_bar_spin_time = self.common.info_bar_view_banner_tips_label()
 
-                if target_spin_btn_time is -1:
+                if target_spin_btn_time is -1 or target_spin_btn_time is "直到":
                     target_spin_btn_time = "直到"
                     # 获取下导航栏提示文字
-                    target_info_bar_spin_time = "直到环节自动游戏"
+                    target_info_bar_spin_time = "直到环节自动旋转"
                 else:
                     target_spin_btn_time = target_spin_btn_time - 1
                     target_info_bar_spin_time = "剩余" + str(target_spin_btn_time) + "次自动旋转"
 
                 try:
-                    self.assertEqual(current_spin_time, target_spin_btn_time, "横屏启动自动游戏，停止按钮上的剩余次数错误！")
+                    self.assertEqual(current_spin_time, str(target_spin_btn_time), "横屏启动自动游戏，停止按钮上的剩余次数错误！")
                     self.assertEqual(current_info_bar_spin_time, target_info_bar_spin_time, "横屏启动自动游戏，下导航栏上的剩余次数错误！")
                 except AssertionError:
                     self.daf.get_screenshot(self.browser)
@@ -363,6 +368,10 @@ class TestAutoGameView(unittest.TestCase):
                     slot_status = self.common.slot_machine_rolling()
                     if slot_status is False:
                         break
+
+            self.common.start_btn_click()
+            sleep(1)
+
 
 
 
