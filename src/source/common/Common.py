@@ -1260,15 +1260,6 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 旋转按钮图标url, [str], 旋转前后分别获得返回值，再进行比较，不一致则代表旋转和停止图标不一致
-    def start_btn_icon_url(self):
-        try:
-            url = self.browser.execute_script("return " + self.add_script + "UIManager.instance.commonView.contentPane.m_gamblingBarViewL.m_startBtn.m_n22.url;")
-            return url
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
-
     # 滚轴滚动状态, [tuple: True, False]
     def slot_machine_rolling(self):
         try:
