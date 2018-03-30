@@ -299,12 +299,21 @@ class TestAutoGameView(unittest.TestCase):
         slot_rolling = self.common.slot_machine_rolling()
         # 获取旋转按钮状态
         start_btn_status = self.common.start_btn_status()
+        # 获取线数线注按钮、自动游戏按钮、选项菜单状态
+        setting_btn = self.common.setting_btn_visible()
+        auto_game_btn = self.common.auto_game_btn_visible()
+        main_menu_expand = self.common.main_menu_expand()
+        main_menu = self.common.main_menu_touchable()
 
         try:
             self.assertEqual(view_dispear, None, "横屏启动自动游戏，自动游戏设置面板不会消失！")
             self.assertEqual(mask_dispear, False, "横屏启动自动游戏，灰色蒙板不会消失！")
             self.assertEqual(slot_rolling, True, "横屏启动自动游戏，滚轴不会滚动！")
             self.assertEqual(start_btn_status, "playing", "横屏启动自动游戏，旋转按钮不会变成停止状态！")
+            self.assertEqual(setting_btn, False, "横屏启动自动游戏，线数线注设置按钮不会消失！")
+            self.assertEqual(auto_game_btn, False, "横屏启动自动游戏，自动游戏按钮不会消失！")
+            self.assertEqual(main_menu_expand, "retractL", "横屏启动自动游戏，左侧选项菜单不会折叠！")
+            self.assertEqual(main_menu, False, "横屏启动自动游戏，左侧选项菜单可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
