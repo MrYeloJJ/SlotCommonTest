@@ -1212,7 +1212,7 @@ class Common(object):
     def auto_game_view_start_btn_click(self):
         try:
             click = self.browser.execute_script("var autoGameView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIAutoGameSettingView.URL, "
-                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_startBtn.displayObject.event('click')；")
+                                                + self.add_script + "UIManager.instance.commonUILayer).contentPane;return autoGameView.m_startBtn.displayObject.event('click');")
             return click
         except Exception:
             self.daf.get_screenshot(self.browser)
