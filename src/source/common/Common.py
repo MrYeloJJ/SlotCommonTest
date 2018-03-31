@@ -249,6 +249,7 @@ class Common(object):
     def get_game_current_status(self):
         try:
             status = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.rollingResult.nextState;")
+            return status
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise

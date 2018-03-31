@@ -401,7 +401,8 @@ class TestAutoGameView(unittest.TestCase):
                 while True:
                     slot_status = self.common.slot_machine_rolling()
                     if slot_status is False:
-                        for i in range(20):
+                        for i in range(10):
+                            sleep(1)
                             # 获取滚轴滚动状态
                             slot_rolling = self.common.slot_machine_rolling()
                             # 获取旋转按钮状态
