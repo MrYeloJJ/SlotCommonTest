@@ -374,12 +374,6 @@ class TestAutoGameView(unittest.TestCase):
                         self.daf.get_screenshot(self.browser)
                         raise
 
-                    # 等待到滚轴停止了再进入下一步
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status is False:
-                            break
-
                     # 判断是否中了特殊玩法游戏，若中了则刷新游戏重来
                     game_status = self.common.get_game_current_status()
                     if spin_time is not loop_time and game_status is not None:
@@ -405,7 +399,14 @@ class TestAutoGameView(unittest.TestCase):
                         self.common.sound_view_yes_btn_click()
                         sleep(1)
                         break
-                    elif spin_time is loop_time and game_status is None:
+
+                    # 等待到滚轴停止了再进入下一步
+                    while True:
+                        slot_status = self.common.slot_machine_rolling()
+                        if slot_status is False:
+                            break
+
+                    if spin_time is loop_time and game_status is None:
                         self.common.start_btn_click()
                         sleep(1)
 
