@@ -245,6 +245,14 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 获取游戏当前状态, [tuple: None]  None: 普通游戏
+    def get_game_current_status(self):
+        try:
+            status = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.rollingResult.nextState;")
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     #
     #
     # ------------------------------------------------------------------------ 声音开关提示窗口 ------------------------------------------------------------------------
