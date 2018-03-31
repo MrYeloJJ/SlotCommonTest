@@ -505,6 +505,7 @@ class TestAutoGameView(unittest.TestCase):
         sleep(1)
 
         self.common.auto_game_view_start_btn_click()
+        sleep(1)
 
         while True:
 
@@ -538,6 +539,7 @@ class TestAutoGameView(unittest.TestCase):
             while True:
                 slot_status = self.common.slot_machine_rolling()
                 if slot_status is False:
+                    sleep(1)
                     game_status = self.common.get_game_current_status()
                     if game_status is not None:
                         self.browser.refresh()
@@ -550,6 +552,7 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
 
                         self.common.auto_game_view_start_btn_click()
+                        sleep(1)
                         break
                     else:
                         start_btn_status = self.common.start_btn_status()
