@@ -499,7 +499,7 @@ class Common(object):
             showing = self.browser.execute_script("var infoView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUINewInfoView.URL);"
                                                   "return infoView.isShowing;")
             return showing
-        except:
+        except BaseException:
             self.daf.get_screenshot(self.browser)
             raise
 
