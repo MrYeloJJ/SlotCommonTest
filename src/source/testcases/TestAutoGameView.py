@@ -460,8 +460,7 @@ class TestAutoGameView(unittest.TestCase):
                             sleep(1)
                             continue
                     else:
-                        # 循环10秒验证是否还会继续自动旋转
-                        for i in range(10):
+                        for i in range(10):     # 循环10秒验证是否还会继续自动旋转
                             sleep(1)
                             # 获取滚轴滚动状态
                             slot_rolling = self.common.slot_machine_rolling()
@@ -485,8 +484,7 @@ class TestAutoGameView(unittest.TestCase):
                                 raise
                     break
             else:
-                # 自动游戏过程中了特殊玩法，则刷新重来
-                while True:
+                while True:    # 自动游戏过程中了特殊玩法，则刷新重来
                     slot_status = self.common.slot_machine_rolling()
                     if slot_status is False:
                         game_status = self.common.get_game_current_status()
@@ -569,7 +567,6 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         break
                     else:
-                        # 若没有触发特殊玩法，则验证按钮和滚轴状态
                         start_btn_status = self.common.start_btn_status()
                         setting_btn = self.common.setting_btn_visible()
                         auto_game_btn = self.common.auto_game_btn_visible()
