@@ -29,6 +29,7 @@ class TestGameAttr(unittest.TestCase):
         try:
             self.assertEqual(current_game_id, target_game_id, "游戏ID错误！")
         except AssertionError:
+            self.daf.get_screenshot(self.browser)
             raise
 
     # 验证游戏名字
@@ -39,6 +40,7 @@ class TestGameAttr(unittest.TestCase):
         try:
             self.assertEqual(current_game_name, target_game_name, "游戏名字错误！")
         except AssertionError:
+            self.daf.get_screenshot(self.browser)
             raise
 
     # 验证最小线数
@@ -49,6 +51,7 @@ class TestGameAttr(unittest.TestCase):
         try:
             self.assertEqual(current_min_line_num, target_min_line_num, "最小线数配置错误！")
         except AssertionError:
+            self.daf.get_screenshot(self.browser)
             raise
 
     # 验证最大线数
@@ -59,6 +62,7 @@ class TestGameAttr(unittest.TestCase):
         try:
             self.assertEqual(current_max_line_num, target_max_line_num, "最大线数配置错误！")
         except AssertionError:
+            self.daf.get_screenshot(self.browser)
             raise
 
     # 验证线注
@@ -69,6 +73,7 @@ class TestGameAttr(unittest.TestCase):
         try:
             self.assertEqual(current_line_cost, target_line_cost, "线注不一致！")
         except AssertionError:
+            self.daf.get_screenshot(self.browser)
             raise
 
     # 验证自动次数
@@ -79,6 +84,7 @@ class TestGameAttr(unittest.TestCase):
         try:
             self.assertEqual(current_auto_game_times, target_auto_game_times, "自动次数不一致！")
         except AssertionError:
+            self.daf.get_screenshot(self.browser)
             raise
 
 
