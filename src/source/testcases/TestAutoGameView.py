@@ -430,9 +430,26 @@ class TestAutoGameView(unittest.TestCase):
             current_spin_time = self.common.in_auto_spin_btn_text()
 
             if current_spin_time is "0":
-                while True:
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status is False:
+                slot_status = self.common.slot_machine_rolling()
+
+                if slot_status is False:
+                    game_status = self.common.get_game_current_status()
+                    if game_status is not None:
+                            self.browser.refresh()
+                            self.common.loading_bar()
+                            sleep(1)
+                            self.common.sound_view_yes_btn_click()
+                            sleep(1)
+
+                            self.common.auto_game_btn_click()
+                            sleep(1)
+                            self.common.auto_game_view_change_auto_time(0)
+                            sleep(1)
+
+                            self.common.auto_game_view_start_btn_click()
+                            sleep(1)
+                            continue
+                    else:
                         for i in range(10):
                             sleep(1)
                             # 获取滚轴滚动状态
@@ -455,8 +472,7 @@ class TestAutoGameView(unittest.TestCase):
                             except AssertionError:
                                 self.daf.get_screenshot(self.browser)
                                 raise
-                        break
-                break
+                    break
             else:
                 while True:
                     slot_status = self.common.slot_machine_rolling()
