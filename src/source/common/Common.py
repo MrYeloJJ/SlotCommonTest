@@ -206,6 +206,16 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 载入场景 显示版本号, [tuple: True, False]
+    def loading_view_version_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_version.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 载入场景进度条, [str]
     def loading_bar(self):
         sleep(1)
