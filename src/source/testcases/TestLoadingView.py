@@ -20,41 +20,94 @@ class TestLoadingView(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    # 验证是否进入载入场景
+    #
+    #
+    # ------------------------------------------------------------------------ 横屏模式 ------------------------------------------------------------------------
+    #
+    #
+
+    # 验证横屏 是否进入载入场景
     def test_loading_view_showing(self):
         sleep(1)
         showing = self.common.loading_view_showing()
         try:
-            self.assertEqual(showing, True, "没有进入载入场景！")
+            self.assertEqual(showing, True, "横屏没有进入载入场景！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证载入场景进度条
-    def test_loading_bar(self):
-        tip = self.common.loading_bar()
+    # 验证横屏 显示logo、进度条、进度条标题、版本号
+    def test_loading_view_ui_showing(self):
+        sleep(1)
+        bg = self.common.loading_view_background_visible()
+        logo = self.common.loading_view_logo_visible()
+        progress_title = self.common.loading_view_progress_title_visible()
+        progress_bar = self.common.loading_view_progress_bar_visible()
         try:
-            self.assertEqual(tip, "100%", "进度条走满后，百分比不是100%！")
+            self.assertEqual(bg, True, "横屏载入场景没有显示背景图片！")
+            self.assertEqual(logo, True, "横屏载入场景没有显示logo！")
+            self.assertEqual(progress_title, True, "横屏载入场景没有显示当前进度百分比！")
+            self.assertEqual(progress_bar, True, "横屏载入场景没有显示进度条！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证载入场景进度条100%后是否消失
+    # 验证横屏 进度条会走动
+    def test_progress_bar_is_loading(self):
+        sleep(1)
+        time = 0
+        title_value1 = self.common.loading_view_progress_title_value()
+        bar_value1 = self.common.loading_view_progress_bar_value()
+        while True:
+            sleep(0.5)
+            time = time + 0.5
+            title_value2 = self.common.loading_view_progress_title_value()
+            bar_value2 = self.common.loading_view_progress_bar_value()
+            if title_value1 is not title_value2 and bar_value1 is not bar_value2:
+                break
+            elif time == 10:
+                try:
+                    self.assertNotEqual(title_value1, title_value2, "横屏载入场景经过10秒，百分比数值不会变！")
+                    self.assertNotEqual(bar_value1, bar_value2, "横屏载入场景经过10秒，进度条不会动！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+
+    # 验证横屏 载入场景进度条走完是100%
+    def test_loading_bar_complete(self):
+        sleep(1)
+        while True:
+            bar_value = self.common.loading_view_progress_bar_value()
+            if bar_value == 100:
+                title_value = self.common.loading_view_progress_title_value()
+                break
+        try:
+            self.assertEqual(title_value, "100%", "横屏进度条走满后，百分比不是100%！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 验证横屏 载入场景进度条100%后是否消失
     def test_loading_view_dispear(self):
         self.common.loading_bar()
         sleep(1)
         showing = self.common.loading_view_dispear()
         try:
-            self.assertEqual(showing, None, "载入完成后载入场景不会消失！")
+            self.assertEqual(showing, None, "横屏载入完成后载入场景不会消失！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏进入载入画面，是否显示载入场景、进度条以及进度条走满后是否消失
-    def test_loading_on_vertical_screen(self):
-        # 切换竖屏
-        self.common.portrait()
+    #
+    #
+    # ------------------------------------------------------------------------ 竖屏模式 ------------------------------------------------------------------------
+    #
+    #
 
+    # 验证竖屏 是否进入载入场景
+    def test_loading_view_showing_portrait(self):
+        self.common.portrait()
+        sleep(1)
         showing = self.common.loading_view_showing()
         try:
             self.assertEqual(showing, True, "竖屏没有进入载入场景！")
@@ -62,13 +115,64 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-        tip = self.common.loading_bar()
+    # 验证竖屏 显示logo、进度条、进度条标题、版本号
+    def test_loading_view_ui_showing_portrait(self):
+        self.common.portrait()
+        sleep(1)
+        bg = self.common.loading_view_background_visible()
+        logo = self.common.loading_view_logo_visible()
+        progress_title = self.common.loading_view_progress_title_visible()
+        progress_bar = self.common.loading_view_progress_bar_visible()
         try:
-            self.assertEqual(tip, "100%", "竖屏进度条走满后，百分比不是100%！")
+            self.assertEqual(bg, True, "竖屏载入场景没有显示背景图片！")
+            self.assertEqual(logo, True, "竖屏载入场景没有显示logo！")
+            self.assertEqual(progress_title, True, "竖屏载入场景没有显示当前进度百分比！")
+            self.assertEqual(progress_bar, True, "竖屏载入场景没有显示进度条！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 验证竖屏 进度条会走动
+    def test_progress_bar_is_loading_portrait(self):
+        self.common.portrait()
+        sleep(1)
+        time = 0
+        title_value1 = self.common.loading_view_progress_title_value()
+        bar_value1 = self.common.loading_view_progress_bar_value()
+        while True:
+            sleep(0.5)
+            time = time + 0.5
+            title_value2 = self.common.loading_view_progress_title_value()
+            bar_value2 = self.common.loading_view_progress_bar_value()
+            if title_value1 is not title_value2 and bar_value1 is not bar_value2:
+                break
+            elif time == 10:
+                try:
+                    self.assertNotEqual(title_value1, title_value2, "竖屏载入场景经过10秒，百分比数值不会变！")
+                    self.assertNotEqual(bar_value1, bar_value2, "竖屏载入场景经过10秒，进度条不会动！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+
+    # 验证竖屏 载入场景进度条走完是100%
+    def test_loading_bar_complete_portrait(self):
+        self.common.portrait()
+        sleep(1)
+        while True:
+            bar_value = self.common.loading_view_progress_bar_value()
+            if bar_value == 100:
+                title_value = self.common.loading_view_progress_title_value()
+                break
+        try:
+            self.assertEqual(title_value, "100%", "竖屏进度条走满后，百分比不是100%！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 验证竖屏 载入场景进度条100%后是否消失
+    def test_loading_view_dispear_portrait(self):
+        self.common.portrait()
+        self.common.loading_bar()
         sleep(1)
         showing = self.common.loading_view_dispear()
         try:
@@ -77,41 +181,60 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证载入场景来回切换横竖屏显示正常
-    def test_loading_switch_screen(self):
-        # 切换竖屏
+    #
+    #
+    # ------------------------------------------------------------------------ 横竖屏模式 ------------------------------------------------------------------------
+    #
+    #
+
+    # 验证横竖屏 显示logo、进度条、进度条标题、版本号
+    def test_loading_view_showing_switch_screen(self):
         self.common.portrait()
-
-        sleep(1)
-
-        # 切换横屏
+        sleep(0.5)
         self.common.landscape()
-
+        sleep(0.5)
+        self.common.portrait()
         showing = self.common.loading_view_showing()
         try:
-            self.assertEqual(showing, True, "来回切换横竖屏没有进入载入场景！")
+            self.assertEqual(showing, True, "横竖屏切换，没有进入载入场景！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-        # 切换竖屏
+    # 验证横竖屏 进度条会走动
+    def test_progress_bar_is_loading_switch_screen(self):
         self.common.portrait()
+        sleep(1)
+        time = 0
+        title_value1 = self.common.loading_view_progress_title_value()
+        bar_value1 = self.common.loading_view_progress_bar_value()
+        while True:
+            sleep(0.5)
+            time = time + 0.5
+            self.common.landscape()
+            title_value2 = self.common.loading_view_progress_title_value()
+            bar_value2 = self.common.loading_view_progress_bar_value()
+            if title_value1 is not title_value2 and bar_value1 is not bar_value2:
+                break
+            elif time == 10:
+                try:
+                    self.assertNotEqual(title_value1, title_value2, "横竖屏切换，载入场景经过10秒，百分比数值不会变！")
+                    self.assertNotEqual(bar_value1, bar_value2, "横竖屏切换，载入场景经过10秒，进度条不会动！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
-        tip = self.common.loading_bar()
-        try:
-            self.assertEqual(tip, "100%", "竖屏进度条走满后，百分比不是100%！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-        # 切换横屏
+    # 验证横竖屏 载入场景进度条100%后是否消失
+    def test_loading_view_dispear_switch_screen(self):
+        self.common.portrait()
+        sleep(1)
         self.common.landscape()
-
-        sleep(2)
-
+        self.common.loading_bar()
+        self.common.portrait()
+        sleep(1)
         showing = self.common.loading_view_dispear()
         try:
-            self.assertEqual(showing, None, "来回切换横竖屏，载入完成后载入场景不会消失！")
+            self.assertEqual(showing, None, "横竖屏切换，载入完成后载入场景不会消失！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise

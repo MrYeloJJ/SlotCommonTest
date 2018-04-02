@@ -146,25 +146,78 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 载入场景 显示背景图片, [tuple: True, False]
+    def loading_view_background_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_bgGraph.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 载入场景 显示logo, [tuple: True, False]
+    def loading_view_logo_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_logoImg.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 载入场景 显示进度标题, [tuple: True, False]
+    def loading_view_progress_title_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.m_title.finalVisible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 载入场景 进度标题数值, [str: "0%"]
+    def loading_view_progress_title_value(self):
+        try:
+            text = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                               + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.m_title.textField.text;")
+            return text
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 载入场景 显示进度条, [tuple: True, False]
+    def loading_view_progress_bar_visible(self):
+        try:
+            final_visible = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                        + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.visible;")
+            return final_visible
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 载入场景 进度条数值, [tuple: 0]
+    def loading_view_progress_bar_value(self):
+        try:
+            value = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.value;")
+            return value
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 载入场景进度条, [str]
     def loading_bar(self):
         sleep(1)
         while True:
             try:
-                progress_bar = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
-                                                           + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.value;")
+                bar_value = self.loading_view_progress_bar_value()
             except Exception:
                 self.daf.get_screenshot(self.browser)
                 raise
 
-            if progress_bar == 100:
-                try:
-                    tip = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
-                                                      + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_progressBar.m_title.textField.text;")
-                    return tip
-                except Exception:
-                    self.daf.get_screenshot(self.browser)
-                    raise
+            if bar_value == 100:
+                break
 
     # 载入场景消失, [tuple: None]
     def loading_view_dispear(self):
