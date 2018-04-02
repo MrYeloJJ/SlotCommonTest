@@ -20,7 +20,7 @@ class TestMainAndComView(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    # 测试横屏是否正常显示主场景
+    # 验证横屏 是否正常显示主场景
     def test_main_scence_visible(self):
         self.common.loading_bar()
 
@@ -41,7 +41,7 @@ class TestMainAndComView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 竖屏进入，测试是否正常显示主场景
+    # 验证竖屏 测试是否正常显示主场景
     def test_main_scence_in_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
@@ -63,8 +63,8 @@ class TestMainAndComView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 横屏进入，来回切换横竖屏，主场景显示正常
-    def test_main_scence_landscape_mod_switch(self):
+    # 验证横竖屏 主场景显示正常
+    def test_main_scence_landscape_switch_screen(self):
         self.common.loading_bar()
 
         sleep(1)
@@ -102,8 +102,8 @@ class TestMainAndComView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 竖屏进入，来回切换横竖屏，主场景显示正常
-    def test_main_scence_portrait_mod_switch(self):
+    # 验证横竖屏 主场景显示正常
+    def test_main_scence_portrait_switch_screen(self):
         self.common.portrait()
         self.common.loading_bar()
 
