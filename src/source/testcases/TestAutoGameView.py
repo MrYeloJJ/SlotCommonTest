@@ -987,6 +987,48 @@ class TestAutoGameView(unittest.TestCase):
             if game_status is None:
                 break
 
+    #
+    #
+    # ------------------------------------------------------------------------ 横竖屏模式 ------------------------------------------------------------------------
+    #
+    #
+
+    # 验证横竖屏 设置面板改变自动次数，次数显示正确
+    def test_change_auto_time_switch_screen(self):
+        self.common.portrait()
+        self.common.loading_bar()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
+        self.common.auto_game_btn_click()
+        sleep(1)
+
+        target_time_len = len(self.common.auto_game_times)
+
+        # 根据读取到的自动次数，分别改变自动次数
+        for i in reversed(range(target_time_len)):
+            self.common.auto_game_view_change_auto_time(i)
+            sleep(1)
+            if i % 2 == 0:
+                self.common.landscape()
+            else:
+                self.common.portrait()
+
+            sleep(1)
+
+            current_time = self.common.auto_game_view_auto_time_text()
+            target_time = self.common.auto_game_times[i]
+
+            if target_time is -1:
+                target_time = "直到环节"
+            else:
+                target_time = str(target_time) + "次旋转"
+
+            try:
+                self.assertEqual(current_time, target_time, "横屏自动游戏设置面板，改变自动次数后与策划的不一致！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
 
 
