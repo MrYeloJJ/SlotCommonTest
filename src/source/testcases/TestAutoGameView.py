@@ -1010,9 +1010,9 @@ class TestAutoGameView(unittest.TestCase):
             self.common.auto_game_view_change_auto_time(i)
             sleep(1)
             if i % 2 == 0:
-                self.common.landscape()
-            else:
                 self.common.portrait()
+            else:
+                self.common.landscape()
 
             sleep(1)
 
