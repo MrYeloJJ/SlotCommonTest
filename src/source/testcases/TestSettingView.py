@@ -36,22 +36,13 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
-        visible = self.common.setting_btn_visible()
+        # 显示
+        setting_btn = self.common.setting_btn_visible()
+        # 能否点击
+        setting_btn_touchable = self.common.setting_btn_touchable()
         try:
-            self.assertEqual(visible, True, "横屏没有显示线数线注设置按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 线数线注设置按钮可点击否
-    def test_setting_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        touchable = self.common.setting_btn_touchable()
-        try:
-            self.assertEqual(touchable, True, "横屏线数线注设置按钮无法点击！")
+            self.assertEqual(setting_btn, True, "横屏没有显示线数线注设置按钮！")
+            self.assertEqual(setting_btn_touchable, True, "横屏线数线注设置按钮无法点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -92,38 +83,8 @@ class TestSettingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 设置面板显示关闭按钮
-    def test_setting_view_close_btn_visible(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_close_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏线数线注设置面板不会显示关闭按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板关闭按钮可点击否
-    def test_setting_view_close_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_close_btn_visible()
-        try:
-            self.assertEqual(touchable, True, "横屏线数线注设置面板，关闭按钮不能点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
     # 验证横屏 设置面板点击关闭按钮，设置面板消失
-    def test_setting_view_click_close_btn_view_dispear(self):
+    def test_click_close_btn_view_dispear(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -141,108 +102,41 @@ class TestSettingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 设置面板线数标题文字
+    # 验证横屏 设置面板线数标题文字按钮
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_text(self):
+    def test_setting_view_line_num(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
         sleep(1)
-        text = self.common.setting_view_line_num_text()
-        try:
-            self.assertEqual(text, "线", "横屏线数线注设置面板，线数的标题错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板默认的线数数值
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_default_line_num(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
+        # 文本
+        line_num_text = self.common.setting_view_line_num_text()
         current_line_num = self.common.setting_view_line_num()
         target_line_num = str(self.common.line_num_max)
         info_bar_line_num = self.common.info_bar_view_line_num_label()
+        # 显示
+        line_num_min_btn = self.common.setting_view_line_num_min_btn_visible()
+        line_num_plus_btn = self.common.setting_view_line_num_plus_btn_visible()
+        # 能否点击
+        line_num_min_btn_touchable = self.common.setting_view_line_num_min_btn_touchable()
+        line_num_plus_btn_touchable = self.common.setting_view_line_num_plus_btn_touchable()
         try:
+            self.assertEqual(line_num_text, "线", "横屏线数线注设置面板，线数的标题错误！")
             self.assertEqual(current_line_num, target_line_num, "横屏线数线注设置面板，默认显示的线数不是最大值！")
             self.assertEqual(info_bar_line_num, current_line_num, "横屏线数线注设置面板，线数数值与下导航栏的不一致！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板线数 - 按钮显示
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_min_btn_visible(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_num_min_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏线数线注设置面板，不会显示线数 - 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板线数 - 按钮默认可点击否
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_min_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_num_min_btn_touchable()
-        try:
-            self.assertEqual(touchable, True, "横屏线数线注设置面板，线数 - 按钮默认不能点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置按钮线数 + 按钮显示
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_plus_btn_visible(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_num_plus_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏线数线注设置面板，不会显示线数 + 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板线数 + 按钮默认可点击否
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_plus_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_num_plus_btn_touchable()
-        try:
-            self.assertEqual(touchable, False, "横屏线数线注设置面板，线数 + 按钮默认可以点击！")
+            self.assertEqual(line_num_min_btn, True, "横屏线数线注设置面板，不会显示线数 - 按钮！")
+            self.assertEqual(line_num_min_btn_touchable, True, "横屏线数线注设置面板，线数 - 按钮默认不能点击！")
+            self.assertEqual(line_num_plus_btn, True, "横屏线数线注设置面板，不会显示线数 + 按钮！")
+            self.assertEqual(line_num_plus_btn_touchable, False, "横屏线数线注设置面板，线数 + 按钮默认可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
     # 验证横屏 设置面板线数 - 按钮点击，显示正确
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_min_btn_click(self):
+    def test_line_num_min_btn_click(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -279,7 +173,7 @@ class TestSettingView(unittest.TestCase):
 
     # 验证横屏 设置面板线数 + 按钮点击，显示正确
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_plus_btn_click(self):
+    def test_line_num_plus_btn_click(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -320,104 +214,48 @@ class TestSettingView(unittest.TestCase):
                     self.daf.get_screenshot(self.browser)
                     raise
 
-    # 验证横屏 设置面板线注标题文字
-    def test_setting_view_line_cost_text(self):
+    # 验证横屏 设置面板按钮状态
+    def test_setting_view_btn_status(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
         sleep(1)
-        text = self.common.setting_view_line_cost_text()
-        try:
-            self.assertEqual(text, "线注", "横屏线数线注设置面板，线注的标题错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+        # 文本
+        line_cost_text = self.common.setting_view_line_cost_text()
 
-    # 验证横屏 设置面板默认的线注数值
-    def test_setting_view_default_line_cost(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
         current_line_cost = self.common.setting_view_line_cost()
-
         # 转化为货币格式
         locale.setlocale(locale.LC_ALL, "")
         target_line_cost = "¥" + locale.format("%.2f", self.common.line_cost[0]/100, 1)
         info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+
+        # 显示
+        close_btn = self.common.setting_view_close_btn_visible()
+        line_cost_min_btn = self.common.setting_view_line_cost_min_btn_visible()
+        line_cost_plus_btn = self.common.setting_view_line_cost_plus_btn_visible()
+
+        # 能否点击
+        close_btn_touchable = self.common.setting_view_close_btn_touchable()
+        line_cost_min_btn_touchable = self.common.setting_view_line_cost_min_btn_touchable()
+        line_cost_plus_btn_touchable = self.common.setting_view_line_cost_plus_btn_touchable()
         try:
+            self.assertEqual(close_btn, True, "横屏线数线注设置面板不会显示关闭按钮！")
+            self.assertEqual(close_btn_touchable, True, "横屏线数线注设置面板，关闭按钮不能点击！")
+            self.assertEqual(line_cost_text, "线注", "横屏线数线注设置面板，线注的标题错误！")
             self.assertEqual(current_line_cost, target_line_cost, "横屏线数线注设置面板，默认显示的线注不是最小值！")
             self.assertEqual(info_bar_line_cost, current_line_cost, "横屏线数线注设置面板，线注数值与下导航栏的不一致！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板线注 - 按钮显示
-    def test_setting_view_line_cost_min_btn_visible(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_cost_min_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏线数线注设置面板，不会显示线注 - 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板线注 - 按钮默认可点击否
-    def test_setting_view_line_cost_min_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_cost_min_btn_touchable()
-        try:
-            self.assertEqual(touchable, False, "横屏线数线注设置面板，线注 - 按钮默认可以点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置按钮线注 + 按钮显示
-    def test_setting_view_line_cost_plus_btn_visible(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_cost_plus_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏线数线注设置面板，不会显示线注 + 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏 设置面板线注 + 按钮默认可点击否
-    def test_setting_view_line_cost_plus_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_cost_plus_btn_touchable()
-        try:
-            self.assertEqual(touchable, True, "横屏线数线注设置面板，线注 + 按钮默认不可以点击！")
+            self.assertEqual(line_cost_min_btn, True, "横屏线数线注设置面板，不会显示线注 - 按钮！")
+            self.assertEqual(line_cost_min_btn_touchable, False, "横屏线数线注设置面板，线注 - 按钮默认可以点击！")
+            self.assertEqual(line_cost_plus_btn, True, "横屏线数线注设置面板，不会显示线注 + 按钮！")
+            self.assertEqual(line_cost_plus_btn_touchable, True, "横屏线数线注设置面板，线注 + 按钮默认不可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
     # 验证横屏 设置面板线注 + 按钮点击，显示正确
-    def test_setting_view_line_cost_plus_btn_click(self):
+    def test_line_cost_plus_btn_click(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -457,7 +295,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     # 验证横屏 设置面板线注 - 按钮点击，显示正确
-    def test_setting_view_line_cost_min_btn_click(self):
+    def test_line_cost_min_btn_click(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -515,23 +353,13 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
-        visible = self.common.setting_btn_visible()
+        # 显示
+        setting_btn = self.common.setting_btn_visible()
+        # 能否点击
+        setting_btn_touchable = self.common.setting_btn_touchable()
         try:
-            self.assertEqual(visible, True, "竖屏没有显示线数线注设置按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 线数线注设置按钮可点击否
-    def test_setting_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        touchable = self.common.setting_btn_touchable()
-        try:
-            self.assertEqual(touchable, True, "竖屏线数线注设置按钮无法点击！")
+            self.assertEqual(setting_btn, True, "竖屏没有显示线数线注设置按钮！")
+            self.assertEqual(setting_btn_touchable, True, "竖屏线数线注设置按钮无法点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -574,40 +402,8 @@ class TestSettingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 设置面板显示关闭按钮
-    def test_setting_view_close_btn_visible_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_close_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏线数线注设置面板不会显示关闭按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板关闭按钮可点击否
-    def test_setting_view_close_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_close_btn_visible()
-        try:
-            self.assertEqual(touchable, True, "竖屏线数线注设置面板，关闭按钮不能点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
     # 验证竖屏 设置面板点击关闭按钮，设置面板消失
-    def test_setting_view_click_close_btn_view_dispear_portrait(self):
+    def test_click_close_btn_view_dispear_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -626,9 +422,9 @@ class TestSettingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 设置面板线数标题文字
+    # 验证竖屏 设置面板线数标题文字按钮
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_text_portrait(self):
+    def test_setting_view_line_num_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -636,104 +432,32 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         self.common.setting_btn_click()
         sleep(1)
-        text = self.common.setting_view_line_num_text()
-        try:
-            self.assertEqual(text, "线", "竖屏线数线注设置面板，线数的标题错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板默认的线数数值
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_default_line_num_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
+        # 文本
+        line_num_text = self.common.setting_view_line_num_text()
         current_line_num = self.common.setting_view_line_num()
         target_line_num = str(self.common.line_num_max)
         info_bar_line_num = self.common.info_bar_view_line_num_label()
+        # 显示
+        line_num_min_btn = self.common.setting_view_line_num_min_btn_visible()
+        line_num_plus_btn = self.common.setting_view_line_num_plus_btn_visible()
+        # 能否点击
+        line_num_min_btn_touchable = self.common.setting_view_line_num_min_btn_touchable()
+        line_num_plus_btn_touchable = self.common.setting_view_line_num_plus_btn_touchable()
         try:
+            self.assertEqual(line_num_text, "线", "竖屏线数线注设置面板，线数的标题错误！")
             self.assertEqual(current_line_num, target_line_num, "竖屏线数线注设置面板，默认显示的线数不是最大值！")
             self.assertEqual(info_bar_line_num, current_line_num, "竖屏线数线注设置面板，线数数值与下导航栏的不一致！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板线数 - 按钮显示
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_min_btn_visible_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_num_min_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏线数线注设置面板，不会显示线数 - 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板线数 - 按钮默认可点击否
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_min_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_num_min_btn_touchable()
-        try:
-            self.assertEqual(touchable, True, "竖屏线数线注设置面板，线数 - 按钮默认不能点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置按钮线数 + 按钮显示
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_plus_btn_visible_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_num_plus_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏线数线注设置面板，不会显示线数 + 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板线数 + 按钮默认可点击否
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_plus_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_num_plus_btn_touchable()
-        try:
-            self.assertEqual(touchable, False, "竖屏线数线注设置面板，线数 + 按钮默认可以点击！")
+            self.assertEqual(line_num_min_btn, True, "竖屏线数线注设置面板，不会显示线数 - 按钮！")
+            self.assertEqual(line_num_min_btn_touchable, True, "竖屏线数线注设置面板，线数 - 按钮默认不能点击！")
+            self.assertEqual(line_num_plus_btn, True, "竖屏线数线注设置面板，不会显示线数 + 按钮！")
+            self.assertEqual(line_num_plus_btn_touchable, False, "竖屏线数线注设置面板，线数 + 按钮默认可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
     # 验证竖屏 设置面板线数 - 按钮点击，显示正确
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_min_btn_click_portrait(self):
+    def test_line_num_min_btn_click_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -771,7 +495,7 @@ class TestSettingView(unittest.TestCase):
 
     # 验证竖屏 设置面板线数 + 按钮点击，显示正确
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_setting_view_line_num_plus_btn_click_portrait(self):
+    def test_line_num_plus_btn_click_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -813,8 +537,8 @@ class TestSettingView(unittest.TestCase):
                     self.daf.get_screenshot(self.browser)
                     raise
 
-    # 验证竖屏 设置面板线注标题文字
-    def test_setting_view_line_cost_text_portrait(self):
+    # 验证竖屏 设置面板按钮状态
+    def test_setting_view_btn_status_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -822,101 +546,40 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         self.common.setting_btn_click()
         sleep(1)
-        text = self.common.setting_view_line_cost_text()
-        try:
-            self.assertEqual(text, "线注", "竖屏线数线注设置面板，线注的标题错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+        # 文本
+        line_cost_text = self.common.setting_view_line_cost_text()
 
-    # 验证竖屏 设置面板默认的线注数值
-    def test_setting_view_default_line_cost_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
         current_line_cost = self.common.setting_view_line_cost()
-
         # 转化为货币格式
         locale.setlocale(locale.LC_ALL, "")
         target_line_cost = "¥" + locale.format("%.2f", self.common.line_cost[0]/100, 1)
         info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+
+        # 显示
+        close_btn = self.common.setting_view_close_btn_visible()
+        line_cost_min_btn = self.common.setting_view_line_cost_min_btn_visible()
+        line_cost_plus_btn = self.common.setting_view_line_cost_plus_btn_visible()
+
+        # 能否点击
+        close_btn_touchable = self.common.setting_view_close_btn_touchable()
+        line_cost_min_btn_touchable = self.common.setting_view_line_cost_min_btn_touchable()
+        line_cost_plus_btn_touchable = self.common.setting_view_line_cost_plus_btn_touchable()
         try:
+            self.assertEqual(close_btn, True, "竖屏线数线注设置面板不会显示关闭按钮！")
+            self.assertEqual(close_btn_touchable, True, "竖屏线数线注设置面板，关闭按钮不能点击！")
+            self.assertEqual(line_cost_text, "线注", "竖屏线数线注设置面板，线注的标题错误！")
             self.assertEqual(current_line_cost, target_line_cost, "竖屏线数线注设置面板，默认显示的线注不是最小值！")
             self.assertEqual(info_bar_line_cost, current_line_cost, "竖屏线数线注设置面板，线注数值与下导航栏的不一致！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板线注 - 按钮显示
-    def test_setting_view_line_cost_min_btn_visible_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_cost_min_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏线数线注设置面板，不会显示线注 - 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板线注 - 按钮默认可点击否
-    def test_setting_view_line_cost_min_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_cost_min_btn_touchable()
-        try:
-            self.assertEqual(touchable, False, "竖屏线数线注设置面板，线注 - 按钮默认可以点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置按钮线注 + 按钮显示
-    def test_setting_view_line_cost_plus_btn_visible_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        visible = self.common.setting_view_line_cost_plus_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏线数线注设置面板，不会显示线注 + 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏 设置面板线注 + 按钮默认可点击否
-    def test_setting_view_line_cost_plus_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        touchable = self.common.setting_view_line_cost_plus_btn_touchable()
-        try:
-            self.assertEqual(touchable, True, "竖屏线数线注设置面板，线注 + 按钮默认不可以点击！")
+            self.assertEqual(line_cost_min_btn, True, "竖屏线数线注设置面板，不会显示线注 - 按钮！")
+            self.assertEqual(line_cost_min_btn_touchable, False, "竖屏线数线注设置面板，线注 - 按钮默认可以点击！")
+            self.assertEqual(line_cost_plus_btn, True, "竖屏线数线注设置面板，不会显示线注 + 按钮！")
+            self.assertEqual(line_cost_plus_btn_touchable, True, "竖屏线数线注设置面板，线注 + 按钮默认不可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
     # 验证竖屏 设置面板线注 + 按钮点击，显示正确
-    def test_setting_view_line_cost_plus_btn_click_portrait(self):
+    def test_line_cost_plus_btn_click_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -957,7 +620,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     # 验证竖屏 设置面板线注 - 按钮点击，显示正确
-    def test_setting_view_line_cost_min_btn_click_portrait(self):
+    def test_line_cost_min_btn_click_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -1073,9 +736,9 @@ class TestSettingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 设置面板线数标题文字显示正常
+    # 验证横竖屏 设置面板线数标题文字按钮显示正常
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_line_num_text_switch_screen(self):
+    def test_line_num_switch_screen(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -1087,75 +750,18 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         self.common.portrait()
         sleep(1)
-        text = self.common.setting_view_line_num_text()
-        try:
-            self.assertEqual(text, "线", "横竖屏切换，设置面板线数的标题错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横竖屏 设置面板默认的线数数值显示正常
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_default_line_num_switch_screen(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.portrait()
-        sleep(1)
+        line_num_text = self.common.setting_view_line_num_text()
         current_line_num = self.common.setting_view_line_num()
         target_line_num = str(self.common.line_num_max)
         info_bar_line_num = self.common.info_bar_view_line_num_label()
+        line_num_min_btn = self.common.setting_view_line_num_min_btn_visible()
+        line_num_plus_btn = self.common.setting_view_line_num_plus_btn_visible()
         try:
+            self.assertEqual(line_num_text, "线", "横竖屏切换，设置面板线数的标题错误！")
             self.assertEqual(current_line_num, target_line_num, "横竖屏切换，默认显示的线数不是最大值！")
             self.assertEqual(info_bar_line_num, current_line_num, "横竖屏切换，线数数值与下导航栏的不一致！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横竖屏 设置面板线数 - 按钮显示正常
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_line_num_min_btn_visible_switch_screen(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.portrait()
-        sleep(1)
-        visible = self.common.setting_view_line_num_min_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横竖屏切换，不会显示线数 - 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横竖屏 设置按钮线数 + 按钮显示正常
-    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
-    def test_line_num_plus_btn_visible_switch_screen(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.portrait()
-        sleep(1)
-        visible = self.common.setting_view_line_num_plus_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横竖屏切换，不会显示线数 + 按钮！")
+            self.assertEqual(line_num_min_btn, True, "横竖屏切换，不会显示线数 - 按钮！")
+            self.assertEqual(line_num_plus_btn, True, "横竖屏切换，不会显示线数 + 按钮！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -1257,7 +863,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     # 验证横竖屏 设置面板线注标题文字正常
-    def test_line_cost_text_switch_screen(self):
+    def test_setting_view_btn_switch_screen(self):
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -1269,75 +875,22 @@ class TestSettingView(unittest.TestCase):
         sleep(1)
         self.common.portrait()
         sleep(1)
-        text = self.common.setting_view_line_cost_text()
-        try:
-            self.assertEqual(text, "线注", "横竖屏切换，线注的标题错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+        view_line_cost_text = self.common.setting_view_line_cost_text()
 
-    # 验证横竖屏 设置面板默认的线注数值正常
-    def test_default_line_cost_switch_screen(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.portrait()
-        sleep(1)
         current_line_cost = self.common.setting_view_line_cost()
-
         # 转化为货币格式
         locale.setlocale(locale.LC_ALL, "")
         target_line_cost = "¥" + locale.format("%.2f", self.common.line_cost[0]/100, 1)
         info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+
+        line_cost_min_btn = self.common.setting_view_line_cost_min_btn_visible()
+        line_cost_plus_btn = self.common.setting_view_line_cost_plus_btn_visible()
         try:
+            self.assertEqual(view_line_cost_text, "线注", "横竖屏切换，线注的标题错误！")
             self.assertEqual(current_line_cost, target_line_cost, "横竖屏切换，默认显示的线注不是最小值！")
             self.assertEqual(info_bar_line_cost, current_line_cost, "横竖屏切换，线注数值与下导航栏的不一致！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横竖屏 设置面板线注 - 按钮显示正常
-    def test_line_cost_min_btn_visible_switch_screen(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.portrait()
-        sleep(1)
-        visible = self.common.setting_view_line_cost_min_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横竖屏切换，不会显示线注 - 按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横竖屏 设置按钮线注 + 按钮显示正常
-    def test_line_cost_plus_btn_visible_switch_screen(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.portrait()
-        sleep(1)
-        visible = self.common.setting_view_line_cost_plus_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横竖屏切换，不会显示线注 + 按钮！")
+            self.assertEqual(line_cost_min_btn, True, "横竖屏切换，不会显示线注 - 按钮！")
+            self.assertEqual(line_cost_plus_btn, True, "横竖屏切换，不会显示线注 + 按钮！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
