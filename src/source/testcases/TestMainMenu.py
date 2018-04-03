@@ -26,8 +26,8 @@ class TestMainMenu(unittest.TestCase):
     #
     #
 
-    # 验证横屏左侧主菜单默认为展开状态
-    def test_main_menu_default_expand(self):
+    # 验证横屏左侧主菜单及按钮的默认状态
+    def test_main_menu_default_status(self):
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -319,7 +319,7 @@ class TestMainMenu(unittest.TestCase):
     #
     #
 
-    # 验证竖屏左侧主菜单默认为展开状态
+    # 验证竖屏左侧主菜单及按钮的默认状态
     def test_main_menu_default_expand_portrait(self):
         self.common.portrait()
         self.common.loading_bar()
