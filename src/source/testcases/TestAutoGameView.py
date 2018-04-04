@@ -238,14 +238,15 @@ class TestAutoGameView(unittest.TestCase):
             self.common.auto_game_view_start_btn_click()
             sleep(1)
 
+            game_status = None
+
             # 用这个循环来防止自动游戏过程触发特殊玩法，影响用例执行和验证
             while True:
                 # 累计自动旋转次数
-                spin_time = 0
+                y = 0
                 # 自动游戏需要旋转的次数
                 loop_time = 3
                 for y in range(loop_time):
-                    spin_time += 1
 
                     # 等待到滚轴旋转了再进入下一步
                     while True:
@@ -255,7 +256,7 @@ class TestAutoGameView(unittest.TestCase):
 
                     # 判断是否中了特殊玩法游戏，若中了则刷新游戏重来
                     game_status = self.common.get_game_current_status()
-                    if spin_time is not loop_time and game_status is not None:
+                    if game_status is not None:
                         self.browser.refresh()
                         self.common.loading_bar()
                         sleep(1)
@@ -271,19 +272,12 @@ class TestAutoGameView(unittest.TestCase):
                         self.common.auto_game_view_start_btn_click()
                         sleep(1)
                         break
-                    elif spin_time is loop_time and game_status is not None:
-                        self.browser.refresh()
-                        self.common.loading_bar()
-                        sleep(1)
-                        self.common.sound_view_yes_btn_click()
-                        sleep(1)
-                        break
 
                     # 获取停止旋转按钮和下导航栏上的剩余次数
                     current_spin_time = self.common.in_auto_spin_btn_text()
                     current_info_bar_spin_time = self.common.info_bar_view_banner_tips_label()
 
-                    if target_spin_btn_time is -1 or target_spin_btn_time is "直到":
+                    if target_spin_btn_time == -1 or target_spin_btn_time == "直到":
                         target_spin_btn_time = "直到"
                         target_info_bar_spin_time = "直到环节自动旋转"
                     else:
@@ -303,11 +297,11 @@ class TestAutoGameView(unittest.TestCase):
                         if slot_status is False:
                             break
 
-                    if spin_time is loop_time and game_status is None:
+                    if y == (loop_time - 1) and game_status is None:
                         self.common.start_btn_click()
                         sleep(1)
 
-                if spin_time is loop_time:
+                if y == (loop_time - 1) and game_status is None:
                     break
 
     # 验证横屏 自动次数为0时停止
@@ -337,70 +331,73 @@ class TestAutoGameView(unittest.TestCase):
             current_spin_time = self.common.in_auto_spin_btn_text()
 
             # 判断自动游戏最后一局是否中了特殊玩法，若中了则刷新游戏重来
-            if current_spin_time is "0":
-                slot_status = self.common.slot_machine_rolling()
+            if current_spin_time == "0":
+                game_status = self.common.get_game_current_status()
+                if game_status is not None:
+                        self.browser.refresh()
+                        self.common.loading_bar()
+                        sleep(1)
+                        self.common.sound_view_yes_btn_click()
+                        sleep(1)
 
-                if slot_status is False:
-                    game_status = self.common.get_game_current_status()
-                    if game_status is not None:
-                            self.browser.refresh()
-                            self.common.loading_bar()
-                            sleep(1)
-                            self.common.sound_view_yes_btn_click()
-                            sleep(1)
+                        self.common.auto_game_btn_click()
+                        sleep(1)
+                        self.common.auto_game_view_change_auto_time(0)
+                        sleep(1)
 
-                            self.common.auto_game_btn_click()
-                            sleep(1)
-                            self.common.auto_game_view_change_auto_time(0)
-                            sleep(1)
+                        self.common.auto_game_view_start_btn_click()
+                        sleep(1)
+                        continue
+                else:
+                    while True:
+                        slot_status = self.common.slot_machine_rolling()
+                        if slot_status is False:
+                            break
 
-                            self.common.auto_game_view_start_btn_click()
-                            sleep(1)
-                            continue
-                    else:
-                        for i in range(10):     # 循环10秒验证是否还会继续自动旋转
-                            sleep(1)
-                            # 获取滚轴滚动状态
-                            slot_rolling = self.common.slot_machine_rolling()
-                            # 获取旋转按钮状态
-                            start_btn_status = self.common.start_btn_status()
-                            # 获取线数线注按钮、自动游戏按钮、选项菜单状态
-                            setting_btn = self.common.setting_btn_visible()
-                            auto_game_btn = self.common.auto_game_btn_visible()
-                            main_menu_expand = self.common.main_menu_expand()
-                            main_menu = self.common.main_menu_touchable()
+                    for i in range(10):     # 循环10秒验证是否还会继续自动旋转
+                        sleep(1)
+                        # 获取滚轴滚动状态
+                        slot_rolling = self.common.slot_machine_rolling()
+                        # 获取旋转按钮状态
+                        start_btn_status = self.common.start_btn_status()
+                        # 获取线数线注按钮、自动游戏按钮、选项菜单状态
+                        setting_btn = self.common.setting_btn_visible()
+                        auto_game_btn = self.common.auto_game_btn_visible()
+                        main_menu_expand = self.common.main_menu_expand()
+                        main_menu = self.common.main_menu_touchable()
 
-                            try:
-                                self.assertEqual(slot_rolling, False, "横屏自动游戏次数为0后，滚轴不会停止滚动！")
-                                self.assertEqual(start_btn_status, "stopped", "横屏自动游戏次数为0后，旋转按钮不会变成旋转按钮状态！")
-                                self.assertEqual(setting_btn, True, "横屏自动游戏次数为0后，线数线注设置按钮不会重新显示！")
-                                self.assertEqual(auto_game_btn, True, "横屏自动游戏次数为0后，自动游戏按钮不会重新显示！")
-                                self.assertEqual(main_menu_expand, "retractL", "横屏自动游戏次数为0后，左侧选项菜单不会依然折叠！")
-                                self.assertEqual(main_menu, True, "横屏自动游戏次数为0后，左侧选项菜单不可以点击！")
-                            except AssertionError:
-                                self.daf.get_screenshot(self.browser)
-                                raise
+                        try:
+                            self.assertEqual(slot_rolling, False, "横屏自动游戏次数为0后，滚轴不会停止滚动！")
+                            self.assertEqual(start_btn_status, "stopped", "横屏自动游戏次数为0后，旋转按钮不会变成旋转按钮状态！")
+                            self.assertEqual(setting_btn, True, "横屏自动游戏次数为0后，线数线注设置按钮不会重新显示！")
+                            self.assertEqual(auto_game_btn, True, "横屏自动游戏次数为0后，自动游戏按钮不会重新显示！")
+                            self.assertEqual(main_menu_expand, "retractL", "横屏自动游戏次数为0后，左侧选项菜单不会依然折叠！")
+                            self.assertEqual(main_menu, True, "横屏自动游戏次数为0后，左侧选项菜单不可以点击！")
+                        except AssertionError:
+                            self.daf.get_screenshot(self.browser)
+                            raise
                     break
             else:
-                while True:    # 自动游戏过程中了特殊玩法，则刷新重来
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status is False:
-                        game_status = self.common.get_game_current_status()
-                        if game_status is not None:
-                            self.browser.refresh()
-                            self.common.loading_bar()
-                            sleep(1)
-                            self.common.sound_view_yes_btn_click()
-                            sleep(1)
+                game_status = self.common.get_game_current_status()
+                if game_status is not None:
+                    self.browser.refresh()
+                    self.common.loading_bar()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
+                    sleep(1)
 
-                            self.common.auto_game_btn_click()
-                            sleep(1)
-                            self.common.auto_game_view_change_auto_time(0)
-                            sleep(1)
+                    self.common.auto_game_btn_click()
+                    sleep(1)
+                    self.common.auto_game_view_change_auto_time(0)
+                    sleep(1)
 
-                            self.common.auto_game_view_start_btn_click()
-                            sleep(1)
-                        break
+                    self.common.auto_game_view_start_btn_click()
+                    sleep(1)
+
+            while True:
+                slot_status = self.common.slot_machine_rolling()
+                if slot_status is False:
+                    break
 
     # 验证横屏 自动游戏过程，点击停止按钮，滚轴继续旋转，按钮状态不变
     def test_in_auto_game_click_start_btn(self):
@@ -724,14 +721,15 @@ class TestAutoGameView(unittest.TestCase):
             self.common.auto_game_view_start_btn_click()
             sleep(1)
 
+            game_status = None
+
             # 用这个循环来防止自动游戏过程触发特殊玩法，影响用例执行和验证
             while True:
                 # 累计自动旋转次数
-                spin_time = 0
+                y = 0
                 # 自动游戏需要旋转的次数
                 loop_time = 3
                 for y in range(loop_time):
-                    spin_time += 1
 
                     # 等待到滚轴旋转了再进入下一步
                     while True:
@@ -741,7 +739,7 @@ class TestAutoGameView(unittest.TestCase):
 
                     # 判断是否中了特殊玩法游戏，若中了则刷新游戏重来
                     game_status = self.common.get_game_current_status()
-                    if spin_time is not loop_time and game_status is not None:
+                    if game_status is not None:
                         self.browser.refresh()
                         self.common.loading_bar()
                         sleep(1)
@@ -757,19 +755,12 @@ class TestAutoGameView(unittest.TestCase):
                         self.common.auto_game_view_start_btn_click()
                         sleep(1)
                         break
-                    elif spin_time is loop_time and game_status is not None:
-                        self.browser.refresh()
-                        self.common.loading_bar()
-                        sleep(1)
-                        self.common.sound_view_yes_btn_click()
-                        sleep(1)
-                        break
 
                     # 获取停止旋转按钮和下导航栏上的剩余次数
                     current_spin_time = self.common.in_auto_spin_btn_text()
                     current_info_bar_spin_time = self.common.info_bar_view_banner_tips_label()
 
-                    if target_spin_btn_time is -1 or target_spin_btn_time is "直到":
+                    if target_spin_btn_time == -1 or target_spin_btn_time == "直到":
                         target_spin_btn_time = "直到"
                         target_info_bar_spin_time = "直到环节自动旋转"
                     else:
@@ -789,11 +780,11 @@ class TestAutoGameView(unittest.TestCase):
                         if slot_status is False:
                             break
 
-                    if spin_time is loop_time and game_status is None:
+                    if y == (loop_time - 1) and game_status is None:
                         self.common.start_btn_click()
                         sleep(1)
 
-                if spin_time is loop_time:
+                if y == (loop_time - 1) and game_status is None:
                     break
 
     # 验证竖屏 自动次数为0时停止
@@ -824,70 +815,73 @@ class TestAutoGameView(unittest.TestCase):
             current_spin_time = self.common.in_auto_spin_btn_text()
 
             # 判断自动游戏最后一局是否中了特殊玩法，若中了则刷新游戏重来
-            if current_spin_time is "0":
-                slot_status = self.common.slot_machine_rolling()
+            if current_spin_time == "0":
+                game_status = self.common.get_game_current_status()
+                if game_status is not None:
+                        self.browser.refresh()
+                        self.common.loading_bar()
+                        sleep(1)
+                        self.common.sound_view_yes_btn_click()
+                        sleep(1)
 
-                if slot_status is False:
-                    game_status = self.common.get_game_current_status()
-                    if game_status is not None:
-                            self.browser.refresh()
-                            self.common.loading_bar()
-                            sleep(1)
-                            self.common.sound_view_yes_btn_click()
-                            sleep(1)
+                        self.common.auto_game_btn_click()
+                        sleep(1)
+                        self.common.auto_game_view_change_auto_time(0)
+                        sleep(1)
 
-                            self.common.auto_game_btn_click()
-                            sleep(1)
-                            self.common.auto_game_view_change_auto_time(0)
-                            sleep(1)
+                        self.common.auto_game_view_start_btn_click()
+                        sleep(1)
+                        continue
+                else:
+                    while True:
+                        slot_status = self.common.slot_machine_rolling()
+                        if slot_status is False:
+                            break
 
-                            self.common.auto_game_view_start_btn_click()
-                            sleep(1)
-                            continue
-                    else:
-                        for i in range(10):     # 循环10秒验证是否还会继续自动旋转
-                            sleep(1)
-                            # 获取滚轴滚动状态
-                            slot_rolling = self.common.slot_machine_rolling()
-                            # 获取旋转按钮状态
-                            start_btn_status = self.common.start_btn_status()
-                            # 获取线数线注按钮、自动游戏按钮、选项菜单状态
-                            setting_btn = self.common.setting_btn_visible()
-                            auto_game_btn = self.common.auto_game_btn_visible()
-                            main_menu_expand = self.common.main_menu_expand()
-                            main_menu = self.common.main_menu_touchable()
+                    for i in range(10):     # 循环10秒验证是否还会继续自动旋转
+                        sleep(1)
+                        # 获取滚轴滚动状态
+                        slot_rolling = self.common.slot_machine_rolling()
+                        # 获取旋转按钮状态
+                        start_btn_status = self.common.start_btn_status()
+                        # 获取线数线注按钮、自动游戏按钮、选项菜单状态
+                        setting_btn = self.common.setting_btn_visible()
+                        auto_game_btn = self.common.auto_game_btn_visible()
+                        main_menu_expand = self.common.main_menu_expand()
+                        main_menu = self.common.main_menu_touchable()
 
-                            try:
-                                self.assertEqual(slot_rolling, False, "竖屏自动游戏次数为0后，滚轴不会停止滚动！")
-                                self.assertEqual(start_btn_status, "stopped", "竖屏自动游戏次数为0后，旋转按钮不会变成旋转按钮状态！")
-                                self.assertEqual(setting_btn, True, "竖屏自动游戏次数为0后，线数线注设置按钮不会重新显示！")
-                                self.assertEqual(auto_game_btn, True, "竖屏自动游戏次数为0后，自动游戏按钮不会重新显示！")
-                                self.assertEqual(main_menu_expand, "retractL", "竖屏自动游戏次数为0后，左侧选项菜单不会依然折叠！")
-                                self.assertEqual(main_menu, True, "竖屏自动游戏次数为0后，左侧选项菜单不可以点击！")
-                            except AssertionError:
-                                self.daf.get_screenshot(self.browser)
-                                raise
+                        try:
+                            self.assertEqual(slot_rolling, False, "竖屏自动游戏次数为0后，滚轴不会停止滚动！")
+                            self.assertEqual(start_btn_status, "stopped", "竖屏自动游戏次数为0后，旋转按钮不会变成旋转按钮状态！")
+                            self.assertEqual(setting_btn, True, "竖屏自动游戏次数为0后，线数线注设置按钮不会重新显示！")
+                            self.assertEqual(auto_game_btn, True, "竖屏自动游戏次数为0后，自动游戏按钮不会重新显示！")
+                            self.assertEqual(main_menu_expand, "retractP", "竖屏自动游戏次数为0后，左侧选项菜单不会依然折叠！")
+                            self.assertEqual(main_menu, True, "竖屏自动游戏次数为0后，左侧选项菜单不可以点击！")
+                        except AssertionError:
+                            self.daf.get_screenshot(self.browser)
+                            raise
                     break
             else:
-                while True:    # 自动游戏过程中了特殊玩法，则刷新重来
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status is False:
-                        game_status = self.common.get_game_current_status()
-                        if game_status is not None:
-                            self.browser.refresh()
-                            self.common.loading_bar()
-                            sleep(1)
-                            self.common.sound_view_yes_btn_click()
-                            sleep(1)
+                game_status = self.common.get_game_current_status()
+                if game_status is not None:
+                    self.browser.refresh()
+                    self.common.loading_bar()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
+                    sleep(1)
 
-                            self.common.auto_game_btn_click()
-                            sleep(1)
-                            self.common.auto_game_view_change_auto_time(0)
-                            sleep(1)
+                    self.common.auto_game_btn_click()
+                    sleep(1)
+                    self.common.auto_game_view_change_auto_time(0)
+                    sleep(1)
 
-                            self.common.auto_game_view_start_btn_click()
-                            sleep(1)
-                        break
+                    self.common.auto_game_view_start_btn_click()
+                    sleep(1)
+
+            while True:
+                slot_status = self.common.slot_machine_rolling()
+                if slot_status is False:
+                    break
 
     # 验证竖屏 自动游戏过程，点击停止按钮，滚轴继续旋转，按钮状态不变
     def test_in_auto_game_click_start_btn_portrait(self):
