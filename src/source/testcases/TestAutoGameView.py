@@ -696,7 +696,7 @@ class TestAutoGameView(unittest.TestCase):
             self.assertEqual(start_btn_status, "playing", "竖屏启动自动游戏，旋转按钮不会变成停止按钮状态！")
             self.assertEqual(setting_btn, False, "竖屏启动自动游戏，线数线注设置按钮不会消失！")
             self.assertEqual(auto_game_btn, False, "竖屏启动自动游戏，自动游戏按钮不会消失！")
-            self.assertEqual(main_menu_expand, "retractL", "竖屏启动自动游戏，左侧选项菜单不会折叠！")
+            self.assertEqual(main_menu_expand, "retractP", "竖屏启动自动游戏，左侧选项菜单不会折叠！")
             self.assertEqual(main_menu, False, "竖屏启动自动游戏，左侧选项菜单可以点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
@@ -927,7 +927,7 @@ class TestAutoGameView(unittest.TestCase):
                 self.assertEqual(start_btn_status, "playing", "竖屏自动游戏过程点击停止按钮，旋转按钮不会保持显示停止按钮状态！")
                 self.assertEqual(setting_btn, False, "竖屏自动游戏过程点击停止按钮，线数线注设置按钮不会保持消失！")
                 self.assertEqual(auto_game_btn, False, "竖屏自动游戏过程点击停止按钮，自动游戏按钮不会保持消失！")
-                self.assertEqual(main_menu_expand, "retractL", "竖屏自动游戏过程点击停止按钮，左侧选项菜单不会保持折叠！")
+                self.assertEqual(main_menu_expand, "retractP", "竖屏自动游戏过程点击停止按钮，左侧选项菜单不会保持折叠！")
                 self.assertEqual(main_menu, False, "竖屏自动游戏过程点击停止按钮，左侧选项菜单不会保持不可点击状态！")
             except AssertionError:
                 self.daf.get_screenshot(self.browser)
