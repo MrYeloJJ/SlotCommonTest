@@ -220,7 +220,7 @@ class Common(object):
     # 载入场景进度条, [str]
     def loading_bar(self):
         sleep(1)
-        time = 15
+        time = 30
         start_time = datetime.now()
         while True:
             try:

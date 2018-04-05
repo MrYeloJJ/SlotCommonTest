@@ -249,7 +249,7 @@ class TestAutoGameView(unittest.TestCase):
                 for y in range(loop_time):
 
                     # 等待到滚轴旋转了再进入下一步
-                    time = 15
+                    time = 30
                     slot_status = self.common.wait_for_rolling(time)
                     try:
                         self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会滚动！")
@@ -295,7 +295,7 @@ class TestAutoGameView(unittest.TestCase):
                         raise
 
                     # 等待到滚轴停止了再进入下一步
-                    time = 15
+                    time = 30
                     slot_status = self.common.wait_for_stop(time)
                     try:
                         self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -328,7 +328,7 @@ class TestAutoGameView(unittest.TestCase):
         # 用这个循环来防止自动游戏过程触发特殊玩法
         while True:
 
-            time = 15
+            time = 30
             slot_status = self.common.wait_for_rolling(time)
             try:
                 self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会旋转！")
@@ -358,7 +358,7 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         continue
                 else:
-                    time = 15
+                    time = 30
                     slot_status = self.common.wait_for_stop(time)
                     try:
                         self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -406,7 +406,7 @@ class TestAutoGameView(unittest.TestCase):
                     self.common.auto_game_view_start_btn_click()
                     sleep(1)
 
-            time = 15
+            time = 30
             slot_status = self.common.wait_for_stop(time)
             try:
                 self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -429,7 +429,7 @@ class TestAutoGameView(unittest.TestCase):
 
         while True:
 
-            time = 15
+            time = 30
             slot_status = self.common.wait_for_rolling(time)
             try:
                 self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会旋转！")
@@ -462,7 +462,7 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                time = 15
+                time = 30
                 slot_status = self.common.wait_for_stop(time)
                 try:
                     self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -756,7 +756,7 @@ class TestAutoGameView(unittest.TestCase):
                 for y in range(loop_time):
 
                     # 等待到滚轴旋转了再进入下一步
-                    time = 15
+                    time = 30
                     slot_status = self.common.wait_for_rolling(time)
                     try:
                         self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
@@ -802,7 +802,7 @@ class TestAutoGameView(unittest.TestCase):
                         raise
 
                     # 等待到滚轴停止了再进入下一步
-                    time = 15
+                    time = 30
                     slot_status = self.common.wait_for_stop(time)
                     try:
                         self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -836,7 +836,7 @@ class TestAutoGameView(unittest.TestCase):
         # 用这个循环来防止自动游戏过程触发特殊玩法
         while True:
 
-            time = 15
+            time = 30
             slot_status = self.common.wait_for_rolling(time)
             try:
                 self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
@@ -866,7 +866,7 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         continue
                 else:
-                    time = 15
+                    time = 30
                     slot_status = self.common.wait_for_stop(time)
                     try:
                         self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -914,7 +914,7 @@ class TestAutoGameView(unittest.TestCase):
                     self.common.auto_game_view_start_btn_click()
                     sleep(1)
 
-            time = 15
+            time = 30
             slot_status = self.common.wait_for_stop(time)
             try:
                 self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -938,7 +938,7 @@ class TestAutoGameView(unittest.TestCase):
 
         while True:
 
-            time = 15
+            time = 30
             slot_status = self.common.wait_for_rolling(time)
             try:
                 self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
@@ -971,7 +971,7 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                time = 15
+                time = 30
                 slot_status = self.common.wait_for_stop(time)
                 try:
                     self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
@@ -1090,7 +1090,7 @@ class TestAutoGameView(unittest.TestCase):
             for i in range(target_spin_btn_time):
 
                 # 等待到滚轴旋转了再进入下一步
-                time = 15
+                time = 30
                 slot_status = self.common.wait_for_rolling(time)
                 try:
                     self.assertEqual(slot_status, True, "横竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
@@ -1139,7 +1139,7 @@ class TestAutoGameView(unittest.TestCase):
                     raise
 
                 # 等待到滚轴停止了再进入下一步
-                time = 15
+                time = 30
                 slot_status = self.common.wait_for_stop(time)
                 try:
                     self.assertEqual(slot_status, True, "横竖屏等待" + str(time) + "秒滚轴依然不会停止！")
