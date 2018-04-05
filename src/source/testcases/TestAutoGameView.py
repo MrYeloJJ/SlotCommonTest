@@ -4,7 +4,6 @@
 
 import unittest
 from time import sleep
-from datetime import datetime
 from selenium import webdriver
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
