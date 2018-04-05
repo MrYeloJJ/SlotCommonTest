@@ -220,6 +220,7 @@ class Common(object):
     # 载入场景进度条, [str]
     def loading_bar(self):
         sleep(1)
+        time = 15
         start_time = datetime.now()
         while True:
             try:
@@ -234,15 +235,13 @@ class Common(object):
             if bar_value == 100:
                 break
             else:
-                if cost_time >= 15:
+                if cost_time >= time:
                     cost_time = False
-                    break
-
-        try:
-            assert cost_time is True, "等待15秒，进度条不会走满！"
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+                    try:
+                        assert cost_time is True, "等待" + str(time) + "秒，进度条不会走满！"
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
     # 载入场景消失, [tuple: None]
     def loading_view_dispear(self):
