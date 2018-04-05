@@ -4,6 +4,7 @@
 
 import unittest
 from time import sleep
+from datetime import datetime
 from selenium import webdriver
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
@@ -249,10 +250,13 @@ class TestAutoGameView(unittest.TestCase):
                 for y in range(loop_time):
 
                     # 等待到滚轴旋转了再进入下一步
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status:
-                            break
+                    time = 15
+                    slot_status = self.common.wait_for_rolling(time)
+                    try:
+                        self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会滚动！")
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
                     # 判断是否中了特殊玩法游戏，若中了则刷新游戏重来
                     game_status = self.common.get_game_current_status()
@@ -292,12 +296,15 @@ class TestAutoGameView(unittest.TestCase):
                         raise
 
                     # 等待到滚轴停止了再进入下一步
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status is False:
-                            break
+                    time = 15
+                    slot_status = self.common.wait_for_stop(time)
+                    try:
+                        self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
-                    if y == (loop_time - 1) and game_status is None:
+                if y == (loop_time - 1) and game_status is None:
                         self.common.start_btn_click()
                         sleep(1)
 
@@ -322,10 +329,13 @@ class TestAutoGameView(unittest.TestCase):
         # 用这个循环来防止自动游戏过程触发特殊玩法
         while True:
 
-            while True:
-                slot_status = self.common.slot_machine_rolling()
-                if slot_status:
-                    break
+            time = 15
+            slot_status = self.common.wait_for_rolling(time)
+            try:
+                self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会旋转！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
             # 获取停止旋转按钮上的剩余次数
             current_spin_time = self.common.in_auto_spin_btn_text()
@@ -349,10 +359,13 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         continue
                 else:
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status is False:
-                            break
+                    time = 15
+                    slot_status = self.common.wait_for_stop(time)
+                    try:
+                        self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
                     for i in range(10):     # 循环10秒验证是否还会继续自动旋转
                         sleep(1)
@@ -394,10 +407,13 @@ class TestAutoGameView(unittest.TestCase):
                     self.common.auto_game_view_start_btn_click()
                     sleep(1)
 
-            while True:
-                slot_status = self.common.slot_machine_rolling()
-                if slot_status is False:
-                    break
+            time = 15
+            slot_status = self.common.wait_for_stop(time)
+            try:
+                self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
     # 验证横屏 自动游戏过程，点击停止按钮，滚轴继续旋转，按钮状态不变
     def test_in_auto_game_click_start_btn(self):
@@ -414,10 +430,13 @@ class TestAutoGameView(unittest.TestCase):
 
         while True:
 
-            while True:
-                slot_status = self.common.slot_machine_rolling()
-                if slot_status:
-                    break
+            time = 15
+            slot_status = self.common.wait_for_rolling(time)
+            try:
+                self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会旋转！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
             # 自动游戏过程，点击停止按钮
             self.common.start_btn_click()
@@ -444,10 +463,13 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                while True:
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status is False:
-                        break
+                time = 15
+                slot_status = self.common.wait_for_stop(time)
+                try:
+                    self.assertEqual(slot_status, True, "横屏等待" + str(time) + "秒滚轴依然不会停止！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
                 sleep(1)
                 game_status = self.common.get_game_current_status()
@@ -735,10 +757,13 @@ class TestAutoGameView(unittest.TestCase):
                 for y in range(loop_time):
 
                     # 等待到滚轴旋转了再进入下一步
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status:
-                            break
+                    time = 15
+                    slot_status = self.common.wait_for_rolling(time)
+                    try:
+                        self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
                     # 判断是否中了特殊玩法游戏，若中了则刷新游戏重来
                     game_status = self.common.get_game_current_status()
@@ -778,10 +803,13 @@ class TestAutoGameView(unittest.TestCase):
                         raise
 
                     # 等待到滚轴停止了再进入下一步
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status is False:
-                            break
+                    time = 15
+                    slot_status = self.common.wait_for_stop(time)
+                    try:
+                        self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
                     if y == (loop_time - 1) and game_status is None:
                         self.common.start_btn_click()
@@ -809,10 +837,13 @@ class TestAutoGameView(unittest.TestCase):
         # 用这个循环来防止自动游戏过程触发特殊玩法
         while True:
 
-            while True:
-                slot_status = self.common.slot_machine_rolling()
-                if slot_status:
-                    break
+            time = 15
+            slot_status = self.common.wait_for_rolling(time)
+            try:
+                self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
             # 获取停止旋转按钮上的剩余次数
             current_spin_time = self.common.in_auto_spin_btn_text()
@@ -836,10 +867,13 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         continue
                 else:
-                    while True:
-                        slot_status = self.common.slot_machine_rolling()
-                        if slot_status is False:
-                            break
+                    time = 15
+                    slot_status = self.common.wait_for_stop(time)
+                    try:
+                        self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
                     for i in range(10):     # 循环10秒验证是否还会继续自动旋转
                         sleep(1)
@@ -881,10 +915,13 @@ class TestAutoGameView(unittest.TestCase):
                     self.common.auto_game_view_start_btn_click()
                     sleep(1)
 
-            while True:
-                slot_status = self.common.slot_machine_rolling()
-                if slot_status is False:
-                    break
+            time = 15
+            slot_status = self.common.wait_for_stop(time)
+            try:
+                self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
     # 验证竖屏 自动游戏过程，点击停止按钮，滚轴继续旋转，按钮状态不变
     def test_in_auto_game_click_start_btn_portrait(self):
@@ -902,10 +939,13 @@ class TestAutoGameView(unittest.TestCase):
 
         while True:
 
-            while True:
-                slot_status = self.common.slot_machine_rolling()
-                if slot_status:
-                    break
+            time = 15
+            slot_status = self.common.wait_for_rolling(time)
+            try:
+                self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
             # 自动游戏过程，点击停止按钮
             self.common.start_btn_click()
@@ -932,10 +972,13 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                while True:
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status is False:
-                        break
+                time = 15
+                slot_status = self.common.wait_for_stop(time)
+                try:
+                    self.assertEqual(slot_status, True, "竖屏等待" + str(time) + "秒滚轴依然不会停止！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
                 sleep(1)
                 game_status = self.common.get_game_current_status()
@@ -1048,10 +1091,13 @@ class TestAutoGameView(unittest.TestCase):
             for i in range(target_spin_btn_time):
 
                 # 等待到滚轴旋转了再进入下一步
-                while True:
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status:
-                        break
+                time = 15
+                slot_status = self.common.wait_for_rolling(time)
+                try:
+                    self.assertEqual(slot_status, True, "横竖屏等待" + str(time) + "秒滚轴依然不会旋转！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
                 sleep(0.5)
 
@@ -1094,10 +1140,13 @@ class TestAutoGameView(unittest.TestCase):
                     raise
 
                 # 等待到滚轴停止了再进入下一步
-                while True:
-                    slot_status = self.common.slot_machine_rolling()
-                    if slot_status is False:
-                        break
+                time = 15
+                slot_status = self.common.wait_for_stop(time)
+                try:
+                    self.assertEqual(slot_status, True, "横竖屏等待" + str(time) + "秒滚轴依然不会停止！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
                 # 验证5次即可
                 if i == 4:

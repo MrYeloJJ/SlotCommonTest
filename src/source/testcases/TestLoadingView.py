@@ -4,6 +4,7 @@
 
 import unittest
 from time import sleep
+from datetime import datetime
 from selenium import webdriver
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
@@ -78,12 +79,23 @@ class TestLoadingView(unittest.TestCase):
     # 验证横屏 载入场景进度条走完是100%
     def test_loading_bar_complete(self):
         sleep(1)
+        start_time = datetime.now()
         while True:
             bar_value = self.common.loading_view_progress_bar_value()
+            title_value = self.common.loading_view_progress_title_value()
+
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
             if bar_value == 100:
-                title_value = self.common.loading_view_progress_title_value()
+                cost_time = True
                 break
+            else:
+                if cost_time >= 15:
+                    cost_time = False
+                    break
+
         try:
+            self.assertEqual(cost_time, True, "横屏等待15秒，进度条不会走满！")
             self.assertEqual(title_value, "100%", "横屏进度条走满后，百分比不是100%！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
@@ -162,12 +174,23 @@ class TestLoadingView(unittest.TestCase):
     def test_loading_bar_complete_portrait(self):
         self.common.portrait()
         sleep(1)
+        start_time = datetime.now()
         while True:
             bar_value = self.common.loading_view_progress_bar_value()
+            title_value = self.common.loading_view_progress_title_value()
+
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
             if bar_value == 100:
-                title_value = self.common.loading_view_progress_title_value()
+                cost_time = True
                 break
+            else:
+                if cost_time >= 15:
+                    cost_time = False
+                    break
+
         try:
+            self.assertEqual(cost_time, True, "竖屏等待15秒，进度条不会走满！")
             self.assertEqual(title_value, "100%", "竖屏进度条走满后，百分比不是100%！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)

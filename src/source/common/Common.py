@@ -5,6 +5,7 @@
 from src.source.common.Config import Config
 from src.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
+from datetime import datetime
 
 
 class Common(object):
@@ -219,6 +220,7 @@ class Common(object):
     # 载入场景进度条, [str]
     def loading_bar(self):
         sleep(1)
+        start_time = datetime.now()
         while True:
             try:
                 bar_value = self.loading_view_progress_bar_value()
@@ -226,8 +228,21 @@ class Common(object):
                 self.daf.get_screenshot(self.browser)
                 raise
 
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
+
             if bar_value == 100:
                 break
+            else:
+                if cost_time >= 15:
+                    cost_time = False
+                    break
+
+        try:
+            assert cost_time is True, "等待15秒，进度条不会走满！"
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
 
     # 载入场景消失, [tuple: None]
     def loading_view_dispear(self):
@@ -316,6 +331,37 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
+
+    # 等待滚轴滚动
+    def wait_for_rolling(self, time):
+        start_time = datetime.now()
+        while True:
+            slot_status = self.slot_machine_rolling()
+
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
+
+            if slot_status:
+                return True
+            else:
+                if cost_time >= time:
+                    return False
+
+    # 等待滚轴停止
+    def wait_for_stop(self, time):
+        start_time = datetime.now()
+        while True:
+            slot_status = self.slot_machine_rolling()
+
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
+
+            if slot_status is False:
+                return True
+            else:
+                if cost_time >= time:
+                    return False
+
 
     #
     #
