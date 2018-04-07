@@ -351,11 +351,12 @@ class Common(object):
         start_time = datetime.now()
         while True:
             slot_status = self.slot_machine_rolling()
+            mask_status = self.mask_view_showing()
 
             end_time = datetime.now()
             cost_time = (end_time - start_time).seconds
 
-            if slot_status is False:
+            if slot_status is False and mask_status is False:
                 return True
             else:
                 if cost_time >= time:
