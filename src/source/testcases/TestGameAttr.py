@@ -22,8 +22,8 @@ class TestGameAttr(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    # 验证游戏id
     def test_game_id(self):
+        """ 验证游戏id """
         sleep(1)
         current_game_id = self.common.get_game_id()
         target_game_id = self.common.game_id
