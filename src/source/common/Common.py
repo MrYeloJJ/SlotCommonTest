@@ -211,7 +211,7 @@ class Common(object):
     def loading_view_version_visible(self):
         try:
             final_visible = self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
-                                                + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_version.finalVisible;")
+                                                        + self.add_script + "UIManager.instance.commonView);return loading.contentPane.m_version.finalVisible;")
             return final_visible
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -361,7 +361,6 @@ class Common(object):
             else:
                 if cost_time >= time:
                     return False
-
 
     #
     #
