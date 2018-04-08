@@ -10,6 +10,7 @@ from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestSoundView(unittest.TestCase):
+    """ 声音提示窗口模块 """
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -26,8 +27,8 @@ class TestSoundView(unittest.TestCase):
     #
     #
 
-    # 验证横屏 窗口显示，显示窗口提示文字、切换按钮、按钮文字等
-    def test_sound_view_showing(self):
+    def test_sound_view(self):
+        """ 验证横屏声音窗口内容 """
         self.common.loading_bar()
         sleep(1)
         # 显示
@@ -64,8 +65,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 切换按钮 点击后状态是否改变
-    def test_toggle_click_status(self):
+    def test_toggle_click(self):
+        """ 验证横屏切换按钮点击 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -76,8 +77,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 切换按钮 点击两次后状态是否恢复
-    def test_toggle_click_twice_status(self):
+    def test_toggle_click_twice(self):
+        """ 验证横屏点击切换按钮两次 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -90,8 +91,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 切换按钮 点击后立刻刷新，是否还弹出窗口
     def test_toggle_click_refresh_imm(self):
+        """ 验证横屏点击切换按钮后立刻刷新 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -114,8 +115,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 切换按钮 点击两次后立刻刷新，是否还弹出窗口
     def test_toggle_click_twice_refresh_imm(self):
+        """ 验证横屏点击切换按钮两次后立刻刷新 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -140,8 +141,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 切换按钮 点击后，窗口自动消失，刷新游戏后是否还弹出
-    def test_toggle_click_view_dispear_refresh(self):
+    def test_toggle_click_refresh(self):
+        """ 验证横屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -165,8 +166,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 切换按钮 点击两次后，窗口自动消失，刷新游戏后是否还弹出
-    def test_toggle_click_twice_view_dispear_refresh(self):
+    def test_toggle_click_twice_refresh(self):
+        """ 验证横屏点击切换按钮两次，窗口自动消失刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -192,8 +193,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击切换按钮，然后点击是按钮，刷新游戏是否不再弹出
     def test_toggle_click_yes_refresh(self):
+        """ 验证横屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -217,8 +218,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击切换按钮两次，然后点击是按钮，刷新游戏是否不再弹出
     def test_toggle_click_twice_yes_refresh(self):
+        """ 验证横屏点击切换按钮两次，点击是按钮刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -244,8 +245,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击切换按钮，然后点击否按钮，刷新游戏是否不再弹出
     def test_toggle_click_no_refresh(self):
+        """ 验证横屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -269,8 +270,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击切换按钮两次，然后点击否按钮，刷新游戏是否不再弹出
     def test_toggle_click_twice_no_refresh(self):
+        """ 验证横屏点击切换按钮两次，点击否按钮刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -296,8 +297,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击 是 按钮后，声音播放，声音开关按钮状态为打开
     def test_yes_btn_click(self):
+        """ 验证横屏点击是按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -315,8 +316,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击 否 按钮后，声音播放，声音开关按钮状态为关闭
     def test_no_btn_click(self):
+        """ 验证横屏点击否按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_no_btn_click()
@@ -334,8 +335,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 开启声音，窗口8秒后是否自动消失，声音自动设置开启
-    def test_turn_on_sound_view_auto_dispear(self):
+    def test_turn_on_sound_view_dispear(self):
+        """ 验证横屏开启声音刷新，窗口8秒后自动消失 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -357,8 +358,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 关闭声音，窗口8秒后是否自动消失，声音自动设置开启
-    def test_turn_off_sound_view_auto_dispear(self):
+    def test_turn_off_sound_view_dispear(self):
+        """ 验证横屏关闭声音刷新，窗口8秒后自动消失 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_no_btn_click()
@@ -386,8 +387,8 @@ class TestSoundView(unittest.TestCase):
     #
     #
 
-    # 验证竖屏 窗口显示，显示窗口提示文字、切换按钮、按钮文字等
-    def test_sound_view_showing_portrait(self):
+    def test_sound_view_portrait(self):
+        """ 验证竖屏声音窗口内容 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -425,8 +426,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 切换按钮 点击后状态是否改变
-    def test_toggle_click_status_portrait(self):
+    def test_toggle_click_portrait(self):
+        """ 验证竖屏切换按钮点击 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -438,8 +439,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 切换按钮 点击两次后状态是否恢复
-    def test_toggle_click_twice_status_portrait(self):
+    def test_toggle_click_twice_portrait(self):
+        """ 验证竖屏点击切换按钮两次 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -453,8 +454,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 切换按钮 点击后立刻刷新，是否还弹出窗口
     def test_toggle_click_refresh_imm_portrait(self):
+        """ 验证竖屏点击切换按钮后立刻刷新 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -478,8 +479,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 切换按钮 点击两次后立刻刷新，是否还弹出窗口
     def test_toggle_click_twice_refresh_imm_portrait(self):
+        """ 验证竖屏点击切换按钮两次后立刻刷新 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -505,8 +506,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 切换按钮 点击后，窗口自动消失，刷新游戏后是否还弹出
-    def test_toggle_click_view_dispear_refresh_portrait(self):
+    def test_toggle_click_refresh_portrait(self):
+        """ 验证竖屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -531,8 +532,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 切换按钮 点击两次后，窗口自动消失，刷新游戏后是否还弹出
-    def test_toggle_click_twice_view_dispear_refresh_portrait(self):
+    def test_toggle_click_twice_refresh_portrait(self):
+        """ 验证竖屏点击切换按钮两次，窗口自动消失刷新游戏 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -559,8 +560,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击切换按钮，然后点击是按钮，刷新游戏是否不再弹出
     def test_toggle_click_yes_refresh_portrait(self):
+        """ 验证竖屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -585,8 +586,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击切换按钮两次，然后点击是按钮，刷新游戏是否不再弹出
     def test_toggle_click_twice_yes_refresh_portrait(self):
+        """ 验证竖屏点击切换按钮两次，点击是按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -613,8 +614,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击切换按钮，然后点击否按钮，刷新游戏是否不再弹出
     def test_toggle_click_no_refresh_portrait(self):
+        """ 验证竖屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -639,8 +640,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击切换按钮两次，然后点击否按钮，刷新游戏是否不再弹出
     def test_toggle_click_twice_no_refresh_portrait(self):
+        """ 验证竖屏点击切换按钮两次，点击否按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -667,8 +668,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击 是 按钮后，声音播放，声音开关按钮状态为打开
     def test_yes_btn_click_portrait(self):
+        """ 验证竖屏点击是按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -687,8 +688,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击 否 按钮后，声音播放，声音开关按钮状态为关闭
     def test_no_btn_click_portrait(self):
+        """ 验证竖屏点击否按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -707,8 +708,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 开启声音，窗口8秒后是否自动消失，声音自动设置开启
-    def test_turn_on_sound_view_auto_dispear_portrait(self):
+    def test_turn_on_sound_portrait(self):
+        """ 验证竖屏开启声音刷新，窗口8秒后自动消失 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -731,8 +732,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 关闭声音，窗口8秒后是否自动消失，声音自动设置开启
-    def test_turn_off_sound_view_auto_dispear_portrait(self):
+    def test_turn_off_sound_portrait(self):
+        """ 验证竖屏关闭声音刷新，窗口8秒后自动消失 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -761,8 +762,8 @@ class TestSoundView(unittest.TestCase):
     #
     #
 
-    # 验证横竖屏 窗口显示，显示窗口提示文字、切换按钮、按钮文字等
-    def test_sound_view_showing_switch_screen(self):
+    def test_sound_view_switch_screen(self):
+        """ 验证横竖屏声音窗口内容 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -804,8 +805,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 窗口 切换按钮 点击后状态是否改变
-    def test_toggle_click_status_switch_screen(self):
+    def test_toggle_click_switch_screen(self):
+        """ 验证横竖屏点击切换按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -822,8 +823,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 窗口 切换按钮 点击后立刻刷新，是否还弹出窗口
     def test_toggle_click_refresh_imm_switch_screen(self):
+        """ 验证横竖屏点击切换按钮后立刻刷新 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -852,8 +853,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 窗口 切换按钮 点击后，窗口自动消失，刷新游戏后是否还弹出
-    def test_toggle_click_view_dispear_refresh_switch_screen(self):
+    def test_toggle_click_refresh_switch_screen(self):
+        """ 验证横竖屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -883,8 +884,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 点击切换按钮，然后点击是按钮，刷新游戏是否不再弹出
     def test_toggle_click_yes_refresh_switch_screen(self):
+        """ 验证横竖屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -914,8 +915,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 点击切换按钮，然后点击否按钮，刷新游戏是否不再弹出
     def test_toggle_click_no_refresh_switch_screen(self):
+        """ 验证横竖屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -945,8 +946,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 点击 是 按钮后，声音播放，声音开关按钮状态为打开
     def test_yes_btn_click_switch_screen(self):
+        """ 验证横竖屏点击是按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -970,8 +971,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 点击 否 按钮后，声音播放，声音开关按钮状态为关闭
     def test_no_btn_click_switch_screen(self):
+        """ 验证横竖屏点击否按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_no_btn_click()
@@ -995,8 +996,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 开启声音，窗口8秒后是否自动消失，声音自动设置开启
-    def test_turn_on_sound_view_auto_dispear_switch_screen(self):
+    def test_turn_on_sound_switch_screen(self):
+        """ 验证横竖屏开启声音刷新游戏，窗口8秒后自动消失 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -1024,8 +1025,8 @@ class TestSoundView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 关闭声音，窗口8秒后是否自动消失，声音自动设置开启
-    def test_turn_off_sound_view_auto_dispear_switch_screen(self):
+    def test_turn_off_sound_switch_screen(self):
+        """ 验证横竖屏关闭声音刷新游戏，窗口8秒后自动消失 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_no_btn_click()

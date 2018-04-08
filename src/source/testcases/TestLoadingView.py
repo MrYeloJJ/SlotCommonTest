@@ -11,6 +11,7 @@ from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestLoadingView(unittest.TestCase):
+    """ 载入场景模块 """
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -27,8 +28,8 @@ class TestLoadingView(unittest.TestCase):
     #
     #
 
-    # 验证横屏 是否进入载入场景
     def test_loading_view_showing(self):
+        """ 验证横屏进入载入场景 """
         sleep(1)
         showing = self.common.loading_view_showing()
         try:
@@ -37,8 +38,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 显示logo、进度条、进度条标题、版本号
     def test_loading_view_ui_showing(self):
+        """ 验证横屏显示logo、进度条、版本号 """
         sleep(1)
         bg = self.common.loading_view_background_visible()
         logo = self.common.loading_view_logo_visible()
@@ -55,8 +56,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 进度条会走动
     def test_progress_bar_is_loading(self):
+        """ 验证横屏进度条会走动 """
         sleep(1)
         time = 0
         title_value1 = self.common.loading_view_progress_title_value()
@@ -76,8 +77,8 @@ class TestLoadingView(unittest.TestCase):
                     self.daf.get_screenshot(self.browser)
                     raise
 
-    # 验证横屏 载入场景进度条走完是100%
     def test_loading_bar_complete(self):
+        """ 验证横屏进度条走完是100% """
         sleep(1)
         start_time = datetime.now()
         while True:
@@ -101,8 +102,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 载入场景进度条100%后是否消失
     def test_loading_view_dispear(self):
+        """ 验证横屏在进度条100%后载入消失 """
         self.common.loading_bar()
         sleep(1)
         showing = self.common.loading_view_dispear()
@@ -118,8 +119,8 @@ class TestLoadingView(unittest.TestCase):
     #
     #
 
-    # 验证竖屏 是否进入载入场景
     def test_loading_view_showing_portrait(self):
+        """ 验证竖屏进入载入场景 """
         self.common.portrait()
         sleep(1)
         showing = self.common.loading_view_showing()
@@ -129,8 +130,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 显示logo、进度条、进度条标题、版本号
     def test_loading_view_ui_showing_portrait(self):
+        """ 验证竖屏显示logo、进度条、版本号 """
         self.common.portrait()
         sleep(1)
         bg = self.common.loading_view_background_visible()
@@ -148,8 +149,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 进度条会走动
     def test_progress_bar_is_loading_portrait(self):
+        """ 验证竖屏进度条会走动 """
         self.common.portrait()
         sleep(1)
         time = 0
@@ -170,8 +171,8 @@ class TestLoadingView(unittest.TestCase):
                     self.daf.get_screenshot(self.browser)
                     raise
 
-    # 验证竖屏 载入场景进度条走完是100%
     def test_loading_bar_complete_portrait(self):
+        """ 验证竖屏载入场景进度条走完是100% """
         self.common.portrait()
         sleep(1)
         start_time = datetime.now()
@@ -196,8 +197,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 载入场景进度条100%后是否消失
     def test_loading_view_dispear_portrait(self):
+        """ 验证竖屏进度条100%后载入消失 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -214,8 +215,8 @@ class TestLoadingView(unittest.TestCase):
     #
     #
 
-    # 验证横竖屏 显示logo、进度条、进度条标题、版本号
     def test_loading_view_showing_switch_screen(self):
+        """ 验证横竖屏显示logo、进度条、版本号 """
         self.common.portrait()
         sleep(0.5)
         self.common.landscape()
@@ -236,8 +237,8 @@ class TestLoadingView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 进度条会走动
     def test_progress_bar_is_loading_switch_screen(self):
+        """ 验证横竖屏进度条会走动 """
         self.common.portrait()
         sleep(1)
         time = 0
@@ -259,8 +260,8 @@ class TestLoadingView(unittest.TestCase):
                     self.daf.get_screenshot(self.browser)
                     raise
 
-    # 验证横竖屏 载入场景进度条100%后是否消失
     def test_loading_view_dispear_switch_screen(self):
+        """ 验证横竖屏载入场景进度条100%后消失 """
         self.common.portrait()
         sleep(1)
         self.common.landscape()

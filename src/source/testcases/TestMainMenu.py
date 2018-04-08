@@ -10,6 +10,7 @@ from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestMainMenu(unittest.TestCase):
+    """ 左侧选项菜单模块 """
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -26,8 +27,8 @@ class TestMainMenu(unittest.TestCase):
     #
     #
 
-    # 验证横屏左侧主菜单及按钮的默认状态
     def test_main_menu_default_status(self):
+        """ 验证横屏左侧主菜单及按钮的默认状态 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -65,8 +66,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏点击左侧主菜单按钮后是否折叠
-    def test_main_menu_btn_click_status(self):
+    def test_main_menu_btn_click(self):
+        """ 横屏点击左侧主菜单按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -92,8 +93,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏点击左侧主菜单按钮两次后恢复展开状态
-    def test_main_menu_btn_click_twice_status(self):
+    def test_main_menu_btn_click_twice(self):
+        """ 验证横屏点击左侧主菜单按钮两次 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -121,8 +122,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏点击奖金表按钮后，显示奖金表场景
-    def test_info_btn_click_info_view_showing(self):
+    def test_info_btn_click(self):
+        """ 验证横屏点击奖金表按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -136,8 +137,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏奖金表场景显示返回按钮
-    def test_info_view_return_btn_visible(self):
+    def test_info_view_return_btn(self):
+        """ 验证横屏奖金表场景返回按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -145,29 +146,16 @@ class TestMainMenu(unittest.TestCase):
         self.common.info_btn_click()
         sleep(1)
         visible = self.common.info_view_return_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏奖金表场景，不会显示返回按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏奖金表场景返回按钮可点击否
-    def test_info_view_return_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.info_btn_click()
-        sleep(1)
         touchable = self.common.info_view_return_btn_touchable()
         try:
+            self.assertEqual(visible, True, "横屏奖金表场景，不会显示返回按钮！")
             self.assertEqual(touchable, True, "横屏奖金表场景返回按钮不可点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏点击奖金表返回按钮，奖金表场景消失
-    def test_return_btn_click_info_view_dispear(self):
+    def test_info_view_return_btn_click(self):
+        """ 验证横屏点击奖金表返回按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -183,8 +171,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏点击帮助按钮后，显示帮助场景
-    def test_help_btn_click_help_view_showing(self):
+    def test_help_btn_click(self):
+        """ 验证横屏点击帮助按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -198,8 +186,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏帮助场景显示返回按钮
-    def test_help_view_return_btn_visible(self):
+    def test_help_view_return_btn(self):
+        """ 验证横屏帮助场景返回按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -207,29 +195,16 @@ class TestMainMenu(unittest.TestCase):
         self.common.help_btn_click()
         sleep(1)
         visible = self.common.help_view_return_btn_visible()
-        try:
-            self.assertEqual(visible, True, "横屏帮助场景不会显示返回按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证横屏帮助场景返回按钮可点击否
-    def test_help_view_return_btn_touchable(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.help_btn_click()
-        sleep(1)
         touchable = self.common.help_view_return_btn_touchable()
         try:
+            self.assertEqual(visible, True, "横屏帮助场景不会显示返回按钮！")
             self.assertEqual(touchable, True, "横屏帮助场景返回按钮不可点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏点击帮助场景返回按钮，帮助场景消失
-    def test_return_btn_click_help_view_dispear(self):
+    def test_help_view_return_btn_click(self):
+        """ 验证横屏点击帮助场景返回按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -245,8 +220,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏声音开关按钮点击后，按钮状态改变，声音关闭
-    def test_voice_btn_click_status(self):
+    def test_voice_btn_click(self):
+        """ 验证横屏声音开关按钮点击 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -262,8 +237,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏声音开关按钮点击两次后，按钮状态恢复打开，声音开启
-    def test_voice_btn_click_twice_status(self):
+    def test_voice_btn_click_twice(self):
+        """ 验证横屏点击两次声音开关按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -281,8 +256,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏快速模式按钮默认状态为1x，滚轴滚动方式是普通速度
-    def test_turbo_btn_default_status(self):
+    def test_turbo_btn_default(self):
+        """ 验证横屏快速模式按钮默认状态 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -296,8 +271,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏启动快速模式，快速模式按钮状态为2x，滚轴滚动方式为快速
-    def test_turbo_btn_click_status(self):
+    def test_turbo_btn_click(self):
+        """验证横屏点击快速模式按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -319,8 +294,8 @@ class TestMainMenu(unittest.TestCase):
     #
     #
 
-    # 验证竖屏左侧主菜单及按钮的默认状态
-    def test_main_menu_default_expand_portrait(self):
+    def test_main_menu_default_portrait(self):
+        """ 验证竖屏左侧主菜单及按钮的默认状态 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -359,8 +334,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏点击左侧主菜单按钮后是否折叠
-    def test_main_menu_btn_click_status_portrait(self):
+    def test_main_menu_btn_click_portrait(self):
+        """ 验证竖屏点击左侧主菜单按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -387,8 +362,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏点击左侧主菜单按钮两次后恢复展开状态
-    def test_main_menu_btn_click_twice_status_portrait(self):
+    def test_main_menu_btn_click_twice_portrait(self):
+        """ 验证竖屏点击左侧主菜单按钮两次 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -417,8 +392,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏点击奖金表按钮后，显示奖金表场景
-    def test_info_btn_click_info_view_showing_portrait(self):
+    def test_info_btn_click_portrait(self):
+        """ 验证竖屏点击奖金表按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -433,8 +408,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏奖金表场景显示返回按钮
-    def test_info_view_return_btn_visible_portrait(self):
+    def test_info_view_return_btn_portrait(self):
+        """ 验证竖屏奖金表场景返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -443,30 +418,16 @@ class TestMainMenu(unittest.TestCase):
         self.common.info_btn_click()
         sleep(1)
         visible = self.common.info_view_return_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏奖金表场景，不会显示返回按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏奖金表场景返回按钮可点击否
-    def test_info_view_return_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.info_btn_click()
-        sleep(1)
         touchable = self.common.info_view_return_btn_touchable()
         try:
+            self.assertEqual(visible, True, "竖屏奖金表场景，不会显示返回按钮！")
             self.assertEqual(touchable, True, "竖屏奖金表场景返回按钮不可点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏点击奖金表返回按钮，奖金表场景消失
-    def test_return_btn_click_info_view_dispear_portrait(self):
+    def test_info_view_return_btn_click_portrait(self):
+        """ 验证竖屏点击奖金表返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -483,8 +444,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏点击帮助按钮后，显示帮助场景
-    def test_help_btn_click_help_view_showing_portrait(self):
+    def test_help_btn_click_portrait(self):
+        """ 验证竖屏点击帮助按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -499,8 +460,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏帮助场景显示返回按钮
-    def test_help_view_return_btn_visible_portrait(self):
+    def test_help_view_return_btn_portrait(self):
+        """ 验证竖屏帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -509,30 +470,16 @@ class TestMainMenu(unittest.TestCase):
         self.common.help_btn_click()
         sleep(1)
         visible = self.common.help_view_return_btn_visible()
-        try:
-            self.assertEqual(visible, True, "竖屏帮助场景不会显示返回按钮！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    # 验证竖屏帮助场景返回按钮可点击否
-    def test_help_view_return_btn_touchable_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.help_btn_click()
-        sleep(1)
         touchable = self.common.help_view_return_btn_touchable()
         try:
+            self.assertEqual(visible, True, "竖屏帮助场景不会显示返回按钮！")
             self.assertEqual(touchable, True, "竖屏帮助场景返回按钮不可点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏点击帮助场景返回按钮，帮助场景消失
-    def test_return_btn_click_help_view_dispear_portrait(self):
+    def test_help_view_return_btn_click_portrait(self):
+        """ 验证竖屏点击帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -549,8 +496,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏声音开关按钮点击后，按钮状态改变，声音关闭
-    def test_voice_btn_click_status_portrait(self):
+    def test_voice_btn_click_portrait(self):
+        """ 验证竖屏点击声音开关按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -567,8 +514,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏声音开关按钮点击两次后，按钮状态恢复打开，声音开启
-    def test_voice_btn_click_twice_status_portrait(self):
+    def test_voice_btn_click_twice_portrait(self):
+        """ 验证竖屏点击两次声音开关按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -587,8 +534,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏快速模式按钮默认状态为1x，滚轴滚动方式是普通速度
-    def test_turbo_btn_default_status_portrait(self):
+    def test_turbo_btn_default_portrait(self):
+        """ 验证竖屏快速模式按钮默认状态 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -603,8 +550,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏启动快速模式，快速模式按钮状态为2x，滚轴滚动方式为快速
-    def test_turbo_btn_click_status_portrait(self):
+    def test_turbo_btn_click_portrait(self):
+        """ 验证竖屏点击快速模式按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -627,8 +574,8 @@ class TestMainMenu(unittest.TestCase):
     #
     #
 
-    # 验证横竖屏切换 左侧主菜单展开状态
-    def test_main_menu_default_expand_switch_screen(self):
+    def test_main_menu_default_switch_screen(self):
+        """ 验证横竖屏切换，左侧主菜单状态 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -665,8 +612,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 点击左侧主菜单按钮后是否折叠
-    def test_main_menu_btn_click_status_switch_screen(self):
+    def test_main_menu_btn_click_switch_screen(self):
+        """ 验证横竖屏切换，点击左侧主菜单按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -704,8 +651,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 点击左侧主菜单按钮两次后恢复展开状态
-    def test_main_menu_btn_click_twice_status_switch_screen(self):
+    def test_main_menu_btn_click_twice_switch_screen(self):
+        """ 验证横竖屏切换，点击左侧主菜单按钮两次 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -746,8 +693,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 奖金表场景显示返回按钮
-    def test_info_view_return_btn_visible_switch_screen(self):
+    def test_info_view_return_btn_switch_screen(self):
+        """ 验证横竖屏切换，奖金表场景返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -760,14 +707,16 @@ class TestMainMenu(unittest.TestCase):
         self.common.portrait()
         sleep(1)
         visible = self.common.info_view_return_btn_visible()
+        touchable = self.common.info_view_return_btn_touchable()
         try:
-            self.assertEqual(visible, True, "横竖屏切换，奖金表场景，竖屏返回按钮不会显示！")
+            self.assertEqual(visible, True, "横竖屏切换，奖金表场景，返回按钮不会显示！")
+            self.assertEqual(touchable, True, "横竖屏切换，奖金表场景，返回按钮不可点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 点击奖金表返回按钮，奖金表场景消失
-    def test_return_btn_click_info_view_dispear_switch_screen(self):
+    def test_info_view_return_btn_click_switch_screen(self):
+        """ 验证横竖屏切换，点击奖金表返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -788,8 +737,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 帮助场景显示返回按钮
-    def test_help_view_return_btn_visible_switch_screen(self):
+    def test_help_view_return_btn_switch_screen(self):
+        """ 验证横竖屏切换，帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -802,14 +751,16 @@ class TestMainMenu(unittest.TestCase):
         self.common.portrait()
         sleep(1)
         visible = self.common.help_view_return_btn_visible()
+        touchable = self.common.help_view_return_btn_touchable()
         try:
-            self.assertEqual(visible, True, "横竖屏切换，竖屏不会显示返回按钮！")
+            self.assertEqual(visible, True, "横竖屏切换，不会显示返回按钮！")
+            self.assertEqual(touchable, True, "横竖屏切换，返回按钮不可点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 点击帮助场景返回按钮，帮助场景消失
-    def test_return_btn_click_help_view_dispear_switch_screen(self):
+    def test_help_view_return_btn_click_switch_screen(self):
+        """ 验证横竖屏切换，点击帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -830,8 +781,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 声音开关按钮点击后，按钮状态改变，声音关闭
-    def test_voice_btn_click_status_switch_screen(self):
+    def test_voice_btn_click_switch_screen(self):
+        """ 验证横竖屏切换，点击声音开关按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -852,8 +803,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 声音开关按钮点击两次后，按钮状态恢复打开，声音开启
-    def test_voice_btn_click_twice_status_switch_screen(self):
+    def test_voice_btn_click_twice_switch_screen(self):
+        """ 验证横竖屏切换，点击声音开关按钮两次 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -876,8 +827,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 启动快速模式，快速模式按钮状态为2x，滚轴滚动方式为快速
-    def test_turbo_btn_click_status_switch_screen(self):
+    def test_turbo_btn_click_switch_screen(self):
+        """ 验证横竖屏切换，点击快速模式按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -898,8 +849,8 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏切换 点击快速模式按钮两次，快速模式按钮状态为1x，滚轴滚动方式为普通
-    def test_turbo_btn_click_twice_status_switch_screen(self):
+    def test_turbo_btn_click_twice_switch_screen(self):
+        """ 验证横竖屏切换，点击快速模式按钮两次 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)

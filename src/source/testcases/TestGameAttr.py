@@ -10,6 +10,7 @@ from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestGameAttr(unittest.TestCase):
+    """ 游戏基本属性模块 """
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -32,8 +33,8 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证游戏名字
     def test_game_name(self):
+        """ 验证游戏名字 """
         sleep(1)
         current_game_name = self.common.get_game_name()
         target_game_name = self.common.game_name
@@ -43,8 +44,8 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证最小线数
     def test_min_line_num(self):
+        """ 验证最小线数 """
         sleep(1)
         current_min_line_num = self.common.get_min_line_num()
         target_min_line_num = self.common.line_num_min
@@ -54,8 +55,8 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证最大线数
     def test_max_line_num(self):
+        """ 验证最大线数 """
         sleep(1)
         current_max_line_num = self.common.get_max_line_num()
         target_max_line_num = self.common.line_num_max
@@ -65,8 +66,8 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证线注
     def test_line_cost(self):
+        """ 验证线注 """
         sleep(1)
         current_line_cost = self.common.get_line_cost_list()
         target_line_cost = self.common.line_cost
@@ -76,8 +77,8 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证自动次数
     def test_auto_game_times(self):
+        """ 验证自动次数 """
         sleep(1)
         current_auto_game_times = self.common.get_auto_game_times_list()
         target_auto_game_times = self.common.auto_game_times

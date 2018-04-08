@@ -10,6 +10,7 @@ from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestAutoGameView(unittest.TestCase):
+    """ 自动游戏设置模块 """
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -26,8 +27,8 @@ class TestAutoGameView(unittest.TestCase):
     #
     #
 
-    # 验证横屏 自动游戏按钮
     def test_auto_game_btn(self):
+        """ 验证横屏自动游戏按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -41,8 +42,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 自动游戏按钮点击后，弹出自动游戏设置面板
     def test_auto_game_btn_click(self):
+        """ 验证横屏点击自动游戏按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -58,8 +59,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 点击灰色蒙板，设置面板消失
     def test_click_mask_view_dispear(self):
+        """ 验证横屏点击灰色蒙板，设置面板消失 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -77,25 +78,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 设置面板显示关闭按钮
-    def test_auto_view_close_btn(self):
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.auto_game_btn_click()
-        sleep(1)
-        visible = self.common.auto_game_view_close_btn_visible()
-        touchable = self.common.auto_game_view_close_btn_touchable()
-        try:
-            self.assertEqual(visible, True, "横屏自动游戏设置面板，没有显示关闭按钮！")
-            self.assertEqual(touchable, True, "横屏自动游戏设置面板，关闭按钮不能点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    #  验证横屏 点击设置面板关闭按钮，面板消失
     def test_close_btn_click(self):
+        """ 验证横屏点击设置面板关闭按钮，面板消失 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -113,8 +97,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 设置面板按钮文字显示
     def test_auto_game_view(self):
+        """ 验证横屏设置面板按钮文字显示 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -133,6 +117,9 @@ class TestAutoGameView(unittest.TestCase):
         start_btn_text = self.common.auto_game_view_start_btn_text()
         start_btn_touchable = self.common.auto_game_view_start_btn_touchable()
 
+        close_btn = self.common.auto_game_view_close_btn_visible()
+        close_btn_touchable = self.common.auto_game_view_close_btn_touchable()
+
         if target_auto_game_time == -1:
             target_auto_game_time = "直到环节"
         else:
@@ -146,12 +133,14 @@ class TestAutoGameView(unittest.TestCase):
             self.assertEqual(start_btn, True, "横屏自动游戏设置面板，不会显示开始按钮！")
             self.assertEqual(start_btn_text, "开始旋转", "横屏自动游戏设置面板，开始按钮文字错误！")
             self.assertEqual(start_btn_touchable, True, "横屏自动游戏设置面板，开始按钮不能点击！")
+            self.assertEqual(close_btn, True, "横屏自动游戏设置面板，没有显示关闭按钮！")
+            self.assertEqual(close_btn_touchable, True, "横屏自动游戏设置面板，关闭按钮不能点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 设置面板改变自动次数，次数显示正确
     def test_change_auto_time(self):
+        """ 验证横屏设置面板改变自动次数，次数显示正确 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -180,8 +169,8 @@ class TestAutoGameView(unittest.TestCase):
                 self.daf.get_screenshot(self.browser)
                 raise
 
-    # 验证横屏 点击开始自动游戏按钮，自动游戏设置面板消失，蒙板消失，滚轴滚动，按钮状态改变
     def test_start_btn_click(self):
+        """ 验证横屏点击开始自动游戏按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -217,8 +206,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横屏 改变自动次数，点击开始旋转按钮
     def test_auto_spin_time(self):
+        """ 验证横屏改变自动次数，点击开始旋转按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -310,8 +299,8 @@ class TestAutoGameView(unittest.TestCase):
                 if y == (loop_time - 1) and game_status is None:
                     break
 
-    # 验证横屏 自动次数为0时停止
     def test_auto_spin_time_is_zero(self):
+        """ 验证横屏自动次数为0时停止 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -414,8 +403,8 @@ class TestAutoGameView(unittest.TestCase):
                 self.daf.get_screenshot(self.browser)
                 raise
 
-    # 验证横屏 自动游戏过程，点击停止按钮，滚轴继续旋转，按钮状态不变
     def test_in_auto_game_click_start_btn(self):
+        """ 验证横屏自动游戏过程，点击停止按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -524,8 +513,8 @@ class TestAutoGameView(unittest.TestCase):
     #
     #
 
-    # 验证竖屏 自动游戏按钮
     def test_auto_game_btn_portrait(self):
+        """ 验证竖屏自动游戏按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -540,8 +529,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 自动游戏按钮点击后，弹出自动游戏设置面板
     def test_auto_game_btn_click_portrait(self):
+        """ 验证竖屏点击自动游戏按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -558,8 +547,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 点击灰色蒙板，设置面板消失
     def test_click_mask_view_dispear_portrait(self):
+        """ 验证竖屏点击灰色蒙板，设置面板消失 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -578,26 +567,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 设置面板显示关闭按钮
-    def test_auto_view_close_btn_portrait(self):
-        self.common.portrait()
-        self.common.loading_bar()
-        sleep(1)
-        self.common.sound_view_yes_btn_click()
-        sleep(1)
-        self.common.auto_game_btn_click()
-        sleep(1)
-        visible = self.common.auto_game_view_close_btn_visible()
-        touchable = self.common.auto_game_view_close_btn_touchable()
-        try:
-            self.assertEqual(visible, True, "竖屏自动游戏设置面板，没有显示关闭按钮！")
-            self.assertEqual(touchable, True, "竖屏自动游戏设置面板，关闭按钮不能点击！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
-
-    #  验证竖屏 点击设置面板关闭按钮，面板消失
     def test_close_btn_click_portrait(self):
+        """ 验证竖屏点击设置面板关闭按钮，面板消失 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -616,8 +587,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 设置面板按钮文字显示
     def test_auto_game_view_portrait(self):
+        """ 验证竖屏设置面板按钮文字显示 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -637,6 +608,9 @@ class TestAutoGameView(unittest.TestCase):
         start_btn_text = self.common.auto_game_view_start_btn_text()
         start_btn_touchable = self.common.auto_game_view_start_btn_touchable()
 
+        close_btn = self.common.auto_game_view_close_btn_visible()
+        close_btn_touchable = self.common.auto_game_view_close_btn_touchable()
+
         if target_auto_game_time == -1:
             target_auto_game_time = "直到环节"
         else:
@@ -650,12 +624,14 @@ class TestAutoGameView(unittest.TestCase):
             self.assertEqual(start_btn, True, "竖屏自动游戏设置面板，不会显示开始按钮！")
             self.assertEqual(start_btn_text, "开始旋转", "竖屏自动游戏设置面板，开始按钮文字错误！")
             self.assertEqual(start_btn_touchable, True, "竖屏自动游戏设置面板，开始按钮不能点击！")
+            self.assertEqual(close_btn, True, "竖屏自动游戏设置面板，没有显示关闭按钮！")
+            self.assertEqual(close_btn_touchable, True, "竖屏自动游戏设置面板，关闭按钮不能点击！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 设置面板改变自动次数，次数显示正确
     def test_change_auto_time_portrait(self):
+        """ 验证竖屏设置面板改变自动次数，次数显示正确 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -685,8 +661,8 @@ class TestAutoGameView(unittest.TestCase):
                 self.daf.get_screenshot(self.browser)
                 raise
 
-    # 验证竖屏 点击开始自动游戏按钮，自动游戏设置面板消失，蒙板消失，滚轴滚动，按钮状态改变
     def test_start_btn_click_portrait(self):
+        """ 验证竖屏点击开始自动游戏按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -723,8 +699,8 @@ class TestAutoGameView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 改变自动次数，点击开始旋转按钮
     def test_auto_spin_time_portrait(self):
+        """ 验证竖屏改变自动次数，点击开始旋转按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -817,8 +793,8 @@ class TestAutoGameView(unittest.TestCase):
                 if y == (loop_time - 1) and game_status is None:
                     break
 
-    # 验证竖屏 自动次数为0时停止
     def test_auto_spin_time_is_zero_portrait(self):
+        """ 验证竖屏自动次数为0时停止 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -922,8 +898,8 @@ class TestAutoGameView(unittest.TestCase):
                 self.daf.get_screenshot(self.browser)
                 raise
 
-    # 验证竖屏 自动游戏过程，点击停止按钮，滚轴继续旋转，按钮状态不变
     def test_in_auto_game_click_start_btn_portrait(self):
+        """ 验证竖屏自动游戏过程，点击停止按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -1033,8 +1009,8 @@ class TestAutoGameView(unittest.TestCase):
     #
     #
 
-    # 验证横竖屏 设置面板改变自动次数，次数显示正确
     def test_change_auto_time_switch_screen(self):
+        """ 验证横竖屏设置面板改变自动次数，次数显示正确 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)
@@ -1065,8 +1041,8 @@ class TestAutoGameView(unittest.TestCase):
                 self.daf.get_screenshot(self.browser)
                 raise
 
-    # 验证横竖屏 改变自动次数，点击开始旋转按钮
     def test_auto_spin_time_switch_screen(self):
+        """ 验证横竖屏改变自动次数，点击开始旋转按钮 """
         self.common.portrait()
         self.common.loading_bar()
         sleep(1)

@@ -10,6 +10,7 @@ from src.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestMainAndComView(unittest.TestCase):
+    """ 主场景视图模块 """
 
     def setUp(self):
         self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
@@ -20,8 +21,8 @@ class TestMainAndComView(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    # 验证横屏 是否正常显示主场景
     def test_main_scence_visible(self):
+        """ 验证横屏显示主场景 """
         self.common.loading_bar()
 
         sleep(1)
@@ -41,8 +42,8 @@ class TestMainAndComView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证竖屏 测试是否正常显示主场景
     def test_main_scence_in_portrait(self):
+        """ 验证竖屏显示主场景 """
         self.common.portrait()
         self.common.loading_bar()
 
@@ -63,8 +64,8 @@ class TestMainAndComView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 主场景显示正常
     def test_main_scence_landscape_switch_screen(self):
+        """ 验证横竖屏主场景显示正常 """
         self.common.loading_bar()
 
         sleep(1)
@@ -102,8 +103,8 @@ class TestMainAndComView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 验证横竖屏 主场景显示正常
     def test_main_scence_portrait_switch_screen(self):
+        """ 验证横竖屏主场景显示正常 """
         self.common.portrait()
         self.common.loading_bar()
 
