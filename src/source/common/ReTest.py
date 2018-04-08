@@ -16,12 +16,13 @@ if __name__ == "__main__":
     startTime = datetime.now()
     # 重复测试5遍
     for i in range(5):
-        print("\n\033[36;0m第 " + str(i + 1) + " 次测试结果：\033[0m")
 
         suite = unittest.TestSuite()
         # 指定某测试类下的某个用例
         suite.addTest(TestAutoGameView("test_auto_spin_time_is_zero_portrait"))
         runner = unittest.TextTestRunner()
+
+        print("\n\033[36;0m第 " + str(i + 1) + " 次测试结果：\033[0m")
         runner.run(suite)
 
         print("\n")
