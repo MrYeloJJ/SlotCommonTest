@@ -67,7 +67,7 @@ class TestMainMenu(unittest.TestCase):
             raise
 
     def test_main_menu_btn_click(self):
-        """ 横屏点击左侧主菜单按钮 """
+        """ 验证横屏点击左侧主菜单按钮 """
         self.common.loading_bar()
         sleep(1)
         self.common.sound_view_yes_btn_click()
