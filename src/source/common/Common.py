@@ -1,7 +1,9 @@
 # coding=utf-8
 
 """"" 公共操作类，包括验证大厅、打开游戏、游戏内按钮点击等操作 """""
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.by import By
 from src.source.common.Config import Config
 from src.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
@@ -35,9 +37,7 @@ class Common(object):
     def get_lobby(self):
         try:
             self.browser.get(self.lobby)
-            sleep(1)
-            title = self.browser.title
-            assert title == "as", "进入大厅失败！"
+            WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -45,7 +45,7 @@ class Common(object):
     # 切换到slot标签页
     def switch_page(self):
         try:
-            sleep(1)
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "type_107")), "等待30秒，找不到slot标签页！")
             self.browser.find_element_by_css_selector("a[href = '#type_107']").click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -54,7 +54,7 @@ class Common(object):
     # 根据游戏名字查找并打开游戏
     def find_game(self):
         try:
-            sleep(1)
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.LINK_TEXT, self.game_name)), "等待30秒，找不到游戏" + self.game_name + "！")
             self.browser.find_element_by_link_text(self.game_name).click()
         except Exception:
             self.daf.get_screenshot(self.browser)
