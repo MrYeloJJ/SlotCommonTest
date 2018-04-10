@@ -23,7 +23,7 @@ class TestMainAndComView(unittest.TestCase):
 
     def test_main_scence_visible(self):
         """ 验证横屏显示主场景 """
-        self.common.loading_bar()
+        self.common.loading_pass()
 
         sleep(1)
         main_view = self.common.main_view_visible()
@@ -45,7 +45,7 @@ class TestMainAndComView(unittest.TestCase):
     def test_main_scence_in_portrait(self):
         """ 验证竖屏显示主场景 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
 
         sleep(1)
         main_view = self.common.main_view_visible()
@@ -66,7 +66,7 @@ class TestMainAndComView(unittest.TestCase):
 
     def test_main_scence_landscape_switch_screen(self):
         """ 验证横竖屏主场景显示正常 """
-        self.common.loading_bar()
+        self.common.loading_pass()
 
         sleep(1)
         main_view = self.common.main_view_visible()
@@ -106,7 +106,7 @@ class TestMainAndComView(unittest.TestCase):
     def test_main_scence_portrait_switch_screen(self):
         """ 验证横竖屏主场景显示正常 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
 
         sleep(1)
         main_view = self.common.main_view_visible()

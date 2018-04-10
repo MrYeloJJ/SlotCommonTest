@@ -312,7 +312,7 @@ class Common(object):
                         raise
 
     # 等待加载完成
-    def loading_bar(self):
+    def loading_pass(self):
         self.wait_for_initialization_dispear()
 
         self.wait_for_loading_bar_completed()

@@ -29,7 +29,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_sound_view(self):
         """ 验证横屏声音窗口内容 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         # 显示
         sound_view_showing = self.common.sound_view_showing()
@@ -67,7 +67,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click(self):
         """ 验证横屏切换按钮点击 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         status = self.common.sound_view_toggle_status()
@@ -79,7 +79,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_twice(self):
         """ 验证横屏点击切换按钮两次 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -93,14 +93,14 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_refresh_imm(self):
         """ 验证横屏点击切换按钮后立刻刷新 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sound_status1 = self.common.sound_status()
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view = self.common.mask_view_showing()
@@ -117,7 +117,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_twice_refresh_imm(self):
         """ 验证横屏点击切换按钮两次后立刻刷新 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -126,7 +126,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.sound_view_showing()
         mask_view = self.common.mask_view_showing()
@@ -143,7 +143,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_refresh(self):
         """ 验证横屏点击切换按钮，窗口自动消失刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sound_status1 = self.common.sound_status()
@@ -151,7 +151,7 @@ class TestSoundView(unittest.TestCase):
         sleep(9)
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view_showing = self.common.mask_view_showing()
@@ -168,7 +168,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_twice_refresh(self):
         """ 验证横屏点击切换按钮两次，窗口自动消失刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -178,7 +178,7 @@ class TestSoundView(unittest.TestCase):
         sleep(9)
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.mask_view_showing()
         mask_view_showing = self.common.mask_view_showing()
@@ -195,7 +195,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_yes_refresh(self):
         """ 验证横屏点击切换按钮，点击是按钮刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.sound_view_yes_btn_click()
@@ -203,7 +203,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view = self.common.mask_view_showing()
@@ -220,7 +220,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_twice_yes_refresh(self):
         """ 验证横屏点击切换按钮两次，点击是按钮刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -230,7 +230,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.sound_view_showing()
         mask_view = self.common.mask_view_showing()
@@ -247,7 +247,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_no_refresh(self):
         """ 验证横屏点击切换按钮，点击否按钮刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.sound_view_no_btn_click()
@@ -255,7 +255,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view = self.common.mask_view_showing()
@@ -272,7 +272,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_twice_no_refresh(self):
         """ 验证横屏点击切换按钮两次，点击否按钮刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -282,7 +282,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.sound_view_showing()
         mask_view = self.common.mask_view_showing()
@@ -299,7 +299,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_yes_btn_click(self):
         """ 验证横屏点击是按钮 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sound_view_dispear = self.common.sound_view_dispear()
@@ -318,7 +318,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_no_btn_click(self):
         """ 验证横屏点击否按钮 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
         sound_view_dispear = self.common.sound_view_dispear()
@@ -337,12 +337,12 @@ class TestSoundView(unittest.TestCase):
 
     def test_turn_on_sound_view_dispear(self):
         """ 验证横屏开启声音刷新，窗口8秒后自动消失 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(9)
         sound_view_dispear = self.common.sound_view_dispear()
         mask_view_showing = self.common.mask_view_showing()
@@ -360,12 +360,12 @@ class TestSoundView(unittest.TestCase):
 
     def test_turn_off_sound_view_dispear(self):
         """ 验证横屏关闭声音刷新，窗口8秒后自动消失 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(9)
         sound_view_dispear = self.common.sound_view_dispear()
         mask_view_showing = self.common.mask_view_showing()
@@ -390,7 +390,7 @@ class TestSoundView(unittest.TestCase):
     def test_sound_view_portrait(self):
         """ 验证竖屏声音窗口内容 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         # 显示
         sound_view_showing = self.common.sound_view_showing()
@@ -429,7 +429,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_portrait(self):
         """ 验证竖屏切换按钮点击 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         status = self.common.sound_view_toggle_status()
@@ -442,7 +442,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_twice_portrait(self):
         """ 验证竖屏点击切换按钮两次 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -457,14 +457,14 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_refresh_imm_portrait(self):
         """ 验证竖屏点击切换按钮后立刻刷新 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sound_status1 = self.common.sound_status()
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view = self.common.mask_view_showing()
@@ -482,7 +482,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_twice_refresh_imm_portrait(self):
         """ 验证竖屏点击切换按钮两次后立刻刷新 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -491,7 +491,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.sound_view_showing()
         mask_view = self.common.mask_view_showing()
@@ -509,7 +509,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_refresh_portrait(self):
         """ 验证竖屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sound_status1 = self.common.sound_status()
@@ -517,7 +517,7 @@ class TestSoundView(unittest.TestCase):
         sleep(9)
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view_showing = self.common.mask_view_showing()
@@ -535,7 +535,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_twice_refresh_portrait(self):
         """ 验证竖屏点击切换按钮两次，窗口自动消失刷新游戏 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -545,7 +545,7 @@ class TestSoundView(unittest.TestCase):
         sleep(9)
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.mask_view_showing()
         mask_view_showing = self.common.mask_view_showing()
@@ -563,7 +563,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_yes_refresh_portrait(self):
         """ 验证竖屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.sound_view_yes_btn_click()
@@ -571,7 +571,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view = self.common.mask_view_showing()
@@ -589,7 +589,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_twice_yes_refresh_portrait(self):
         """ 验证竖屏点击切换按钮两次，点击是按钮刷新游戏 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -599,7 +599,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.sound_view_showing()
         mask_view = self.common.mask_view_showing()
@@ -617,7 +617,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_no_refresh_portrait(self):
         """ 验证竖屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.sound_view_no_btn_click()
@@ -625,7 +625,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         dispear = self.common.sound_view_dispear()
         mask_view = self.common.mask_view_showing()
@@ -643,7 +643,7 @@ class TestSoundView(unittest.TestCase):
     def test_toggle_click_twice_no_refresh_portrait(self):
         """ 验证竖屏点击切换按钮两次，点击否按钮刷新游戏 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sleep(0.5)
@@ -653,7 +653,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.sound_view_showing()
         mask_view = self.common.mask_view_showing()
@@ -671,7 +671,7 @@ class TestSoundView(unittest.TestCase):
     def test_yes_btn_click_portrait(self):
         """ 验证竖屏点击是按钮 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sound_view_dispear = self.common.sound_view_dispear()
@@ -691,7 +691,7 @@ class TestSoundView(unittest.TestCase):
     def test_no_btn_click_portrait(self):
         """ 验证竖屏点击否按钮 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
         sound_view_dispear = self.common.sound_view_dispear()
@@ -711,12 +711,12 @@ class TestSoundView(unittest.TestCase):
     def test_turn_on_sound_portrait(self):
         """ 验证竖屏开启声音刷新，窗口8秒后自动消失 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(9)
         sound_view_dispear = self.common.sound_view_dispear()
         mask_view_showing = self.common.mask_view_showing()
@@ -735,12 +735,12 @@ class TestSoundView(unittest.TestCase):
     def test_turn_off_sound_portrait(self):
         """ 验证竖屏关闭声音刷新，窗口8秒后自动消失 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(9)
         sound_view_dispear = self.common.sound_view_dispear()
         mask_view_showing = self.common.mask_view_showing()
@@ -765,7 +765,7 @@ class TestSoundView(unittest.TestCase):
     def test_sound_view_switch_screen(self):
         """ 验证横竖屏声音窗口内容 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.landscape()
         sleep(1)
@@ -807,7 +807,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_switch_screen(self):
         """ 验证横竖屏点击切换按钮 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.portrait()
@@ -825,14 +825,14 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_refresh_imm_switch_screen(self):
         """ 验证横竖屏点击切换按钮后立刻刷新 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sound_status1 = self.common.sound_status()
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.portrait()
         sleep(1)
@@ -855,7 +855,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_refresh_switch_screen(self):
         """ 验证横竖屏点击切换按钮，窗口自动消失刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         sound_status1 = self.common.sound_status()
@@ -863,7 +863,7 @@ class TestSoundView(unittest.TestCase):
         sleep(9)
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.portrait()
         sleep(1)
@@ -886,7 +886,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_yes_refresh_switch_screen(self):
         """ 验证横竖屏点击切换按钮，点击是按钮刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.sound_view_yes_btn_click()
@@ -894,7 +894,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.portrait()
         sleep(1)
@@ -917,7 +917,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_toggle_click_no_refresh_switch_screen(self):
         """ 验证横竖屏点击切换按钮，点击否按钮刷新游戏 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
         self.common.sound_view_no_btn_click()
@@ -925,7 +925,7 @@ class TestSoundView(unittest.TestCase):
         voice_btn_status1 = self.common.voice_btn_status()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.portrait()
         sleep(1)
@@ -948,7 +948,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_yes_btn_click_switch_screen(self):
         """ 验证横竖屏点击是按钮 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         self.common.portrait()
@@ -973,7 +973,7 @@ class TestSoundView(unittest.TestCase):
 
     def test_no_btn_click_switch_screen(self):
         """ 验证横竖屏点击否按钮 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
         self.common.portrait()
@@ -998,12 +998,12 @@ class TestSoundView(unittest.TestCase):
 
     def test_turn_on_sound_switch_screen(self):
         """ 验证横竖屏开启声音刷新游戏，窗口8秒后自动消失 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(9)
         self.common.portrait()
         sleep(1)
@@ -1027,12 +1027,12 @@ class TestSoundView(unittest.TestCase):
 
     def test_turn_off_sound_switch_screen(self):
         """ 验证横竖屏关闭声音刷新游戏，窗口8秒后自动消失 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
         self.browser.refresh()
         sleep(1)
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(9)
         self.common.portrait()
         sleep(1)

@@ -104,7 +104,7 @@ class TestLoadingView(unittest.TestCase):
 
     def test_loading_view_dispear(self):
         """ 验证横屏在进度条100%后载入消失 """
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.loading_view_dispear()
         try:
@@ -200,7 +200,7 @@ class TestLoadingView(unittest.TestCase):
     def test_loading_view_dispear_portrait(self):
         """ 验证竖屏进度条100%后载入消失 """
         self.common.portrait()
-        self.common.loading_bar()
+        self.common.loading_pass()
         sleep(1)
         showing = self.common.loading_view_dispear()
         try:
@@ -266,7 +266,7 @@ class TestLoadingView(unittest.TestCase):
         self.common.portrait()
         sleep(1)
         self.common.landscape()
-        self.common.loading_bar()
+        self.common.loading_pass()
         self.common.portrait()
         sleep(1)
         showing = self.common.loading_view_dispear()

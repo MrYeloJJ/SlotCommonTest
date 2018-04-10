@@ -17,7 +17,7 @@ class TestGameAttr(unittest.TestCase):
         self.common = Common(self.browser)
         self.common.start()
         self.daf = DirAndFiles()
-        self.common.loading_bar()
+        self.common.loading_pass()
 
     def tearDown(self):
         self.browser.quit()
