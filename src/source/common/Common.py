@@ -260,10 +260,8 @@ class Common(object):
                         self.daf.get_screenshot(self.browser)
                         raise
 
-    # 载入场景进度条
-    def loading_bar(self):
-        self.wait_for_initialization_dispear()
-
+    # 等待加载完成
+    def wait_for_loading_bar_completed(self):
         time = 30
         start_time = datetime.now()
         while True:
@@ -287,6 +285,8 @@ class Common(object):
                         self.daf.get_screenshot(self.browser)
                         raise
 
+    # 等待加载场景消失
+    def wait_for_loading_view_dispear(self):
         time = 30
         start_time = datetime.now()
         while True:
@@ -310,6 +310,14 @@ class Common(object):
                     except AssertionError:
                         self.daf.get_screenshot(self.browser)
                         raise
+
+    # 等待加载完成
+    def loading_bar(self):
+        self.wait_for_initialization_dispear()
+
+        self.wait_for_loading_bar_completed()
+
+        self.wait_for_loading_view_dispear()
 
     #
     #
