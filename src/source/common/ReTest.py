@@ -5,7 +5,7 @@
 import unittest
 from datetime import datetime
 import sys
-from src.source.testcases.TestInfoBar import TestInfoBar
+from src.source.testcases.TestLoadingView import TestLoadingView
 from src.lib.HTMLTestReportCN import DirAndFiles
 
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
         suite = unittest.TestSuite()
         # 指定某测试类下的某个用例
-        suite.addTest(TestInfoBar("test_line_cost_effect_bet_money"))
+        suite.addTest(TestLoadingView("test_loading_view_dispear"))
         runner = unittest.TextTestRunner()
 
         print("\n\033[36;0m第 " + str(i + 1) + " 次测试结果：\033[0m")

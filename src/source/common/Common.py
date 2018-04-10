@@ -137,6 +137,14 @@ class Common(object):
     #
     #
 
+    # 初始化
+    def initialization_exist(self):
+        try:
+            self.browser.find_element_by_id("preloadTip")
+            return True
+        except:
+            return False
+
     # 进入载入场景, [tuple: True, False]
     def loading_view_showing(self):
         try:
@@ -217,9 +225,45 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 载入场景进度条, [str]
+    # 载入场景消失, [tuple: None]
+    def loading_view_dispear(self):
+        try:
+            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                                  + self.add_script + "UIManager.instance.commonView);")
+            return dispear
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 等待初始化消失
+    def wait_for_initialization_dispear(self):
+        time = 30
+        start_time = datetime.now()
+        while True:
+            try:
+                preload_tip = self.initialization_exist()
+            except Exception:
+                self.daf.get_screenshot(self.browser)
+                raise
+
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
+
+            if preload_tip is False:
+                break
+            else:
+                if cost_time >= time:
+                    cost_time = False
+                    try:
+                        assert cost_time is True, "等待" + str(time) + "秒，不会进入loading场景！"
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
+
+    # 载入场景进度条
     def loading_bar(self):
-        sleep(1)
+        self.wait_for_initialization_dispear()
+
         time = 30
         start_time = datetime.now()
         while True:
@@ -243,15 +287,29 @@ class Common(object):
                         self.daf.get_screenshot(self.browser)
                         raise
 
-    # 载入场景消失, [tuple: None]
-    def loading_view_dispear(self):
-        try:
-            dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
-                                                  + self.add_script + "UIManager.instance.commonView);")
-            return dispear
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
+        time = 30
+        start_time = datetime.now()
+        while True:
+            sleep(1)
+            try:
+                dispear = self.loading_view_dispear()
+            except Exception:
+                self.daf.get_screenshot(self.browser)
+                raise
+
+            end_time = datetime.now()
+            cost_time = (end_time - start_time).seconds
+
+            if dispear is None:
+                break
+            else:
+                if cost_time >= time:
+                    cost_time = False
+                    try:
+                        assert cost_time is True, "等待" + str(time) + "秒，loading场景不会消失！"
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
     #
     #

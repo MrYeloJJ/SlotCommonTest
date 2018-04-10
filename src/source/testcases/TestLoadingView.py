@@ -30,7 +30,7 @@ class TestLoadingView(unittest.TestCase):
 
     def test_loading_view_showing(self):
         """ 验证横屏进入载入场景 """
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         showing = self.common.loading_view_showing()
         try:
             self.assertEqual(showing, True, "横屏没有进入载入场景！")
@@ -40,7 +40,7 @@ class TestLoadingView(unittest.TestCase):
 
     def test_loading_view_ui_showing(self):
         """ 验证横屏显示logo、进度条、版本号 """
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         bg = self.common.loading_view_background_visible()
         logo = self.common.loading_view_logo_visible()
         progress_title = self.common.loading_view_progress_title_visible()
@@ -58,7 +58,7 @@ class TestLoadingView(unittest.TestCase):
 
     def test_progress_bar_is_loading(self):
         """ 验证横屏进度条会走动 """
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         time = 0
         title_value1 = self.common.loading_view_progress_title_value()
         bar_value1 = self.common.loading_view_progress_bar_value()
@@ -79,7 +79,7 @@ class TestLoadingView(unittest.TestCase):
 
     def test_loading_bar_complete(self):
         """ 验证横屏进度条走完是100% """
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         start_time = datetime.now()
         while True:
             bar_value = self.common.loading_view_progress_bar_value()
@@ -122,7 +122,7 @@ class TestLoadingView(unittest.TestCase):
     def test_loading_view_showing_portrait(self):
         """ 验证竖屏进入载入场景 """
         self.common.portrait()
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         showing = self.common.loading_view_showing()
         try:
             self.assertEqual(showing, True, "竖屏没有进入载入场景！")
@@ -133,7 +133,7 @@ class TestLoadingView(unittest.TestCase):
     def test_loading_view_ui_showing_portrait(self):
         """ 验证竖屏显示logo、进度条、版本号 """
         self.common.portrait()
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         bg = self.common.loading_view_background_visible()
         logo = self.common.loading_view_logo_visible()
         progress_title = self.common.loading_view_progress_title_visible()
@@ -152,7 +152,7 @@ class TestLoadingView(unittest.TestCase):
     def test_progress_bar_is_loading_portrait(self):
         """ 验证竖屏进度条会走动 """
         self.common.portrait()
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         time = 0
         title_value1 = self.common.loading_view_progress_title_value()
         bar_value1 = self.common.loading_view_progress_bar_value()
@@ -174,7 +174,7 @@ class TestLoadingView(unittest.TestCase):
     def test_loading_bar_complete_portrait(self):
         """ 验证竖屏载入场景进度条走完是100% """
         self.common.portrait()
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         start_time = datetime.now()
         while True:
             bar_value = self.common.loading_view_progress_bar_value()
@@ -222,6 +222,7 @@ class TestLoadingView(unittest.TestCase):
         self.common.landscape()
         sleep(0.5)
         self.common.portrait()
+        self.common.wait_for_initialization_dispear()
         bg = self.common.loading_view_background_visible()
         logo = self.common.loading_view_logo_visible()
         progress_title = self.common.loading_view_progress_title_visible()
@@ -240,7 +241,7 @@ class TestLoadingView(unittest.TestCase):
     def test_progress_bar_is_loading_switch_screen(self):
         """ 验证横竖屏进度条会走动 """
         self.common.portrait()
-        sleep(1)
+        self.common.wait_for_initialization_dispear()
         time = 0
         title_value1 = self.common.loading_view_progress_title_value()
         bar_value1 = self.common.loading_view_progress_bar_value()
