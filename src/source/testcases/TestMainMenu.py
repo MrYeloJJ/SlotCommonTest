@@ -353,9 +353,9 @@ class TestMainMenu(unittest.TestCase):
         spin_status = self.common.spin_is_in_turbo()
         info_bar_banner = self.common.info_bar_view_banner_tips_label()
         try:
-            self.assertEqual(turbo_btn_status, "1x", "横屏关闭快速模式，快速模式按钮状态不是1x！")
-            self.assertEqual(spin_status, False, "横屏关闭快速模式，滚轴滚动方式不是慢速！")
-            self.assertEqual(info_bar_banner, "快速模式已禁用", "横屏关闭快速模式，下导航栏提示文字错误！")
+            self.assertEqual(turbo_btn_status, "1x", "横屏点击快速模式按钮两次，快速模式按钮状态不是1x！")
+            self.assertEqual(spin_status, False, "横屏点击快速模式按钮两次，滚轴滚动方式不是慢速！")
+            self.assertEqual(info_bar_banner, "快速模式已禁用", "横屏点击快速模式按钮两次，下导航栏提示文字错误！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -629,18 +629,66 @@ class TestMainMenu(unittest.TestCase):
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
-        self.common.turbo_btn_click()
-        sleep(0.5)
-        turbo_btn_status = self.common.turbo_btn_status()
-        spin_status = self.common.spin_is_in_turbo()
-        info_bar_banner = self.common.info_bar_view_banner_tips_label()
-        try:
-            self.assertEqual(turbo_btn_status, "2x", "竖屏启动快速模式，快速模式按钮状态不是2x！")
-            self.assertEqual(spin_status, True, "竖屏启动快速模式，滚轴滚动方式不是快速！")
-            self.assertEqual(info_bar_banner, "快速模式已启用", "竖屏启动快速模式，下导航栏提示文字错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+
+        while True:
+            start_time = datetime.now()
+            self.common.start_btn_click()
+            self.common.wait_for_rolling(15)
+            speed_up = self.common.get_scroller_speed_up()
+            self.common.wait_for_stop(15, just_rolling=True)
+            end_time = datetime.now()
+            self.common.wait_for_stop(15)
+
+            normal_spin_time = (end_time - start_time).seconds
+
+            game_status = self.common.get_game_current_status()
+            if game_status is not None or speed_up is True:
+                self.browser.refresh()
+                self.common.loading_pass()
+                sleep(1)
+                self.common.sound_view_yes_btn_click()
+                sleep(1)
+                continue
+            else:
+
+                sleep(1)
+                self.common.main_menu_btn_click()
+                sleep(1)
+
+                self.common.turbo_btn_click()
+                sleep(0.5)
+                turbo_btn_status = self.common.turbo_btn_status()
+                spin_status = self.common.spin_is_in_turbo()
+                info_bar_banner = self.common.info_bar_view_banner_tips_label()
+
+                start_time = datetime.now()
+                self.common.start_btn_click()
+                self.common.wait_for_rolling(15)
+                speed_up = self.common.get_scroller_speed_up()
+                self.common.wait_for_stop(15, just_rolling=True)
+                end_time = datetime.now()
+                self.common.wait_for_stop(15)
+
+                turbo_spin_time = (end_time - start_time).seconds
+
+                game_status = self.common.get_game_current_status()
+                if game_status is not None or speed_up is True:
+                    self.browser.refresh()
+                    self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
+                    sleep(1)
+                    continue
+                else:
+                    try:
+                        self.assertEqual(turbo_btn_status, "2x", "竖屏启动快速模式，快速模式按钮状态不是2x！")
+                        self.assertEqual(spin_status, True, "竖屏启动快速模式，滚轴滚动方式不是快速！")
+                        self.assertEqual(info_bar_banner, "快速模式已启用", "竖屏启动快速模式，下导航栏提示文字错误！")
+                        self.assertEqual(turbo_spin_time < normal_spin_time, True, "竖屏启动快速模式，滚轴停止速度不会变快！")
+                        break
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
     def test_turbo_btn_click_twice_portrait(self):
         """验证竖屏点击快速模式按钮两次 """
@@ -657,9 +705,9 @@ class TestMainMenu(unittest.TestCase):
         spin_status = self.common.spin_is_in_turbo()
         info_bar_banner = self.common.info_bar_view_banner_tips_label()
         try:
-            self.assertEqual(turbo_btn_status, "1x", "竖屏关闭快速模式，快速模式按钮状态不是1x！")
-            self.assertEqual(spin_status, False, "竖屏关闭快速模式，滚轴滚动方式不是慢速！")
-            self.assertEqual(info_bar_banner, "快速模式已禁用", "竖屏关闭快速模式，下导航栏提示文字错误！")
+            self.assertEqual(turbo_btn_status, "1x", "竖屏点击快速模式按钮两次，快速模式按钮状态不是1x！")
+            self.assertEqual(spin_status, False, "竖屏点击快速模式按钮两次，滚轴滚动方式不是慢速！")
+            self.assertEqual(info_bar_banner, "快速模式已禁用", "竖屏点击快速模式按钮两次，下导航栏提示文字错误！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -930,21 +978,70 @@ class TestMainMenu(unittest.TestCase):
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
-        self.common.landscape()
-        sleep(1)
-        self.common.turbo_btn_click()
-        self.common.portrait()
-        sleep(0.5)
-        turbo_btn_status = self.common.turbo_btn_status()
-        spin_status = self.common.spin_is_in_turbo()
-        info_bar_banner = self.common.info_bar_view_banner_tips_label()
-        try:
-            self.assertEqual(turbo_btn_status, "2x", "横竖屏切换，启动快速模式，竖屏快速模式按钮状态不是2x！")
-            self.assertEqual(spin_status, True, "横竖屏切换，启动快速模式，竖屏滚轴滚动方式不是快速！")
-            self.assertEqual(info_bar_banner, "快速模式已启用", "横竖屏切换，启动快速模式，下导航栏提示文字错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+
+        while True:
+            sleep(1)
+            start_time = datetime.now()
+            self.common.start_btn_click()
+            self.common.wait_for_rolling(15)
+            speed_up = self.common.get_scroller_speed_up()
+            self.common.wait_for_stop(15, just_rolling=True)
+            end_time = datetime.now()
+            self.common.wait_for_stop(15)
+
+            normal_spin_time = (end_time - start_time).seconds
+
+            game_status = self.common.get_game_current_status()
+            if game_status is not None or speed_up is True:
+                self.browser.refresh()
+                self.common.portrait()
+                self.common.loading_pass()
+                sleep(1)
+                self.common.sound_view_yes_btn_click()
+                sleep(1)
+                continue
+            else:
+                self.common.landscape()
+                sleep(1)
+                self.common.main_menu_btn_click()
+                sleep(1)
+
+                self.common.turbo_btn_click()
+                self.common.portrait()
+                sleep(0.5)
+                turbo_btn_status = self.common.turbo_btn_status()
+                spin_status = self.common.spin_is_in_turbo()
+                info_bar_banner = self.common.info_bar_view_banner_tips_label()
+
+                start_time = datetime.now()
+                self.common.start_btn_click()
+                self.common.wait_for_rolling(15)
+                speed_up = self.common.get_scroller_speed_up()
+                self.common.wait_for_stop(15, just_rolling=True)
+                end_time = datetime.now()
+                self.common.wait_for_stop(15)
+
+                turbo_spin_time = (end_time - start_time).seconds
+
+                game_status = self.common.get_game_current_status()
+                if game_status is not None or speed_up is True:
+                    self.browser.refresh()
+                    self.common.portrait()
+                    self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
+                    sleep(1)
+                    continue
+                else:
+                    try:
+                        self.assertEqual(turbo_btn_status, "2x", "横竖屏切换，启动快速模式，快速模式按钮状态不是2x！")
+                        self.assertEqual(spin_status, True, "横竖屏切换，启动快速模式，滚轴滚动方式不是快速！")
+                        self.assertEqual(info_bar_banner, "快速模式已启用", "横竖屏切换，启动快速模式，下导航栏提示文字错误！")
+                        self.assertEqual(turbo_spin_time < normal_spin_time, True, "横竖屏切换，启动快速模式，滚轴停止速度不会变快！")
+                        break
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
     def test_turbo_btn_click_twice_switch_screen(self):
         """ 验证横竖屏切换，点击快速模式按钮两次 """
@@ -953,20 +1050,18 @@ class TestMainMenu(unittest.TestCase):
         sleep(1)
         self.common.sound_view_yes_btn_click()
         sleep(1)
+        self.common.turbo_btn_click()
+        sleep(1)
+        self.common.turbo_btn_click()
         self.common.landscape()
-        sleep(1)
-        self.common.turbo_btn_click()
-        sleep(1)
-        self.common.turbo_btn_click()
-        self.common.portrait()
         sleep(0.5)
         turbo_btn_status = self.common.turbo_btn_status()
         spin_status = self.common.spin_is_in_turbo()
         info_bar_banner = self.common.info_bar_view_banner_tips_label()
         try:
-            self.assertEqual(turbo_btn_status, "1x", "横竖屏切换，点击快速模式按钮两次，竖屏快速模式按钮状态不是1x！")
-            self.assertEqual(spin_status, False, "横竖屏切换，点击快速模式按钮两次，竖屏滚轴滚动方式不是普通！")
-            self.assertEqual(info_bar_banner, "快速模式已禁用", "横竖屏切换，关闭快速模式，下导航栏提示文字错误！")
+            self.assertEqual(turbo_btn_status, "1x", "竖屏点击快速模式按钮两次，快速模式按钮状态不是1x！")
+            self.assertEqual(spin_status, False, "竖屏点击快速模式按钮两次，滚轴滚动方式不是慢速！")
+            self.assertEqual(info_bar_banner, "快速模式已禁用", "竖屏点击快速模式按钮两次，下导航栏提示文字错误！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
