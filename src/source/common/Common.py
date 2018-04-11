@@ -385,6 +385,15 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 快要中免费或小游戏之前的列加速, [tuple: True, False]
+    def get_scroller_speed_up(self):
+        try:
+            status = self.browser.execute_script("return " + self.add_script + "UIManager.instance.mainView.slotMachine.scroller.ruleTaskManager.ruleMap.values[0].task.isRunning;")
+            return status
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     # 等待滚轴滚动
     def wait_for_rolling(self, time):
         start_time = datetime.now()
@@ -395,10 +404,15 @@ class Common(object):
             cost_time = (end_time - start_time).seconds
 
             if slot_status:
-                return True
+                break
             else:
                 if cost_time >= time:
-                    return False
+                    cost_time = False
+                    try:
+                        assert cost_time is True, "等待" + time + "秒，滚轴不会旋转！"
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
     # 等待滚轴停止
     def wait_for_stop(self, time):
@@ -411,10 +425,15 @@ class Common(object):
             cost_time = (end_time - start_time).seconds
 
             if slot_status is False and mask_status is False:
-                return True
+                break
             else:
                 if cost_time >= time:
-                    return False
+                    cost_time = False
+                    try:
+                        assert cost_time is True, "等待" + time + "秒，滚轴不会停止！"
+                    except AssertionError:
+                        self.daf.get_screenshot(self.browser)
+                        raise
 
     #
     #
