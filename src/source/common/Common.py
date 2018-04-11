@@ -137,14 +137,6 @@ class Common(object):
     #
     #
 
-    # 初始化
-    def initialization_exist(self):
-        try:
-            self.browser.find_element_by_id("preloadTip")
-            return True
-        except:
-            return False
-
     # 进入载入场景, [tuple: True, False]
     def loading_view_showing(self):
         try:
@@ -235,23 +227,19 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 等待初始化消失
-    def wait_for_initialization_dispear(self):
+    # 等待进入加载场景
+    def wait_for_loading_view_showing(self):
         time = 30
         start_time = datetime.now()
         while True:
             try:
-                preload_tip = self.initialization_exist()
-            except Exception:
-                self.daf.get_screenshot(self.browser)
-                raise
-
-            end_time = datetime.now()
-            cost_time = (end_time - start_time).seconds
-
-            if preload_tip is False:
+                self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
+                                            + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
                 break
-            else:
+            except:
+                end_time = datetime.now()
+                cost_time = (end_time - start_time).seconds
+
                 if cost_time >= time:
                     cost_time = False
                     try:
@@ -313,7 +301,7 @@ class Common(object):
 
     # 等待加载完成
     def loading_pass(self):
-        self.wait_for_initialization_dispear()
+        self.wait_for_loading_view_showing()
 
         self.wait_for_loading_bar_completed()
 

@@ -4,7 +4,7 @@
 
 import unittest
 import sys
-from src.source.testcases.TestLoadingView import TestLoadingView
+from src.source.testcases.TestSoundView import TestSoundView
 from src.lib.HTMLTestReportCN import DirAndFiles
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
         suite = unittest.TestSuite()
         # 指定某测试类下的某个用例
-        suite.addTest(TestLoadingView("test_loading_view_dispear"))
+        suite.addTest(TestSoundView("test_toggle_click_twice"))
         runner = unittest.TextTestRunner()
 
         print("\n\033[36;0m第 " + str(i + 1) + " 次测试结果：\033[0m")
