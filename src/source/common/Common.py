@@ -415,25 +415,44 @@ class Common(object):
                         raise
 
     # 等待滚轴停止
-    def wait_for_stop(self, time):
-        start_time = datetime.now()
-        while True:
-            slot_status = self.slot_machine_rolling()
-            mask_status = self.mask_view_showing()
+    def wait_for_stop(self, time, just_rolling=False):
+        if just_rolling:
+            start_time = datetime.now()
+            while True:
+                slot_status = self.slot_machine_rolling()
 
-            end_time = datetime.now()
-            cost_time = (end_time - start_time).seconds
+                end_time = datetime.now()
+                cost_time = (end_time - start_time).seconds
 
-            if slot_status is False and mask_status is False:
-                break
-            else:
-                if cost_time >= time:
-                    cost_time = False
-                    try:
-                        assert cost_time is True, "等待" + time + "秒，滚轴不会停止！"
-                    except AssertionError:
-                        self.daf.get_screenshot(self.browser)
-                        raise
+                if slot_status is False:
+                    break
+                else:
+                    if cost_time >= time:
+                        cost_time = False
+                        try:
+                            assert cost_time is True, "等待" + time + "秒，滚轴不会停止！"
+                        except AssertionError:
+                            self.daf.get_screenshot(self.browser)
+                            raise
+        else:
+            start_time = datetime.now()
+            while True:
+                slot_status = self.slot_machine_rolling()
+                mask_status = self.mask_view_showing()
+
+                end_time = datetime.now()
+                cost_time = (end_time - start_time).seconds
+
+                if slot_status is False and mask_status is False:
+                    break
+                else:
+                    if cost_time >= time:
+                        cost_time = False
+                        try:
+                            assert cost_time is True, "等待" + time + "秒，滚轴不会停止！"
+                        except AssertionError:
+                            self.daf.get_screenshot(self.browser)
+                            raise
 
     #
     #
