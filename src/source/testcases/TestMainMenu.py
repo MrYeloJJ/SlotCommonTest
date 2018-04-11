@@ -286,6 +286,8 @@ class TestMainMenu(unittest.TestCase):
             speed_up = self.common.get_scroller_speed_up()
             self.common.wait_for_stop(15, just_rolling=True)
             end_time = datetime.now()
+            self.common.wait_for_stop(15)
+
             normal_spin_time = (end_time - start_time).seconds
 
             game_status = self.common.get_game_current_status()
@@ -314,9 +316,9 @@ class TestMainMenu(unittest.TestCase):
                 speed_up = self.common.get_scroller_speed_up()
                 self.common.wait_for_stop(15, just_rolling=True)
                 end_time = datetime.now()
-                turbo_spin_time = (end_time - start_time).seconds
+                self.common.wait_for_stop(15)
 
-                spin_time = turbo_spin_time < normal_spin_time
+                turbo_spin_time = (end_time - start_time).seconds
 
                 game_status = self.common.get_game_current_status()
                 if game_status is not None or speed_up is True:
@@ -331,7 +333,7 @@ class TestMainMenu(unittest.TestCase):
                         self.assertEqual(turbo_btn_status, "2x", "横屏启动快速模式，快速模式按钮状态不是2x！")
                         self.assertEqual(spin_status, True, "横屏启动快速模式，滚轴滚动方式不是快速！")
                         self.assertEqual(info_bar_banner, "快速模式已启用", "横屏启动快速模式，下导航栏提示文字错误！")
-                        self.assertEqual(spin_time, True, "横屏启动快速模式，滚轴停止速度不会变快！")
+                        self.assertEqual(turbo_spin_time < normal_spin_time, True, "横屏启动快速模式，滚轴停止速度不会变快！")
                         break
                     except AssertionError:
                         self.daf.get_screenshot(self.browser)
