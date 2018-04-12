@@ -233,7 +233,7 @@ table       { font-size: 100%; }
                 innerSize: '80%',
                 name: '比例',
                 data: [
-                    ['通过', 151],
+                    ['通过', 162],
                     {
                         name: '失败',
                         y: 1,
@@ -375,9 +375,9 @@ function html_escape(s) {
 <div style="width: 650px; float: left;">
     <h1 style="font-family: Microsoft YaHei">【希腊传说】公共模块测试报告</h1>
     <p class='attribute'><strong>测试人员 : </strong> Gelomen</p>
-<p class='attribute'><strong>开始时间 : </strong> 2018-04-08 18:04:29</p>
-<p class='attribute'><strong>合计耗时 : </strong> 1:07:31.846485</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 152，通过 151，失败 1，通过率 = 99.34%</p>
+<p class='attribute'><strong>开始时间 : </strong> 2018-04-12 00:25:13</p>
+<p class='attribute'><strong>合计耗时 : </strong> 1:09:08.662747</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 163，通过 162，失败 1，通过率 = 99.39%</p>
 <p class='attribute'><strong>失败用例合集 : </strong> <div class='panel-default' style='float: left;'><a class='showDetail' data-toggle='collapse' href='#failCaseOl' style='text-decoration: none;'>点击查看</a></div><ol id='failCaseOl' class='collapse' style='float: left;'><li>test_game_name (TestGameAttr.TestGameAttr)</li></ol></p>
 <p class='attribute'><strong>错误用例合集 : </strong> <ol style='float: left;'>无</ol></p>
 
@@ -390,11 +390,11 @@ function html_escape(s) {
 
 <div style="width: 500px; clear: both;">
 <p id='show_detail_line'>
-<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 99.34% }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 151 }</a>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 99.39% }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 162 }</a>
 <a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 1 }</a>
 <a class="btn btn-warning" href='javascript:showCase(3)'>错误{ 0 }</a>
-<a class="btn btn-info" href='javascript:showCase(4)'>所有{ 152 }</a>
+<a class="btn btn-info" href='javascript:showCase(4)'>所有{ 163 }</a>
 </p>
 </div>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
@@ -426,7 +426,7 @@ function html_escape(s) {
     <td class="text-center">23</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">1100.97秒</td>
+    <td class="text-center">1169.07秒</td>
     <td class="text-center"><a href="javascript:showClassDetail('c1',23)" class="detail" id='c1'>详细</a></td>
 </tr>
 
@@ -598,7 +598,7 @@ function html_escape(s) {
     <td class="text-center">5</td>
     <td class="text-center">1</td>
     <td class="text-center">0</td>
-    <td class="text-center">105.9秒</td>
+    <td class="text-center">91.87秒</td>
     <td class="text-center"><a href="javascript:showClassDetail('c2',6)" class="detail" id='c2'>详细</a></td>
 </tr>
 
@@ -629,7 +629,7 @@ function html_escape(s) {
     <div id='div_ft2_3' class="collapse in">
     <pre style="text-align:left">
     
-ft2_3: errorImg[1.png]errorImg, browser[chrome(64.0.3282.186)]browser
+ft2_3: errorImg[1.png]errorImg, browser[chrome(65.0.3325.181)]browser
 Traceback (most recent call last):
   File "E:\Gelomen\PycharmProjects\SlotCommonTest\src\source\testcases\TestGameAttr.py", line 42, in test_game_name
     self.assertEqual(current_game_name, target_game_name, "游戏名字错误！")
@@ -642,7 +642,7 @@ AssertionError: '希腊众神' != '希腊传说'
     </pre>
     </div>
     </td>
-    <td class="text-center" style="vertical-align: middle"><div id='div_ft2_3_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(64.0.3282.186)</div></br>截图：</br><a class="screenshot" href="javascript:void(0)" img="image/1.png">img_1.png</a></div></td>
+    <td class="text-center" style="vertical-align: middle"><div id='div_ft2_3_screenshot' class="collapse in">浏览器版本：<div style="color: brown;">chrome(65.0.3325.181)</div></br>截图：</br><a class="screenshot" href="javascript:void(0)" img="image/1.png">img_1.png</a></div></td>
 </tr>
 
 <tr id='pt2_4' class='hiddenRow'>
@@ -667,101 +667,175 @@ AssertionError: '希腊众神' != '希腊传说'
 </tr>
 
 <tr class='passClass warning'>
+    <td>TestInfoBar.TestInfoBar</td>
+    <td> 下导航栏模块 </td>
+    <td class="text-center">9</td>
+    <td class="text-center">9</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center">198.26秒</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c3',9)" class="detail" id='c3'>详细</a></td>
+</tr>
+
+<tr id='pt3_1' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_bar_default</div></td>
+    <td style="vertical-align: left">验证横屏下导航栏内容</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_2' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_bar_default_portrait</div></td>
+    <td style="vertical-align: left">验证竖屏下导航栏内容</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_3' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_bar_default_switch_screen</div></td>
+    <td style="vertical-align: left">验证横竖屏下导航栏内容</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_4' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_effect_bet_money</div></td>
+    <td style="vertical-align: left">验证横屏点击线注按钮后计算总赌注</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_5' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_effect_bet_money_portrait</div></td>
+    <td style="vertical-align: left">验证竖屏点击线注按钮后计算总赌注</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_6' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_effect_bet_money_switch_screen</div></td>
+    <td style="vertical-align: left">验证横竖屏点击线注按钮后计算总赌注</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_7' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_effect_bet_money</div></td>
+    <td style="vertical-align: left">验证横屏点击线数按钮后计算总赌注</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_8' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_effect_bet_money_portrait</div></td>
+    <td style="vertical-align: left">验证竖屏点击线数按钮后计算总赌注</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt3_9' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_effect_bet_money_switch_screen</div></td>
+    <td style="vertical-align: left">验证横竖屏点击线数按钮后计算总赌注</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr class='passClass warning'>
     <td>TestLoadingView.TestLoadingView</td>
     <td> 载入场景模块 </td>
     <td class="text-center">13</td>
     <td class="text-center">13</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">203.13秒</td>
-    <td class="text-center"><a href="javascript:showClassDetail('c3',13)" class="detail" id='c3'>详细</a></td>
+    <td class="text-center">160.4秒</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c4',13)" class="detail" id='c4'>详细</a></td>
 </tr>
 
-<tr id='pt3_1' class='hiddenRow'>
+<tr id='pt4_1' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_bar_complete</div></td>
     <td style="vertical-align: left">验证横屏进度条走完是100%</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_2' class='hiddenRow'>
+<tr id='pt4_2' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_bar_complete_portrait</div></td>
     <td style="vertical-align: left">验证竖屏载入场景进度条走完是100%</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_3' class='hiddenRow'>
+<tr id='pt4_3' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_dispear</div></td>
     <td style="vertical-align: left">验证横屏在进度条100%后载入消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_4' class='hiddenRow'>
+<tr id='pt4_4' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_dispear_portrait</div></td>
     <td style="vertical-align: left">验证竖屏进度条100%后载入消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_5' class='hiddenRow'>
+<tr id='pt4_5' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_dispear_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏载入场景进度条100%后消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_6' class='hiddenRow'>
+<tr id='pt4_6' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_showing</div></td>
     <td style="vertical-align: left">验证横屏进入载入场景</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_7' class='hiddenRow'>
+<tr id='pt4_7' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_showing_portrait</div></td>
     <td style="vertical-align: left">验证竖屏进入载入场景</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_8' class='hiddenRow'>
+<tr id='pt4_8' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_showing_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏显示logo、进度条、版本号</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_9' class='hiddenRow'>
+<tr id='pt4_9' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_ui_showing</div></td>
     <td style="vertical-align: left">验证横屏显示logo、进度条、版本号</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_10' class='hiddenRow'>
+<tr id='pt4_10' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_loading_view_ui_showing_portrait</div></td>
     <td style="vertical-align: left">验证竖屏显示logo、进度条、版本号</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_11' class='hiddenRow'>
+<tr id='pt4_11' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_progress_bar_is_loading</div></td>
     <td style="vertical-align: left">验证横屏进度条会走动</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_12' class='hiddenRow'>
+<tr id='pt4_12' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_progress_bar_is_loading_portrait</div></td>
     <td style="vertical-align: left">验证竖屏进度条会走动</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt3_13' class='hiddenRow'>
+<tr id='pt4_13' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_progress_bar_is_loading_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏进度条会走动</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
@@ -775,32 +849,32 @@ AssertionError: '希腊众神' != '希腊传说'
     <td class="text-center">4</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">73.02秒</td>
-    <td class="text-center"><a href="javascript:showClassDetail('c4',4)" class="detail" id='c4'>详细</a></td>
+    <td class="text-center">65.21秒</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c5',4)" class="detail" id='c5'>详细</a></td>
 </tr>
 
-<tr id='pt4_1' class='hiddenRow'>
+<tr id='pt5_1' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_scence_in_portrait</div></td>
     <td style="vertical-align: left">验证竖屏显示主场景</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt4_2' class='hiddenRow'>
+<tr id='pt5_2' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_scence_landscape_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏主场景显示正常</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt4_3' class='hiddenRow'>
+<tr id='pt5_3' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_scence_portrait_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏主场景显示正常</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt4_4' class='hiddenRow'>
+<tr id='pt5_4' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_scence_visible</div></td>
     <td style="vertical-align: left">验证横屏显示主场景</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
@@ -810,267 +884,281 @@ AssertionError: '希腊众神' != '希腊传说'
 <tr class='passClass warning'>
     <td>TestMainMenu.TestMainMenu</td>
     <td> 左侧选项菜单模块 </td>
-    <td class="text-center">37</td>
-    <td class="text-center">37</td>
+    <td class="text-center">39</td>
+    <td class="text-center">39</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">749.38秒</td>
-    <td class="text-center"><a href="javascript:showClassDetail('c5',37)" class="detail" id='c5'>详细</a></td>
+    <td class="text-center">766.45秒</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c6',39)" class="detail" id='c6'>详细</a></td>
 </tr>
 
-<tr id='pt5_1' class='hiddenRow'>
+<tr id='pt6_1' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击帮助按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_2' class='hiddenRow'>
+<tr id='pt6_2' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击帮助按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_3' class='hiddenRow'>
+<tr id='pt6_3' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_view_return_btn</div></td>
     <td style="vertical-align: left">验证横屏帮助场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_4' class='hiddenRow'>
+<tr id='pt6_4' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_view_return_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击帮助场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_5' class='hiddenRow'>
+<tr id='pt6_5' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_view_return_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击帮助场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_6' class='hiddenRow'>
+<tr id='pt6_6' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_view_return_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击帮助场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_7' class='hiddenRow'>
+<tr id='pt6_7' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_view_return_btn_portrait</div></td>
     <td style="vertical-align: left">验证竖屏帮助场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_8' class='hiddenRow'>
+<tr id='pt6_8' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_help_view_return_btn_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，帮助场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_9' class='hiddenRow'>
+<tr id='pt6_9' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击奖金表按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_10' class='hiddenRow'>
+<tr id='pt6_10' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击奖金表按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_11' class='hiddenRow'>
+<tr id='pt6_11' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_view_return_btn</div></td>
     <td style="vertical-align: left">验证横屏奖金表场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_12' class='hiddenRow'>
+<tr id='pt6_12' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_view_return_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击奖金表返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_13' class='hiddenRow'>
+<tr id='pt6_13' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_view_return_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击奖金表返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_14' class='hiddenRow'>
+<tr id='pt6_14' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_view_return_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击奖金表返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_15' class='hiddenRow'>
+<tr id='pt6_15' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_view_return_btn_portrait</div></td>
     <td style="vertical-align: left">验证竖屏奖金表场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_16' class='hiddenRow'>
+<tr id='pt6_16' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_info_view_return_btn_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，奖金表场景返回按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_17' class='hiddenRow'>
+<tr id='pt6_17' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_btn_click</div></td>
-    <td style="vertical-align: left">横屏点击左侧主菜单按钮</td>
+    <td style="vertical-align: left">验证横屏点击左侧主菜单按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_18' class='hiddenRow'>
+<tr id='pt6_18' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击左侧主菜单按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_19' class='hiddenRow'>
+<tr id='pt6_19' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击左侧主菜单按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_20' class='hiddenRow'>
+<tr id='pt6_20' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_btn_click_twice</div></td>
     <td style="vertical-align: left">验证横屏点击左侧主菜单按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_21' class='hiddenRow'>
+<tr id='pt6_21' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_btn_click_twice_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击左侧主菜单按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_22' class='hiddenRow'>
+<tr id='pt6_22' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_btn_click_twice_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击左侧主菜单按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_23' class='hiddenRow'>
+<tr id='pt6_23' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_default_portrait</div></td>
     <td style="vertical-align: left">验证竖屏左侧主菜单及按钮的默认状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_24' class='hiddenRow'>
+<tr id='pt6_24' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_default_status</div></td>
     <td style="vertical-align: left">验证横屏左侧主菜单及按钮的默认状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_25' class='hiddenRow'>
+<tr id='pt6_25' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_main_menu_default_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，左侧主菜单状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_26' class='hiddenRow'>
+<tr id='pt6_26' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击快速模式按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_27' class='hiddenRow'>
+<tr id='pt6_27' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击快速模式按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_28' class='hiddenRow'>
+<tr id='pt6_28' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击快速模式按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_29' class='hiddenRow'>
+<tr id='pt6_29' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_click_twice</div></td>
+    <td style="vertical-align: left">验证横屏点击快速模式按钮两次</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt6_30' class='hiddenRow'>
+    <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_click_twice_portrait</div></td>
+    <td style="vertical-align: left">验证竖屏点击快速模式按钮两次</td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+    <td class='passCase' style="vertical-align: middle"></td>
+</tr>
+
+<tr id='pt6_31' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_click_twice_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击快速模式按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_30' class='hiddenRow'>
+<tr id='pt6_32' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_default</div></td>
     <td style="vertical-align: left">验证横屏快速模式按钮默认状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_31' class='hiddenRow'>
+<tr id='pt6_33' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turbo_btn_default_portrait</div></td>
     <td style="vertical-align: left">验证竖屏快速模式按钮默认状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_32' class='hiddenRow'>
+<tr id='pt6_34' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_voice_btn_click</div></td>
     <td style="vertical-align: left">验证横屏声音开关按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_33' class='hiddenRow'>
+<tr id='pt6_35' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_voice_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击声音开关按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_34' class='hiddenRow'>
+<tr id='pt6_36' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_voice_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击声音开关按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_35' class='hiddenRow'>
+<tr id='pt6_37' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_voice_btn_click_twice</div></td>
     <td style="vertical-align: left">验证横屏点击两次声音开关按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_36' class='hiddenRow'>
+<tr id='pt6_38' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_voice_btn_click_twice_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击两次声音开关按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt5_37' class='hiddenRow'>
+<tr id='pt6_39' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_voice_btn_click_twice_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏切换，点击声音开关按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
@@ -1084,207 +1172,207 @@ AssertionError: '希腊众神' != '希腊传说'
     <td class="text-center">29</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">852.15秒</td>
-    <td class="text-center"><a href="javascript:showClassDetail('c6',29)" class="detail" id='c6'>详细</a></td>
+    <td class="text-center">791.65秒</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c7',29)" class="detail" id='c7'>详细</a></td>
 </tr>
 
-<tr id='pt6_1' class='hiddenRow'>
+<tr id='pt7_1' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_click_close_btn_view_dispear</div></td>
     <td style="vertical-align: left">验证横屏点击关闭按钮面板消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_2' class='hiddenRow'>
+<tr id='pt7_2' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_click_close_btn_view_dispear_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击关闭按钮面板消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_3' class='hiddenRow'>
+<tr id='pt7_3' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_click_mask_setting_view_dispear</div></td>
     <td style="vertical-align: left">验证横屏点击蒙板可以关闭面板</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_4' class='hiddenRow'>
+<tr id='pt7_4' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_click_mask_setting_view_dispear_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击蒙板可以关闭面板</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_5' class='hiddenRow'>
+<tr id='pt7_5' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_min_btn_click</div></td>
     <td style="vertical-align: left">验证横屏面板线注 - 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_6' class='hiddenRow'>
+<tr id='pt7_6' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_min_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏面板线注 - 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_7' class='hiddenRow'>
+<tr id='pt7_7' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_min_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏面板线注 - 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_8' class='hiddenRow'>
+<tr id='pt7_8' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_plus_btn_click</div></td>
     <td style="vertical-align: left">验证横屏面板线注 + 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_9' class='hiddenRow'>
+<tr id='pt7_9' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_plus_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏面板线注 + 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_10' class='hiddenRow'>
+<tr id='pt7_10' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_cost_plus_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏面板线注 + 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_11' class='hiddenRow'>
+<tr id='pt7_11' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_min_btn_click</div></td>
     <td style="vertical-align: left">验证横屏面板线数 - 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_12' class='hiddenRow'>
+<tr id='pt7_12' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_min_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏面板线数 - 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_13' class='hiddenRow'>
+<tr id='pt7_13' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_min_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏面板线数 - 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_14' class='hiddenRow'>
+<tr id='pt7_14' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_plus_btn_click</div></td>
     <td style="vertical-align: left">验证横屏面板线数 + 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_15' class='hiddenRow'>
+<tr id='pt7_15' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_plus_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏面板线数 + 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_16' class='hiddenRow'>
+<tr id='pt7_16' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_plus_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏面板线数 + 按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_17' class='hiddenRow'>
+<tr id='pt7_17' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_line_num_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏面板线数标题文字按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_18' class='hiddenRow'>
+<tr id='pt7_18' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_btn_click_show_view</div></td>
     <td style="vertical-align: left">验证横屏点击线数线注设置按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_19' class='hiddenRow'>
+<tr id='pt7_19' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_btn_click_show_view_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击线数线注设置按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_20' class='hiddenRow'>
+<tr id='pt7_20' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_btn_visible</div></td>
     <td style="vertical-align: left">验证横屏显示线数线注设置按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_21' class='hiddenRow'>
+<tr id='pt7_21' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_btn_visible_portrait</div></td>
     <td style="vertical-align: left">验证竖屏显示线数线注设置按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_22' class='hiddenRow'>
+<tr id='pt7_22' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_btn_visible_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏线数线注按钮显示</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_23' class='hiddenRow'>
+<tr id='pt7_23' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_view_btn_status</div></td>
     <td style="vertical-align: left">验证横屏面板按钮状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_24' class='hiddenRow'>
+<tr id='pt7_24' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_view_btn_status_portrait</div></td>
     <td style="vertical-align: left">验证竖屏面板按钮状态</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_25' class='hiddenRow'>
+<tr id='pt7_25' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_view_btn_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏面板线注标题文字</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_26' class='hiddenRow'>
+<tr id='pt7_26' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_view_dispear_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击蒙板可以关闭面板</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_27' class='hiddenRow'>
+<tr id='pt7_27' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_view_line_num</div></td>
     <td style="vertical-align: left">验证横屏面板线数标题文字按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_28' class='hiddenRow'>
+<tr id='pt7_28' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_setting_view_line_num_portrait</div></td>
     <td style="vertical-align: left">验证竖屏面板线数标题文字按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt6_29' class='hiddenRow'>
+<tr id='pt7_29' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_show_view_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏弹出设置面板</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
@@ -1298,284 +1386,284 @@ AssertionError: '希腊众神' != '希腊传说'
     <td class="text-center">40</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
-    <td class="text-center">967.3秒</td>
-    <td class="text-center"><a href="javascript:showClassDetail('c7',40)" class="detail" id='c7'>详细</a></td>
+    <td class="text-center">905.75秒</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c8',40)" class="detail" id='c8'>详细</a></td>
 </tr>
 
-<tr id='pt7_1' class='hiddenRow'>
+<tr id='pt8_1' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_no_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击否按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_2' class='hiddenRow'>
+<tr id='pt8_2' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_no_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击否按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_3' class='hiddenRow'>
+<tr id='pt8_3' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_no_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击否按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_4' class='hiddenRow'>
+<tr id='pt8_4' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_sound_view</div></td>
     <td style="vertical-align: left">验证横屏声音窗口内容</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_5' class='hiddenRow'>
+<tr id='pt8_5' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_sound_view_portrait</div></td>
     <td style="vertical-align: left">验证竖屏声音窗口内容</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_6' class='hiddenRow'>
+<tr id='pt8_6' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_sound_view_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏声音窗口内容</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_7' class='hiddenRow'>
+<tr id='pt8_7' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click</div></td>
     <td style="vertical-align: left">验证横屏切换按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_8' class='hiddenRow'>
+<tr id='pt8_8' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_no_refresh</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮，点击否按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_9' class='hiddenRow'>
+<tr id='pt8_9' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_no_refresh_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮，点击否按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_10' class='hiddenRow'>
+<tr id='pt8_10' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_no_refresh_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击切换按钮，点击否按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_11' class='hiddenRow'>
+<tr id='pt8_11' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏切换按钮点击</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_12' class='hiddenRow'>
+<tr id='pt8_12' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_refresh</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮，窗口自动消失刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_13' class='hiddenRow'>
+<tr id='pt8_13' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_refresh_imm</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮后立刻刷新</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_14' class='hiddenRow'>
+<tr id='pt8_14' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_refresh_imm_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮后立刻刷新</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_15' class='hiddenRow'>
+<tr id='pt8_15' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_refresh_imm_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击切换按钮后立刻刷新</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_16' class='hiddenRow'>
+<tr id='pt8_16' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_refresh_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮，窗口自动消失刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_17' class='hiddenRow'>
+<tr id='pt8_17' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_refresh_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击切换按钮，窗口自动消失刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_18' class='hiddenRow'>
+<tr id='pt8_18' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击切换按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_19' class='hiddenRow'>
+<tr id='pt8_19' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_20' class='hiddenRow'>
+<tr id='pt8_20' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_no_refresh</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮两次，点击否按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_21' class='hiddenRow'>
+<tr id='pt8_21' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_no_refresh_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮两次，点击否按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_22' class='hiddenRow'>
+<tr id='pt8_22' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮两次</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_23' class='hiddenRow'>
+<tr id='pt8_23' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_refresh</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮两次，窗口自动消失刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_24' class='hiddenRow'>
+<tr id='pt8_24' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_refresh_imm</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮两次后立刻刷新</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_25' class='hiddenRow'>
+<tr id='pt8_25' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_refresh_imm_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮两次后立刻刷新</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_26' class='hiddenRow'>
+<tr id='pt8_26' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_refresh_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮两次，窗口自动消失刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_27' class='hiddenRow'>
+<tr id='pt8_27' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_yes_refresh</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮两次，点击是按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_28' class='hiddenRow'>
+<tr id='pt8_28' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_twice_yes_refresh_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮两次，点击是按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_29' class='hiddenRow'>
+<tr id='pt8_29' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_yes_refresh</div></td>
     <td style="vertical-align: left">验证横屏点击切换按钮，点击是按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_30' class='hiddenRow'>
+<tr id='pt8_30' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_yes_refresh_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击切换按钮，点击是按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_31' class='hiddenRow'>
+<tr id='pt8_31' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_toggle_click_yes_refresh_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击切换按钮，点击是按钮刷新游戏</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_32' class='hiddenRow'>
+<tr id='pt8_32' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turn_off_sound_portrait</div></td>
     <td style="vertical-align: left">验证竖屏关闭声音刷新，窗口8秒后自动消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_33' class='hiddenRow'>
+<tr id='pt8_33' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turn_off_sound_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏关闭声音刷新游戏，窗口8秒后自动消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_34' class='hiddenRow'>
+<tr id='pt8_34' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turn_off_sound_view_dispear</div></td>
     <td style="vertical-align: left">验证横屏关闭声音刷新，窗口8秒后自动消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_35' class='hiddenRow'>
+<tr id='pt8_35' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turn_on_sound_portrait</div></td>
     <td style="vertical-align: left">验证竖屏开启声音刷新，窗口8秒后自动消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_36' class='hiddenRow'>
+<tr id='pt8_36' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turn_on_sound_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏开启声音刷新游戏，窗口8秒后自动消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_37' class='hiddenRow'>
+<tr id='pt8_37' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_turn_on_sound_view_dispear</div></td>
     <td style="vertical-align: left">验证横屏开启声音刷新，窗口8秒后自动消失</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_38' class='hiddenRow'>
+<tr id='pt8_38' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_yes_btn_click</div></td>
     <td style="vertical-align: left">验证横屏点击是按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_39' class='hiddenRow'>
+<tr id='pt8_39' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_yes_btn_click_portrait</div></td>
     <td style="vertical-align: left">验证竖屏点击是按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
     <td class='passCase' style="vertical-align: middle"></td>
 </tr>
 
-<tr id='pt7_40' class='hiddenRow'>
+<tr id='pt8_40' class='hiddenRow'>
     <td class='passCase' style="vertical-align: middle"><div class='testcase'>test_yes_btn_click_switch_screen</div></td>
     <td style="vertical-align: left">验证横竖屏点击是按钮</td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
@@ -1584,12 +1672,12 @@ AssertionError: '希腊众神' != '希腊传说'
 
 <tr id='total_row' class="text-center active">
     <td colspan='2'>总计</td>
-    <td>152</td>
-    <td>151</td>
+    <td>163</td>
+    <td>162</td>
     <td>1</td>
     <td>0</td>
-    <td>4051.85秒</td>
-    <td>通过率：99.34%</td>
+    <td>4148.66秒</td>
+    <td>通过率：99.39%</td>
 </tr>
 </table>
 
