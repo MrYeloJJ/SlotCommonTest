@@ -2,13 +2,12 @@
 
 import unittest
 from time import sleep
-from datetime import datetime
 from selenium import webdriver
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
 
 
-class TestStartBtn(unittest.TestCase):
+class TestSpinBtn(unittest.TestCase):
     """ 旋转按钮模块 """
 
     def setUp(self):
@@ -88,6 +87,24 @@ class TestStartBtn(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    def test_stop_btn_click(self):
+        """ 横屏旋转过程点击停止按钮 """
+        self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
+        self.common.start_btn_click()
+        self.common.wait_for_rolling(15)
+        sleep(0.5)
+        self.common.start_btn_click()
+        sleep(0.5)
+        rolling = self.common.slot_machine_rolling()
+        try:
+            self.assertEqual(rolling, False, "横屏旋转过程，点击停止按钮，滚轴没有立刻停下！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     #
     #
     # ------------------------------------------------------------------------ 竖屏模式 ------------------------------------------------------------------------
@@ -154,6 +171,25 @@ class TestStartBtn(unittest.TestCase):
             self.assertEqual(auto_game_btn, True, "竖屏点击旋转按钮，等待滚轴停下后，自动游戏按钮不会恢复显示！")
             self.assertEqual(main_menu_expand, "retractP", "竖屏点击旋转按钮，等待滚轴停下后，左侧选项菜单不会折叠！")
             self.assertEqual(main_menu, True, "竖屏点击旋转按钮，等待滚轴停下后，左侧选项菜单不会恢复可点击状态！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    def test_stop_btn_click_portrait(self):
+        """ 竖屏旋转过程点击停止按钮 """
+        self.common.portrait()
+        self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
+        self.common.start_btn_click()
+        self.common.wait_for_rolling(15)
+        sleep(0.5)
+        self.common.start_btn_click()
+        sleep(0.5)
+        rolling = self.common.slot_machine_rolling()
+        try:
+            self.assertEqual(rolling, False, "竖屏旋转过程，点击停止按钮，滚轴没有立刻停下！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
