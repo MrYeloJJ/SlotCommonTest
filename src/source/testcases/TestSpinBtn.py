@@ -251,6 +251,86 @@ class TestSpinBtn(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    #
+    #
+    # ------------------------------------------------------------------------ 横竖屏模式 ------------------------------------------------------------------------
+    #
+    #
+
+    def test_start_btn_click_switch_screen(self):
+        """ 横竖屏点击旋转按钮 """
+        self.common.portrait()
+        self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
+        self.common.start_btn_click()
+        sleep(0.5)
+        self.common.landscape()
+        sleep(0.5)
+        self.common.wait_for_rolling(15)
+
+        slot_rolling = self.common.slot_machine_rolling()
+        start_btn_status = self.common.start_btn_status()
+        setting_btn = self.common.setting_btn_visible()
+        auto_game_btn = self.common.auto_game_btn_visible()
+        main_menu_expand = self.common.main_menu_expand()
+        main_menu = self.common.main_menu_touchable()
+        try:
+            self.assertEqual(slot_rolling, True, "横屏点击旋转按钮，滚轴不会滚动！")
+            self.assertEqual(start_btn_status, "playing", "横屏点击旋转按钮，旋转按钮不会变成停止按钮！")
+            self.assertEqual(setting_btn, False, "横屏点击旋转按钮，线数线注设置按钮不会消失！")
+            self.assertEqual(auto_game_btn, False, "横屏点击旋转按钮，自动游戏按钮不会消失！")
+            self.assertEqual(main_menu_expand, "retractL", "横屏点击旋转按钮，左侧选项菜单不会折叠！")
+            self.assertEqual(main_menu, False, "横屏点击旋转按钮，左侧选项菜单可以点击！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+        self.common.wait_for_rolling_stop(15)
+        self.common.portrait()
+        sleep(0.5)
+
+        coin = self.common.total_win()
+
+        if coin == 0:
+            start_btn_status = self.common.start_btn_status()
+            setting_btn = self.common.setting_btn_visible()
+            auto_game_btn = self.common.auto_game_btn_visible()
+            main_menu_expand = self.common.main_menu_expand()
+            main_menu = self.common.main_menu_touchable()
+            banner = self.common.info_bar_view_banner_tips_label()
+            try:
+                self.assertEqual(start_btn_status, "stopped", "横竖屏切换，点击旋转按钮，等待滚轴停下后，停止按钮不会恢复成旋转按钮！")
+                self.assertEqual(setting_btn, True, "横竖屏切换，点击旋转按钮，等待滚轴停下后，线数线注设置按钮不会恢复显示！")
+                self.assertEqual(auto_game_btn, True, "横竖屏切换，点击旋转按钮，等待滚轴停下后，自动游戏按钮不会恢复显示！")
+                self.assertEqual(main_menu_expand, "retractP", "横竖屏切换，点击旋转按钮，等待滚轴停下后，左侧选项菜单不会折叠！")
+                self.assertEqual(main_menu, True, "横竖屏切换，点击旋转按钮，等待滚轴停下后，左侧选项菜单不会恢复可点击状态！")
+                self.assertEqual(banner, "滑动转轴或按旋转", "横竖屏切换，进入游戏，下导航栏默认的提示文字错误！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
+        else:
+            start_btn_status = self.common.start_btn_status()
+            setting_btn = self.common.setting_btn_visible()
+            auto_game_btn = self.common.auto_game_btn_visible()
+            main_menu_expand = self.common.main_menu_expand()
+            main_menu = self.common.main_menu_touchable()
+            banner = self.common.info_bar_view_banner_tips_label()
+
+            locale.setlocale(locale.LC_ALL, "")
+            coin = "奖金 ¥" + locale.format("%.2f", coin / 100, 1)
+            try:
+                self.assertEqual(start_btn_status, "stopped", "横竖屏切换，点击旋转按钮，等待滚轴停下后，停止按钮不会恢复成旋转按钮！")
+                self.assertEqual(setting_btn, True, "横竖屏切换，点击旋转按钮，等待滚轴停下后，线数线注设置按钮不会恢复显示！")
+                self.assertEqual(auto_game_btn, True, "横竖屏切换，点击旋转按钮，等待滚轴停下后，自动游戏按钮不会恢复显示！")
+                self.assertEqual(main_menu_expand, "retractP", "横竖屏切换，点击旋转按钮，等待滚轴停下后，左侧选项菜单不会折叠！")
+                self.assertEqual(main_menu, True, "横竖屏切换，点击旋转按钮，等待滚轴停下后，左侧选项菜单不会恢复可点击状态！")
+                self.assertEqual(banner, coin, "横竖屏切换，点击旋转按钮，等待滚轴停下后，下导航栏提示文字错误！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
+
 
 if __name__ == "__main__":
     # 启动测试时创建文件夹
