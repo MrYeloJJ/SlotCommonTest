@@ -1779,3 +1779,45 @@ class Common(object):
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
+
+    #
+    #
+    # ------------------------------------------------------------------------ 奖金 ------------------------------------------------------------------------
+    #
+    #
+
+    # 总奖金, [tuple: 0]
+    def total_win(self):
+        try:
+            total_win = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.totalWin;")
+            return total_win
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 滚轴奖金, [tuple: 0]
+    def spin_coin(self):
+        try:
+            spin_coin = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.spinWin;")
+            return spin_coin
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # JP奖金, [tuple: 0]
+    def jp_coin(self):
+        try:
+            jp_coin = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.rollingResult.spinResult.jpCoin;")
+            return jp_coin
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 小游戏奖金, [tuple: 0]
+    def little_game_coin(self):
+        try:
+            lg_coin = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.rollingResult.spinResult.lgCoin;")
+            return lg_coin
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
