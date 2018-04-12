@@ -234,7 +234,7 @@ class Common(object):
         while True:
             try:
                 self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
-                                            + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
+                                                      + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
                 break
             except:
                 end_time = datetime.now()
@@ -266,9 +266,8 @@ class Common(object):
                 break
             else:
                 if cost_time >= time:
-                    cost_time = False
                     try:
-                        assert cost_time is True, "等待" + str(time) + "秒，进度条不会走满！"
+                        assert bar_value == 100, "等待" + str(time) + "秒，进度条不会走满！"
                     except AssertionError:
                         self.daf.get_screenshot(self.browser)
                         raise
@@ -292,9 +291,8 @@ class Common(object):
                 break
             else:
                 if cost_time >= time:
-                    cost_time = False
                     try:
-                        assert cost_time is True, "等待" + str(time) + "秒，loading场景不会消失！"
+                        assert dispear is None, "等待" + str(time) + "秒，loading场景不会消失！"
                     except AssertionError:
                         self.daf.get_screenshot(self.browser)
                         raise
@@ -407,15 +405,14 @@ class Common(object):
                 break
             else:
                 if cost_time >= time:
-                    cost_time = False
                     try:
-                        assert cost_time is True, "等待" + time + "秒，滚轴不会旋转！"
+                        assert slot_status is True, "等待" + time + "秒，滚轴不会旋转！"
                     except AssertionError:
                         self.daf.get_screenshot(self.browser)
                         raise
 
     # 等待滚轴停止
-    def wait_for_stop(self, time, just_rolling=False):
+    def wait_for_rolling_stop(self, time, just_rolling=False):
         if just_rolling:
             start_time = datetime.now()
             while True:
@@ -428,9 +425,8 @@ class Common(object):
                     break
                 else:
                     if cost_time >= time:
-                        cost_time = False
                         try:
-                            assert cost_time is True, "等待" + time + "秒，滚轴不会停止！"
+                            assert slot_status is False, "等待" + time + "秒，滚轴不会停止！"
                         except AssertionError:
                             self.daf.get_screenshot(self.browser)
                             raise

@@ -284,9 +284,9 @@ class TestMainMenu(unittest.TestCase):
             self.common.start_btn_click()
             self.common.wait_for_rolling(15)
             speed_up = self.common.get_scroller_speed_up()
-            self.common.wait_for_stop(15, just_rolling=True)
+            self.common.wait_for_rolling_stop(15, just_rolling=True)
             end_time = datetime.now()
-            self.common.wait_for_stop(15)
+            self.common.wait_for_rolling_stop(15)
 
             normal_spin_time = (end_time - start_time).seconds
 
@@ -314,9 +314,9 @@ class TestMainMenu(unittest.TestCase):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(15)
                 speed_up = self.common.get_scroller_speed_up()
-                self.common.wait_for_stop(15, just_rolling=True)
+                self.common.wait_for_rolling_stop(15, just_rolling=True)
                 end_time = datetime.now()
-                self.common.wait_for_stop(15)
+                self.common.wait_for_rolling_stop(15)
 
                 turbo_spin_time = (end_time - start_time).seconds
 
@@ -635,9 +635,9 @@ class TestMainMenu(unittest.TestCase):
             self.common.start_btn_click()
             self.common.wait_for_rolling(15)
             speed_up = self.common.get_scroller_speed_up()
-            self.common.wait_for_stop(15, just_rolling=True)
+            self.common.wait_for_rolling_stop(15, just_rolling=True)
             end_time = datetime.now()
-            self.common.wait_for_stop(15)
+            self.common.wait_for_rolling_stop(15)
 
             normal_spin_time = (end_time - start_time).seconds
 
@@ -665,9 +665,9 @@ class TestMainMenu(unittest.TestCase):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(15)
                 speed_up = self.common.get_scroller_speed_up()
-                self.common.wait_for_stop(15, just_rolling=True)
+                self.common.wait_for_rolling_stop(15, just_rolling=True)
                 end_time = datetime.now()
-                self.common.wait_for_stop(15)
+                self.common.wait_for_rolling_stop(15)
 
                 turbo_spin_time = (end_time - start_time).seconds
 
@@ -985,9 +985,9 @@ class TestMainMenu(unittest.TestCase):
             self.common.start_btn_click()
             self.common.wait_for_rolling(15)
             speed_up = self.common.get_scroller_speed_up()
-            self.common.wait_for_stop(15, just_rolling=True)
+            self.common.wait_for_rolling_stop(15, just_rolling=True)
             end_time = datetime.now()
-            self.common.wait_for_stop(15)
+            self.common.wait_for_rolling_stop(15)
 
             normal_spin_time = (end_time - start_time).seconds
 
@@ -1017,9 +1017,9 @@ class TestMainMenu(unittest.TestCase):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(15)
                 speed_up = self.common.get_scroller_speed_up()
-                self.common.wait_for_stop(15, just_rolling=True)
+                self.common.wait_for_rolling_stop(15, just_rolling=True)
                 end_time = datetime.now()
-                self.common.wait_for_stop(15)
+                self.common.wait_for_rolling_stop(15)
 
                 turbo_spin_time = (end_time - start_time).seconds
 

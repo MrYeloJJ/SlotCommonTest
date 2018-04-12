@@ -278,7 +278,7 @@ class TestAutoGameView(unittest.TestCase):
                         raise
 
                     # 等待到滚轴停止了再进入下一步
-                    self.common.wait_for_stop(30)
+                    self.common.wait_for_rolling_stop(30)
 
                 if y == (loop_time - 1) and game_status is None:
                         self.common.start_btn_click()
@@ -329,7 +329,7 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         continue
                 else:
-                    self.common.wait_for_stop(30)
+                    self.common.wait_for_rolling_stop(30)
 
                     for i in range(10):     # 循环10秒验证是否还会继续自动旋转
                         sleep(1)
@@ -371,7 +371,7 @@ class TestAutoGameView(unittest.TestCase):
                     self.common.auto_game_view_start_btn_click()
                     sleep(1)
 
-            self.common.wait_for_stop(30)
+            self.common.wait_for_rolling_stop(30)
 
     def test_in_auto_game_click_start_btn(self):
         """ 验证横屏自动游戏过程，点击停止按钮 """
@@ -415,7 +415,7 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                self.common.wait_for_stop(30)
+                self.common.wait_for_rolling_stop(30)
 
                 sleep(1)
                 game_status = self.common.get_game_current_status()
@@ -730,7 +730,7 @@ class TestAutoGameView(unittest.TestCase):
                         raise
 
                     # 等待到滚轴停止了再进入下一步
-                    self.common.wait_for_stop(30)
+                    self.common.wait_for_rolling_stop(30)
 
                     if y == (loop_time - 1) and game_status is None:
                         self.common.start_btn_click()
@@ -782,7 +782,7 @@ class TestAutoGameView(unittest.TestCase):
                         sleep(1)
                         continue
                 else:
-                    self.common.wait_for_stop(30)
+                    self.common.wait_for_rolling_stop(30)
 
                     for i in range(10):     # 循环10秒验证是否还会继续自动旋转
                         sleep(1)
@@ -824,7 +824,7 @@ class TestAutoGameView(unittest.TestCase):
                     self.common.auto_game_view_start_btn_click()
                     sleep(1)
 
-            self.common.wait_for_stop(30)
+            self.common.wait_for_rolling_stop(30)
 
     def test_in_auto_game_click_start_btn_portrait(self):
         """ 验证竖屏自动游戏过程，点击停止按钮 """
@@ -869,7 +869,7 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                self.common.wait_for_stop(30)
+                self.common.wait_for_rolling_stop(30)
 
                 sleep(1)
                 game_status = self.common.get_game_current_status()
@@ -1025,7 +1025,7 @@ class TestAutoGameView(unittest.TestCase):
                     raise
 
                 # 等待到滚轴停止了再进入下一步
-                self.common.wait_for_stop(30)
+                self.common.wait_for_rolling_stop(30)
 
                 # 验证5次即可
                 if i == 4:
@@ -1080,7 +1080,7 @@ class TestAutoGameView(unittest.TestCase):
 
             # 验证游戏是否触发特殊玩法，若触发了则刷新重来
             while True:
-                self.common.wait_for_stop(30)
+                self.common.wait_for_rolling_stop(30)
 
                 sleep(1)
                 game_status = self.common.get_game_current_status()
