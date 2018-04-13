@@ -1,7 +1,5 @@
 # coding=utf-8
 
-""""" 声音提示窗口验证 """""
-
 import unittest
 from time import sleep
 from selenium import webdriver
@@ -28,7 +26,7 @@ class TestSoundView(unittest.TestCase):
     #
 
     def test_sound_view(self):
-        """ 验证横屏声音窗口内容 """
+        """ 横屏声音窗口内容 """
         self.common.loading_pass()
         sleep(1)
         # 显示
@@ -66,7 +64,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click(self):
-        """ 验证横屏切换按钮点击 """
+        """ 横屏切换按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -78,7 +76,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice(self):
-        """ 验证横屏点击切换按钮两次 """
+        """ 横屏点击切换按钮两次 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -92,7 +90,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_refresh_imm(self):
-        """ 验证横屏点击切换按钮后立刻刷新 """
+        """ 横屏点击切换按钮后立刻刷新 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -116,7 +114,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_refresh_imm(self):
-        """ 验证横屏点击切换按钮两次后立刻刷新 """
+        """ 横屏点击切换按钮两次后立刻刷新 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -142,7 +140,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_refresh(self):
-        """ 验证横屏点击切换按钮，窗口自动消失刷新游戏 """
+        """ 横屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -167,7 +165,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_refresh(self):
-        """ 验证横屏点击切换按钮两次，窗口自动消失刷新游戏 """
+        """ 横屏点击切换按钮两次，窗口自动消失刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -194,7 +192,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_yes_refresh(self):
-        """ 验证横屏点击切换按钮，点击是按钮刷新游戏 """
+        """ 横屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -219,7 +217,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_yes_refresh(self):
-        """ 验证横屏点击切换按钮两次，点击是按钮刷新游戏 """
+        """ 横屏点击切换按钮两次，点击是按钮刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -246,7 +244,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_no_refresh(self):
-        """ 验证横屏点击切换按钮，点击否按钮刷新游戏 """
+        """ 横屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -271,7 +269,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_no_refresh(self):
-        """ 验证横屏点击切换按钮两次，点击否按钮刷新游戏 """
+        """ 横屏点击切换按钮两次，点击否按钮刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -298,7 +296,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_yes_btn_click(self):
-        """ 验证横屏点击是按钮 """
+        """ 横屏点击是按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -317,7 +315,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_no_btn_click(self):
-        """ 验证横屏点击否按钮 """
+        """ 横屏点击否按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
@@ -336,7 +334,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_turn_on_sound_view_dispear(self):
-        """ 验证横屏开启声音刷新，窗口8秒后自动消失 """
+        """ 横屏开启声音刷新，窗口8秒后自动消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -359,7 +357,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_turn_off_sound_view_dispear(self):
-        """ 验证横屏关闭声音刷新，窗口8秒后自动消失 """
+        """ 横屏关闭声音刷新，窗口8秒后自动消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
@@ -388,7 +386,7 @@ class TestSoundView(unittest.TestCase):
     #
 
     def test_sound_view_portrait(self):
-        """ 验证竖屏声音窗口内容 """
+        """ 竖屏声音窗口内容 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -427,7 +425,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_portrait(self):
-        """ 验证竖屏切换按钮点击 """
+        """ 竖屏切换按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -440,7 +438,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_portrait(self):
-        """ 验证竖屏点击切换按钮两次 """
+        """ 竖屏点击切换按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -455,7 +453,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_refresh_imm_portrait(self):
-        """ 验证竖屏点击切换按钮后立刻刷新 """
+        """ 竖屏点击切换按钮后立刻刷新 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -480,7 +478,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_refresh_imm_portrait(self):
-        """ 验证竖屏点击切换按钮两次后立刻刷新 """
+        """ 竖屏点击切换按钮两次后立刻刷新 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -507,7 +505,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_refresh_portrait(self):
-        """ 验证竖屏点击切换按钮，窗口自动消失刷新游戏 """
+        """ 竖屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -533,7 +531,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_refresh_portrait(self):
-        """ 验证竖屏点击切换按钮两次，窗口自动消失刷新游戏 """
+        """ 竖屏点击切换按钮两次，窗口自动消失刷新游戏 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -561,7 +559,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_yes_refresh_portrait(self):
-        """ 验证竖屏点击切换按钮，点击是按钮刷新游戏 """
+        """ 竖屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -587,7 +585,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_yes_refresh_portrait(self):
-        """ 验证竖屏点击切换按钮两次，点击是按钮刷新游戏 """
+        """ 竖屏点击切换按钮两次，点击是按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -615,7 +613,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_no_refresh_portrait(self):
-        """ 验证竖屏点击切换按钮，点击否按钮刷新游戏 """
+        """ 竖屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -641,7 +639,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_twice_no_refresh_portrait(self):
-        """ 验证竖屏点击切换按钮两次，点击否按钮刷新游戏 """
+        """ 竖屏点击切换按钮两次，点击否按钮刷新游戏 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -669,7 +667,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_yes_btn_click_portrait(self):
-        """ 验证竖屏点击是按钮 """
+        """ 竖屏点击是按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -689,7 +687,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_no_btn_click_portrait(self):
-        """ 验证竖屏点击否按钮 """
+        """ 竖屏点击否按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -709,7 +707,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_turn_on_sound_portrait(self):
-        """ 验证竖屏开启声音刷新，窗口8秒后自动消失 """
+        """ 竖屏开启声音刷新，窗口8秒后自动消失 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -733,7 +731,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_turn_off_sound_portrait(self):
-        """ 验证竖屏关闭声音刷新，窗口8秒后自动消失 """
+        """ 竖屏关闭声音刷新，窗口8秒后自动消失 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -763,7 +761,7 @@ class TestSoundView(unittest.TestCase):
     #
 
     def test_sound_view_switch_screen(self):
-        """ 验证横竖屏声音窗口内容 """
+        """ 横竖屏声音窗口内容 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -806,7 +804,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_switch_screen(self):
-        """ 验证横竖屏点击切换按钮 """
+        """ 横竖屏点击切换按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -824,7 +822,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_refresh_imm_switch_screen(self):
-        """ 验证横竖屏点击切换按钮后立刻刷新 """
+        """ 横竖屏点击切换按钮后立刻刷新 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -854,7 +852,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_refresh_switch_screen(self):
-        """ 验证横竖屏点击切换按钮，窗口自动消失刷新游戏 """
+        """ 横竖屏点击切换按钮，窗口自动消失刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -885,7 +883,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_yes_refresh_switch_screen(self):
-        """ 验证横竖屏点击切换按钮，点击是按钮刷新游戏 """
+        """ 横竖屏点击切换按钮，点击是按钮刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -916,7 +914,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_toggle_click_no_refresh_switch_screen(self):
-        """ 验证横竖屏点击切换按钮，点击否按钮刷新游戏 """
+        """ 横竖屏点击切换按钮，点击否按钮刷新游戏 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_toggle_click()
@@ -947,7 +945,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_yes_btn_click_switch_screen(self):
-        """ 验证横竖屏点击是按钮 """
+        """ 横竖屏点击是按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -972,7 +970,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_no_btn_click_switch_screen(self):
-        """ 验证横竖屏点击否按钮 """
+        """ 横竖屏点击否按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()
@@ -997,7 +995,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_turn_on_sound_switch_screen(self):
-        """ 验证横竖屏开启声音刷新游戏，窗口8秒后自动消失 """
+        """ 横竖屏开启声音刷新游戏，窗口8秒后自动消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -1026,7 +1024,7 @@ class TestSoundView(unittest.TestCase):
             raise
 
     def test_turn_off_sound_switch_screen(self):
-        """ 验证横竖屏关闭声音刷新游戏，窗口8秒后自动消失 """
+        """ 横竖屏关闭声音刷新游戏，窗口8秒后自动消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_no_btn_click()

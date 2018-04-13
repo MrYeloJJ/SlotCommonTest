@@ -1,7 +1,5 @@
 # coding=utf-8
 
-""""" 自动游戏验证 """""
-
 import unittest
 from time import sleep
 from selenium import webdriver
@@ -28,7 +26,7 @@ class TestAutoGameView(unittest.TestCase):
     #
 
     def test_auto_game_btn(self):
-        """ 验证横屏自动游戏按钮 """
+        """ 横屏自动游戏按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -43,7 +41,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_auto_game_btn_click(self):
-        """ 验证横屏点击自动游戏按钮 """
+        """ 横屏点击自动游戏按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -60,7 +58,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_click_mask_view_dispear(self):
-        """ 验证横屏点击灰色蒙板，设置面板消失 """
+        """ 横屏点击灰色蒙板，设置面板消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -79,7 +77,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_close_btn_click(self):
-        """ 验证横屏点击设置面板关闭按钮，面板消失 """
+        """ 横屏点击设置面板关闭按钮，面板消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -98,7 +96,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_auto_game_view(self):
-        """ 验证横屏设置面板按钮文字显示 """
+        """ 横屏设置面板按钮文字显示 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -140,7 +138,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_change_auto_time(self):
-        """ 验证横屏设置面板改变自动次数，次数显示正确 """
+        """ 横屏设置面板改变自动次数，次数显示正确 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -170,7 +168,7 @@ class TestAutoGameView(unittest.TestCase):
                 raise
 
     def test_start_btn_click(self):
-        """ 验证横屏点击开始自动游戏按钮 """
+        """ 横屏点击开始自动游戏按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -207,7 +205,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_auto_spin_time(self):
-        """ 验证横屏改变自动次数，点击开始旋转按钮 """
+        """ 横屏改变自动次数，点击开始旋转按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -288,7 +286,7 @@ class TestAutoGameView(unittest.TestCase):
                     break
 
     def test_auto_spin_time_is_zero(self):
-        """ 验证横屏自动次数为0时停止 """
+        """ 横屏自动次数为0时停止 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -374,7 +372,7 @@ class TestAutoGameView(unittest.TestCase):
             self.common.wait_for_rolling_stop(30)
 
     def test_in_auto_game_click_start_btn(self):
-        """ 验证横屏自动游戏过程，点击停止按钮 """
+        """ 横屏自动游戏过程，点击停止按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -472,7 +470,7 @@ class TestAutoGameView(unittest.TestCase):
     #
 
     def test_auto_game_btn_portrait(self):
-        """ 验证竖屏自动游戏按钮 """
+        """ 竖屏自动游戏按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -488,7 +486,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_auto_game_btn_click_portrait(self):
-        """ 验证竖屏点击自动游戏按钮 """
+        """ 竖屏点击自动游戏按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -506,7 +504,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_click_mask_view_dispear_portrait(self):
-        """ 验证竖屏点击灰色蒙板，设置面板消失 """
+        """ 竖屏点击灰色蒙板，设置面板消失 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -526,7 +524,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_close_btn_click_portrait(self):
-        """ 验证竖屏点击设置面板关闭按钮，面板消失 """
+        """ 竖屏点击设置面板关闭按钮，面板消失 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -546,7 +544,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_auto_game_view_portrait(self):
-        """ 验证竖屏设置面板按钮文字显示 """
+        """ 竖屏设置面板按钮文字显示 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -589,7 +587,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_change_auto_time_portrait(self):
-        """ 验证竖屏设置面板改变自动次数，次数显示正确 """
+        """ 竖屏设置面板改变自动次数，次数显示正确 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -620,7 +618,7 @@ class TestAutoGameView(unittest.TestCase):
                 raise
 
     def test_start_btn_click_portrait(self):
-        """ 验证竖屏点击开始自动游戏按钮 """
+        """ 竖屏点击开始自动游戏按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -658,7 +656,7 @@ class TestAutoGameView(unittest.TestCase):
             raise
 
     def test_auto_spin_time_portrait(self):
-        """ 验证竖屏改变自动次数，点击开始旋转按钮 """
+        """ 竖屏改变自动次数，点击开始旋转按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -740,7 +738,7 @@ class TestAutoGameView(unittest.TestCase):
                     break
 
     def test_auto_spin_time_is_zero_portrait(self):
-        """ 验证竖屏自动次数为0时停止 """
+        """ 竖屏自动次数为0时停止 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -827,7 +825,7 @@ class TestAutoGameView(unittest.TestCase):
             self.common.wait_for_rolling_stop(30)
 
     def test_in_auto_game_click_start_btn_portrait(self):
-        """ 验证竖屏自动游戏过程，点击停止按钮 """
+        """ 竖屏自动游戏过程，点击停止按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -926,7 +924,7 @@ class TestAutoGameView(unittest.TestCase):
     #
 
     def test_change_auto_time_switch_screen(self):
-        """ 验证横竖屏设置面板改变自动次数，次数显示正确 """
+        """ 横竖屏设置面板改变自动次数，次数显示正确 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -958,7 +956,7 @@ class TestAutoGameView(unittest.TestCase):
                 raise
 
     def test_auto_spin_time_switch_screen(self):
-        """ 验证横竖屏改变自动次数，点击开始旋转按钮 """
+        """ 横竖屏改变自动次数，点击开始旋转按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -1035,7 +1033,7 @@ class TestAutoGameView(unittest.TestCase):
                 break
 
     def test_auto_spin_click_btn_switch_screen(self):
-        """ 验证横竖屏自动游戏过程点击停止按钮 """
+        """ 横竖屏自动游戏过程点击停止按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)

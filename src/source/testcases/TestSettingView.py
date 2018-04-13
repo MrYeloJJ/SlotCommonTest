@@ -1,7 +1,5 @@
 # coding=utf-8
 
-""""" 线数、线注设置验证 """""
-
 import unittest
 import locale
 from time import sleep
@@ -32,7 +30,7 @@ class TestSettingView(unittest.TestCase):
     #
 
     def test_setting_btn_visible(self):
-        """ 验证横屏显示线数线注设置按钮 """
+        """ 横屏显示线数线注设置按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -49,7 +47,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_setting_btn_click_show_view(self):
-        """ 验证横屏点击线数线注设置按钮 """
+        """ 横屏点击线数线注设置按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -66,7 +64,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_click_mask_setting_view_dispear(self):
-        """ 验证横屏点击蒙板可以关闭面板 """
+        """ 横屏点击蒙板可以关闭面板 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -85,7 +83,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_click_close_btn_view_dispear(self):
-        """ 验证横屏点击关闭按钮面板消失 """
+        """ 横屏点击关闭按钮面板消失 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -105,7 +103,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num(self):
-        """ 验证横屏面板线数标题文字按钮 """
+        """ 横屏面板线数标题文字按钮 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -137,7 +135,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_min_btn_click(self):
-        """ 验证横屏面板线数 - 按钮点击 """
+        """ 横屏面板线数 - 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -174,7 +172,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_plus_btn_click(self):
-        """ 验证横屏面板线数 + 按钮点击 """
+        """ 横屏面板线数 + 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -216,7 +214,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     def test_setting_view_btn_status(self):
-        """ 验证横屏面板按钮状态 """
+        """ 横屏面板按钮状态 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -256,7 +254,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_line_cost_plus_btn_click(self):
-        """ 验证横屏面板线注 + 按钮点击 """
+        """ 横屏面板线注 + 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -296,7 +294,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     def test_line_cost_min_btn_click(self):
-        """ 验证横屏面板线注 - 按钮点击 """
+        """ 横屏面板线注 - 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -348,7 +346,7 @@ class TestSettingView(unittest.TestCase):
     #
 
     def test_setting_btn_visible_portrait(self):
-        """ 验证竖屏显示线数线注设置按钮 """
+        """ 竖屏显示线数线注设置按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -366,7 +364,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_setting_btn_click_show_view_portrait(self):
-        """ 验证竖屏点击线数线注设置按钮 """
+        """ 竖屏点击线数线注设置按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -384,7 +382,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_click_mask_setting_view_dispear_portrait(self):
-        """ 验证竖屏点击蒙板可以关闭面板 """
+        """ 竖屏点击蒙板可以关闭面板 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -404,7 +402,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_click_close_btn_view_dispear_portrait(self):
-        """ 验证竖屏点击关闭按钮面板消失 """
+        """ 竖屏点击关闭按钮面板消失 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -425,7 +423,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_setting_view_line_num_portrait(self):
-        """ 验证竖屏面板线数标题文字按钮 """
+        """ 竖屏面板线数标题文字按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -458,7 +456,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_min_btn_click_portrait(self):
-        """ 验证竖屏面板线数 - 按钮点击 """
+        """ 竖屏面板线数 - 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -496,7 +494,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_plus_btn_click_portrait(self):
-        """ 验证竖屏面板线数 + 按钮点击 """
+        """ 竖屏面板线数 + 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -539,7 +537,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     def test_setting_view_btn_status_portrait(self):
-        """ 验证竖屏面板按钮状态 """
+        """ 竖屏面板按钮状态 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -580,7 +578,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_line_cost_plus_btn_click_portrait(self):
-        """ 验证竖屏面板线注 + 按钮点击 """
+        """ 竖屏面板线注 + 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -621,7 +619,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     def test_line_cost_min_btn_click_portrait(self):
-        """ 验证竖屏面板线注 - 按钮点击 """
+        """ 竖屏面板线注 - 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -674,7 +672,7 @@ class TestSettingView(unittest.TestCase):
     #
 
     def test_setting_btn_visible_switch_screen(self):
-        """ 验证横竖屏线数线注按钮显示 """
+        """ 横竖屏线数线注按钮显示 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -692,7 +690,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_show_view_switch_screen(self):
-        """ 验证横竖屏弹出设置面板 """
+        """ 横竖屏弹出设置面板 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -714,7 +712,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_setting_view_dispear_switch_screen(self):
-        """ 验证横竖屏点击蒙板可以关闭面板 """
+        """ 横竖屏点击蒙板可以关闭面板 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -739,7 +737,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_switch_screen(self):
-        """ 验证横竖屏面板线数标题文字按钮 """
+        """ 横竖屏面板线数标题文字按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -769,7 +767,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_min_btn_click_switch_screen(self):
-        """ 验证横竖屏面板线数 - 按钮点击 """
+        """ 横竖屏面板线数 - 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -814,7 +812,7 @@ class TestSettingView(unittest.TestCase):
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_plus_btn_click_switch_screen(self):
-        """ 验证横竖屏面板线数 + 按钮点击 """
+        """ 横竖屏面板线数 + 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -864,7 +862,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     def test_setting_view_btn_switch_screen(self):
-        """ 验证横竖屏面板线注标题文字 """
+        """ 横竖屏面板线注标题文字 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
@@ -897,7 +895,7 @@ class TestSettingView(unittest.TestCase):
             raise
 
     def test_line_cost_plus_btn_click_switch_screen(self):
-        """ 验证横竖屏面板线注 + 按钮点击 """
+        """ 横竖屏面板线注 + 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()
@@ -945,7 +943,7 @@ class TestSettingView(unittest.TestCase):
                     raise
 
     def test_line_cost_min_btn_click_switch_screen(self):
-        """ 验证横竖屏面板线注 - 按钮点击 """
+        """ 横竖屏面板线注 - 按钮点击 """
         self.common.loading_pass()
         sleep(1)
         self.common.sound_view_yes_btn_click()

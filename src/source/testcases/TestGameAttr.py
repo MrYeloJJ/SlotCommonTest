@@ -1,7 +1,5 @@
 # coding=utf-8
 
-""""" 游戏基本属性验证 """""
-
 import unittest
 from time import sleep
 from selenium import webdriver
@@ -23,7 +21,7 @@ class TestGameAttr(unittest.TestCase):
         self.browser.quit()
 
     def test_game_id(self):
-        """ 验证游戏id """
+        """ 游戏id """
         sleep(1)
         current_game_id = self.common.get_game_id()
         target_game_id = self.common.game_id
@@ -34,7 +32,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     def test_game_name(self):
-        """ 验证游戏名字 """
+        """ 游戏名字 """
         sleep(1)
         current_game_name = self.common.get_game_name()
         target_game_name = self.common.game_name
@@ -45,7 +43,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     def test_min_line_num(self):
-        """ 验证最小线数 """
+        """ 最小线数 """
         sleep(1)
         current_min_line_num = self.common.get_min_line_num()
         target_min_line_num = self.common.line_num_min
@@ -56,7 +54,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     def test_max_line_num(self):
-        """ 验证最大线数 """
+        """ 最大线数 """
         sleep(1)
         current_max_line_num = self.common.get_max_line_num()
         target_max_line_num = self.common.line_num_max
@@ -67,7 +65,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     def test_line_cost(self):
-        """ 验证线注 """
+        """ 线注 """
         sleep(1)
         current_line_cost = self.common.get_line_cost_list()
         target_line_cost = self.common.line_cost
@@ -78,7 +76,7 @@ class TestGameAttr(unittest.TestCase):
             raise
 
     def test_auto_game_times(self):
-        """ 验证自动次数 """
+        """ 自动次数 """
         sleep(1)
         current_auto_game_times = self.common.get_auto_game_times_list()
         target_auto_game_times = self.common.auto_game_times
