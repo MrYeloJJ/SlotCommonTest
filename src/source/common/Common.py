@@ -443,9 +443,9 @@ class Common(object):
                     break
                 else:
                     if cost_time >= time:
-                        cost_time = False
                         try:
-                            assert cost_time is True, "等待" + time + "秒，滚轴不会停止！"
+                            assert slot_status is True, "等待" + time + "秒，滚轴不会停止！"
+                            assert mask_status is True, "等待" + time + "秒，蒙板不会消失！"
                         except AssertionError:
                             self.daf.get_screenshot(self.browser)
                             raise
