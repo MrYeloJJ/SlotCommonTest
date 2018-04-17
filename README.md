@@ -9,7 +9,7 @@ SlotCommonTest
     |
     +-- src
     |    +-- assets                                 // 数据目录
-    |    |    +-- data.xml
+    |    |    +-- config.ini
     |    +-- lib                                    // 插件目录
     |    |    +-- chromedriver.exe
     |    |    +-- HTMLTestReportCN.py
