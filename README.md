@@ -35,13 +35,17 @@ SlotCommonTest
 
 #### 使用说明
 ##### 1. 配置
-进入数据目录，打开 `config.ini`，修改 *`lobby`* 和 *`game`* 为目标数据
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<data>
-    <lobby>https://lobby.fg.blizzmi.cn</lobby>
-    <game>希腊传说</game>
-</data>
+进入数据目录，打开 `config.ini`，修改 *`lobby`* 和 *`game`* 等测试目标游戏属性
+```ini
+[config]
+lobby = https://lobby.fg.blizzmi.cn
+gameId = 3310
+gameName = 金靴争霸
+fullLine = False
+lineNumMin = 1
+lineNumMax = 25
+lineCost = 1, 2, 5, 10, 50, 100, 500, 1000
+autoGameTimes = 25, 50, 100, 200, 500, -1
 ```
 
 ##### 2. 浏览器
