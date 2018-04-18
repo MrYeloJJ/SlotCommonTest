@@ -61,3 +61,6 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 ##### 5. 测试结束
 所有用例跑完结束，控制台会有蓝绿色提示文字，这时打开目录：
 `src/result`，根据文件夹名字（时间）打开对应的html测试报告即可
+
+##### 6. 详情
+具体安装配置请查看 [WIKI](https://github.com/Gelomen/SlotCommonTest/wiki)
