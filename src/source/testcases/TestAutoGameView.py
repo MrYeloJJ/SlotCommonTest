@@ -278,9 +278,9 @@ class TestAutoGameView(unittest.TestCase):
                     # 等待到滚轴停止了再进入下一步
                     self.common.wait_for_rolling_stop(30)
 
-                if y == (loop_time - 1) and game_status is None:
-                        self.common.start_btn_click()
-                        sleep(1)
+                    if y == (loop_time - 1) and game_status is None:
+                            self.common.start_btn_click()
+                            sleep(1)
 
                 if y == (loop_time - 1) and game_status is None:
                     break
