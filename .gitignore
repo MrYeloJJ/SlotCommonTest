@@ -109,5 +109,4 @@ venv.bak/
 !src/result/sample/image/*.png
 src/result/*/*.html
 src/result/*/image/*.png
-.idea/workspace.xml*
-.idea/dictionaries/
+.idea/
