@@ -8,6 +8,7 @@ from src.source.common.Config import Config
 from src.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 from datetime import datetime
+import locale
 
 
 class Common(object):
@@ -58,12 +59,62 @@ class Common(object):
             self.browser.find_element_by_id("login-reg").click()
             sleep(1)
             self.browser.switch_to.alert.accept()
+
             # 自动刷新大厅
             WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
             WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "photo")), "等待30秒，不会显示用户名！")
             name = self.browser.find_element_by_class_name("photo").text
             lobby_username = name.strip()
             assert lobby_username == self.username, "用户名不一致，登录失败！"
+            # 余额小于1000时点击加钱按钮
+            lobby_chips_num = self.lobby_chips()["lobby_chips_num"]
+            if lobby_chips_num < 1000:
+                self.add_chip()
+
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 大厅加钱
+    def add_chip(self):
+        try:
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "add-chip")), "等待30秒，不会显示大厅加钱按钮！")
+            self.browser.find_element_by_class_name("add-chip").click()
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 大厅减钱
+    def red_chip(self):
+        try:
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "red-chip")), "等待30秒，不会显示大厅减钱按钮！")
+            self.browser.find_element_by_class_name("red-chip").click()
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 大厅余额
+    def lobby_chips(self):
+        try:
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "chips")), "等待30秒，不会显示大厅余额！")
+            lobby_chips_num = self.browser.find_element_by_class_name("chips").text
+            # 格式化货币
+            locale.setlocale(locale.LC_ALL, "")
+            lobby_chips = "¥" + locale.format("%.2f", eval(lobby_chips_num), 1)
+            return {"lobby_chips": lobby_chips, "lobby_chips_num": eval(lobby_chips_num)}
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 让余额为0
+    def set_chips_to_zero(self):
+        try:
+            self.show_gm_view()
+            sleep(0.5)
+            chips = self.info_bar_view_has_money_label()
+            gm = "\"!jq -" + chips.replace("¥", "").replace(",", "").replace(".", "") + "\""
+            self.gm_input(gm)
+            self.gm_confirm_btn_click()
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -1797,7 +1848,7 @@ class Common(object):
             raise
 
     # 余额不足窗口消失, [tuple: None]
-    def lack_of_money_dispear(self):
+    def lack_of_money_view_dispear(self):
         try:
             dispear = self.browser.execute_script("return " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUILackOfMoneyAlertView.URL, "
                                                   + self.add_script + "UIManager.instance.tipsLayer);")
@@ -1808,7 +1859,7 @@ class Common(object):
 
     #
     #
-    # ------------------------------------------------------------------------ 奖金 ------------------------------------------------------------------------
+    # ------------------------------------------------------------------------ 滚轴中奖奖金 ------------------------------------------------------------------------
     #
     #
 
@@ -1844,6 +1895,47 @@ class Common(object):
         try:
             lg_coin = self.browser.execute_script("return " + self.add_script + "SpinManager.instance.rollingResult.spinResult.lgCoin;")
             return lg_coin
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    #
+    #
+    # ------------------------------------------------------------------------ GM窗口 ------------------------------------------------------------------------
+    #
+    #
+
+    # 打开GM窗口
+    def show_gm_view(self):
+        try:
+            self.browser.execute_script(self.add_script + "UIManager.instance.showGMView();")
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 输入GM指令
+    def gm_input(self, text):
+        try:
+            self.browser.execute_script("var GMView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIGmView.URL, "
+                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;GMView.m_content.m_gmInput.text = " + text)
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击GM确定按钮
+    def gm_confirm_btn_click(self):
+        try:
+            self.browser.execute_script("var GMView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIGmView.URL, "
+                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;GMView.m_content.m_confirmBtn.displayObject.event('click');")
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 点击GM取消按钮
+    def gm_cancel_btn_click(self):
+        try:
+            self.browser.execute_script("var GMView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIGmView.URL, "
+                                        + self.add_script + "UIManager.instance.tipsLayer).contentPane;GMView.m_content.m_cancelBtn.displayObject.event('click');")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
