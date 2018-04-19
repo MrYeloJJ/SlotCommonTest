@@ -264,7 +264,7 @@ class TestMainMenu(unittest.TestCase):
         turbo_btn_status = self.common.turbo_btn_status()
         spin_status = self.common.spin_is_in_turbo()
         try:
-            self.assertEqual(turbo_btn_status, "1x", "横屏快速模式按钮默认状态不是1x")
+            self.assertEqual(turbo_btn_status, "1x", "横屏快速模式按钮默认状态不是1x！")
             self.assertEqual(spin_status, False, "横屏滚轴默认滚动方式不是普通速度！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
@@ -614,7 +614,7 @@ class TestMainMenu(unittest.TestCase):
         turbo_btn_status = self.common.turbo_btn_status()
         spin_status = self.common.spin_is_in_turbo()
         try:
-            self.assertEqual(turbo_btn_status, "1x", "竖屏快速模式按钮默认状态不是1x")
+            self.assertEqual(turbo_btn_status, "1x", "竖屏快速模式按钮默认状态不是1x！")
             self.assertEqual(spin_status, False, "竖屏滚轴默认滚动方式不是普通速度！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
