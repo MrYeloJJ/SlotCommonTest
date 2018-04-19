@@ -14,6 +14,8 @@ class Config(object):
     def get_message(self):
 
         lobby = self.config.get(self.section, "lobby")
+        username = self.config.get(self.section, "username")
+        password = self.config.get(self.section, "password")
         game_id = eval(self.config.get(self.section, "gameId"))
         game_name = self.config.get(self.section, "gameName")
         full_line = eval(self.config.get(self.section, "fullLine"))
@@ -22,6 +24,5 @@ class Config(object):
         line_cost = eval(self.config.get(self.section, "lineCost"))
         auto_game_times = eval(self.config.get(self.section, "autoGameTimes"))
 
-        return {"lobby": lobby, "game_id": game_id, "game_name": game_name, "full_line": full_line,
-                "line_num_min": line_num_min, "line_num_max": line_num_max, "line_cost": line_cost,
-                "auto_game_times": auto_game_times}
+        return {"lobby": lobby, "username": username, "password": password, "game_id": game_id, "game_name": game_name, "full_line": full_line,
+                "line_num_min": line_num_min, "line_num_max": line_num_max, "line_cost": line_cost, "auto_game_times": auto_game_times}

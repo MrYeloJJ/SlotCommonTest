@@ -15,6 +15,8 @@ class Common(object):
     def __init__(self, browser=None):
         self.message = Config().get_message()
         self.lobby = self.message["lobby"]                      # 大厅地址
+        self.username = self.message["username"]                # 用户名
+        self.password = self.message["password"]                # 密码
         self.game_id = self.message["game_id"]                  # 游戏id
         self.game_name = self.message["game_name"]              # 游戏名字
         self.full_line = self.message["full_line"]              # 是否满线
@@ -38,6 +40,30 @@ class Common(object):
         try:
             self.browser.get(self.lobby)
             WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 登录
+    def login(self):
+        try:
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "top_login_img")), "等待30秒，找不到登录按钮！")
+            self.browser.find_element_by_class_name("top_login_img").click()
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "username")), "等待30秒，找不到用户名输入框！")
+            self.browser.find_element_by_id("username").send_keys(self.username)
+            sleep(1)
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "password")), "等待30秒，找不到密码输入框！")
+            self.browser.find_element_by_id("password").send_keys(self.password)
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "login-reg")), "等待30秒，找不到登录/注册按钮！")
+            self.browser.find_element_by_id("login-reg").click()
+            sleep(1)
+            self.browser.switch_to.alert.accept()
+            # 自动刷新大厅
+            WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
+            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "photo")), "等待30秒，不会显示用户名！")
+            name = self.browser.find_element_by_class_name("photo").text
+            lobby_username = name.strip()
+            assert lobby_username == self.username, "用户名不一致，登录失败！"
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
