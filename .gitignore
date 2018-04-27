@@ -109,4 +109,5 @@ venv.bak/
 !src/result/sample/image/*.png
 src/result/*/*.html
 src/result/*/image/*.png
+src/assets/*.ini
 .idea/
