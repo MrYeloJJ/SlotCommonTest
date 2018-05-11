@@ -30,6 +30,8 @@ class TestSpinBtn(unittest.TestCase):
         """ 横屏旋转按钮默认显示 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         visible = self.common.start_btn_visible()
         touchable = self.common.start_btn_touchable()
         status = self.common.start_btn_status()
@@ -48,6 +50,8 @@ class TestSpinBtn(unittest.TestCase):
     def test_start_btn_click(self):
         """ 横屏点击旋转按钮 """
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.start_btn_click()
         self.common.wait_for_rolling(15)
@@ -157,6 +161,8 @@ class TestSpinBtn(unittest.TestCase):
         """ 横屏旋转过程点击停止按钮 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.start_btn_click()
         self.common.wait_for_rolling(15)
         sleep(0.5)
@@ -262,6 +268,8 @@ class TestSpinBtn(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         visible = self.common.start_btn_visible()
         touchable = self.common.start_btn_touchable()
         status = self.common.start_btn_status()
@@ -281,6 +289,8 @@ class TestSpinBtn(unittest.TestCase):
         """ 竖屏点击旋转按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.start_btn_click()
         self.common.wait_for_rolling(15)
@@ -389,6 +399,8 @@ class TestSpinBtn(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.start_btn_click()
         self.common.wait_for_rolling(15)
         sleep(0.5)
@@ -493,6 +505,8 @@ class TestSpinBtn(unittest.TestCase):
         """ 横竖屏点击旋转按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.start_btn_click()
         sleep(0.5)
@@ -605,6 +619,8 @@ class TestSpinBtn(unittest.TestCase):
         """ 横竖屏旋转过程点击停止按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.start_btn_click()
         self.common.wait_for_rolling(15)

@@ -29,6 +29,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横屏自动游戏按钮 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         visible = self.common.auto_game_btn_visible()
         touchable = self.common.auto_game_btn_touchable()
         try:
@@ -41,6 +43,8 @@ class TestAutoGameView(unittest.TestCase):
     def test_auto_game_btn_click(self):
         """ 横屏点击自动游戏按钮 """
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -56,6 +60,8 @@ class TestAutoGameView(unittest.TestCase):
     def test_click_mask_view_dispear(self):
         """ 横屏点击灰色蒙板，设置面板消失 """
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -74,6 +80,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横屏点击设置面板关闭按钮，面板消失 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
         self.common.auto_game_view_close_btn_click()
@@ -90,6 +98,8 @@ class TestAutoGameView(unittest.TestCase):
     def test_auto_game_view(self):
         """ 横屏设置面板按钮文字显示 """
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -131,6 +141,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横屏设置面板改变自动次数，次数显示正确 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
 
@@ -158,6 +170,8 @@ class TestAutoGameView(unittest.TestCase):
     def test_start_btn_click(self):
         """ 横屏点击开始自动游戏按钮 """
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -194,6 +208,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横屏改变自动次数，点击开始旋转按钮 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
 
         target_time_len = len(self.common.auto_game_times)
 
@@ -227,6 +243,8 @@ class TestAutoGameView(unittest.TestCase):
                     if game_status is not None:
                         self.browser.refresh()
                         self.common.loading_pass()
+                        sleep(1)
+                        self.common.sound_view_yes_btn_click()
                         sleep(1)
                         self.common.auto_game_btn_click()
                         sleep(1)
@@ -269,6 +287,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横屏自动次数为0时停止 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
 
         self.common.auto_game_btn_click()
         sleep(1)
@@ -292,6 +312,8 @@ class TestAutoGameView(unittest.TestCase):
                 if game_status is not None:
                         self.browser.refresh()
                         self.common.loading_pass()
+                        sleep(1)
+                        self.common.sound_view_yes_btn_click()
                         sleep(1)
 
                         self.common.auto_game_btn_click()
@@ -334,6 +356,8 @@ class TestAutoGameView(unittest.TestCase):
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(1)
+                    self.common.sound_view_yes_btn_click()
+                    sleep(1)
 
                     self.common.auto_game_btn_click()
                     sleep(1)
@@ -348,6 +372,8 @@ class TestAutoGameView(unittest.TestCase):
     def test_in_auto_game_click_start_btn(self):
         """ 横屏自动游戏过程，点击停止按钮 """
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
 
         self.common.auto_game_btn_click()
@@ -392,6 +418,8 @@ class TestAutoGameView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
                     self.common.auto_game_btn_click()
@@ -444,6 +472,8 @@ class TestAutoGameView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         visible = self.common.auto_game_btn_visible()
         touchable = self.common.auto_game_btn_touchable()
         try:
@@ -457,6 +487,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 竖屏点击自动游戏按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -473,6 +505,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 竖屏点击灰色蒙板，设置面板消失 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -492,6 +526,8 @@ class TestAutoGameView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
         self.common.auto_game_view_close_btn_click()
@@ -509,6 +545,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 竖屏设置面板按钮文字显示 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -551,6 +589,8 @@ class TestAutoGameView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
 
@@ -579,6 +619,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 竖屏点击开始自动游戏按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
@@ -616,6 +658,8 @@ class TestAutoGameView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
 
         target_time_len = len(self.common.auto_game_times)
 
@@ -649,6 +693,8 @@ class TestAutoGameView(unittest.TestCase):
                     if game_status is not None:
                         self.browser.refresh()
                         self.common.loading_pass()
+                        sleep(1)
+                        self.common.sound_view_yes_btn_click()
                         sleep(1)
                         self.common.auto_game_btn_click()
                         sleep(1)
@@ -692,6 +738,8 @@ class TestAutoGameView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
 
         self.common.auto_game_btn_click()
         sleep(1)
@@ -715,6 +763,8 @@ class TestAutoGameView(unittest.TestCase):
                 if game_status is not None:
                         self.browser.refresh()
                         self.common.loading_pass()
+                        sleep(1)
+                        self.common.sound_view_yes_btn_click()
                         sleep(1)
 
                         self.common.auto_game_btn_click()
@@ -757,6 +807,8 @@ class TestAutoGameView(unittest.TestCase):
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(1)
+                    self.common.sound_view_yes_btn_click()
+                    sleep(1)
 
                     self.common.auto_game_btn_click()
                     sleep(1)
@@ -772,6 +824,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 竖屏自动游戏过程，点击停止按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
 
         self.common.auto_game_btn_click()
@@ -816,6 +870,8 @@ class TestAutoGameView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
                     self.common.auto_game_btn_click()
@@ -868,6 +924,8 @@ class TestAutoGameView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         self.common.auto_game_btn_click()
         sleep(1)
 
@@ -897,6 +955,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横竖屏改变自动次数，点击开始旋转按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
 
         self.common.auto_game_btn_click()
@@ -932,6 +992,8 @@ class TestAutoGameView(unittest.TestCase):
                 if i != 4 and game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
                     self.common.auto_game_btn_click()
                     sleep(1)
@@ -970,6 +1032,8 @@ class TestAutoGameView(unittest.TestCase):
         """ 横竖屏自动游戏过程点击停止按钮 """
         self.common.portrait()
         self.common.loading_pass()
+        sleep(1)
+        self.common.sound_view_yes_btn_click()
         sleep(1)
 
         self.common.auto_game_btn_click()
@@ -1017,6 +1081,8 @@ class TestAutoGameView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
                     self.common.auto_game_btn_click()

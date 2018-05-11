@@ -29,6 +29,8 @@ class TestTurboView(unittest.TestCase):
         """ 横屏快速模式窗口显示 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -43,6 +45,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -76,6 +80,8 @@ class TestTurboView(unittest.TestCase):
         """ 横屏点击关闭按钮 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -90,6 +96,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -114,6 +122,8 @@ class TestTurboView(unittest.TestCase):
         """ 横屏点击灰色蒙板 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -128,6 +138,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -152,6 +164,8 @@ class TestTurboView(unittest.TestCase):
         """ 横屏窗口自动消失 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -166,6 +180,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -189,6 +205,8 @@ class TestTurboView(unittest.TestCase):
         """ 横屏点击启用快速模式按钮 """
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -203,6 +221,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -234,6 +254,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -248,6 +270,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -282,6 +306,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -296,6 +322,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -321,6 +349,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -335,6 +365,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -360,6 +392,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -374,6 +408,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -398,6 +434,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -412,6 +450,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -443,6 +483,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -457,6 +499,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -496,6 +540,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -510,6 +556,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -539,6 +587,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -553,6 +603,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
@@ -580,6 +632,8 @@ class TestTurboView(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        self.common.sound_view_yes_btn_click()
+        sleep(1)
         while True:
             i = 0
             game_status = None
@@ -594,6 +648,8 @@ class TestTurboView(unittest.TestCase):
                 if game_status is not None:
                     self.browser.refresh()
                     self.common.loading_pass()
+                    sleep(1)
+                    self.common.sound_view_yes_btn_click()
                     sleep(1)
 
             if i == 1 and game_status is None:
