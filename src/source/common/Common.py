@@ -21,6 +21,8 @@ class Common(object):
         self.game_id = self.message["game_id"]                  # 游戏id
         self.game_name = self.message["game_name"]              # 游戏名字
         self.full_line = self.message["full_line"]              # 是否满线
+        self.full_line_mulitiplier = \
+            self.message["full_line_mulitiplier"]               # 满线项目总赌注倍数
         self.line_num_min = self.message["line_num_min"]        # 最小线数
         self.line_num_max = self.message["line_num_max"]        # 最大线数
         self.line_cost = self.message["line_cost"]              # 所有线注

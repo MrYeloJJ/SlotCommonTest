@@ -19,10 +19,12 @@ class Config(object):
         game_id = eval(self.config.get(self.section, "gameId"))
         game_name = self.config.get(self.section, "gameName")
         full_line = eval(self.config.get(self.section, "fullLine"))
+        full_line_mulitiplier = eval(self.config.get(self.section, "fullLineMulitiplier"))
         line_num_min = eval(self.config.get(self.section, "lineNumMin"))
         line_num_max = eval(self.config.get(self.section, "lineNumMax"))
         line_cost = eval(self.config.get(self.section, "lineCost"))
         auto_game_times = eval(self.config.get(self.section, "autoGameTimes"))
 
         return {"lobby": lobby, "username": username, "password": password, "game_id": game_id, "game_name": game_name, "full_line": full_line,
-                "line_num_min": line_num_min, "line_num_max": line_num_max, "line_cost": line_cost, "auto_game_times": auto_game_times}
+                "full_line_mulitiplier": full_line_mulitiplier, "line_num_min": line_num_min, "line_num_max": line_num_max, "line_cost": line_cost,
+                "auto_game_times": auto_game_times}

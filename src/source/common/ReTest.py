@@ -4,7 +4,7 @@
 
 import unittest
 import sys
-from src.source.testcases.TestAutoGameView import TestAutoGameView
+from src.source.testcases.TestInfoBar import TestInfoBar
 from src.lib.HTMLTestReportCN import DirAndFiles
 
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
         suite = unittest.TestSuite()
         # 指定某测试类下的某个用例
-        suite.addTest(TestAutoGameView("test_auto_game_btn"))
+        suite.addTest(TestInfoBar("test_info_bar_default"))
         runner = unittest.TextTestRunner()
 
         print("\n\033[36;0m第 " + str(i + 1) + " 次测试结果：\033[0m")
