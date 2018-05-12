@@ -321,7 +321,7 @@ class Common(object):
                     cost_time = False
                     try:
                         assert cost_time is True, "等待" + str(time) + "秒，不会进入loading场景！"
-                    except AssertionError:
+                    except Exception:
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -345,7 +345,7 @@ class Common(object):
                 if cost_time >= time:
                     try:
                         assert bar_value == 100, "等待" + str(time) + "秒，进度条不会走满！"
-                    except AssertionError:
+                    except Exception:
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -370,7 +370,7 @@ class Common(object):
                 if cost_time >= time:
                     try:
                         assert dispear is None, "等待" + str(time) + "秒，loading场景不会消失！"
-                    except AssertionError:
+                    except Exception:
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -484,7 +484,7 @@ class Common(object):
                 if cost_time >= time:
                     try:
                         assert slot_status is True, "等待" + str(time) + "秒，滚轴不会旋转！"
-                    except AssertionError:
+                    except Exception:
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -504,7 +504,7 @@ class Common(object):
                     if cost_time >= time:
                         try:
                             assert slot_status is False, "等待" + str(time) + "秒，滚轴不会停止！"
-                        except AssertionError:
+                        except Exception:
                             self.daf.get_screenshot(self.browser)
                             raise
         else:
@@ -523,7 +523,7 @@ class Common(object):
                         try:
                             assert slot_status is True, "等待" + str(time) + "秒，滚轴不会停止！"
                             assert mask_status is True, "等待" + str(time) + "秒，蒙板不会消失！"
-                        except AssertionError:
+                        except Exception:
                             self.daf.get_screenshot(self.browser)
                             raise
 
