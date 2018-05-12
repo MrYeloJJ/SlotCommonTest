@@ -32,6 +32,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -39,13 +40,15 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
         turbo_view = self.common.turbo_mode_view_showing()
@@ -79,6 +82,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -86,15 +90,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.turbo_mode_view_close_btn_click()
         sleep(0.5)
         turbo_view = self.common.turbo_mode_view_dispear()
@@ -117,6 +124,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -124,15 +132,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.mask_view_click()
         sleep(0.5)
         turbo_view = self.common.turbo_mode_view_dispear()
@@ -155,6 +166,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -162,13 +174,15 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
         sleep(7)
@@ -192,6 +206,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -199,15 +214,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.turbo_mode_view_enable_btn_click()
         sleep(0.5)
         turbo_view = self.common.turbo_mode_view_dispear()
@@ -237,6 +255,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -244,13 +263,15 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
         turbo_view = self.common.turbo_mode_view_showing()
@@ -285,6 +306,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -292,15 +314,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.turbo_mode_view_close_btn_click()
         sleep(0.5)
         turbo_view = self.common.turbo_mode_view_dispear()
@@ -324,6 +349,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -331,15 +357,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.mask_view_click()
         sleep(0.5)
         turbo_view = self.common.turbo_mode_view_dispear()
@@ -363,6 +392,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -370,13 +400,15 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
         sleep(7)
@@ -401,6 +433,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -408,15 +441,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.turbo_mode_view_enable_btn_click()
         sleep(0.5)
         turbo_view = self.common.turbo_mode_view_dispear()
@@ -446,6 +482,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -453,13 +490,15 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
         self.common.landscape()
@@ -499,6 +538,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -506,15 +546,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.turbo_mode_view_close_btn_click()
         sleep(0.5)
         self.common.landscape()
@@ -542,6 +585,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -549,13 +593,15 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
         self.common.landscape()
@@ -583,6 +629,7 @@ class TestTurboView(unittest.TestCase):
         while True:
             i = 0
             game_status = None
+            total_win = 0
             for i in range(2):
                 self.common.start_btn_click()
                 self.common.wait_for_rolling(30)
@@ -590,15 +637,18 @@ class TestTurboView(unittest.TestCase):
                 self.common.start_btn_click()
                 sleep(0.5)
                 game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
 
-                if game_status is not None:
+                if game_status is not None or total_win != 0:
                     self.browser.refresh()
                     self.common.loading_pass()
                     sleep(3)
+                    break
 
-            if i == 1 and game_status is None:
+            if i == 1 and game_status is None and total_win == 0:
                 break
 
+        sleep(1)
         self.common.turbo_mode_view_enable_btn_click()
         sleep(0.5)
         self.common.landscape()
@@ -622,4 +672,4 @@ class TestTurboView(unittest.TestCase):
 if __name__ == "__main__":
     # 启动测试时创建文件夹
     DirAndFiles().create_dir()
-    unittest.main()
+    unittest.main(warnings="ignore")

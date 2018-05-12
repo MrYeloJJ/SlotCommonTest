@@ -578,4 +578,4 @@ class TestInfoBar(unittest.TestCase):
 if __name__ == "__main__":
     # 启动测试时创建文件夹
     DirAndFiles().create_dir()
-    unittest.main()
+    unittest.main(warnings="ignore")
