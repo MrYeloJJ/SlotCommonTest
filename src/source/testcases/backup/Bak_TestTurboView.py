@@ -28,7 +28,7 @@ class TestTurboView(unittest.TestCase):
     def test_turbo_view(self):
         """ 横屏快速模式窗口显示 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -79,7 +79,7 @@ class TestTurboView(unittest.TestCase):
     def test_close_btn_click(self):
         """ 横屏点击关闭按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -121,7 +121,7 @@ class TestTurboView(unittest.TestCase):
     def test_mask_click(self):
         """ 横屏点击灰色蒙板 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -163,7 +163,7 @@ class TestTurboView(unittest.TestCase):
     def test_auto_dispear(self):
         """ 横屏窗口自动消失 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -204,7 +204,7 @@ class TestTurboView(unittest.TestCase):
     def test_enable_btn_click(self):
         """ 横屏点击启用快速模式按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -253,7 +253,7 @@ class TestTurboView(unittest.TestCase):
         """ 竖屏快速模式窗口显示 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -305,7 +305,7 @@ class TestTurboView(unittest.TestCase):
         """ 竖屏点击关闭按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -348,7 +348,7 @@ class TestTurboView(unittest.TestCase):
         """ 竖屏点击灰色蒙板 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -391,7 +391,7 @@ class TestTurboView(unittest.TestCase):
         """ 竖屏窗口自动消失 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -433,7 +433,7 @@ class TestTurboView(unittest.TestCase):
         """ 竖屏点击启用快速模式按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -482,7 +482,7 @@ class TestTurboView(unittest.TestCase):
         """ 横竖屏快速模式窗口显示 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -539,7 +539,7 @@ class TestTurboView(unittest.TestCase):
         """ 横竖屏点击关闭按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -586,7 +586,7 @@ class TestTurboView(unittest.TestCase):
         """ 横竖屏窗口自动消失 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:
@@ -631,7 +631,7 @@ class TestTurboView(unittest.TestCase):
         """ 横竖屏点击启用快速模式按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         while True:

@@ -29,7 +29,7 @@ class TestInfoBar(unittest.TestCase):
     def test_info_bar_default(self):
         """ 横屏下导航栏内容 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         locale.setlocale(locale.LC_ALL, "")
@@ -72,7 +72,7 @@ class TestInfoBar(unittest.TestCase):
     def test_line_num_effect_bet_money(self):
         """ 横屏点击线数按钮后计算总赌注 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
@@ -130,7 +130,7 @@ class TestInfoBar(unittest.TestCase):
     def test_line_cost_effect_bet_money(self):
         """ 横屏点击线注按钮后计算总赌注 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
@@ -195,7 +195,7 @@ class TestInfoBar(unittest.TestCase):
         """ 竖屏下导航栏内容 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         locale.setlocale(locale.LC_ALL, "")
@@ -239,7 +239,7 @@ class TestInfoBar(unittest.TestCase):
         """ 竖屏点击线数按钮后计算总赌注 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
@@ -298,7 +298,7 @@ class TestInfoBar(unittest.TestCase):
         """ 竖屏点击线注按钮后计算总赌注 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
@@ -363,7 +363,7 @@ class TestInfoBar(unittest.TestCase):
         """ 横竖屏下导航栏内容 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.landscape()
@@ -411,7 +411,7 @@ class TestInfoBar(unittest.TestCase):
         """ 横竖屏点击线数按钮后计算总赌注 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()
@@ -478,7 +478,7 @@ class TestInfoBar(unittest.TestCase):
         """ 横竖屏点击线注按钮后计算总赌注 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.setting_btn_click()

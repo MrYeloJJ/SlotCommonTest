@@ -103,7 +103,7 @@ class TestLoadingView(unittest.TestCase):
     def test_loading_view_dispear(self):
         """ 横屏在进度条100%后载入消失 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         showing = self.common.loading_view_dispear()
         try:
             self.assertEqual(showing, None, "横屏载入完成后载入场景不会消失！")
@@ -199,7 +199,7 @@ class TestLoadingView(unittest.TestCase):
         """ 竖屏进度条100%后载入消失 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         showing = self.common.loading_view_dispear()
         try:
             self.assertEqual(showing, None, "竖屏载入完成后载入场景不会消失！")

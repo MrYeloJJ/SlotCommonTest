@@ -29,7 +29,7 @@ class TestMainMenu(unittest.TestCase):
     def test_main_menu_default_status(self):
         """ 横屏左侧主菜单及按钮的默认状态 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         # 显示
@@ -68,7 +68,7 @@ class TestMainMenu(unittest.TestCase):
     def test_main_menu_btn_click(self):
         """ 横屏点击左侧主菜单按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.main_menu_btn_click()
@@ -95,7 +95,7 @@ class TestMainMenu(unittest.TestCase):
     def test_main_menu_btn_click_twice(self):
         """ 横屏点击左侧主菜单按钮两次 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.main_menu_btn_click()
@@ -124,7 +124,7 @@ class TestMainMenu(unittest.TestCase):
     def test_info_btn_click(self):
         """ 横屏点击奖金表按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -139,7 +139,7 @@ class TestMainMenu(unittest.TestCase):
     def test_info_view_return_btn(self):
         """ 横屏奖金表场景返回按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -156,7 +156,7 @@ class TestMainMenu(unittest.TestCase):
     def test_info_view_return_btn_click(self):
         """ 横屏点击奖金表返回按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -173,7 +173,7 @@ class TestMainMenu(unittest.TestCase):
     def test_help_btn_click(self):
         """ 横屏点击帮助按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -188,7 +188,7 @@ class TestMainMenu(unittest.TestCase):
     def test_help_view_return_btn(self):
         """ 横屏帮助场景返回按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -205,7 +205,7 @@ class TestMainMenu(unittest.TestCase):
     def test_help_view_return_btn_click(self):
         """ 横屏点击帮助场景返回按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -222,7 +222,7 @@ class TestMainMenu(unittest.TestCase):
     def test_voice_btn_click(self):
         """ 横屏声音开关按钮点击 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.voice_btn_click()
@@ -239,7 +239,7 @@ class TestMainMenu(unittest.TestCase):
     def test_voice_btn_click_twice(self):
         """ 横屏点击两次声音开关按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.voice_btn_click()
@@ -258,7 +258,7 @@ class TestMainMenu(unittest.TestCase):
     def test_turbo_btn_default(self):
         """ 横屏快速模式按钮默认状态 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         turbo_btn_status = self.common.turbo_btn_status()
@@ -273,7 +273,7 @@ class TestMainMenu(unittest.TestCase):
     def test_turbo_btn_click(self):
         """验证横屏点击快速模式按钮 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
 
@@ -340,7 +340,7 @@ class TestMainMenu(unittest.TestCase):
     def test_turbo_btn_click_twice(self):
         """验证横屏点击快速模式按钮两次 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.turbo_btn_click()
@@ -368,7 +368,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏左侧主菜单及按钮的默认状态 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         # 显示
@@ -408,7 +408,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击左侧主菜单按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.main_menu_btn_click()
@@ -436,7 +436,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击左侧主菜单按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.main_menu_btn_click()
@@ -466,7 +466,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击奖金表按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -482,7 +482,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏奖金表场景返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -500,7 +500,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击奖金表返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -518,7 +518,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击帮助按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -534,7 +534,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -552,7 +552,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -570,7 +570,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击声音开关按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.voice_btn_click()
@@ -588,7 +588,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏点击两次声音开关按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.voice_btn_click()
@@ -608,7 +608,7 @@ class TestMainMenu(unittest.TestCase):
         """ 竖屏快速模式按钮默认状态 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         turbo_btn_status = self.common.turbo_btn_status()
@@ -624,7 +624,7 @@ class TestMainMenu(unittest.TestCase):
         """验证竖屏点击快速模式按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
 
@@ -692,7 +692,7 @@ class TestMainMenu(unittest.TestCase):
         """验证竖屏点击快速模式按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.turbo_btn_click()
@@ -720,7 +720,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，左侧主菜单状态 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.landscape()
@@ -758,7 +758,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击左侧主菜单按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.landscape()
@@ -797,7 +797,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击左侧主菜单按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.landscape()
@@ -839,7 +839,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，奖金表场景返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -861,7 +861,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击奖金表返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.info_btn_click()
@@ -883,7 +883,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -905,7 +905,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击帮助场景返回按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.help_btn_click()
@@ -927,7 +927,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击声音开关按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.landscape()
@@ -949,7 +949,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击声音开关按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.landscape()
@@ -973,7 +973,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击快速模式按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
 
@@ -1045,7 +1045,7 @@ class TestMainMenu(unittest.TestCase):
         """ 横竖屏切换，点击快速模式按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.sound_view_yes_btn_click()
         sleep(1)
         self.common.turbo_btn_click()

@@ -34,7 +34,7 @@ class TestLoginMode(unittest.TestCase):
         self.common.find_game()
         self.common.switch_game_window()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
 
         has_money_title = self.common.info_bar_view_has_money_title()
         has_money_label = self.common.info_bar_view_has_money_label()
@@ -54,7 +54,7 @@ class TestLoginMode(unittest.TestCase):
         self.common.set_chips_to_zero()
         self.browser.refresh()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.start_btn_click()
         sleep(1)
 
@@ -125,7 +125,7 @@ class TestLoginMode(unittest.TestCase):
         self.common.switch_game_window()
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
 
         has_money_title = self.common.info_bar_view_has_money_title()
         has_money_label = self.common.info_bar_view_has_money_label()
@@ -145,7 +145,7 @@ class TestLoginMode(unittest.TestCase):
         self.common.set_chips_to_zero()
         self.browser.refresh()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.start_btn_click()
         sleep(1)
 
@@ -216,7 +216,7 @@ class TestLoginMode(unittest.TestCase):
         self.common.switch_game_window()
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.landscape()
         sleep(0.5)
         self.common.portrait()
@@ -240,7 +240,7 @@ class TestLoginMode(unittest.TestCase):
         self.common.set_chips_to_zero()
         self.browser.refresh()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         self.common.start_btn_click()
         sleep(1)
 
