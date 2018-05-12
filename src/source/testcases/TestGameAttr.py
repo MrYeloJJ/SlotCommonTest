@@ -20,6 +20,9 @@ class TestGameAttr(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
+    # 初始化满线参数 True, False
+    full_line = Common().full_line
+
     def test_game_id(self):
         """ 游戏id """
         sleep(1)
@@ -42,6 +45,7 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_min_line_num(self):
         """ 最小线数 """
         sleep(1)
@@ -53,6 +57,7 @@ class TestGameAttr(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_max_line_num(self):
         """ 最大线数 """
         sleep(1)

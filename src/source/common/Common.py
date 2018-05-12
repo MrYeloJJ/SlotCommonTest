@@ -483,7 +483,7 @@ class Common(object):
             else:
                 if cost_time >= time:
                     try:
-                        assert slot_status is True, "等待" + time + "秒，滚轴不会旋转！"
+                        assert slot_status is True, "等待" + str(time) + "秒，滚轴不会旋转！"
                     except AssertionError:
                         self.daf.get_screenshot(self.browser)
                         raise
@@ -503,7 +503,7 @@ class Common(object):
                 else:
                     if cost_time >= time:
                         try:
-                            assert slot_status is False, "等待" + time + "秒，滚轴不会停止！"
+                            assert slot_status is False, "等待" + str(time) + "秒，滚轴不会停止！"
                         except AssertionError:
                             self.daf.get_screenshot(self.browser)
                             raise
@@ -521,8 +521,8 @@ class Common(object):
                 else:
                     if cost_time >= time:
                         try:
-                            assert slot_status is True, "等待" + time + "秒，滚轴不会停止！"
-                            assert mask_status is True, "等待" + time + "秒，蒙板不会消失！"
+                            assert slot_status is True, "等待" + str(time) + "秒，滚轴不会停止！"
+                            assert mask_status is True, "等待" + str(time) + "秒，蒙板不会消失！"
                         except AssertionError:
                             self.daf.get_screenshot(self.browser)
                             raise
