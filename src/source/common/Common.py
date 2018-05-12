@@ -67,7 +67,14 @@ class Common(object):
             WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "photo")), "等待30秒，不会显示用户名！")
             name = self.browser.find_element_by_class_name("photo").text
             lobby_username = name.strip()
-            assert lobby_username == self.username, "用户名不一致，登录失败！"
+
+            try:
+                assert lobby_username == self.username
+            except AssertionError:
+                print("用户名不一致，登录失败！")
+                self.daf.get_screenshot(self.browser)
+                raise
+
             # 余额小于1000时点击加钱按钮
             lobby_chips_num = self.lobby_chips()["lobby_chips_num"]
             if lobby_chips_num < 1000:
@@ -313,7 +320,7 @@ class Common(object):
         while True:
             try:
                 self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
-                                                      + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
+                                            + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
                 break
             except:
                 end_time = datetime.now()
@@ -322,10 +329,12 @@ class Common(object):
                 if cost_time >= time:
                     cost_time = False
                     try:
-                        assert cost_time is True, "等待" + str(time) + "秒，不会进入loading场景！"
-                    except Exception:
+                        assert cost_time is True
+                    except AssertionError:
+                        print("等待" + str(time) + "秒，不会进入loading场景！")
                         self.daf.get_screenshot(self.browser)
                         raise
+
 
     # 等待加载完成
     def wait_for_loading_bar_completed(self):
@@ -346,8 +355,9 @@ class Common(object):
             else:
                 if cost_time >= time:
                     try:
-                        assert bar_value == 100, "等待" + str(time) + "秒，进度条不会走满！"
-                    except Exception:
+                        assert bar_value == 100
+                    except AssertionError:
+                        print("等待" + str(time) + "秒，进度条不会走满！")
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -371,8 +381,9 @@ class Common(object):
             else:
                 if cost_time >= time:
                     try:
-                        assert dispear is None, "等待" + str(time) + "秒，loading场景不会消失！"
-                    except Exception:
+                        assert dispear is None
+                    except AssertionError:
+                        print("等待" + str(time) + "秒，loading场景不会消失！")
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -485,8 +496,9 @@ class Common(object):
             else:
                 if cost_time >= time:
                     try:
-                        assert slot_status is True, "等待" + str(time) + "秒，滚轴不会旋转！"
-                    except Exception:
+                        assert slot_status is True
+                    except AssertionError:
+                        print("等待" + str(time) + "秒，滚轴不会旋转！")
                         self.daf.get_screenshot(self.browser)
                         raise
 
@@ -505,8 +517,9 @@ class Common(object):
                 else:
                     if cost_time >= time:
                         try:
-                            assert slot_status is False, "等待" + str(time) + "秒，滚轴不会停止！"
-                        except Exception:
+                            assert slot_status is False
+                        except AssertionError:
+                            print("等待" + str(time) + "秒，滚轴不会停止！")
                             self.daf.get_screenshot(self.browser)
                             raise
         else:
@@ -523,11 +536,19 @@ class Common(object):
                 else:
                     if cost_time >= time:
                         try:
-                            assert slot_status is True, "等待" + str(time) + "秒，滚轴不会停止！"
-                            assert mask_status is True, "等待" + str(time) + "秒，蒙板不会消失！"
-                        except Exception:
+                            assert slot_status is True
+                        except AssertionError:
+                            print("等待" + str(time) + "秒，滚轴不会停止！")
                             self.daf.get_screenshot(self.browser)
                             raise
+
+                        try:
+                            assert mask_status is True
+                        except AssertionError:
+                            print("等待" + str(time) + "秒，蒙板不会消失！")
+                            self.daf.get_screenshot(self.browser)
+                            raise
+
 
     #
     #
