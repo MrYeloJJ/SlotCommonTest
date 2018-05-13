@@ -11,7 +11,7 @@ class RunAllTests(object):
 
     def __init__(self):
         self.test_case_path = "../testcases/"
-        self.tester = input("请输入你的名字：")
+        self.tester = Config().get_message()["tester"]
 
         # 将游戏名字放入报告里
         self.game = Config().get_message()["game_name"]
