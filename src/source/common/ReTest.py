@@ -4,7 +4,8 @@
 
 import unittest
 import sys
-from src.source.testcases.TestInfoBar import TestInfoBar
+from time import sleep
+from src.source.testcases.TestLoadingView import TestLoadingView
 from src.lib.HTMLTestReportCN import DirAndFiles
 
 
@@ -13,14 +14,14 @@ if __name__ == "__main__":
     DirAndFiles().create_dir()
 
     # 重复测试n遍
-    n = 1
+    n = 5
     for i in range(n):
 
+        sleep(1)
         suite = unittest.TestSuite()
         # 指定某测试类下的某个用例
-        suite.addTest(TestInfoBar("test_info_bar_default"))
+        suite.addTest(TestLoadingView("test_loading_view_showing_switch_screen"))
         runner = unittest.TextTestRunner()
-
         print("\n\033[36;0m第 " + str(i + 1) + " 次测试结果：\033[0m")
         runner.run(suite)
 

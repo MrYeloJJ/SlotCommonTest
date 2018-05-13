@@ -215,16 +215,16 @@ class TestLoadingView(unittest.TestCase):
         """ 横竖屏显示logo、进度条、版本号 """
         self.common.portrait()
         self.common.landscape()
-        self.common.portrait()
         self.common.wait_for_loading_view_showing()
         bg = self.common.loading_view_background_visible()
-        logo = self.common.loading_view_logo_visible()
+        # G2E loading 图没有logo
+        # logo = self.common.loading_view_logo_visible()
         progress_title = self.common.loading_view_progress_title_visible()
         progress_bar = self.common.loading_view_progress_bar_visible()
         version = self.common.loading_view_version_visible()
         try:
             self.assertEqual(bg, True, "横竖屏切换，载入场景没有显示背景图片！")
-            self.assertEqual(logo, True, "横竖屏切换，载入场景没有显示logo！")
+            # self.assertEqual(logo, True, "横竖屏切换，载入场景没有显示logo！")
             self.assertEqual(progress_title, True, "横竖屏切换，载入场景没有显示当前进度百分比！")
             self.assertEqual(progress_bar, True, "横竖屏切换，载入场景没有显示进度条！")
             self.assertEqual(version, True, "横竖屏切换，载入场景没有显示版本号！")
@@ -260,7 +260,6 @@ class TestLoadingView(unittest.TestCase):
         sleep(1)
         self.common.landscape()
         self.common.wait_for_loading_view_dispear()
-        self.common.portrait()
         sleep(1)
         showing = self.common.loading_view_dispear()
         try:

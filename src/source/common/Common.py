@@ -322,7 +322,7 @@ class Common(object):
                 self.browser.execute_script("var loading = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "window.Loading.FUILoadingView.URL, "
                                             + self.add_script + "UIManager.instance.commonView);return loading.isShowing;")
                 break
-            except:
+            except Exception:
                 end_time = datetime.now()
                 cost_time = (end_time - start_time).seconds
 
@@ -334,7 +334,6 @@ class Common(object):
                         print("等待" + str(time) + "秒，不会进入loading场景！")
                         self.daf.get_screenshot(self.browser)
                         raise
-
 
     # 等待加载完成
     def wait_for_loading_bar_completed(self):
@@ -548,7 +547,6 @@ class Common(object):
                             print("等待" + str(time) + "秒，蒙板不会消失！")
                             self.daf.get_screenshot(self.browser)
                             raise
-
 
     #
     #
