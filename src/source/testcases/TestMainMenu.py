@@ -247,7 +247,7 @@ class TestMainMenu(unittest.TestCase):
             raise
 
     def test_turbo_btn_click(self):
-        """验证横屏点击快速模式按钮 """
+        """ 验证横屏点击快速模式按钮 """
         self.common.loading_pass()
         sleep(3)
 
@@ -308,7 +308,7 @@ class TestMainMenu(unittest.TestCase):
                         raise
 
     def test_turbo_btn_click_twice(self):
-        """验证横屏点击快速模式按钮两次 """
+        """ 验证横屏点击快速模式按钮两次 """
         self.common.loading_pass()
         sleep(3)
         self.common.turbo_btn_click()
@@ -565,7 +565,7 @@ class TestMainMenu(unittest.TestCase):
             raise
 
     def test_turbo_btn_click_portrait(self):
-        """验证竖屏点击快速模式按钮 """
+        """ 验证竖屏点击快速模式按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(3)
@@ -627,7 +627,7 @@ class TestMainMenu(unittest.TestCase):
                         raise
 
     def test_turbo_btn_click_twice_portrait(self):
-        """验证竖屏点击快速模式按钮两次 """
+        """ 验证竖屏点击快速模式按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(3)
