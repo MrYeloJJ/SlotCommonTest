@@ -241,6 +241,48 @@ class TestTurboView(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    def test_enable_btn_click_refresh(self):
+        """ 横屏点击启用快速模式按钮后刷新页面 """
+        self.common.loading_pass()
+        sleep(1)
+        while True:
+            i = 0
+            game_status = None
+            total_win = 0
+            for i in range(2):
+                self.common.start_btn_click()
+                self.common.wait_for_rolling(30)
+                sleep(0.5)
+                self.common.start_btn_click()
+                sleep(0.5)
+                game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
+
+                if game_status is not None or total_win != 0:
+                    self.browser.refresh()
+                    self.common.loading_pass()
+                    sleep(3)
+                    break
+
+            if i == 1 and game_status is None and total_win == 0:
+                break
+
+        sleep(1)
+        self.common.turbo_mode_view_enable_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+
+        turbo_btn_status = self.common.turbo_btn_status()
+        spin_status = self.common.spin_is_in_turbo()
+        try:
+            self.assertEqual(turbo_btn_status, "2x", "横屏点击启用快速模式按钮后刷新，快速模式按钮状态不是2x！")
+            self.assertEqual(spin_status, True, "横屏点击启用快速模式按钮后刷新，滚轴滚动方式不是快速速度！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     #
     #
     # ------------------------------------------------------------------------ 竖屏模式 ------------------------------------------------------------------------
@@ -464,6 +506,49 @@ class TestTurboView(unittest.TestCase):
             self.assertEqual(mask_view, False, "竖屏点击快速模式窗口启用按钮，灰色蒙板不会消失！")
             self.assertEqual(turbo_btn_status, "2x", "竖屏点击快速模式窗口启用按钮，快速模式按钮状态不是2x！")
             self.assertEqual(spin_status, True, "竖屏点击快速模式窗口启用按钮，滚轴滚动方式不是快速速度！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    def test_enable_btn_click_refresh_portrait(self):
+        """ 竖屏点击启用快速模式按钮后刷新页面 """
+        self.common.portrait()
+        self.common.loading_pass()
+        sleep(1)
+        while True:
+            i = 0
+            game_status = None
+            total_win = 0
+            for i in range(2):
+                self.common.start_btn_click()
+                self.common.wait_for_rolling(30)
+                sleep(0.5)
+                self.common.start_btn_click()
+                sleep(0.5)
+                game_status = self.common.get_game_current_status()
+                total_win = self.common.total_win()
+
+                if game_status is not None or total_win != 0:
+                    self.browser.refresh()
+                    self.common.loading_pass()
+                    sleep(3)
+                    break
+
+            if i == 1 and game_status is None and total_win == 0:
+                break
+
+        sleep(1)
+        self.common.turbo_mode_view_enable_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+
+        turbo_btn_status = self.common.turbo_btn_status()
+        spin_status = self.common.spin_is_in_turbo()
+        try:
+            self.assertEqual(turbo_btn_status, "2x", "竖屏点击启用快速模式按钮后刷新，快速模式按钮状态不是2x！")
+            self.assertEqual(spin_status, True, "竖屏点击启用快速模式按钮后刷新，滚轴滚动方式不是快速速度！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
