@@ -1258,27 +1258,26 @@ class DirAndFiles(object):
     def __init__(self):
         self.path = "../../result/"
         self.title = "Test Report"
+        self.time = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
 
     def create_dir(self, title=None):
-        i = 1.0
 
         if title is not None:
             self.title = title
 
-        dir_path = self.path + self.title + "V" + str(round(i, 1))
+        dir_path = self.path + self.title + self.time
         # 判断文件夹是否存在，不存在则创建
         while True:
             is_dir = os.path.isdir(dir_path)
             if is_dir:
-                i += 0.1
-                dir_path = self.path + self.title + "V" + str(round(i, 1))
+                dir_path = self.path + self.title + self.time
             else:
                 break
 
         os.makedirs(dir_path)
 
         # 测试报告路径
-        report_path = dir_path + "/" + self.title + "V" + str(round(i, 1)) + ".html"
+        report_path = dir_path + "/" + self.title + self.time + ".html"
 
         # 将新建的 文件夹路径 和 报告路径 存入全局变量
         GlobalMsg.set_value("dir_path", dir_path)
