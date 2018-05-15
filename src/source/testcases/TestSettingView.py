@@ -32,7 +32,7 @@ class TestSettingView(unittest.TestCase):
     def test_setting_btn_visible(self):
         """ 横屏显示线数线注设置按钮 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         # 显示
         setting_btn = self.common.setting_btn_visible()
         # 能否点击
@@ -47,7 +47,7 @@ class TestSettingView(unittest.TestCase):
     def test_setting_btn_click_show_view(self):
         """ 横屏点击线数线注设置按钮 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         showing = self.common.setting_view_showing()
@@ -62,7 +62,7 @@ class TestSettingView(unittest.TestCase):
     def test_click_mask_setting_view_dispear(self):
         """ 横屏点击蒙板可以关闭面板 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.mask_view_click()
@@ -79,7 +79,7 @@ class TestSettingView(unittest.TestCase):
     def test_click_close_btn_view_dispear(self):
         """ 横屏点击关闭按钮面板消失 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.setting_view_close_btn_click()
@@ -97,7 +97,7 @@ class TestSettingView(unittest.TestCase):
     def test_setting_view_line_num(self):
         """ 横屏面板线数标题文字按钮 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         # 文本
@@ -127,7 +127,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_num_min_btn_click(self):
         """ 横屏面板线数 - 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -162,7 +162,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_num_plus_btn_click(self):
         """ 横屏面板线数 + 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -202,7 +202,7 @@ class TestSettingView(unittest.TestCase):
     def test_setting_view_btn_status(self):
         """ 横屏面板按钮状态 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         # 文本
@@ -240,7 +240,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_cost_plus_btn_click(self):
         """ 横屏面板线注 + 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -278,7 +278,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_cost_min_btn_click(self):
         """ 横屏面板线注 - 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -329,7 +329,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏显示线数线注设置按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         # 显示
         setting_btn = self.common.setting_btn_visible()
         # 能否点击
@@ -345,7 +345,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏点击线数线注设置按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         showing = self.common.setting_view_showing()
@@ -361,7 +361,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏点击蒙板可以关闭面板 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.mask_view_click()
@@ -379,7 +379,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏点击关闭按钮面板消失 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.setting_view_close_btn_click()
@@ -398,7 +398,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏面板线数标题文字按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         # 文本
@@ -429,7 +429,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏面板线数 - 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -465,7 +465,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏面板线数 + 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -506,7 +506,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏面板按钮状态 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         # 文本
@@ -545,7 +545,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏面板线注 + 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -584,7 +584,7 @@ class TestSettingView(unittest.TestCase):
         """ 竖屏面板线注 - 按钮点击 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -635,7 +635,7 @@ class TestSettingView(unittest.TestCase):
         """ 横竖屏线数线注按钮显示 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.landscape()
         sleep(1)
         self.common.portrait()
@@ -651,7 +651,7 @@ class TestSettingView(unittest.TestCase):
         """ 横竖屏弹出设置面板 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.landscape()
@@ -671,7 +671,7 @@ class TestSettingView(unittest.TestCase):
         """ 横竖屏点击蒙板可以关闭面板 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.mask_view_click()
@@ -694,7 +694,7 @@ class TestSettingView(unittest.TestCase):
         """ 横竖屏面板线数标题文字按钮 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.landscape()
@@ -721,7 +721,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_num_min_btn_click_switch_screen(self):
         """ 横竖屏面板线数 - 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -764,7 +764,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_num_plus_btn_click_switch_screen(self):
         """ 横竖屏面板线数 + 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -813,7 +813,7 @@ class TestSettingView(unittest.TestCase):
         """ 横竖屏面板线注标题文字 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
         self.common.landscape()
@@ -843,7 +843,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_cost_plus_btn_click_switch_screen(self):
         """ 横竖屏面板线注 + 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 
@@ -889,7 +889,7 @@ class TestSettingView(unittest.TestCase):
     def test_line_cost_min_btn_click_switch_screen(self):
         """ 横竖屏面板线注 - 按钮点击 """
         self.common.loading_pass()
-        sleep(3)
+        sleep(1)
         self.common.setting_btn_click()
         sleep(1)
 

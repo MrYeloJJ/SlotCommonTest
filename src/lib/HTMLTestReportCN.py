@@ -1270,6 +1270,7 @@ class DirAndFiles(object):
         while True:
             is_dir = os.path.isdir(dir_path)
             if is_dir:
+                self.time = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
                 dir_path = self.path + self.title + self.time
             else:
                 break
