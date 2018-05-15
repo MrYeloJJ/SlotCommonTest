@@ -233,6 +233,39 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    def test_voice_btn_click_refresh(self):
+        """ 横屏点击声音按钮后刷新页面 """
+        self.common.loading_pass()
+        sleep(1)
+        self.common.voice_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        voice_status = self.common.voice_btn_status()
+        sound_status = self.common.sound_status()
+        try:
+            self.assertEqual(voice_status, "silience", "横屏关闭声音按钮后刷新，按钮变成打开！")
+            self.assertEqual(sound_status, True, "横屏关闭声音后刷新，声音变成打开！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+        sleep(1)
+        self.common.voice_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        voice_status = self.common.voice_btn_status()
+        sound_status = self.common.sound_status()
+        try:
+            self.assertEqual(voice_status, "normal", "横屏打开声音按钮后刷新，按钮变成关闭！")
+            self.assertEqual(sound_status, False, "横屏打开声音后刷新，声音变成关闭！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     def test_turbo_btn_default(self):
         """ 横屏快速模式按钮默认状态 """
         self.common.loading_pass()
@@ -247,7 +280,7 @@ class TestMainMenu(unittest.TestCase):
             raise
 
     def test_turbo_btn_click(self):
-        """ 验证横屏点击快速模式按钮 """
+        """ 横屏点击快速模式按钮 """
         self.common.loading_pass()
         sleep(3)
 
@@ -308,7 +341,7 @@ class TestMainMenu(unittest.TestCase):
                         raise
 
     def test_turbo_btn_click_twice(self):
-        """ 验证横屏点击快速模式按钮两次 """
+        """ 横屏点击快速模式按钮两次 """
         self.common.loading_pass()
         sleep(3)
         self.common.turbo_btn_click()
@@ -322,6 +355,39 @@ class TestMainMenu(unittest.TestCase):
             self.assertEqual(turbo_btn_status, "1x", "横屏点击快速模式按钮两次，快速模式按钮状态不是1x！")
             self.assertEqual(spin_status, False, "横屏点击快速模式按钮两次，滚轴滚动方式不是慢速！")
             self.assertEqual(info_bar_banner, "快速模式已禁用", "横屏点击快速模式按钮两次，下导航栏提示文字错误！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    def test_turbo_btn_click_refresh(self):
+        """ 横屏点击快速按钮后刷新页面 """
+        self.common.loading_pass()
+        sleep(1)
+        self.common.turbo_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        turbo_btn_status = self.common.turbo_btn_status()
+        spin_status = self.common.spin_is_in_turbo()
+        try:
+            self.assertEqual(turbo_btn_status, "2x", "横屏启动快速模式后刷新，快速模式按钮状态不是2x！")
+            self.assertEqual(spin_status, True, "横屏启动快速模式后刷新，滚轴滚动方式不是快速！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+        sleep(1)
+        self.common.turbo_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        turbo_btn_status = self.common.turbo_btn_status()
+        spin_status = self.common.spin_is_in_turbo()
+        try:
+            self.assertEqual(turbo_btn_status, "1x", "横屏关闭快速模式后刷新，快速模式按钮状态不是1x！")
+            self.assertEqual(spin_status, False, "横屏关闭快速模式后刷新，滚轴滚动方式不是慢速！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise
@@ -550,6 +616,40 @@ class TestMainMenu(unittest.TestCase):
             self.daf.get_screenshot(self.browser)
             raise
 
+    def test_voice_btn_click_refresh_portrait(self):
+        """ 竖屏点击声音按钮后刷新页面 """
+        self.common.portrait()
+        self.common.loading_pass()
+        sleep(1)
+        self.common.voice_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        voice_status = self.common.voice_btn_status()
+        sound_status = self.common.sound_status()
+        try:
+            self.assertEqual(voice_status, "silience", "竖屏关闭声音按钮后刷新，按钮变成打开！")
+            self.assertEqual(sound_status, True, "竖屏关闭声音后刷新，声音变成打开！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+        sleep(1)
+        self.common.voice_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(3)
+        voice_status = self.common.voice_btn_status()
+        sound_status = self.common.sound_status()
+        try:
+            self.assertEqual(voice_status, "normal", "竖屏打开声音按钮后刷新，按钮变成关闭！")
+            self.assertEqual(sound_status, False, "竖屏打开声音后刷新，声音变成关闭！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     def test_turbo_btn_default_portrait(self):
         """ 竖屏快速模式按钮默认状态 """
         self.common.portrait()
@@ -565,7 +665,7 @@ class TestMainMenu(unittest.TestCase):
             raise
 
     def test_turbo_btn_click_portrait(self):
-        """ 验证竖屏点击快速模式按钮 """
+        """ 竖屏点击快速模式按钮 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(3)
@@ -627,7 +727,7 @@ class TestMainMenu(unittest.TestCase):
                         raise
 
     def test_turbo_btn_click_twice_portrait(self):
-        """ 验证竖屏点击快速模式按钮两次 """
+        """ 竖屏点击快速模式按钮两次 """
         self.common.portrait()
         self.common.loading_pass()
         sleep(3)
@@ -642,6 +742,40 @@ class TestMainMenu(unittest.TestCase):
             self.assertEqual(turbo_btn_status, "1x", "竖屏点击快速模式按钮两次，快速模式按钮状态不是1x！")
             self.assertEqual(spin_status, False, "竖屏点击快速模式按钮两次，滚轴滚动方式不是慢速！")
             self.assertEqual(info_bar_banner, "快速模式已禁用", "竖屏点击快速模式按钮两次，下导航栏提示文字错误！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    def test_turbo_btn_click_refresh_portrait(self):
+        """ 竖屏点击快速按钮后刷新页面 """
+        self.common.portrait()
+        self.common.loading_pass()
+        sleep(1)
+        self.common.turbo_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        turbo_btn_status = self.common.turbo_btn_status()
+        spin_status = self.common.spin_is_in_turbo()
+        try:
+            self.assertEqual(turbo_btn_status, "2x", "竖屏启动快速模式后刷新，快速模式按钮状态不是2x！")
+            self.assertEqual(spin_status, True, "竖屏启动快速模式后刷新，滚轴滚动方式不是快速！")
+        except AssertionError:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+        sleep(1)
+        self.common.turbo_btn_click()
+        sleep(1)
+        self.browser.refresh()
+        self.common.loading_pass()
+        sleep(1)
+        turbo_btn_status = self.common.turbo_btn_status()
+        spin_status = self.common.spin_is_in_turbo()
+        try:
+            self.assertEqual(turbo_btn_status, "1x", "竖屏关闭快速模式后刷新，快速模式按钮状态不是1x！")
+            self.assertEqual(spin_status, False, "竖屏关闭快速模式后刷新，滚轴滚动方式不是慢速！")
         except AssertionError:
             self.daf.get_screenshot(self.browser)
             raise

@@ -37,13 +37,13 @@ class CustomRun(object):
                            }
 
     def run(self, data_json):
-        # 将json转为字典
+        # 将json转为list
         test_cases_data = json.loads(data_json)
         suite = unittest.TestSuite()
         # 循环读取需要测试的用例，并添加到TestSuite里
-        for i in test_cases_data.keys():
-            test_class = self.test_class[i]
-            test_case = test_cases_data[i]
+        for i in test_cases_data:
+            test_class = self.test_class[i[0]]
+            test_case = i[1]
             # 指定某测试类下的某个用例
             suite.addTest(test_class(test_case))
 
@@ -60,8 +60,10 @@ class CustomRun(object):
 
 
 if __name__ == "__main__":
-    data = {"TestLoadingView": "test_loading_view_showing_switch_screen",
-            "TestGameAttr": "test_game_name"}
+    data = [["TestMainMenu", "test_voice_btn_click_refresh"],
+            ["TestMainMenu", "test_turbo_btn_click_refresh"],
+            ["TestMainMenu", "test_voice_btn_click_refresh_portrait"],
+            ["TestMainMenu", "test_turbo_btn_click_refresh_portrait"]]
     # 将字典转为json
     my_json = json.dumps(data)
     CustomRun().run(my_json)
