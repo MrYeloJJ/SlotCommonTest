@@ -1,9 +1,9 @@
 # coding=utf-8
 
 """"" 公共操作类，包括验证大厅、打开游戏、游戏内按钮点击等操作 """""
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as ec
+# from selenium.webdriver.common.by import By
 from src.source.common.Config import Config
 from src.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
@@ -29,7 +29,7 @@ class Common(object):
         self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
-        self.add_script = "window.frames[0].frames."            # 多开情况需改为 "window.frames[0].frames."
+        self.add_script = ""            # 多开情况需改为 "window.frames[0].frames."
 
     # 进入大厅并打开游戏
     def start(self):
@@ -42,7 +42,7 @@ class Common(object):
     def get_lobby(self):
         try:
             self.browser.get(self.lobby)
-            WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -50,21 +50,21 @@ class Common(object):
     # 登录
     def login(self):
         try:
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "top_login_img")), "等待30秒，找不到登录按钮！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "top_login_img")), "等待30秒，找不到登录按钮！")
             self.browser.find_element_by_class_name("top_login_img").click()
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "username")), "等待30秒，找不到用户名输入框！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "username")), "等待30秒，找不到用户名输入框！")
             self.browser.find_element_by_id("username").send_keys(self.username)
             sleep(1)
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "password")), "等待30秒，找不到密码输入框！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "password")), "等待30秒，找不到密码输入框！")
             self.browser.find_element_by_id("password").send_keys(self.password)
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "login-reg")), "等待30秒，找不到登录/注册按钮！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "login-reg")), "等待30秒，找不到登录/注册按钮！")
             self.browser.find_element_by_id("login-reg").click()
             sleep(1)
             self.browser.switch_to.alert.accept()
 
             # 自动刷新大厅
-            WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "photo")), "等待30秒，不会显示用户名！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "photo")), "等待30秒，不会显示用户名！")
             name = self.browser.find_element_by_class_name("photo").text
             lobby_username = name.strip()
 
@@ -87,7 +87,7 @@ class Common(object):
     # 大厅加钱
     def add_chip(self):
         try:
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "add-chip")), "等待30秒，不会显示大厅加钱按钮！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "add-chip")), "等待30秒，不会显示大厅加钱按钮！")
             self.browser.find_element_by_class_name("add-chip").click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -96,7 +96,7 @@ class Common(object):
     # 大厅减钱
     def red_chip(self):
         try:
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "red-chip")), "等待30秒，不会显示大厅减钱按钮！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "red-chip")), "等待30秒，不会显示大厅减钱按钮！")
             self.browser.find_element_by_class_name("red-chip").click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -105,7 +105,7 @@ class Common(object):
     # 大厅余额
     def lobby_chips(self):
         try:
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "chips")), "等待30秒，不会显示大厅余额！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "chips")), "等待30秒，不会显示大厅余额！")
             lobby_chips_num = self.browser.find_element_by_class_name("chips").text
             # 格式化货币
             locale.setlocale(locale.LC_ALL, "")
@@ -118,7 +118,7 @@ class Common(object):
     # 切换到slot标签页
     def switch_page(self):
         try:
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "type_107")), "等待30秒，找不到slot标签页！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "type_107")), "等待30秒，找不到slot标签页！")
             self.browser.find_element_by_css_selector("a[href = '#type_107']").click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -127,7 +127,7 @@ class Common(object):
     # 根据游戏名字查找并打开游戏
     def find_game(self):
         try:
-            WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.LINK_TEXT, self.game_name)), "等待30秒，找不到游戏" + self.game_name + "！")
+            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.LINK_TEXT, self.game_name)), "等待30秒，找不到游戏" + self.game_name + "！")
             self.browser.find_element_by_link_text(self.game_name).click()
         except Exception:
             self.daf.get_screenshot(self.browser)

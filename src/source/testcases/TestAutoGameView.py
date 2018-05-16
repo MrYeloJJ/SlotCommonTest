@@ -2,7 +2,7 @@
 
 import unittest
 from time import sleep
-from selenium import webdriver
+from src.source.common.Browser import Browser
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
 
@@ -11,7 +11,7 @@ class TestAutoGameView(unittest.TestCase):
     """ 自动游戏设置模块 """
 
     def setUp(self):
-        self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
+        self.browser = Browser().browser()
         self.common = Common(self.browser)
         self.common.start()
         self.daf = DirAndFiles()
@@ -285,27 +285,28 @@ class TestAutoGameView(unittest.TestCase):
 
             # 获取停止旋转按钮上的剩余次数
             current_spin_time = self.common.in_auto_spin_btn_text()
+            self.common.wait_for_rolling_stop(30)
 
             # 判断自动游戏最后一局是否中了特殊玩法，若中了则刷新游戏重来
-            if current_spin_time == "0":
-                game_status = self.common.get_game_current_status()
-                if game_status is not None:
-                        self.browser.refresh()
-                        self.common.loading_pass()
-                        sleep(1)
+            game_status = self.common.get_game_current_status()
+            if game_status is not None:
+                self.browser.refresh()
+                self.common.loading_pass()
+                sleep(1)
 
-                        self.common.auto_game_btn_click()
-                        sleep(1)
-                        self.common.auto_game_view_change_auto_time(0)
-                        sleep(1)
+                self.common.auto_game_btn_click()
+                sleep(1)
+                self.common.auto_game_view_change_auto_time(0)
+                sleep(1)
 
-                        self.common.auto_game_view_start_btn_click()
-                        sleep(1)
-                        continue
-                else:
-                    self.common.wait_for_rolling_stop(30)
+                self.common.auto_game_view_start_btn_click()
+                sleep(1)
+                continue
+            else:
+                if current_spin_time == "0":
 
-                    for i in range(10):     # 循环10秒验证是否还会继续自动旋转
+                    # 循环10秒验证是否还会继续自动旋转
+                    for i in range(10):
                         sleep(1)
                         # 获取滚轴滚动状态
                         slot_rolling = self.common.slot_machine_rolling()
@@ -328,22 +329,6 @@ class TestAutoGameView(unittest.TestCase):
                             self.daf.get_screenshot(self.browser)
                             raise
                     break
-            else:
-                game_status = self.common.get_game_current_status()
-                if game_status is not None:
-                    self.browser.refresh()
-                    self.common.loading_pass()
-                    sleep(1)
-
-                    self.common.auto_game_btn_click()
-                    sleep(1)
-                    self.common.auto_game_view_change_auto_time(0)
-                    sleep(1)
-
-                    self.common.auto_game_view_start_btn_click()
-                    sleep(1)
-
-            self.common.wait_for_rolling_stop(30)
 
     def test_in_auto_game_click_start_btn(self):
         """ 横屏自动游戏过程，点击停止按钮 """
@@ -708,27 +693,28 @@ class TestAutoGameView(unittest.TestCase):
 
             # 获取停止旋转按钮上的剩余次数
             current_spin_time = self.common.in_auto_spin_btn_text()
+            self.common.wait_for_rolling_stop(30)
 
             # 判断自动游戏最后一局是否中了特殊玩法，若中了则刷新游戏重来
-            if current_spin_time == "0":
-                game_status = self.common.get_game_current_status()
-                if game_status is not None:
-                        self.browser.refresh()
-                        self.common.loading_pass()
-                        sleep(1)
+            game_status = self.common.get_game_current_status()
+            if game_status is not None:
+                    self.browser.refresh()
+                    self.common.loading_pass()
+                    sleep(1)
 
-                        self.common.auto_game_btn_click()
-                        sleep(1)
-                        self.common.auto_game_view_change_auto_time(0)
-                        sleep(1)
+                    self.common.auto_game_btn_click()
+                    sleep(1)
+                    self.common.auto_game_view_change_auto_time(0)
+                    sleep(1)
 
-                        self.common.auto_game_view_start_btn_click()
-                        sleep(1)
-                        continue
-                else:
-                    self.common.wait_for_rolling_stop(30)
+                    self.common.auto_game_view_start_btn_click()
+                    sleep(1)
+                    continue
+            else:
+                if current_spin_time == "0":
 
-                    for i in range(10):     # 循环10秒验证是否还会继续自动旋转
+                    # 循环10秒验证是否还会继续自动旋转
+                    for i in range(10):
                         sleep(1)
                         # 获取滚轴滚动状态
                         slot_rolling = self.common.slot_machine_rolling()
@@ -751,22 +737,6 @@ class TestAutoGameView(unittest.TestCase):
                             self.daf.get_screenshot(self.browser)
                             raise
                     break
-            else:
-                game_status = self.common.get_game_current_status()
-                if game_status is not None:
-                    self.browser.refresh()
-                    self.common.loading_pass()
-                    sleep(1)
-
-                    self.common.auto_game_btn_click()
-                    sleep(1)
-                    self.common.auto_game_view_change_auto_time(0)
-                    sleep(1)
-
-                    self.common.auto_game_view_start_btn_click()
-                    sleep(1)
-
-            self.common.wait_for_rolling_stop(30)
 
     def test_in_auto_game_click_start_btn_portrait(self):
         """ 竖屏自动游戏过程，点击停止按钮 """

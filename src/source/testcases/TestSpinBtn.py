@@ -3,7 +3,7 @@
 import unittest
 import locale
 from time import sleep
-from selenium import webdriver
+from src.source.common.Browser import Browser
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
 
@@ -12,7 +12,7 @@ class TestSpinBtn(unittest.TestCase):
     """ 旋转按钮模块 """
 
     def setUp(self):
-        self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
+        self.browser = Browser().browser()
         self.common = Common(self.browser)
         self.common.start()
         self.daf = DirAndFiles()
@@ -29,7 +29,7 @@ class TestSpinBtn(unittest.TestCase):
     def test_start_btn(self):
         """ 横屏旋转按钮默认显示 """
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         visible = self.common.start_btn_visible()
         touchable = self.common.start_btn_touchable()
         status = self.common.start_btn_status()
@@ -261,7 +261,7 @@ class TestSpinBtn(unittest.TestCase):
         """ 竖屏旋转按钮默认显示 """
         self.common.portrait()
         self.common.loading_pass()
-        sleep(1)
+        sleep(3)
         visible = self.common.start_btn_visible()
         touchable = self.common.start_btn_touchable()
         status = self.common.start_btn_status()

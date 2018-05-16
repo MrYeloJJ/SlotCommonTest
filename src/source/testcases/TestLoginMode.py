@@ -2,7 +2,7 @@
 
 import unittest
 from time import sleep
-from selenium import webdriver
+from src.source.common.Browser import Browser
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
 
@@ -11,7 +11,7 @@ class TestLoginMode(unittest.TestCase):
     """ 登录状态模块 """
 
     def setUp(self):
-        self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
+        self.browser = Browser().browser()
         self.common = Common(self.browser)
         self.common.get_lobby()
         self.common.login()

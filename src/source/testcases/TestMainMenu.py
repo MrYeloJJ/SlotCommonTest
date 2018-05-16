@@ -3,7 +3,7 @@
 import unittest
 from time import sleep
 from datetime import datetime
-from selenium import webdriver
+from src.source.common.Browser import Browser
 from src.source.common.Common import Common
 from src.lib.HTMLTestReportCN import DirAndFiles
 
@@ -12,7 +12,7 @@ class TestMainMenu(unittest.TestCase):
     """ 左侧选项菜单模块 """
 
     def setUp(self):
-        self.browser = webdriver.Chrome(executable_path="../../lib/chromedriver.exe")
+        self.browser = Browser().browser()
         self.common = Common(self.browser)
         self.common.start()
         self.daf = DirAndFiles()
