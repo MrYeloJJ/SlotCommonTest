@@ -115,19 +115,6 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
-    # 让余额为0
-    def set_chips_to_zero(self):
-        try:
-            self.show_gm_view()
-            sleep(0.5)
-            chips = self.info_bar_view_has_money_label()
-            gm = "\"!jq -" + chips.replace("¥", "").replace(",", "").replace(".", "") + "\""
-            self.gm_input(gm)
-            self.gm_confirm_btn_click()
-        except Exception:
-            self.daf.get_screenshot(self.browser)
-            raise
-
     # 切换到slot标签页
     def switch_page(self):
         try:
@@ -1920,6 +1907,17 @@ class Common(object):
             self.daf.get_screenshot(self.browser)
             raise
 
+    # 非满线项目，获取某条线的奖金，[tuple: 0]
+    def line_spin_coin(self, line_id):
+        try:
+            spin_coin = self.browser.execute_script("var lineResult = " + self.add_script + "SpinManager.instance.rollingResult.spinResult.lineResult;"
+                                                    + "var spinCoin = 0;for(i=0;i<lineResult.length;i++){var lineId = lineResult[i].lineId;if(lineId == " + str(int(line_id)) + "){"
+                                                    + "spinCoin = lineResult[i].spinCoin;}} return spinCoin;")
+            return spin_coin
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
     #
     #
     # ------------------------------------------------------------------------ GM窗口 ------------------------------------------------------------------------
@@ -1939,6 +1937,19 @@ class Common(object):
         try:
             self.browser.execute_script("var GMView = " + self.add_script + "UIManager.instance.getWindowByName(" + self.add_script + "Common.FUIGmView.URL, "
                                         + self.add_script + "UIManager.instance.tipsLayer).contentPane;GMView.m_content.m_gmInput.text = " + text)
+        except Exception:
+            self.daf.get_screenshot(self.browser)
+            raise
+
+    # 让余额为0
+    def set_chips_to_zero(self):
+        try:
+            self.show_gm_view()
+            sleep(0.5)
+            chips = self.info_bar_view_has_money_label()
+            gm = "\"!jq -" + chips.replace("¥", "").replace(",", "").replace(".", "") + "\""
+            self.gm_input(gm)
+            self.gm_confirm_btn_click()
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
