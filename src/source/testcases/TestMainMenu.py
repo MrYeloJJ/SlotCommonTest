@@ -317,7 +317,7 @@ class TestMainMenu(unittest.TestCase):
                 if i == 0:
                     self.common.turbo_btn_click()
                     i += 1
-                    sleep(3)
+                    sleep(0.5)
 
                 turbo_btn_status = self.common.turbo_btn_status()
                 spin_status = self.common.spin_is_in_turbo()
@@ -713,7 +713,7 @@ class TestMainMenu(unittest.TestCase):
                 if i == 0:
                     self.common.turbo_btn_click()
                     i += 1
-                    sleep(3)
+                    sleep(0.5)
 
                 turbo_btn_status = self.common.turbo_btn_status()
                 spin_status = self.common.spin_is_in_turbo()
@@ -1082,7 +1082,7 @@ class TestMainMenu(unittest.TestCase):
                 if i == 0:
                     self.common.turbo_btn_click()
                     i += 1
-                    sleep(3)
+                    sleep(0.5)
 
                 self.common.portrait()
                 sleep(0.5)
