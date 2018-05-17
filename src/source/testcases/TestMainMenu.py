@@ -290,6 +290,7 @@ class TestMainMenu(unittest.TestCase):
             if i == 1:
                 self.common.turbo_btn_click()
                 i -= 1
+                sleep(3)
 
             start_time = datetime.now()
             self.common.start_btn_click()
@@ -316,8 +317,8 @@ class TestMainMenu(unittest.TestCase):
                 if i == 0:
                     self.common.turbo_btn_click()
                     i += 1
+                    sleep(3)
 
-                sleep(0.5)
                 turbo_btn_status = self.common.turbo_btn_status()
                 spin_status = self.common.spin_is_in_turbo()
                 info_bar_banner = self.common.info_bar_view_banner_tips_label()
@@ -685,6 +686,7 @@ class TestMainMenu(unittest.TestCase):
             if i == 1:
                 self.common.turbo_btn_click()
                 i -= 1
+                sleep(3)
 
             start_time = datetime.now()
             self.common.start_btn_click()
@@ -711,8 +713,8 @@ class TestMainMenu(unittest.TestCase):
                 if i == 0:
                     self.common.turbo_btn_click()
                     i += 1
+                    sleep(3)
 
-                sleep(0.5)
                 turbo_btn_status = self.common.turbo_btn_status()
                 spin_status = self.common.spin_is_in_turbo()
                 info_bar_banner = self.common.info_bar_view_banner_tips_label()
@@ -1051,6 +1053,7 @@ class TestMainMenu(unittest.TestCase):
             if i == 1:
                 self.common.turbo_btn_click()
                 i -= 1
+                sleep(3)
 
             sleep(1)
             start_time = datetime.now()
@@ -1079,6 +1082,7 @@ class TestMainMenu(unittest.TestCase):
                 if i == 0:
                     self.common.turbo_btn_click()
                     i += 1
+                    sleep(3)
 
                 self.common.portrait()
                 sleep(0.5)
