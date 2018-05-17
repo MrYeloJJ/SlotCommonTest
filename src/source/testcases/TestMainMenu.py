@@ -283,8 +283,14 @@ class TestMainMenu(unittest.TestCase):
         """ 横屏点击快速模式按钮 """
         self.common.loading_pass()
         sleep(1)
+        # 用于判断当前是什么模式
+        i = 0
 
         while True:
+            if i == 1:
+                self.common.turbo_btn_click()
+                i -= 1
+
             start_time = datetime.now()
             self.common.start_btn_click()
             self.common.wait_for_rolling(15)
@@ -307,7 +313,10 @@ class TestMainMenu(unittest.TestCase):
                 self.common.main_menu_btn_click()
                 sleep(1)
 
-                self.common.turbo_btn_click()
+                if i == 0:
+                    self.common.turbo_btn_click()
+                    i += 1
+
                 sleep(0.5)
                 turbo_btn_status = self.common.turbo_btn_status()
                 spin_status = self.common.spin_is_in_turbo()
@@ -669,8 +678,14 @@ class TestMainMenu(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        # 用于判断当前是什么模式
+        i = 0
 
         while True:
+            if i == 1:
+                self.common.turbo_btn_click()
+                i -= 1
+
             start_time = datetime.now()
             self.common.start_btn_click()
             self.common.wait_for_rolling(15)
@@ -693,7 +708,10 @@ class TestMainMenu(unittest.TestCase):
                 self.common.main_menu_btn_click()
                 sleep(1)
 
-                self.common.turbo_btn_click()
+                if i == 0:
+                    self.common.turbo_btn_click()
+                    i += 1
+
                 sleep(0.5)
                 turbo_btn_status = self.common.turbo_btn_status()
                 spin_status = self.common.spin_is_in_turbo()
@@ -1026,8 +1044,14 @@ class TestMainMenu(unittest.TestCase):
         self.common.portrait()
         self.common.loading_pass()
         sleep(1)
+        # 用于判断当前是什么模式
+        i = 0
 
         while True:
+            if i == 1:
+                self.common.turbo_btn_click()
+                i -= 1
+
             sleep(1)
             start_time = datetime.now()
             self.common.start_btn_click()
@@ -1052,7 +1076,10 @@ class TestMainMenu(unittest.TestCase):
                 self.common.main_menu_btn_click()
                 sleep(1)
 
-                self.common.turbo_btn_click()
+                if i == 0:
+                    self.common.turbo_btn_click()
+                    i += 1
+
                 self.common.portrait()
                 sleep(0.5)
                 turbo_btn_status = self.common.turbo_btn_status()
