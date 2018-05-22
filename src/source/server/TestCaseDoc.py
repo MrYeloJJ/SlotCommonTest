@@ -52,7 +52,7 @@ class TestCaseDoc(object):
             self.all_doc.append(obj)
 
         doc_json = json.dumps(self.all_doc, ensure_ascii=False)
-        print(doc_json)
+        # print(doc_json)
         return doc_json
 
 
