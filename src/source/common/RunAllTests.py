@@ -4,17 +4,20 @@
 
 import unittest
 from src.lib import HTMLTestReportCN
-from src.source.common.Config import Config
+from src.source.common.GameAttr import GameAttr
+# from src.source.common.Config import Config
 
 
 class RunAllTests(object):
 
     def __init__(self):
         self.test_case_path = "../testcases/"
-        self.tester = Config().get_message()["tester"]
+        # self.tester = Config().get_message()["tester"]
+        self.tester = GameAttr.get_attr("tester")
 
         # 将游戏名字放入报告里
-        self.game = Config().get_message()["game_name"]
+        # self.game = Config().get_message()["game_name"]
+        self.game = GameAttr.get_attr("game_name")
         self.title = "【" + self.game + "】公共模块测试报告"
 
         self.description = "Slot游戏公共模块测试报告"
