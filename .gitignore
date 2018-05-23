@@ -105,5 +105,6 @@ venv.bak/
 .mypy_cache/
 
 !server/static/README.md
-server/static/
+server/static/*/*.html
+server/static/*/*.png
 .idea/
