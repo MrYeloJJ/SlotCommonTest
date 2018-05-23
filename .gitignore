@@ -105,9 +105,5 @@ venv.bak/
 .mypy_cache/
 
 
-!server/automaticTest/result/sample/*.html
-!server/automaticTest/result/sample/image/*.png
-server/automaticTest/result/*/*.html
-server/automaticTest/result/*/image/*.png
 server/static/
 .idea/
