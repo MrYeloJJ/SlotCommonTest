@@ -3,12 +3,12 @@
 import unittest
 import json
 from server.automaticTest.lib import HTMLTestReportCN
-from server.automaticTest.source.common.backup.Config import  Config
-from server.automaticTest.source.testcases.TestAutoGameView import  TestAutoGameView
-from server.automaticTest.source.testcases.TestGameAttr import  TestGameAttr
-from server.automaticTest.source.testcases.TestInfoBar import  TestInfoBar
-from server.automaticTest.source.testcases.TestLoadingView import  TestLoadingView
-from server.automaticTest.source.testcases.TestLoginMode import  TestLoginMode
+from server.automaticTest.source.common.backup.Config import Config
+from server.automaticTest.source.testcases.TestAutoGameView import TestAutoGameView
+from server.automaticTest.source.testcases.TestGameAttr import TestGameAttr
+from server.automaticTest.source.testcases.TestInfoBar import TestInfoBar
+from server.automaticTest.source.testcases.TestLoadingView import TestLoadingView
+from server.automaticTest.source.testcases.TestLoginMode import TestLoginMode
 from server.automaticTest.source.testcases.TestMainAndComView import TestMainAndComView
 from server.automaticTest.source.testcases.TestMainMenu import TestMainMenu
 from server.automaticTest.source.testcases.TestSettingView import TestSettingView

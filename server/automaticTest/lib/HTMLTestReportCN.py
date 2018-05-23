@@ -1224,8 +1224,10 @@ class HTMLTestRunner(Template_mixin):
 
             screenshot_list = re.findall("errorImg\[(.*?)\]errorImg", u)
             screenshot = ""
+            img_num = 0
             for i in screenshot_list:
-                screenshot += "</br><a class=\"screenshot\" href=\"javascript:void(0)\" img=\"image/" + i + "\">img_" + i + "</a>"
+                img_num += 1
+                screenshot += "</br><a class=\"screenshot\" href=\"javascript:void(0)\" img=\"/static/" + i + "\">img_" + str(img_num) + "</a>"
 
             # screenshot = u[u.find('errorImg[') + 9:u.find(']errorImg')]
             browser = u[u.find('browser[') + 8:u.find(']browser')]
@@ -1256,7 +1258,7 @@ class HTMLTestRunner(Template_mixin):
 class DirAndFiles(object):
 
     def __init__(self):
-        self.path = "./automaticTest/result/"
+        self.path = "./static/"
         self.title = "Test Report"
         self.time = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
 
@@ -1265,6 +1267,7 @@ class DirAndFiles(object):
         if title is not None:
             self.title = title
 
+        dir_name = self.title + self.time
         dir_path = self.path + self.title + self.time
         # 判断文件夹是否存在，不存在则创建
         while True:
@@ -1283,6 +1286,7 @@ class DirAndFiles(object):
         # 将新建的 文件夹路径 和 报告路径 存入全局变量
         GlobalMsg.set_value("dir_path", dir_path)
         GlobalMsg.set_value("report_path", report_path)
+        GlobalMsg.set_value("dir_name", dir_name)
 
     @staticmethod
     def get_screenshot(browser):
@@ -1291,25 +1295,27 @@ class DirAndFiles(object):
         # 通过全局变量获取文件夹路径
         new_dir = GlobalMsg.get_value("dir_path")
 
-        img_dir = new_dir + "/image"
-        # 判断文件夹是否存在，不存在则创建
-        is_dir = os.path.isdir(img_dir)
-        if not is_dir:
-            os.makedirs(img_dir)
+        dir_name = GlobalMsg.get_value("dir_name")
 
-        img_path = img_dir + "/" + str(i) + ".png"
+        # img_dir = new_dir + "/image"
+        # 判断文件夹是否存在，不存在则创建
+        # is_dir = os.path.isdir(img_dir)
+        # if not is_dir:
+        #     os.makedirs(img_dir)
+
+        img_path = new_dir + "/" + dir_name + "_" + str(i) + ".png"
 
         # 有可能同个测试步骤出错，截图名字一样导致覆盖文件，所以名字存在则增加id
         while True:
             is_file = os.path.isfile(img_path)
             if is_file:
                 i += 1
-                img_path = img_dir + "/" + str(i) + ".png"
+                img_path = new_dir + "/" + dir_name + "_" + str(i) + ".png"
             else:
                 break
 
         browser.get_screenshot_as_file(img_path)
-        img_name = str(i) + ".png"
+        img_name = dir_name + "/" + dir_name + "_" + str(i) + ".png"
 
         browser_type = browser.capabilities["browserName"]
         browser_version = browser.capabilities["version"]

@@ -1,6 +1,6 @@
 # encoding=utf-8
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, redirect
 from server.AllReportsName import AllReportsName
 from server.GameAttr import GameAttr
 from server.TestCaseDoc import TestCaseDoc
@@ -8,9 +8,10 @@ from server.automaticTest.source.common.RunAllTests import RunAllTests
 
 app = Flask(__name__)
 
-# @app.route("/")
-# def my_site():
-#     return redirect("https://gelomen.github.io")
+
+@app.route("/")
+def my_site():
+    return redirect("http://www.blizzmi.com/")
 
 
 # 运行所有用例
@@ -38,8 +39,8 @@ def all_reports():
 # 报告连接
 @app.route("/report/<report_name>", methods=["GET"])
 def report(report_name):
-    return send_file("./automaticTest/result/" + str(report_name) + "/" + str(report_name) + ".html")
+    return send_file("./static/" + str(report_name) + "/" + str(report_name) + ".html")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

@@ -314,13 +314,9 @@ class Common(object):
                 cost_time = (end_time - start_time).seconds
 
                 if cost_time >= time:
-                    cost_time = False
-                    try:
-                        assert cost_time is True
-                    except AssertionError:
-                        print("等待" + str(time) + "秒，不会进入loading场景！")
-                        self.daf.get_screenshot(self.browser)
-                        raise
+                    print("等待" + str(time) + "秒，不会进入loading场景！")
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
     # 等待加载完成
     def wait_for_loading_bar_completed(self):
@@ -354,24 +350,18 @@ class Common(object):
         while True:
             sleep(1)
             try:
-                dispear = self.loading_view_dispear()
+                self.loading_view_dispear()
             except Exception:
-                self.daf.get_screenshot(self.browser)
-                raise
+                # self.daf.get_screenshot(self.browser)
+                # raise
 
-            end_time = datetime.now()
-            cost_time = (end_time - start_time).seconds
+                end_time = datetime.now()
+                cost_time = (end_time - start_time).seconds
 
-            if dispear is None:
-                break
-            else:
                 if cost_time >= time:
-                    try:
-                        assert dispear is None
-                    except AssertionError:
-                        print("等待" + str(time) + "秒，loading场景不会消失！")
-                        self.daf.get_screenshot(self.browser)
-                        raise
+                    print("等待" + str(time) + "秒，loading场景不会消失！")
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
     # 等待加载完成
     def loading_pass(self):
