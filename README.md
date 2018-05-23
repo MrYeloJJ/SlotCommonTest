@@ -72,12 +72,12 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 ##### 4. 相关接口
 服务器端口：http://server-ip:5000/
 
-|接口|类型|参数|示例|
-|:--|:--|:--|:--|
-|~/RunAllTests：运行所有用例|POST|lobby,tester,username,password<br/>gameId,gameName,fullLine<br/>fullLineMulitiplier,lineNumMin,lineNumMax<br/>lineCost,autoGameTimes|http://server-ip:5000/RunAllTests|
-|~/allTestDoc：获取所有用例的名字和描述|GET|无|http://server-ip:5000/allTestDoc|
-|~/allReports：获取所有报告名字和链接|GET|无|http://server-ip:5000/allReports|
-|~/report/<report_name>：打开报告页面链接|GET|reportname|http://server-ip:5000/report/【希腊传说】公共模块测试报告V1.1|
+|接口|描述|类型|参数|示例|
+|:--|:--|:--|:--|:--|
+|~/RunAllTests|运行所有用例|POST|lobby,tester,username,password<br/>gameId,gameName,fullLine<br/>fullLineMulitiplier,lineNumMin,lineNumMax<br/>lineCost,autoGameTimes|http://server-ip:5000/RunAllTests|
+|~/allTestDoc|获取所有用例的名字和描述|GET|无|http://server-ip:5000/allTestDoc|
+|~/allReports|获取所有报告名字和链接|GET|无|http://server-ip:5000/allReports|
+|~/report/<report_name>|打开报告页面链接|GET|reportname|http://server-ip:5000/report/【希腊传说】公共模块测试报告V1.1|
 
 ##### 5. 详情
 具体安装配置请查看 [WIKI](https://github.com/Gelomen/SlotCommonTest/wiki)
