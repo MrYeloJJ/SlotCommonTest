@@ -23,7 +23,7 @@ def run_all_tests():
 
 
 # 获取所有用例名字和描述
-@app.route("/allTestDoc")
+@app.route("/allTestDoc", methods=["GET"])
 def all_test_doc():
     return TestCaseDoc().get_doc()
 
