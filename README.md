@@ -1,4 +1,4 @@
-﻿#### Slot公共模块UI自动化测试 - 本地版本
+﻿#### Slot公共模块UI自动化测试 - Local
 * 使用 `python3 Unittest` 、 `selenium3` 、 `JavaScript` 实现slot游戏公共模块UI自动化测试
 * 测试过程若抛出异常会自动截图保存，并借助 `HTMLTestReportCN` 生成测试报告
 * 生成报告的插件：https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
@@ -21,10 +21,10 @@ SlotCommonTest
     |    |    |    +-- Common.py
     |    |    |    +-- Data.py
     |    |    |    +-- RunAllTests.py               // 执行这个可以跑所有用例并生成测试报告
+    |    |    |    +-- ...
     |    |    +-- testcases                         // 测试用例目录
     |    |    |    +-- TestLoadingView.py
     |    |    |    +-- TestMainAndComView.py
-    |    |    |    +-- ...
     |    |    |    +-- ...
     +-- venv                                        // 虚拟环境目录
     +-- .gitignore
