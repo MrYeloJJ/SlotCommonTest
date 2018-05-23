@@ -38,7 +38,7 @@ def all_reports():
 # 报告连接
 @app.route("/report/<report_name>", methods=["GET"])
 def report(report_name):
-    return send_file("../../result/" + str(report_name) + "/" + str(report_name) + ".html")
+    return send_file("./automaticTest/result/" + str(report_name) + "/" + str(report_name) + ".html")
 
 
 if __name__ == "__main__":
