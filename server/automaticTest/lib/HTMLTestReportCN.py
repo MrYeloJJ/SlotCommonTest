@@ -289,10 +289,10 @@ class Template_mixin(object):
     <meta name="generator" content="%(generator)s"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script automaticTest="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script automaticTest="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script automaticTest="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script automaticTest="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
     %(stylesheet)s
 </head>
 <body >
@@ -317,7 +317,7 @@ class Template_mixin(object):
         // 打开截图，放大，点击任何位置可以关闭图片  -- Gelomen
         $(".screenshot").click(function(){
             var img = $(this).attr("img");
-            $('.pic_show img').attr('src', img);
+            $('.pic_show img').attr('automaticTest', img);
             $('.pic_looper').fadeIn(200);
             $('.pic_show').fadeIn(200);
 
@@ -675,7 +675,7 @@ table       { font-size: 100%; }
     #
 
     # 添加显示截图 和 饼状图 的div  -- Gelomen
-    HEADING_TMPL = """<div class='pic_looper'></div> <div class='pic_show'><div class='pic_box'><img src=''/></div> </div>
+    HEADING_TMPL = """<div class='pic_looper'></div> <div class='pic_show'><div class='pic_box'><img automaticTest=''/></div> </div>
 <div class='heading'>
 <div style="width: 650px; float: left;">
     <h1 style="font-family: Microsoft YaHei">%(title)s</h1>
@@ -1256,7 +1256,7 @@ class HTMLTestRunner(Template_mixin):
 class DirAndFiles(object):
 
     def __init__(self):
-        self.path = "../../result/"
+        self.path = "./automaticTest/result/"
         self.title = "Test Report"
         self.time = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
 

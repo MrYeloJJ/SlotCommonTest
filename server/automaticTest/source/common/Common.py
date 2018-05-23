@@ -4,8 +4,9 @@
 # from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as ec
 # from selenium.webdriver.common.by import By
-from src.source.common.Config import Config
-from src.lib.HTMLTestReportCN import DirAndFiles
+# from automaticTest.source.common.Config import Config
+from server.GameAttr import GameAttr
+from server.automaticTest.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 from datetime import datetime
 import locale
@@ -14,19 +15,18 @@ import locale
 class Common(object):
     # 初始化browser、lobby和game等数据
     def __init__(self, browser=None):
-        self.message = Config().get_message()
-        self.lobby = self.message["lobby"]                      # 大厅地址
-        self.username = self.message["username"]                # 用户名
-        self.password = self.message["password"]                # 密码
-        self.game_id = self.message["game_id"]                  # 游戏id
-        self.game_name = self.message["game_name"]              # 游戏名字
-        self.full_line = self.message["full_line"]              # 是否满线
+        self.lobby = GameAttr.get_attr("lobby")                             # 大厅地址
+        self.username = GameAttr.get_attr("username")                       # 用户名
+        self.password = GameAttr.get_attr("password")                       # 密码
+        self.game_id = GameAttr.get_attr("game_id")                         # 游戏id
+        self.game_name = GameAttr.get_attr("game_name")                     # 游戏名字
+        self.full_line = eval(str(GameAttr.get_attr("full_line")))               # 是否满线
         self.full_line_mulitiplier = \
-            self.message["full_line_mulitiplier"]               # 满线项目总赌注倍数
-        self.line_num_min = self.message["line_num_min"]        # 最小线数
-        self.line_num_max = self.message["line_num_max"]        # 最大线数
-        self.line_cost = self.message["line_cost"]              # 所有线注
-        self.auto_game_times = self.message["auto_game_times"]  # 所有自动游戏次数
+            GameAttr.get_attr("full_line_mulitiplier")                      # 满线项目总赌注倍数
+        self.line_num_min = GameAttr.get_attr("line_num_min")               # 最小线数
+        self.line_num_max = GameAttr.get_attr("line_num_max")               # 最大线数
+        self.line_cost = eval(str(GameAttr.get_attr("line_cost")))               # 所有线注
+        self.auto_game_times = eval(str(GameAttr.get_attr("auto_game_times")))   # 所有自动游戏次数
         self.browser = browser
         self.daf = DirAndFiles()
         self.add_script = ""            # 多开情况需改为 "window.frames[0].frames."

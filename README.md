@@ -1,4 +1,5 @@
-﻿#### Slot公共模块UI自动化测试
+﻿#### Slot公共模块UI自动化测试 - Online
+* 使用 `flask` 实现服务端口，通过页面调用端口运行测试
 * 使用 `python3 Unittest` 、 `selenium3` 、 `JavaScript` 实现slot游戏公共模块UI自动化测试
 * 测试过程若抛出异常会自动截图保存，并借助 `HTMLTestReportCN` 生成测试报告
 * 生成报告的插件：https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
@@ -7,26 +8,36 @@
 ```
 SlotCommonTest
     |
-    +-- src
-    |    +-- assets                                 // 数据目录
-    |    |    +-- config.ini
-    |    +-- lib                                    // 插件目录
-    |    |    +-- chromedriver.exe
-    |    |    +-- HTMLTestReportCN.py
-    |    +-- result                                 // 测试报告目录
-    |    |    +-- sample                            // 测试报告例子
-    |    |    +-- README.md
-    |    +-- source                                 // 源码目录
-    |    |    +-- common                            // 公共类目录
-    |    |    |    +-- Common.py
-    |    |    |    +-- Data.py
-    |    |    |    +-- RunAllTests.py               // 执行这个可以跑所有用例并生成测试报告
-    |    |    +-- testcases                         // 测试用例目录
-    |    |    |    +-- TestLoadingView.py
-    |    |    |    +-- TestMainAndComView.py
-    |    |    |    +-- ...
-    |    |    |    +-- ...
-    +-- venv                                        // 虚拟环境目录
+    +-- server
+    |    |
+    |    +-- automaticTest
+    |    |    |
+    |    |    +-- assets                                // 数据目录
+    |    |    |     |
+    |    |    |     +-- config.ini
+    |    |    +-- lib                                   // 插件目录
+    |    |    |     |
+    |    |    |     +-- chromedriver.exe
+    |    |    |     +-- HTMLTestReportCN.py
+    |    |    +-- result                                / 测试报告目录
+    |    |    |     |
+    |    |    |     +-- sample                          // 测试报告例子
+    |    |    |     +-- README.md
+    |    |    +-- source                                // 源码目录
+    |    |    |     |
+    |    |    |     +-- common                          // 公共类目录
+    |    |    |     |     |
+    |    |    |     |     +-- Common.py
+    |    |    |     |     +-- RunAllTests.py            // 执行这个可以跑所有用例并生成测试报告
+    |    |    |     +-- testcases                       // 测试用例目录
+    |    |    |     |     |
+    |    |    |     |     +-- TestLoadingView.py
+    |    |    |     |     +-- TestMainAndComView.py
+    |    |    |     |     +-- ...
+    |    +-- AllReportsName.py
+    |    +-- SlotTestServer.py                          // 自动化测试服务文件
+    |    +-- TestCaseDoc.py
+    +-- venv                                            // 虚拟环境目录
     +-- .gitignore
     +-- README.md
     +-- requirements.txt
@@ -39,9 +50,13 @@ SlotCommonTest
 ```ini
 [config]
 lobby = https://lobby.fg.blizzmi.cn
-gameId = 3310
-gameName = 金靴争霸
-fullLine = False
+tester = Gelomen
+username = automatedTest1
+password = 123456
+gameId = 3303
+gameName = 众神之王
+fullLine = True
+fullLineMulitiplier = 50
 lineNumMin = 1
 lineNumMax = 25
 lineCost = 1, 2, 5, 10, 50, 100, 500, 1000
@@ -51,16 +66,18 @@ autoGameTimes = 25, 50, 100, 200, 500, -1
 ##### 2. 浏览器
 selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera 和 Safari，本项目使用的是 chrome 浏览器，所以建议安装 chrome。
 
-##### 3. 启动
-打开 `src/source/common/RunAllTests.py`，执行后根据控制台提示，输入自己的名字就可以开始测试
+##### 3. 启动服务
+打开 `server\SlotTestServer.py` 启动服务
 
-##### 4. 测试过程
-测试过程每完成一条用例，控制台会打印用例名字，用例前面的符号分别代表：
-`S = Success`、`F = Failure` 和 `E = Error`
+##### 4. 相关接口
+服务器端口：http://server-ip:5000/
 
-##### 5. 测试结束
-所有用例跑完结束，控制台会有蓝绿色提示文字，这时打开目录：
-`src/result`，根据文件夹名字（时间）打开对应的html测试报告即可
+|接口|描述|类型|参数|示例|
+|:--|:--|:--|:--|:--|
+|~/RunAllTests|运行所有用例|POST|lobby,tester,username,password,<br/>gameId,gameName,fullLine,<br/>fullLineMulitiplier,lineNumMin,lineNumMax,<br/>lineCost,autoGameTimes|http://server-ip:5000/RunAllTests|
+|~/allTestDoc|获取所有用例的名字和描述|GET|无|http://server-ip:5000/allTestDoc|
+|~/allReports|获取所有报告名字和链接|GET|无|http://server-ip:5000/allReports|
+|~/report/:reportname|打开报告页面|GET|reportname|http://server-ip:5000/report/【希腊传说】公共模块测试报告V1.1|
 
-##### 6. 详情
+##### 5. 详情
 具体安装配置请查看 [WIKI](https://github.com/Gelomen/SlotCommonTest/wiki)

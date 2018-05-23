@@ -2,18 +2,18 @@
 
 import unittest
 import json
-from src.lib import HTMLTestReportCN
-from src.source.common.Config import Config
-from src.source.testcases.TestAutoGameView import TestAutoGameView
-from src.source.testcases.TestGameAttr import TestGameAttr
-from src.source.testcases.TestInfoBar import TestInfoBar
-from src.source.testcases.TestLoadingView import TestLoadingView
-from src.source.testcases.TestLoginMode import TestLoginMode
-from src.source.testcases.TestMainAndComView import TestMainAndComView
-from src.source.testcases.TestMainMenu import TestMainMenu
-from src.source.testcases.TestSettingView import TestSettingView
-from src.source.testcases.TestSpinBtn import TestSpinBtn
-from src.source.testcases.TestTurboView import TestTurboView
+from server.automaticTest.lib import HTMLTestReportCN
+from server.automaticTest.source.common.backup.Config import  Config
+from server.automaticTest.source.testcases.TestAutoGameView import  TestAutoGameView
+from server.automaticTest.source.testcases.TestGameAttr import  TestGameAttr
+from server.automaticTest.source.testcases.TestInfoBar import  TestInfoBar
+from server.automaticTest.source.testcases.TestLoadingView import  TestLoadingView
+from server.automaticTest.source.testcases.TestLoginMode import  TestLoginMode
+from server.automaticTest.source.testcases.TestMainAndComView import TestMainAndComView
+from server.automaticTest.source.testcases.TestMainMenu import TestMainMenu
+from server.automaticTest.source.testcases.TestSettingView import TestSettingView
+from server.automaticTest.source.testcases.TestSpinBtn import TestSpinBtn
+from server.automaticTest.source.testcases.TestTurboView import TestTurboView
 
 
 class CustomRun(object):
