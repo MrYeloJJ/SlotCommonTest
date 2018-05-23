@@ -1,4 +1,4 @@
-﻿#### Slot公共模块UI自动化测试
+﻿#### Slot公共模块UI自动化测试 - 本地版本
 * 使用 `python3 Unittest` 、 `selenium3` 、 `JavaScript` 实现slot游戏公共模块UI自动化测试
 * 测试过程若抛出异常会自动截图保存，并借助 `HTMLTestReportCN` 生成测试报告
 * 生成报告的插件：https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
@@ -39,9 +39,13 @@ SlotCommonTest
 ```ini
 [config]
 lobby = https://lobby.fg.blizzmi.cn
-gameId = 3310
-gameName = 金靴争霸
-fullLine = False
+tester = Gelomen
+username = automatedTest1
+password = 123456
+gameId = 3303
+gameName = 众神之王
+fullLine = True
+fullLineMulitiplier = 50
 lineNumMin = 1
 lineNumMax = 25
 lineCost = 1, 2, 5, 10, 50, 100, 500, 1000
