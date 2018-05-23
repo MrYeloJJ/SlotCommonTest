@@ -351,6 +351,7 @@ class Common(object):
             sleep(1)
             try:
                 self.loading_view_dispear()
+                break
             except Exception:
                 # self.daf.get_screenshot(self.browser)
                 # raise
