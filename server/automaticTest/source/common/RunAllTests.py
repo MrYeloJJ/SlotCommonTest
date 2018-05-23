@@ -3,15 +3,15 @@
 """"" 运行source目录下的所有测试用例，并生成HTML测试报告 """""
 
 import unittest
-from src.lib import HTMLTestReportCN
-from src.source.common.GameAttr import GameAttr
-# from src.source.common.Config import Config
+from server.automaticTest.lib import HTMLTestReportCN
+from server.automaticTest.source.common.GameAttr import GameAttr
+# from automaticTest.source.common.Config import Config
 
 
 class RunAllTests(object):
 
     def __init__(self):
-        self.test_case_path = "../testcases/"
+        self.test_case_path = "./automaticTest/source/testcases/"
         # self.tester = Config().get_message()["tester"]
         self.tester = GameAttr.get_attr("tester")
 

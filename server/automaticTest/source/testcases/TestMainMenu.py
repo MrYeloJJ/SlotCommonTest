@@ -3,9 +3,9 @@
 import unittest
 from time import sleep
 from datetime import datetime
-from src.source.common.Browser import Browser
-from src.source.common.Common import Common
-from src.lib.HTMLTestReportCN import DirAndFiles
+from server.automaticTest.source.common.Browser import Browser
+from server.automaticTest.source.common.Common import Common
+from server.automaticTest.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestMainMenu(unittest.TestCase):

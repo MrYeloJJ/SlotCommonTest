@@ -52,7 +52,7 @@ autoGameTimes = 25, 50, 100, 200, 500, -1
 selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera 和 Safari，本项目使用的是 chrome 浏览器，所以建议安装 chrome。
 
 ##### 3. 启动
-打开 `src/source/common/RunAllTests.py`，执行后根据控制台提示，输入自己的名字就可以开始测试
+打开 `automaticTest/source/common/RunAllTests.py`，执行后根据控制台提示，输入自己的名字就可以开始测试
 
 ##### 4. 测试过程
 测试过程每完成一条用例，控制台会打印用例名字，用例前面的符号分别代表：
@@ -60,7 +60,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 ##### 5. 测试结束
 所有用例跑完结束，控制台会有蓝绿色提示文字，这时打开目录：
-`src/result`，根据文件夹名字（时间）打开对应的html测试报告即可
+`automaticTest/result`，根据文件夹名字（时间）打开对应的html测试报告即可
 
 ##### 6. 详情
 具体安装配置请查看 [WIKI](https://github.com/Gelomen/SlotCommonTest/wiki)
