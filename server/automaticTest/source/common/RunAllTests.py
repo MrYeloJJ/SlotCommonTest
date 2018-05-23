@@ -4,7 +4,7 @@
 
 import unittest
 from server.automaticTest.lib import HTMLTestReportCN
-from server.automaticTest.source.common.GameAttr import GameAttr
+from server.GameAttr import GameAttr
 # from automaticTest.source.common.Config import Config
 
 

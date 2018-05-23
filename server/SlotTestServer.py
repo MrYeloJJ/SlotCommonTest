@@ -2,7 +2,7 @@
 
 from flask import Flask, request, jsonify, send_file
 from server.AllReportsName import AllReportsName
-from server.automaticTest.source.common.GameAttr import GameAttr
+from server.GameAttr import GameAttr
 from server.TestCaseDoc import TestCaseDoc
 from server.automaticTest.source.common.RunAllTests import RunAllTests
 

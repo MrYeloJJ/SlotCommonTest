@@ -5,7 +5,7 @@
 # from selenium.webdriver.support import expected_conditions as ec
 # from selenium.webdriver.common.by import By
 # from automaticTest.source.common.Config import Config
-from server.automaticTest.source.common.GameAttr import GameAttr
+from server.GameAttr import GameAttr
 from server.automaticTest.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 from datetime import datetime
