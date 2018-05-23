@@ -1,4 +1,5 @@
-﻿#### Slot公共模块UI自动化测试 - 在线版本
+﻿#### Slot公共模块UI自动化测试 - Online
+* 使用 `flask` 实现服务端口，通过页面调用端口运行测试
 * 使用 `python3 Unittest` 、 `selenium3` 、 `JavaScript` 实现slot游戏公共模块UI自动化测试
 * 测试过程若抛出异常会自动截图保存，并借助 `HTMLTestReportCN` 生成测试报告
 * 生成报告的插件：https://github.com/Gelomen/HTMLTestReportCN-ScreenShot
@@ -73,7 +74,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 |接口|类型|参数|示例|
 |:--|:--|:--|:--|
-|~/RunAllTests|POST|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,lineCost,autoGameTimes|http://server-ip:5000/RunAllTests|
+|~/RunAllTests|POST|lobby,tester,username,password<br/>gameId,gameName,fullLine<br/>fullLineMulitiplier,lineNumMin,lineNumMax<br/>lineCost,autoGameTimes|http://server-ip:5000/RunAllTests|
 |~/allTestDoc|GET|无|http://server-ip:5000/allTestDoc|
 |~/allReports|GET|无|http://server-ip:5000/allReports|
 |~/report/<report_name>|GET|reportname|http://server-ip:5000/report/【希腊传说】公共模块测试报告V1.1|
