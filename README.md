@@ -19,10 +19,6 @@ SlotCommonTest
     |    |    |     |
     |    |    |     +-- chromedriver.exe
     |    |    |     +-- HTMLTestReportCN.py
-    |    |    +-- result                                / 测试报告目录
-    |    |    |     |
-    |    |    |     +-- sample                          // 测试报告例子
-    |    |    |     +-- README.md
     |    |    +-- source                                // 源码目录
     |    |    |     |
     |    |    |     +-- common                          // 公共类目录
@@ -34,6 +30,8 @@ SlotCommonTest
     |    |    |     |     +-- TestLoadingView.py
     |    |    |     |     +-- TestMainAndComView.py
     |    |    |     |     +-- ...
+    |    +-- static                                     // 测试报告目录
+    |    |
     |    +-- AllReportsName.py
     |    +-- SlotTestServer.py                          // 自动化测试服务文件
     |    +-- TestCaseDoc.py
