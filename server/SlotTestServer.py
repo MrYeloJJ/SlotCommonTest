@@ -1,5 +1,7 @@
 # encoding=utf-8
 
+from multiprocessing import Process
+import os
 from flask import Flask, request, jsonify, send_file, redirect
 from server.AllReportsName import AllReportsName
 from server.GameAttr import GameAttr
@@ -18,9 +20,25 @@ def my_site():
 @app.route("/RunAllTests", methods=["POST"])
 def run_all_tests():
     data_json = request.json
+    print("主进程：" + str(os.getpid()))
+    p = Process(target=run_all, args=(data_json,))
+    p.start()
+    p.join()
+    return "测试结束"
+
+
+def run_all(data_json):
+    print("子进程：" + str(os.getpid()))
     GameAttr().set_attr(data_json)
     RunAllTests().run()
-    return "测试结束"
+
+
+# 停止所有测试
+@app.route("/StopAllTests/<pid>", methods=["GET"])
+def stop_all_tests(pid):
+    print("目标进程：" + str(pid))
+    os.kill(int(pid), 9)
+    return "测试停止"
 
 
 # 获取所有用例名字和描述
