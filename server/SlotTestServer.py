@@ -24,7 +24,7 @@ def run_all_tests():
     p = Process(target=run_all, args=(data_json,))
     p.start()
     p.join()
-    return jsonify({"code": 200, "message": "测试结束"}), 200
+    return jsonify({"code": 200, "tip": "测试结束"}), 200
 
 
 def run_all(data_json):
@@ -37,11 +37,9 @@ def run_all(data_json):
 @app.route("/StopAllTests/<pid>", methods=["GET"])
 def stop_all_tests(pid):
     print("目标进程：" + str(pid))
-    try:
-        os.kill(int(pid), 9)
-        return jsonify({"code": 200}), 200
-    except OSError:
-        return jsonify({"code": 500, "error": "找不到进程：" + pid}), 500
+    # os.kill(int(pid), 9)
+    os.system("taskkill /pid " + str(pid) + " -t -f")
+    return jsonify({"code": 200, "tip": "测试停止"}), 200
 
 
 # 获取所有用例名字和描述
