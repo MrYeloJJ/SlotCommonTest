@@ -13,28 +13,28 @@ app = Flask(__name__)
 
 @app.route("/")
 def my_site():
-    return redirect("http://www.blizzmi.com/")
+    return redirect("https://gelomen.github.io")
 
 
-# 运行所有用例
+# 运行slot所有用例
 @app.route("/slot/RunAllTests", methods=["POST"])
-def run_all_tests():
+def run_all_slot_tests():
     data_json = request.json
     print("主进程：" + str(os.getpid()))
-    p = Process(target=run_all, args=(data_json,))
+    p = Process(target=run_slot_all, args=(data_json,))
     p.start()
     p.join()
     return jsonify({"code": 200, "tip": "测试结束"}), 200
 
 
-def run_all(data_json):
+def run_slot_all(data_json):
     print("子进程：" + str(os.getpid()))
     GameAttr().set_attr(data_json)
     RunAllTests().run()
 
 
 # 停止所有测试
-@app.route("/slot/StopAllTests/<pid>", methods=["GET"])
+@app.route("/StopAllTests/<pid>", methods=["GET"])
 def stop_all_tests(pid):
     print("目标进程：" + str(pid))
     # os.kill(int(pid), 9)
@@ -42,15 +42,15 @@ def stop_all_tests(pid):
     return jsonify({"code": 200, "tip": "测试停止"}), 200
 
 
-# 获取所有用例名字和描述
+# 获取slot所有用例名字和描述
 @app.route("/slot/allTestDoc", methods=["GET"])
-def all_test_doc():
+def all_slot_test_doc():
     return TestCaseDoc().get_doc()
 
 
-# 获取所有测试报告
+# 获取slot所有测试报告
 @app.route("/slot/allReports", methods=["GET"])
-def all_reports():
+def all_slot_reports():
     report_name = AllReportsName().get_slot_report_url()
     return jsonify(report_name)
 
