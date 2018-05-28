@@ -2,7 +2,7 @@
 
 from multiprocessing import Process
 import os
-from flask import Flask, request, jsonify, send_file, redirect
+from flask import Flask, request, jsonify, redirect
 from app.main.AllReportsName import AllReportsName
 from app.main.GameAttr import GameAttr
 from app.main.TestCaseDoc import TestCaseDoc
@@ -58,7 +58,7 @@ def all_reports():
 # slot报告链接
 @app.route("/slot/report/<report_name>", methods=["GET"])
 def slot_report(report_name):
-    return send_file("./static/slot/" + str(report_name) + "/" + str(report_name) + ".html")
+    return redirect("./static/slot/" + str(report_name) + "/" + str(report_name) + ".html")
 
 
 if __name__ == "__main__":
