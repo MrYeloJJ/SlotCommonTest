@@ -17,7 +17,7 @@ def my_site():
 
 
 # 运行所有用例
-@app.route("/RunAllTests", methods=["POST"])
+@app.route("/slot/RunAllTests", methods=["POST"])
 def run_all_tests():
     data_json = request.json
     print("主进程：" + str(os.getpid()))
@@ -34,7 +34,7 @@ def run_all(data_json):
 
 
 # 停止所有测试
-@app.route("/StopAllTests/<pid>", methods=["GET"])
+@app.route("/slot/StopAllTests/<pid>", methods=["GET"])
 def stop_all_tests(pid):
     print("目标进程：" + str(pid))
     # os.kill(int(pid), 9)
@@ -43,20 +43,20 @@ def stop_all_tests(pid):
 
 
 # 获取所有用例名字和描述
-@app.route("/allTestDoc", methods=["GET"])
+@app.route("/slot/allTestDoc", methods=["GET"])
 def all_test_doc():
     return TestCaseDoc().get_doc()
 
 
 # 获取所有测试报告
-@app.route("/allReports", methods=["GET"])
+@app.route("/slot/allReports", methods=["GET"])
 def all_reports():
     report_name = AllReportsName().get_name_and_url()
     return jsonify(report_name)
 
 
 # 报告连接
-@app.route("/report/<report_name>", methods=["GET"])
+@app.route("/slot/report/<report_name>", methods=["GET"])
 def report(report_name):
     return send_file("./static/" + str(report_name) + "/" + str(report_name) + ".html")
 
