@@ -3,8 +3,8 @@
 """"" 运行source目录下的所有测试用例，并生成HTML测试报告 """""
 
 import unittest
-from server.automaticTest.slot.lib import HTMLTestReportCN
-from server.main.GameAttr import GameAttr
+from app.automaticTest.slot.lib import HTMLTestReportCN
+from app.main.GameAttr import GameAttr
 # from automaticTest.source.common.Config import Config
 
 

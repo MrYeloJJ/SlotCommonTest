@@ -2,10 +2,10 @@
 
 import unittest
 from time import sleep
-from server.automaticTest.slot.source.common.ReadExcel import ReadExcel
-from server.automaticTest.slot.source.common.Browser import Browser
-from server.automaticTest.slot.source.common.Common import Common
-from server.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
+from app.automaticTest.slot.source.common.ReadExcel import ReadExcel
+from app.automaticTest.slot.source.common.Browser import Browser
+from app.automaticTest.slot.source.common.Common import Common
+from app.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestReward(unittest.TestCase):

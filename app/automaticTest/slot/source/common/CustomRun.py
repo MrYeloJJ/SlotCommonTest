@@ -2,18 +2,18 @@
 
 import unittest
 import json
-from server.automaticTest.slot.lib import HTMLTestReportCN
-from server.automaticTest.slot.source.common.backup.Config import Config
-from server.automaticTest.slot.source.testcases.TestAutoGameView import TestAutoGameView
-from server.automaticTest.slot.source.testcases.TestGameAttr import TestGameAttr
-from server.automaticTest.slot.source.testcases.TestInfoBar import TestInfoBar
-from server.automaticTest.slot.source.testcases.TestLoadingView import TestLoadingView
-from server.automaticTest.slot.source.testcases.TestLoginMode import TestLoginMode
-from server.automaticTest.slot.source.testcases.TestMainAndComView import TestMainAndComView
-from server.automaticTest.slot.source.testcases.TestMainMenu import TestMainMenu
-from server.automaticTest.slot.source.testcases.TestSettingView import TestSettingView
-from server.automaticTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
-from server.automaticTest.slot.source.testcases.TestTurboView import TestTurboView
+from app.automaticTest.slot.lib import HTMLTestReportCN
+from app.automaticTest.slot.source.common.backup.Config import Config
+from app.automaticTest.slot.source.testcases.TestAutoGameView import TestAutoGameView
+from app.automaticTest.slot.source.testcases.TestGameAttr import TestGameAttr
+from app.automaticTest.slot.source.testcases.TestInfoBar import TestInfoBar
+from app.automaticTest.slot.source.testcases.TestLoadingView import TestLoadingView
+from app.automaticTest.slot.source.testcases.TestLoginMode import TestLoginMode
+from app.automaticTest.slot.source.testcases.TestMainAndComView import TestMainAndComView
+from app.automaticTest.slot.source.testcases.TestMainMenu import TestMainMenu
+from app.automaticTest.slot.source.testcases.TestSettingView import TestSettingView
+from app.automaticTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
+from app.automaticTest.slot.source.testcases.TestTurboView import TestTurboView
 
 
 class CustomRun(object):

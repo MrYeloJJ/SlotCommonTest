@@ -3,10 +3,10 @@
 from multiprocessing import Process
 import os
 from flask import Flask, request, jsonify, send_file, redirect
-from server.main.AllReportsName import AllReportsName
-from server.main.GameAttr import GameAttr
-from server.main.TestCaseDoc import TestCaseDoc
-from server.automaticTest.slot.source.common.RunAllTests import RunAllTests
+from app.main.AllReportsName import AllReportsName
+from app.main.GameAttr import GameAttr
+from app.main.TestCaseDoc import TestCaseDoc
+from app.automaticTest.slot.source.common.RunAllTests import RunAllTests
 
 app = Flask(__name__)
 
