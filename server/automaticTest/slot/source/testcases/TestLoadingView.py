@@ -3,9 +3,9 @@
 import unittest
 from time import sleep
 from datetime import datetime
-from server.automaticTest.source.common.Browser import Browser
-from server.automaticTest.source.common.Common import Common
-from server.automaticTest.lib.HTMLTestReportCN import DirAndFiles
+from server.automaticTest.slot.source.common.Browser import Browser
+from server.automaticTest.slot.source.common.Common import Common
+from server.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestLoadingView(unittest.TestCase):

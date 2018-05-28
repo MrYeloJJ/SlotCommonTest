@@ -3,9 +3,9 @@
 import unittest
 import locale
 from time import sleep
-from server.automaticTest.source.common.Browser import Browser
-from server.automaticTest.source.common.Common import Common
-from server.automaticTest.lib.HTMLTestReportCN import DirAndFiles
+from server.automaticTest.slot.source.common.Browser import Browser
+from server.automaticTest.slot.source.common.Common import Common
+from server.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestSpinBtn(unittest.TestCase):

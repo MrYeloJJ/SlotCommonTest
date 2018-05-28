@@ -5,8 +5,8 @@
 # from selenium.webdriver.support import expected_conditions as ec
 # from selenium.webdriver.common.by import By
 # from automaticTest.source.common.Config import Config
-from server.GameAttr import GameAttr
-from server.automaticTest.lib.HTMLTestReportCN import DirAndFiles
+from server.main.GameAttr import GameAttr
+from server.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 from datetime import datetime
 import locale

@@ -1,16 +1,16 @@
 # coding=utf-8
 
 import json
-from server.automaticTest.source.testcases.TestAutoGameView import TestAutoGameView
-from server.automaticTest.source.testcases.TestGameAttr import TestGameAttr
-from server.automaticTest.source.testcases.TestInfoBar import TestInfoBar
-from server.automaticTest.source.testcases.TestLoadingView import TestLoadingView
-from server.automaticTest.source.testcases.TestLoginMode import TestLoginMode
-from server.automaticTest.source.testcases.TestMainAndComView import TestMainAndComView
-from server.automaticTest.source.testcases.TestMainMenu import TestMainMenu
-from server.automaticTest.source.testcases.TestSettingView import TestSettingView
-from server.automaticTest.source.testcases.TestSpinBtn import TestSpinBtn
-from server.automaticTest.source.testcases.TestTurboView import TestTurboView
+from server.automaticTest.slot.source.testcases.TestAutoGameView import TestAutoGameView
+from server.automaticTest.slot.source.testcases.TestGameAttr import TestGameAttr
+from server.automaticTest.slot.source.testcases.TestInfoBar import TestInfoBar
+from server.automaticTest.slot.source.testcases.TestLoadingView import TestLoadingView
+from server.automaticTest.slot.source.testcases.TestLoginMode import TestLoginMode
+from server.automaticTest.slot.source.testcases.TestMainAndComView import TestMainAndComView
+from server.automaticTest.slot.source.testcases.TestMainMenu import TestMainMenu
+from server.automaticTest.slot.source.testcases.TestSettingView import TestSettingView
+from server.automaticTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
+from server.automaticTest.slot.source.testcases.TestTurboView import TestTurboView
 
 
 class TestCaseDoc(object):
