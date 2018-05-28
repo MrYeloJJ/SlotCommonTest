@@ -51,14 +51,14 @@ def all_test_doc():
 # 获取所有测试报告
 @app.route("/slot/allReports", methods=["GET"])
 def all_reports():
-    report_name = AllReportsName().get_name_and_url()
+    report_name = AllReportsName().get_slot_report_url()
     return jsonify(report_name)
 
 
-# 报告连接
+# slot报告链接
 @app.route("/slot/report/<report_name>", methods=["GET"])
-def report(report_name):
-    return send_file("./static/" + str(report_name) + "/" + str(report_name) + ".html")
+def slot_report(report_name):
+    return send_file("./static/slot/" + str(report_name) + "/" + str(report_name) + ".html")
 
 
 if __name__ == "__main__":

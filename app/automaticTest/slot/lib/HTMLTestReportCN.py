@@ -1227,7 +1227,7 @@ class HTMLTestRunner(Template_mixin):
             img_num = 0
             for i in screenshot_list:
                 img_num += 1
-                screenshot += "</br><a class=\"screenshot\" href=\"javascript:void(0)\" img=\"/static/" + i + "\">img_" + str(img_num) + "</a>"
+                screenshot += "</br><a class=\"screenshot\" href=\"javascript:void(0)\" img=\"/static/slot/" + i + "\">img_" + str(img_num) + "</a>"
 
             # screenshot = u[u.find('errorImg[') + 9:u.find(']errorImg')]
             browser = u[u.find('browser[') + 8:u.find(']browser')]
@@ -1258,7 +1258,7 @@ class HTMLTestRunner(Template_mixin):
 class DirAndFiles(object):
 
     def __init__(self):
-        self.path = "./static/"
+        self.path = "./static/slot/"
         self.title = "Test Report"
         self.time = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
 

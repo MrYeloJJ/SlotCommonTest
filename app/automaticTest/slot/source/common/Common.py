@@ -297,7 +297,7 @@ class Common(object):
                                                   + self.add_script + "UIManager.instance.commonView);")
             return dispear
         except Exception:
-            self.daf.get_screenshot(self.browser)
+            # self.daf.get_screenshot(self.browser)
             raise
 
     # 等待进入加载场景
