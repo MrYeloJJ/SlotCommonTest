@@ -1,9 +1,6 @@
 @echo off
-echo ================================================
-echo =              启动自动化测试服务              =
-echo ================================================
+echo 自动化测试 tornado 服务已启动...
 call E:\Gelomen\PycharmProjects\SlotCommonTest\venv\Scripts\activate
 call cd E:\Gelomen\PycharmProjects\SlotCommonTest\app\
 call e: 
-call python RunApp.py
-@echo
+call python tornado_server.py
