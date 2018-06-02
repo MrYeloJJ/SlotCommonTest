@@ -33,22 +33,25 @@ class TestCaseDoc(object):
 
         for i in self.test_class.keys():
             classes_doc = {}
-            funcs_doc = {}
+            funcs_list = []
             obj = {}
 
             class_doc = self.test_class[i].__doc__
-            classes_doc[i] = class_doc
+            classes_doc["key"] = i
+            classes_doc["value"] = class_doc
 
             attr_list = dir(self.test_class[i])
 
             for y in attr_list:
+                funcs_doc = {}
                 if y.startswith("test"):
                     func = getattr(self.test_class[i], y)
-                    func_doc = func.__doc__
-                    funcs_doc[y] = func_doc
+                    funcs_doc["key"] = y
+                    funcs_doc["value"] = func.__doc__
+                    funcs_list.append(funcs_doc)
 
             obj["testClass"] = classes_doc
-            obj["testCases"] = funcs_doc
+            obj["testCases"] = funcs_list
             self.all_doc.append(obj)
 
         doc_json = json.dumps(self.all_doc, ensure_ascii=False)
