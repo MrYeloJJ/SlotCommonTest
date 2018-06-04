@@ -18,7 +18,7 @@ class Common(object):
         self.lobby = GameAttr.get_attr("lobby")                             # 大厅地址
         self.username = GameAttr.get_attr("username")                       # 用户名
         self.password = GameAttr.get_attr("password")                       # 密码
-        self.game_id = eval(GameAttr.get_attr("game_id"))                   # 游戏id
+        self.game_id = eval(str(GameAttr.get_attr("game_id")))              # 游戏id
         self.game_name = GameAttr.get_attr("game_name")                     # 游戏名字
         self.full_line = eval(str(GameAttr.get_attr("full_line")))          # 是否满线
         self.full_line_mulitiplier = \
