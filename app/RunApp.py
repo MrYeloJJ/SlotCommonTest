@@ -5,7 +5,7 @@ import os
 from flask import Flask, request, jsonify, redirect
 from app.main.SlotReport import SlotReport
 from app.main.GameAttr import GameAttr
-from app.main.TestCaseDoc import TestCaseDoc
+from app.main.SlotTestDoc import SlotTestDoc
 from app.automaticTest.slot.source.common.RunAllTests import RunAllTests
 
 app = Flask(__name__)
@@ -45,7 +45,7 @@ def stop_all_tests(pid):
 # 获取slot所有用例名字和描述
 @app.route("/slot/allTestDoc", methods=["GET"])
 def all_slot_test_doc():
-    return TestCaseDoc().get_doc()
+    return SlotTestDoc().get_doc()
 
 
 # 获取slot所有测试报告

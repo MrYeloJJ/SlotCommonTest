@@ -13,7 +13,7 @@ from app.automaticTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
 from app.automaticTest.slot.source.testcases.TestTurboView import TestTurboView
 
 
-class TestCaseDoc(object):
+class SlotTestDoc(object):
 
     def __init__(self):
         self.test_class = {"TestAutoGameView": TestAutoGameView,
@@ -60,5 +60,5 @@ class TestCaseDoc(object):
 
 
 if __name__ == "__main__":
-    TestCaseDoc().get_doc()
+    SlotTestDoc().get_doc()
 
