@@ -23,6 +23,10 @@ class SlotReport(object):
 
         return self.report_list
 
+    def open_report(self, report_name):
+        report_url = self.slot_report_path + str(report_name) + "/" + str(report_name) + ".html"
+        return report_url
+
     def delete_report(self, report_name):
         for i in os.listdir(self.slot_report_path):
             if i == report_name:

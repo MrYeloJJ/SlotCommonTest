@@ -58,7 +58,8 @@ def all_slot_reports():
 # slot报告链接
 @app.route("/slot/report/<report_name>", methods=["GET"])
 def slot_report(report_name):
-    return redirect("./static/slot/" + str(report_name) + "/" + str(report_name) + ".html")
+    report_url = SlotReport().open_report(report_name)
+    return redirect(report_url)
 
 
 # 删除slot报告
