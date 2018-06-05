@@ -1,6 +1,6 @@
 # encoding=utf-8
 
-from multiprocessing import Process
+from multiprocessing import Pool
 import os
 from flask import Flask, request, jsonify, redirect
 from app.main.SlotReport import SlotReport
@@ -21,25 +21,33 @@ def my_site():
 def run_all_slot_tests():
     data_json = request.json
     print("主进程：" + str(os.getpid()))
-    p = Process(target=run_slot_all, args=(data_json,))
-    p.start()
+    p = Pool()
+    result = p.apply_async(run_slot_all, args=(data_json,))
+    p.close()
     p.join()
-    return jsonify({"code": 200, "msg": "测试结束"}), 200
+    return result.get()
 
 
 def run_slot_all(data_json):
     print("子进程：" + str(os.getpid()))
-    GameAttr().set_attr(data_json)
-    RunAllTests().run()
+    with app.app_context():
+        try:
+            GameAttr().set_attr(data_json)
+            RunAllTests().run()
+            return jsonify({"code": 200, "msg": "测试结束"}), 200
+        except Exception as e:
+            return jsonify({"code": 400, "msg": "错误请求", "log": str(e)}), 400
 
 
 # 停止所有测试
 @app.route("/StopAllTests/<pid>", methods=["GET"])
 def stop_all_tests(pid):
     print("目标进程：" + str(pid))
-    # os.kill(int(pid), 9)
-    os.system("taskkill /pid " + str(pid) + " -t -f")
-    return jsonify({"code": 200, "msg": "测试停止"}), 200
+    try:
+        os.system("taskkill /pid " + str(pid) + " -t -f")
+        return jsonify({"code": 200, "msg": "测试停止"}), 200
+    except Exception as e:
+        return jsonify({"code": 500, "msg": "停止失败", "log": str(e)}), 500
 
 
 # 获取slot所有用例名字和描述
@@ -51,22 +59,19 @@ def all_slot_test_doc():
 # 获取slot所有测试报告
 @app.route("/slot/allReports", methods=["GET"])
 def all_slot_reports():
-    report_name = SlotReport().get_slot_report_url()
-    return jsonify(report_name)
+    return SlotReport().get_slot_report_url()
 
 
 # slot报告链接
 @app.route("/slot/report/<report_name>", methods=["GET"])
 def slot_report(report_name):
-    report_url = SlotReport().open_report(report_name)
-    return redirect(report_url)
+    return SlotReport().open_report(report_name)
 
 
 # 删除slot报告
 @app.route("/slot/delete_report/<report_name>", methods=["GET"])
 def delete_slot_report(report_name):
-    SlotReport().delete_report(report_name)
-    return jsonify({"code": 200, "msg": "删除成功"}), 200
+    return SlotReport().delete_report(report_name)
 
 
 if __name__ == "__main__":
