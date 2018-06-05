@@ -9,6 +9,7 @@ from app.main.SlotTestDoc import SlotTestDoc
 from app.automaticTest.slot.source.common.RunAllTests import RunAllTests
 
 app = Flask(__name__)
+app.config["JSON_AS_ASCII"] = False
 
 
 @app.route("/")
