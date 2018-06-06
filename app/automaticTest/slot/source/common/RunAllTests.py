@@ -12,15 +12,15 @@ class RunAllTests(object):
 
     def __init__(self):
         self.test_case_path = "./automaticTest/slot/source/testcases/"
-        # self.tester = Config().get_message()["tester"]
         self.tester = GameAttr.get_attr("tester")
 
-        # 将游戏名字放入报告里
-        # self.game = Config().get_message()["game_name"]
-        self.game = GameAttr.get_attr("game_name")
-        self.title = "【" + self.game + "】公共模块测试报告"
+        # 将游戏id放入报告里
+        self.game_id = str(GameAttr.get_attr("game_id"))
+        self.title = "[" + self.game_id + "]CommonTestReport"
 
-        self.description = "Slot游戏公共模块测试报告"
+        # 将游戏名字放入报告描述
+        self.game_name = GameAttr.get_attr("game_name")
+        self.description = "Slot游戏【" + self.game_name + "】公共模块测试报告"
 
     def run(self):
         test_suite = unittest.TestLoader().discover(self.test_case_path)

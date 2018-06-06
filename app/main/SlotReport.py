@@ -17,7 +17,7 @@ class SlotReport(object):
         try:
             for i in os.listdir(self.slot_report_path):
                 report_dict = {}
-                if i.startswith("【"):
+                if i.startswith("["):
                     url = self.root_url + "slot/report/" + i
                     del_url = self.root_url + "slot/delete_report/" + i
                     report_dict["report_name"] = i
