@@ -1,6 +1,6 @@
 # encoding=utf-8
 
-from multiprocessing import Pool
+from multiprocessing import Process
 import os
 from flask import Flask, request, jsonify, redirect
 from app.main.SlotReport import SlotReport
@@ -22,11 +22,10 @@ def my_site():
 def run_all_slot_tests():
     data_json = request.json
     print("主进程：" + str(os.getpid()))
-    p = Pool()
-    result = p.apply_async(run_slot_all, args=(data_json,))
-    p.close()
-    p.join()
-    return result.get()
+    p = Process(target=run_slot_all, args=(data_json,))
+    p.start()
+    # p.join()
+    return jsonify({"pid": p.pid}), 200
 
 
 def run_slot_all(data_json):
@@ -35,9 +34,8 @@ def run_slot_all(data_json):
         try:
             GameAttr().set_attr(data_json)
             RunAllTests().run()
-            return jsonify({"code": 200, "msg": "测试结束"}), 200
-        except Exception as e:
-            return jsonify({"code": 400, "msg": "错误请求", "log": str(e)}), 400
+        except Exception:
+            raise
 
 
 # 停止所有测试
