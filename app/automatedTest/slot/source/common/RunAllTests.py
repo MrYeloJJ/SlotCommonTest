@@ -3,14 +3,14 @@
 """"" 运行source目录下的所有测试用例，并生成HTML测试报告 """""
 
 import unittest
-from app.automaticTest.slot.lib import HTMLTestReportCN
+from app.automatedTest.slot.lib import HTMLTestReportCN
 from app.main.GameAttr import GameAttr
 
 
 class RunAllTests(object):
 
     def __init__(self):
-        self.test_case_path = "./automaticTest/slot/source/testcases/"
+        self.test_case_path = "./automatedTest/slot/source/testcases/"
         self.tester = GameAttr.get_attr("tester")
 
         # 将游戏id放入报告里

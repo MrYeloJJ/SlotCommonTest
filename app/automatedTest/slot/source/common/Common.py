@@ -4,9 +4,9 @@
 # from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as ec
 # from selenium.webdriver.common.by import By
-# from automaticTest.source.common.Config import Config
+# from automatedTest.source.common.Config import Config
 from app.main.GameAttr import GameAttr
-from app.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
+from app.automatedTest.slot.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
 from datetime import datetime
 import locale

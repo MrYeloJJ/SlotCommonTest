@@ -6,7 +6,8 @@ from flask import Flask, request, jsonify, redirect
 from app.main.SlotReport import SlotReport
 from app.main.GameAttr import GameAttr
 from app.main.SlotTestDoc import SlotTestDoc
-from app.automaticTest.slot.source.common.RunAllTests import RunAllTests
+from app.main.AnalyzeSlotCustomJson import AnalyzeSlotCustomJson
+from app.automatedTest.slot.source.common.RunAllTests import RunAllTests
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
@@ -17,7 +18,7 @@ def my_site():
     return redirect("https://gelomen.github.io")
 
 
-# 运行slot所有用例
+# 运行slot所有用例    --- ALL
 @app.route("/slot/RunAllTests", methods=["POST"])
 def run_all_slot_tests():
     data_json = request.json
@@ -34,6 +35,26 @@ def run_slot_all(data_json):
         try:
             GameAttr().set_attr(data_json)
             RunAllTests().run()
+        except Exception:
+            raise
+
+
+# 运行slot自定义用例   --- Custom
+@app.route("/slot/RunCustomTests", methods=["POST"])
+def run_custom_slot_tests():
+    data_json = request.json
+    print("主进程：" + str(os.getpid()))
+    p = Process(target=run_slot_custom, args=(data_json,))
+    p.start()
+    # p.join()
+    return jsonify({"pid": p.pid}), 200
+
+
+def run_slot_custom(data_json):
+    print("子进程：" + str(os.getpid()))
+    with app.app_context():
+        try:
+            AnalyzeSlotCustomJson().analyze_json(data_json)
         except Exception:
             raise
 

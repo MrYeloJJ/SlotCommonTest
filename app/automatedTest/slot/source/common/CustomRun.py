@@ -1,7 +1,9 @@
 # coding=utf-8
 
+import unittest
 import json
-from flask import jsonify
+from app.automatedTest.slot.lib import HTMLTestReportCN
+from app.main.GameAttr import GameAttr
 from app.automatedTest.slot.source.testcases.TestAutoGameView import TestAutoGameView
 from app.automatedTest.slot.source.testcases.TestGameAttr import TestGameAttr
 from app.automatedTest.slot.source.testcases.TestInfoBar import TestInfoBar
@@ -14,9 +16,18 @@ from app.automatedTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
 from app.automatedTest.slot.source.testcases.TestTurboView import TestTurboView
 
 
-class SlotTestDoc(object):
+class CustomRun(object):
 
     def __init__(self):
+        self.tester = GameAttr.get_attr("tester")
+
+        # 将游戏id放入报告里
+        self.game_id = str(GameAttr.get_attr("game_id"))
+        self.title = "[" + self.game_id + "]CommonTestReport"
+
+        # 将游戏名字放入报告描述
+        self.game_name = GameAttr.get_attr("game_name")
+        self.description = "Slot游戏【" + self.game_name + "】公共模块测试报告"
         self.test_class = {"TestAutoGameView": TestAutoGameView,
                            "TestGameAttr": TestGameAttr,
                            "TestInfoBar": TestInfoBar,
@@ -28,41 +39,27 @@ class SlotTestDoc(object):
                            "TestSpinBtn": TestSpinBtn,
                            "TestTurboView": TestTurboView
                            }
-        self.all_doc = []
 
-    def get_doc(self):
+    def run(self, test_list):
+        suite = unittest.TestSuite()
+        # 循环读取需要测试的用例，并添加到TestSuite里
+        for i in test_list:
+            test_class = self.test_class[i["key"]]
+            test_case = i["value"]
+            # 指定某测试类下的某个用例
+            suite.addTest(test_class(test_case))
 
-        try:
-            for i in self.test_class.keys():
-                classes_doc = {}
-                funcs_list = []
-                obj = {}
+        # 启动测试时创建文件夹并获取最新文件夹的名字
+        daf = HTMLTestReportCN.DirAndFiles()
+        daf.create_dir(title=self.title)
+        report_path = HTMLTestReportCN.GlobalMsg.get_value("report_path")
 
-                class_doc = self.test_class[i].__doc__
-                classes_doc["key"] = i
-                classes_doc["value"] = class_doc
+        fp = open(report_path, "wb")
 
-                attr_list = dir(self.test_class[i])
-
-                for y in attr_list:
-                    funcs_doc = {}
-                    if y.startswith("test"):
-                        func = getattr(self.test_class[i], y)
-                        funcs_doc["key"] = y
-                        funcs_doc["value"] = func.__doc__
-                        funcs_list.append(funcs_doc)
-
-                obj["testClass"] = classes_doc
-                obj["testCases"] = funcs_list
-                self.all_doc.append(obj)
-
-            doc_json = json.dumps(self.all_doc, ensure_ascii=False)
-
-            return doc_json
-        except Exception as e:
-            return jsonify({"code": 500, "msg": "获取失败", "log": str(e)}), 500
+        runner = HTMLTestReportCN.HTMLTestRunner(stream=fp, title=self.title, description=self.description, tester=self.tester)
+        runner.run(suite)
+        fp.close()
 
 
 if __name__ == "__main__":
-    SlotTestDoc().get_doc()
-
+    pass

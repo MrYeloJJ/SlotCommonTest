@@ -3,9 +3,9 @@
 import unittest
 import locale
 from time import sleep
-from app.automaticTest.slot.source.common.Browser import Browser
-from app.automaticTest.slot.source.common.Common import Common
-from app.automaticTest.slot.lib.HTMLTestReportCN import DirAndFiles
+from app.automatedTest.slot.source.common.Browser import Browser
+from app.automatedTest.slot.source.common.Common import Common
+from app.automatedTest.slot.lib.HTMLTestReportCN import DirAndFiles
 
 
 class TestSettingView(unittest.TestCase):
