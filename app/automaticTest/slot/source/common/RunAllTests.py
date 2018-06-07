@@ -5,7 +5,6 @@
 import unittest
 from app.automaticTest.slot.lib import HTMLTestReportCN
 from app.main.GameAttr import GameAttr
-# from automaticTest.source.common.Config import Config
 
 
 class RunAllTests(object):
