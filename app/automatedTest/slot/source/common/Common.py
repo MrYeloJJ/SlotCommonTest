@@ -1,10 +1,7 @@
 # coding=utf-8
 
 """"" 公共操作类，包括验证大厅、打开游戏、游戏内按钮点击等操作 """""
-# from selenium.webdriver.support.wait import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as ec
-# from selenium.webdriver.common.by import By
-# from automatedTest.source.common.Config import Config
+from selenium.webdriver.support.select import Select
 from app.main.GameAttr import GameAttr
 from app.automatedTest.slot.lib.HTMLTestReportCN import DirAndFiles
 from time import sleep
@@ -42,7 +39,6 @@ class Common(object):
     def get_lobby(self):
         try:
             self.browser.get(self.lobby)
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
         except Exception:
             self.daf.get_screenshot(self.browser)
             raise
@@ -50,21 +46,17 @@ class Common(object):
     # 登录
     def login(self):
         try:
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "top_login_img")), "等待30秒，找不到登录按钮！")
+            sl = Select(self.browser.find_element_by_name("agent_i"))
+            sl.select_by_value("22ddd189593051fd88ca58dc8111563e-lobby2")
+
             self.browser.find_element_by_class_name("top_login_img").click()
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "username")), "等待30秒，找不到用户名输入框！")
             self.browser.find_element_by_id("username").send_keys(self.username)
             sleep(1)
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "password")), "等待30秒，找不到密码输入框！")
             self.browser.find_element_by_id("password").send_keys(self.password)
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.ID, "login-reg")), "等待30秒，找不到登录/注册按钮！")
             self.browser.find_element_by_id("login-reg").click()
             sleep(1)
             self.browser.switch_to.alert.accept()
 
-            # 自动刷新大厅
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.title_is("as"), "等待30秒，大厅进入失败！")
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "photo")), "等待30秒，不会显示用户名！")
             name = self.browser.find_element_by_class_name("photo").text
             lobby_username = name.strip()
 
@@ -87,7 +79,6 @@ class Common(object):
     # 大厅加钱
     def add_chip(self):
         try:
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "add-chip")), "等待30秒，不会显示大厅加钱按钮！")
             self.browser.find_element_by_class_name("add-chip").click()
         except Exception:
             self.daf.get_screenshot(self.browser)
@@ -96,7 +87,6 @@ class Common(object):
     # 大厅减钱
     def red_chip(self):
         try:
-            # WebDriverWait(self.browser, 30, 0.5).until(ec.presence_of_element_located((By.CLASS_NAME, "red-chip")), "等待30秒，不会显示大厅减钱按钮！")
             self.browser.find_element_by_class_name("red-chip").click()
         except Exception:
             self.daf.get_screenshot(self.browser)
