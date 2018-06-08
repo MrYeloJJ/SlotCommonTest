@@ -18,12 +18,16 @@ class SlotReport(object):
             for i in os.listdir(self.slot_report_path):
                 report_dict = {}
                 if i.startswith("["):
-                    url = self.root_url + "slot/report/" + i
-                    del_url = self.root_url + "slot/delete_report/" + i
-                    report_dict["report_name"] = i
-                    report_dict["url"] = url
-                    report_dict["del_url"] = del_url
-                    self.report_list.append(report_dict)
+                    is_file = os.path.isfile(self.slot_report_path + i + "/" + i + ".html")
+                    if is_file:
+                        file_size = os.path.getsize(self.slot_report_path + i + "/" + i + ".html")
+                        if file_size > 0:
+                            url = self.root_url + "slot/report/" + i
+                            del_url = self.root_url + "slot/delete_report/" + i
+                            report_dict["report_name"] = i
+                            report_dict["url"] = url
+                            report_dict["del_url"] = del_url
+                            self.report_list.append(report_dict)
 
             return jsonify(self.report_list)
         except Exception as e:
