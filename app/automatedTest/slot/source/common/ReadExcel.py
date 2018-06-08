@@ -6,7 +6,7 @@ import xlrd
 class ReadExcel(object):
 
     def __init__(self):
-        self.file_path = "../../assets/GMAndOdds.xlsx"
+        self.file_path = "./automatedTest/slot/assets/GMAndOdds.xlsx"
 
     def read_data(self, game_id):
 

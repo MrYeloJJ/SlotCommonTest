@@ -1,7 +1,6 @@
 # coding=utf-8
 
 import unittest
-import json
 from app.automatedTest.slot.lib import HTMLTestReportCN
 from app.main.GameAttr import GameAttr
 from app.automatedTest.slot.source.testcases.TestAutoGameView import TestAutoGameView
@@ -14,6 +13,7 @@ from app.automatedTest.slot.source.testcases.TestMainMenu import TestMainMenu
 from app.automatedTest.slot.source.testcases.TestSettingView import TestSettingView
 from app.automatedTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
 from app.automatedTest.slot.source.testcases.TestTurboView import TestTurboView
+from app.automatedTest.slot.source.testcases.TestReward import TestReward
 
 
 class CustomRun(object):
@@ -37,7 +37,8 @@ class CustomRun(object):
                            "TestMainMenu": TestMainMenu,
                            "TestSettingView": TestSettingView,
                            "TestSpinBtn": TestSpinBtn,
-                           "TestTurboView": TestTurboView
+                           "TestTurboView": TestTurboView,
+                           "TestReward": TestReward
                            }
 
     def run(self, test_list):

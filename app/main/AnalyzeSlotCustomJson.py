@@ -34,10 +34,7 @@ if __name__ == "__main__":
                 "autoGameTimes": "25, 50, 100, 200, 500, -1"
             },
             "test_case": [
-                {"key": "TestMainMenu","value": "test_voice_btn_click_refresh"},
-                {"key": "TestMainMenu","value": "test_turbo_btn_click_refresh"},
-                {"key": "TestMainMenu","value": "test_voice_btn_click_refresh_portrait"},
-                {"key": "TestMainMenu","value": "test_turbo_btn_click_refresh_portrait"},
+                {"key": "TestReward", "value": "test_reward"}
             ]
         }
     ]

@@ -12,6 +12,7 @@ from app.automatedTest.slot.source.testcases.TestMainMenu import TestMainMenu
 from app.automatedTest.slot.source.testcases.TestSettingView import TestSettingView
 from app.automatedTest.slot.source.testcases.TestSpinBtn import TestSpinBtn
 from app.automatedTest.slot.source.testcases.TestTurboView import TestTurboView
+from app.automatedTest.slot.source.testcases.TestReward import TestReward
 
 
 class SlotTestDoc(object):
@@ -26,7 +27,8 @@ class SlotTestDoc(object):
                            "TestMainMenu": TestMainMenu,
                            "TestSettingView": TestSettingView,
                            "TestSpinBtn": TestSpinBtn,
-                           "TestTurboView": TestTurboView
+                           "TestTurboView": TestTurboView,
+                           "TestReward": TestReward
                            }
         self.all_doc = []
 
