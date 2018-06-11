@@ -87,19 +87,20 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 服务器端口：http://server-ip:5000/
 
 #### 运行所有用例
-
+|||
 |:--|:--|
 |API|~/slot/RunAllTests|
 |类型|POST|
-|参数|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,lineCost,autoGameTimes|
+|参数|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,</br>lineCost,autoGameTimes|
 |示例|http://server-ip:5000/slot/RunAllTests|
 
 #### 运行自定义用例
 
+|||
 |:--|:--|
 |API|~/slot/RunCustomTests|
 |类型|POST|
-|参数|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,lineCost,autoGameTimes，以及测试的类名和测试用例名字|
+|参数|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,</br>lineCost,autoGameTimes，以及测试的类名和测试用例名字|
 |示例|http://server-ip:5000/slot/RunAllTests|
 
 **参数格式：**
@@ -126,8 +127,9 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 ]
 ```
 
-#### 停止测试运行
+#### 停止测试
 
+|||
 |:--|:--|
 |API|~/StopAllTests/<pid>|
 |类型|GET|
@@ -136,6 +138,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 #### 获取所有用例的名字和描述
 
+|||
 |:--|:--|
 |API|~/slot/allTestDoc|
 |类型|GET|
@@ -144,6 +147,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 #### 获取所有报告名字和链接
 
+|||
 |:--|:--|
 |API|~/slot/allReports|
 |类型|GET|
@@ -152,6 +156,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 #### 打开报告页面
 
+|||
 |:--|:--|
 |API|~/slot/report/<report_name>|
 |类型|GET|
@@ -160,6 +165,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 #### 删除报告
 
+|||
 |:--|:--|
 |API|~/slot/delete_report/<report_name>|
 |类型|GET|
