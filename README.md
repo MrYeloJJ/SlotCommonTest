@@ -1,4 +1,4 @@
-﻿#### Slot公共模块UI自动化测试 - Online
+﻿#### Slot公共模块UI自动化测试 - Web
 * 使用 `flask` 实现服务端口，通过页面调用端口运行测试
 * 使用 `python3 Unittest` 、 `selenium3` 、 `JavaScript` 实现slot游戏公共模块UI自动化测试
 * 测试过程若抛出异常会自动截图保存，并借助 `HTMLTestReportCN` 生成测试报告
@@ -8,39 +8,59 @@
 ```
 SlotCommonTest
     |
-    +-- server
+    +-- app                                               # Flask app 目录
     |    |
-    |    +-- automaticTest
+    |    +-- automatedTest                                # 自动化测试目录
+    |    |         |
+    |    |         +-- slot                               # slot类，以后可能会有mchat
+    |    |         |     |
+    |    |         |     +-- assets                       # 资源目录
+    |    |         |     |     |
+    |    |         |     |     +-- config.ini             # 本地版本的游戏配置文件，在web版没用到
+    |    |         |     |     +-- GMAndOdds.xlsx         # 测试赔付用例用到的配置表
+    |    |         |     |
+    |    |         |     +-- lib                          # 外部插件目录
+    |    |         |     |    |
+    |    |         |     |    +-- chromedriver.exe        # webdriver 插件
+    |    |         |     |    +-- HTMLTestReportCN.py     # unittest测试报告插件，为web版改写过
+    |    |         |     |
+    |    |         |     +-- source                       # slot 测试的源码
+    |    |         |     |     |
+    |    |         |     |     +-- common                 # 公共文件夹
+    |    |         |     |     |      |
+    |    |         |     |     |      +-- Browser.py      # 初始化webdriver
+    |    |         |     |     |      +-- Common          # 自动化测试用到的各种操作都写在里面
+    |    |         |     |     |      +-- CustomRun       # 运行自定义用例
+    |    |         |     |     |      +-- ReadGM.py       # 读取测试赔付用的GM
+    |    |         |     |     |      +-- RunAllTests.py  # 运行所有用例
+    |    |         |     |     |
+    |    |         |     |     +-- testcase               # 测试用例目录
+    |    |         |     |     |      |
+    |    |         |     |     |      +-- TestGameAttr.py
+    |    |         |     |     |      +-- ..
+    |    |
+    |    +-- main                                         # Flask web 相关文件夹
     |    |    |
-    |    |    +-- assets                                // 数据目录
-    |    |    |     |
-    |    |    |     +-- config.ini
-    |    |    +-- lib                                   // 插件目录
-    |    |    |     |
-    |    |    |     +-- chromedriver.exe
-    |    |    |     +-- HTMLTestReportCN.py
-    |    |    +-- result                                / 测试报告目录
-    |    |    |     |
-    |    |    |     +-- sample                          // 测试报告例子
-    |    |    |     +-- README.md
-    |    |    +-- source                                // 源码目录
-    |    |    |     |
-    |    |    |     +-- common                          // 公共类目录
-    |    |    |     |     |
-    |    |    |     |     +-- Common.py
-    |    |    |     |     +-- RunAllTests.py            // 执行这个可以跑所有用例并生成测试报告
-    |    |    |     +-- testcases                       // 测试用例目录
-    |    |    |     |     |
-    |    |    |     |     +-- TestLoadingView.py
-    |    |    |     |     +-- TestMainAndComView.py
-    |    |    |     |     +-- ...
-    |    +-- AllReportsName.py
-    |    +-- SlotTestServer.py                          // 自动化测试服务文件
-    |    +-- TestCaseDoc.py
-    +-- venv                                            // 虚拟环境目录
+    |    |    +-- AnalyzeSlotCustomJson.py                # 运行自定义用例时，需要将 json 解析出现游戏属性和用例
+    |    |    +-- GameAttr.py                             # 用于保存从 web 获得的游戏属性
+    |    |    +-- HostIp.py                               # 获取当前主机 ip，用于拼接报告链接使用
+    |    |    +-- SlotReport.py                           # 获取所有报告，同时可以打开报告和删除报告
+    |    |    +-- SlotTestDoc.py                          # 获取所有测试用例的类名、用例名，以及他们的中文描述
+    |    |
+    |    +-- static                                       # Flask 静态文件夹
+    |    |     |
+    |    |     +-- slot                                   # slot 分类的报告文件夹，以后可能有 mchat 的
+    |    |     |    |
+    |    |     |    +-- [3303]CommonTestReport..          # slot 测试报告，需为英文名字，否则 IIS 不能正常读取
+    |    |
+    |    +-- RunApp.py                                    # 启动 Flask app，web 的接口都在这里
+    |    +-- web.config                                   # IIS 配置文件
+    |
+    +-- venv                                              # 虚拟环境目录
     +-- .gitignore
     +-- README.md
-    +-- requirements.txt
+    +-- requirements.txt                                  # 项目所需依赖及版本记录文件
+    +-- web.log                                           # IIS 服务的log
 ```
 
 
