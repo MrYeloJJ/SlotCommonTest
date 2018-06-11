@@ -2,7 +2,7 @@
 
 import unittest
 from time import sleep
-from app.automatedTest.slot.source.common.ReadExcel import ReadExcel
+from app.automatedTest.slot.source.common.ReadGM import ReadGM
 from app.automatedTest.slot.source.common.Browser import Browser
 from app.automatedTest.slot.source.common.Common import Common
 from app.automatedTest.slot.lib.HTMLTestReportCN import DirAndFiles
@@ -17,7 +17,7 @@ class TestReward(unittest.TestCase):
         self.common.start()
         self.full_line = self.common.full_line
         self.game_id = str(self.common.game_id)
-        self.data_list = ReadExcel().read_data(self.game_id)
+        self.data_list = ReadGM().read_data(self.game_id)
         self.daf = DirAndFiles()
 
     def tearDown(self):

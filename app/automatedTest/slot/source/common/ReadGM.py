@@ -3,7 +3,7 @@
 import xlrd
 
 
-class ReadExcel(object):
+class ReadGM(object):
 
     def __init__(self):
         self.file_path = "./automatedTest/slot/assets/GMAndOdds.xlsx"
@@ -39,4 +39,4 @@ class ReadExcel(object):
 
 
 if __name__ == "__main__":
-    ReadExcel().read_data('3303')
+    ReadGM().read_data('3303')
