@@ -94,6 +94,25 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 |参数|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,</br>lineCost,autoGameTimes|
 |示例|http://server-ip:5000/slot/RunAllTests|
 
+**json格式：**
+
+```json
+{
+    "lobby": "https://lobby.fg.blizzmi.cn",
+    "tester": "Gelomen",
+    "username": "automatedTest1",
+    "password": "123456",
+    "gameId": "3303",
+    "gameName": "众神之王",
+    "fullLine": "True",
+    "fullLineMulitiplier": "50",
+    "lineNumMin": "1",
+    "lineNumMax": "25",
+    "lineCost": "1, 2, 5, 10, 50, 100, 500, 1000",
+    "autoGameTimes": "25, 50, 100, 200, 500, -1"
+}
+```
+
 #### 运行自定义用例
 
 |||
@@ -103,7 +122,7 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 |参数|lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,</br>lineCost,autoGameTimes，以及测试的类名和测试用例名字|
 |示例|http://server-ip:5000/slot/RunAllTests|
 
-**参数格式：**
+**json格式：**
 
 ```json
 [{"game_attr": {
