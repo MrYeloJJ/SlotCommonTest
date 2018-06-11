@@ -82,12 +82,66 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 ### 3. 相关接口
 服务器端口：http://server-ip:5000/
 
-|接口|描述|类型|参数|示例|
-|:--|:--|:--|:--|:--|
-|~/slot/RunAllTests|运行所有用例|POST|lobby,tester,username,password,<br/>gameId,gameName,fullLine,<br/>fullLineMulitiplier,lineNumMin,lineNumMax,<br/>lineCost,autoGameTimes|http://server-ip:5000/slot/RunAllTests|
-|~/slot/RunCustomTests|运行自定义用例|POST|游戏属性，以及测试的类名和测试用例名字|http://server-ip:5000/slot/RunAllTests|
-|~/StopAllTests/<pid>|停止测试运行|GET|<pid>|http://server-ip:5000/StopAllTests/5566|
-|~/slot/allTestDoc|获取所有用例的名字和描述|GET|无|http://server-ip:5000/slot/allTestDoc|
-|~/slot/allReports|获取所有报告名字和链接|GET|无|http://server-ip:5000/slot/allReports|
-|~/slot/report/<report_name>|打开报告页面|GET|<report_name>|http://server-ip:5000/slot/report/[3303]CommonTestReport|
-|~/slot/delete_report/<report_name>|删除报告|GET|<report_name>|http://server-ip:5000/slot/delete_report/report/[3303]CommonTestReport|
+#### 运行所有用例
+API：~/slot/RunAllTests
+类型：POST
+参数：lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,lineCost,autoGameTimes
+示例：http://server-ip:5000/slot/RunAllTests
+
+#### 运行自定义用例
+API：~/slot/RunCustomTests
+类型：POST
+参数：lobby,tester,username,password,gameId,gameName,fullLine,fullLineMulitiplier,lineNumMin,lineNumMax,lineCost,autoGameTimes，以及测试的类名和测试用例名字
+参数格式：
+```json
+[{"game_attr": {
+            "lobby": "https://lobby.fg.blizzmi.cn",
+            "tester": "Gelomen",
+            "username": "automatedTest1",
+            "password": "123456",
+            "gameId": "3303",
+            "gameName": "众神之王",
+            "fullLine": "True",
+            "fullLineMulitiplier": "50",
+            "lineNumMin": "1",
+            "lineNumMax": "25",
+            "lineCost": "1, 2, 5, 10, 50, 100, 500, 1000",
+            "autoGameTimes": "25, 50, 100, 200, 500, -1"
+        },
+        "test_case": [
+            {"key": "TestReward", "value": "test_reward"}
+        ]
+    }
+]
+```
+示例：http://server-ip:5000/slot/RunAllTests
+
+#### 停止测试运行
+API:~/StopAllTests/<pid>
+类型：GET
+测试：<pid>
+示例：http://server-ip:5000/StopAllTests/5566
+
+#### 获取所有用例的名字和描述
+API：~/slot/allTestDoc
+类型：GET
+参数：无
+示例：http://server-ip:5000/slot/allTestDoc
+
+#### 获取所有报告名字和链接
+API：~/slot/allReports
+类型：GET
+参数：无
+示例：http://server-ip:5000/slot/allReports
+
+#### 打开报告页面
+API：~/slot/report/<report_name>
+类型：GET
+参数：<report_name>
+示例：http://server-ip:5000/slot/report/[3303]CommonTestReport
+
+#### 删除报告
+API：~/slot/delete_report/<report_name>
+类型：GET
+参数：<report_name>
+示例：http://server-ip:5000/slot/delete_report/report/[3303]CommonTestReport
