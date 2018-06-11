@@ -24,6 +24,7 @@ class ReadExcel(object):
             odds = int(table.cell_value(i, 3))
             gm = "\"" + str(table.cell_value(i, 4)) + "\""
             multiply_with = str(table.cell_value(i, 5))
+            multiply = int(table.cell_value(i, 6))
 
             row["card_id"] = card_id
             row["card_type"] = card_type
@@ -31,6 +32,7 @@ class ReadExcel(object):
             row["odds"] = odds
             row["gm"] = gm
             row["multiply_with"] = multiply_with
+            row["multiply"] = multiply
             data_list.append(row)
 
         return data_list

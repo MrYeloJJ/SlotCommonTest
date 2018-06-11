@@ -36,6 +36,7 @@ class TestReward(unittest.TestCase):
             odds = i["odds"]
             gm = i["gm"]
             multiply_with = i["multiply_with"]
+            multiply = i["multiply"]
 
             self.common.show_gm_view()
             sleep(0.5)
@@ -59,21 +60,21 @@ class TestReward(unittest.TestCase):
                 # 获取游戏内某条线的奖金
                 current_spin_coin = self.common.line_spin_coin(1) / 100
 
-            if card_type == "simple":
-                # 预期该线奖金
-                if multiply_with == "lineCost":
-                    target_spin_coin = current_line_cost * odds
-                elif multiply_with == "bet":
-                    target_spin_coin = current_bet * odds
-                else:
-                    target_spin_coin = None
+            # 预期该线奖金
+            if multiply_with == "lineCost":
+                target_spin_coin = current_line_cost * odds * multiply
+            elif multiply_with == "bet":
+                target_spin_coin = current_bet * odds * multiply
+            else:
+                target_spin_coin = None
 
-                try:
-                    self.assertEqual(target_spin_coin, current_spin_coin, "该旋转 " + same + "连id=" + card_id + "的卡牌，卡牌类型=" + card_type + "，"
-                                     + "线注=" + str(current_line_cost) + "，赔率=" + str(odds) + "，GM指令=" + gm)
-                except AssertionError:
-                    self.daf.get_screenshot(self.browser)
-                    raise
+            try:
+                self.assertEqual(target_spin_coin, current_spin_coin, "该旋转 " + same + "连id=" + card_id + "的卡牌，卡牌类型=" + card_type + "，"
+                                 + "线注=" + str(current_line_cost) + "，总赌注=" + str(current_bet) + "，与" + str(multiply_with) + "相乘，默认翻倍为 x"
+                                 + str(multiply) + "，赔率=" + str(odds) + "，GM指令=" + gm)
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
 
 if __name__ == "__main__":
