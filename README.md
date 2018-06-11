@@ -131,9 +131,9 @@ selenium UI自动化测试用的浏览器一般有 chrome、Firefox、IE、Opera
 
 |||
 |:--|:--|
-|API|~/StopAllTests/<pid>|
+|API|~/StopAllTests/<proc_id>|
 |类型|GET|
-|测试|<pid>|
+|参数| <proc_id> |
 |示例|http://server-ip:5000/StopAllTests/5566|
 
 #### 获取所有用例的名字和描述
