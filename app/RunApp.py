@@ -26,7 +26,7 @@ def run_all_slot_tests():
     p = Process(target=run_slot_all, args=(data_json,))
     p.start()
     # p.join()
-    return jsonify({"pid": p.pid}), 200
+    return jsonify({"pid": str(p.pid)}), 200
 
 
 def run_slot_all(data_json):
@@ -47,7 +47,7 @@ def run_custom_slot_tests():
     p = Process(target=run_slot_custom, args=(data_json,))
     p.start()
     # p.join()
-    return jsonify({"pid": p.pid}), 200
+    return jsonify({"pid": str(p.pid)}), 200
 
 
 def run_slot_custom(data_json):
