@@ -81,59 +81,60 @@ class TestInfoBar(unittest.TestCase):
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_effect_bet_money(self):
         """ 横屏点击线数按钮后计算总赌注 """
-        self.common.loading_pass()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        locale.setlocale(locale.LC_ALL, "")
+        if self.full_line is False:
+            self.common.loading_pass()
+            sleep(1)
+            self.common.setting_btn_click()
+            sleep(1)
+            locale.setlocale(locale.LC_ALL, "")
 
-        # 点击线数 - 按钮
-        for i in range(3):
-            target_line_cost = self.common.setting_view_line_cost()
+            # 点击线数 - 按钮
+            for i in range(3):
+                target_line_cost = self.common.setting_view_line_cost()
 
-            self.common.setting_view_line_num_min_btn_click()
+                self.common.setting_view_line_num_min_btn_click()
+                sleep(1)
+
+                info_bar_line_num = self.common.info_bar_view_line_num_label()
+                info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+                info_bar_bet_money = self.common.info_bar_view_bet_money_label()
+
+                bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
+                target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
+                target_line_num = self.common.setting_view_line_num()
+
+                try:
+                    self.assertEqual(info_bar_line_cost, target_line_cost, "横屏点击线数 - 按钮，线注会改变！")
+                    self.assertEqual(info_bar_line_num, target_line_num, "横屏点击线数 - 按钮，设置窗口的线数与下导航栏的不一致！")
+                    self.assertEqual(info_bar_bet_money, target_bet_money, "横屏点击线数 - 按钮，总赌注数值错误！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+
             sleep(1)
 
-            info_bar_line_num = self.common.info_bar_view_line_num_label()
-            info_bar_line_cost = self.common.info_bar_view_line_cost_label()
-            info_bar_bet_money = self.common.info_bar_view_bet_money_label()
+            # 点击线数 + 按钮
+            for i in range(3):
+                target_line_cost = self.common.setting_view_line_cost()
 
-            bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
-            target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
-            target_line_num = self.common.setting_view_line_num()
+                self.common.setting_view_line_num_plus_btn_click()
+                sleep(1)
 
-            try:
-                self.assertEqual(info_bar_line_cost, target_line_cost, "横屏点击线数 - 按钮，线注会改变！")
-                self.assertEqual(info_bar_line_num, target_line_num, "横屏点击线数 - 按钮，设置窗口的线数与下导航栏的不一致！")
-                self.assertEqual(info_bar_bet_money, target_bet_money, "横屏点击线数 - 按钮，总赌注数值错误！")
-            except AssertionError:
-                self.daf.get_screenshot(self.browser)
-                raise
+                info_bar_line_num = self.common.info_bar_view_line_num_label()
+                info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+                info_bar_bet_money = self.common.info_bar_view_bet_money_label()
 
-        sleep(1)
+                bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
+                target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
+                target_line_num = self.common.setting_view_line_num()
 
-        # 点击线数 + 按钮
-        for i in range(3):
-            target_line_cost = self.common.setting_view_line_cost()
-
-            self.common.setting_view_line_num_plus_btn_click()
-            sleep(1)
-
-            info_bar_line_num = self.common.info_bar_view_line_num_label()
-            info_bar_line_cost = self.common.info_bar_view_line_cost_label()
-            info_bar_bet_money = self.common.info_bar_view_bet_money_label()
-
-            bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
-            target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
-            target_line_num = self.common.setting_view_line_num()
-
-            try:
-                self.assertEqual(info_bar_line_cost, target_line_cost, "横屏点击线数 + 按钮，线注会改变！")
-                self.assertEqual(info_bar_line_num, target_line_num, "横屏点击线数 + 按钮，设置窗口的线数与下导航栏的不一致！")
-                self.assertEqual(info_bar_bet_money, target_bet_money, "横屏点击线数 + 按钮，总赌注数值错误！")
-            except AssertionError:
-                self.daf.get_screenshot(self.browser)
-                raise
+                try:
+                    self.assertEqual(info_bar_line_cost, target_line_cost, "横屏点击线数 + 按钮，线注会改变！")
+                    self.assertEqual(info_bar_line_num, target_line_num, "横屏点击线数 + 按钮，设置窗口的线数与下导航栏的不一致！")
+                    self.assertEqual(info_bar_bet_money, target_bet_money, "横屏点击线数 + 按钮，总赌注数值错误！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
     def test_line_cost_effect_bet_money(self):
         """ 横屏点击线注按钮后计算总赌注 """
@@ -256,60 +257,61 @@ class TestInfoBar(unittest.TestCase):
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_effect_bet_money_portrait(self):
         """ 竖屏点击线数按钮后计算总赌注 """
-        self.common.portrait()
-        self.common.loading_pass()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        locale.setlocale(locale.LC_ALL, "")
+        if self.full_line is False:
+            self.common.portrait()
+            self.common.loading_pass()
+            sleep(1)
+            self.common.setting_btn_click()
+            sleep(1)
+            locale.setlocale(locale.LC_ALL, "")
 
-        # 点击线数 - 按钮
-        for i in range(3):
-            target_line_cost = self.common.setting_view_line_cost()
+            # 点击线数 - 按钮
+            for i in range(3):
+                target_line_cost = self.common.setting_view_line_cost()
 
-            self.common.setting_view_line_num_min_btn_click()
+                self.common.setting_view_line_num_min_btn_click()
+                sleep(1)
+
+                info_bar_line_num = self.common.info_bar_view_line_num_label()
+                info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+                info_bar_bet_money = self.common.info_bar_view_bet_money_label()
+
+                bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
+                target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
+                target_line_num = self.common.setting_view_line_num()
+
+                try:
+                    self.assertEqual(info_bar_line_cost, target_line_cost, "竖屏点击线数 - 按钮，线注会改变！")
+                    self.assertEqual(info_bar_line_num, target_line_num, "竖屏点击线数 - 按钮，设置窗口的线数与下导航栏的不一致！")
+                    self.assertEqual(info_bar_bet_money, target_bet_money, "竖屏点击线数 - 按钮，总赌注数值错误！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+
             sleep(1)
 
-            info_bar_line_num = self.common.info_bar_view_line_num_label()
-            info_bar_line_cost = self.common.info_bar_view_line_cost_label()
-            info_bar_bet_money = self.common.info_bar_view_bet_money_label()
+            # 点击线数 + 按钮
+            for i in range(3):
+                target_line_cost = self.common.setting_view_line_cost()
 
-            bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
-            target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
-            target_line_num = self.common.setting_view_line_num()
+                self.common.setting_view_line_num_plus_btn_click()
+                sleep(1)
 
-            try:
-                self.assertEqual(info_bar_line_cost, target_line_cost, "竖屏点击线数 - 按钮，线注会改变！")
-                self.assertEqual(info_bar_line_num, target_line_num, "竖屏点击线数 - 按钮，设置窗口的线数与下导航栏的不一致！")
-                self.assertEqual(info_bar_bet_money, target_bet_money, "竖屏点击线数 - 按钮，总赌注数值错误！")
-            except AssertionError:
-                self.daf.get_screenshot(self.browser)
-                raise
+                info_bar_line_num = self.common.info_bar_view_line_num_label()
+                info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+                info_bar_bet_money = self.common.info_bar_view_bet_money_label()
 
-        sleep(1)
+                bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
+                target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
+                target_line_num = self.common.setting_view_line_num()
 
-        # 点击线数 + 按钮
-        for i in range(3):
-            target_line_cost = self.common.setting_view_line_cost()
-
-            self.common.setting_view_line_num_plus_btn_click()
-            sleep(1)
-
-            info_bar_line_num = self.common.info_bar_view_line_num_label()
-            info_bar_line_cost = self.common.info_bar_view_line_cost_label()
-            info_bar_bet_money = self.common.info_bar_view_bet_money_label()
-
-            bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
-            target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
-            target_line_num = self.common.setting_view_line_num()
-
-            try:
-                self.assertEqual(info_bar_line_cost, target_line_cost, "竖屏点击线数 + 按钮，线注会改变！")
-                self.assertEqual(info_bar_line_num, target_line_num, "竖屏点击线数 + 按钮，设置窗口的线数与下导航栏的不一致！")
-                self.assertEqual(info_bar_bet_money, target_bet_money, "竖屏点击线数 + 按钮，总赌注数值错误！")
-            except AssertionError:
-                self.daf.get_screenshot(self.browser)
-                raise
+                try:
+                    self.assertEqual(info_bar_line_cost, target_line_cost, "竖屏点击线数 + 按钮，线注会改变！")
+                    self.assertEqual(info_bar_line_num, target_line_num, "竖屏点击线数 + 按钮，设置窗口的线数与下导航栏的不一致！")
+                    self.assertEqual(info_bar_bet_money, target_bet_money, "竖屏点击线数 + 按钮，总赌注数值错误！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
     def test_line_cost_effect_bet_money_portrait(self):
         """ 竖屏点击线注按钮后计算总赌注 """
@@ -438,68 +440,69 @@ class TestInfoBar(unittest.TestCase):
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_line_num_effect_bet_money_switch_screen(self):
         """ 横竖屏点击线数按钮后计算总赌注 """
-        self.common.portrait()
-        self.common.loading_pass()
-        sleep(1)
-        self.common.setting_btn_click()
-        sleep(1)
-        locale.setlocale(locale.LC_ALL, "")
+        if self.full_line is False:
+            self.common.portrait()
+            self.common.loading_pass()
+            sleep(1)
+            self.common.setting_btn_click()
+            sleep(1)
+            locale.setlocale(locale.LC_ALL, "")
 
-        # 点击线数 - 按钮
-        for i in range(3):
-            if i % 2 == 0:
-                self.common.landscape()
-            else:
-                self.common.portrait()
-            target_line_cost = self.common.setting_view_line_cost()
+            # 点击线数 - 按钮
+            for i in range(3):
+                if i % 2 == 0:
+                    self.common.landscape()
+                else:
+                    self.common.portrait()
+                target_line_cost = self.common.setting_view_line_cost()
 
-            self.common.setting_view_line_num_min_btn_click()
+                self.common.setting_view_line_num_min_btn_click()
+                sleep(1)
+
+                info_bar_line_num = self.common.info_bar_view_line_num_label()
+                info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+                info_bar_bet_money = self.common.info_bar_view_bet_money_label()
+
+                bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
+                target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
+                target_line_num = self.common.setting_view_line_num()
+
+                try:
+                    self.assertEqual(info_bar_line_cost, target_line_cost, "横竖屏切换，点击线数 - 按钮，线注会改变！")
+                    self.assertEqual(info_bar_line_num, target_line_num, "横竖屏切换，点击线数 - 按钮，设置窗口的线数与下导航栏的不一致！")
+                    self.assertEqual(info_bar_bet_money, target_bet_money, "横竖屏切换，点击线数 - 按钮，总赌注数值错误！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
+
             sleep(1)
 
-            info_bar_line_num = self.common.info_bar_view_line_num_label()
-            info_bar_line_cost = self.common.info_bar_view_line_cost_label()
-            info_bar_bet_money = self.common.info_bar_view_bet_money_label()
+            # 点击线数 + 按钮
+            for i in range(3):
+                if i % 2 == 0:
+                    self.common.portrait()
+                else:
+                    self.common.landscape()
+                target_line_cost = self.common.setting_view_line_cost()
 
-            bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
-            target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
-            target_line_num = self.common.setting_view_line_num()
+                self.common.setting_view_line_num_plus_btn_click()
+                sleep(1)
 
-            try:
-                self.assertEqual(info_bar_line_cost, target_line_cost, "横竖屏切换，点击线数 - 按钮，线注会改变！")
-                self.assertEqual(info_bar_line_num, target_line_num, "横竖屏切换，点击线数 - 按钮，设置窗口的线数与下导航栏的不一致！")
-                self.assertEqual(info_bar_bet_money, target_bet_money, "横竖屏切换，点击线数 - 按钮，总赌注数值错误！")
-            except AssertionError:
-                self.daf.get_screenshot(self.browser)
-                raise
+                info_bar_line_num = self.common.info_bar_view_line_num_label()
+                info_bar_line_cost = self.common.info_bar_view_line_cost_label()
+                info_bar_bet_money = self.common.info_bar_view_bet_money_label()
 
-        sleep(1)
+                bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
+                target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
+                target_line_num = self.common.setting_view_line_num()
 
-        # 点击线数 + 按钮
-        for i in range(3):
-            if i % 2 == 0:
-                self.common.portrait()
-            else:
-                self.common.landscape()
-            target_line_cost = self.common.setting_view_line_cost()
-
-            self.common.setting_view_line_num_plus_btn_click()
-            sleep(1)
-
-            info_bar_line_num = self.common.info_bar_view_line_num_label()
-            info_bar_line_cost = self.common.info_bar_view_line_cost_label()
-            info_bar_bet_money = self.common.info_bar_view_bet_money_label()
-
-            bet_money = eval(info_bar_line_num) * eval(info_bar_line_cost[1:])
-            target_bet_money = "¥" + locale.format("%.2f", bet_money, 1)
-            target_line_num = self.common.setting_view_line_num()
-
-            try:
-                self.assertEqual(info_bar_line_cost, target_line_cost, "横竖屏切换，点击线数 + 按钮，线注会改变！")
-                self.assertEqual(info_bar_line_num, target_line_num, "横竖屏切换，点击线数 + 按钮，设置窗口的线数与下导航栏的不一致！")
-                self.assertEqual(info_bar_bet_money, target_bet_money, "横竖屏切换，点击线数 + 按钮，总赌注数值错误！")
-            except AssertionError:
-                self.daf.get_screenshot(self.browser)
-                raise
+                try:
+                    self.assertEqual(info_bar_line_cost, target_line_cost, "横竖屏切换，点击线数 + 按钮，线注会改变！")
+                    self.assertEqual(info_bar_line_num, target_line_num, "横竖屏切换，点击线数 + 按钮，设置窗口的线数与下导航栏的不一致！")
+                    self.assertEqual(info_bar_bet_money, target_bet_money, "横竖屏切换，点击线数 + 按钮，总赌注数值错误！")
+                except AssertionError:
+                    self.daf.get_screenshot(self.browser)
+                    raise
 
     def test_line_cost_effect_bet_money_switch_screen(self):
         """ 横竖屏点击线注按钮后计算总赌注 """

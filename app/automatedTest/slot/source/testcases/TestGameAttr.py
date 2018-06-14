@@ -16,6 +16,7 @@ class TestGameAttr(unittest.TestCase):
         self.common.start()
         self.daf = DirAndFiles()
         self.common.loading_pass()
+        self.full_line = self.common.full_line
 
     def tearDown(self):
         self.browser.quit()
@@ -48,26 +49,28 @@ class TestGameAttr(unittest.TestCase):
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_min_line_num(self):
         """ 最小线数 """
-        sleep(1)
-        current_min_line_num = self.common.get_min_line_num()
-        target_min_line_num = self.common.line_num_min
-        try:
-            self.assertEqual(current_min_line_num, target_min_line_num, "最小线数配置错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+        if self.full_line is False:
+            sleep(1)
+            current_min_line_num = self.common.get_min_line_num()
+            target_min_line_num = self.common.line_num_min
+            try:
+                self.assertEqual(current_min_line_num, target_min_line_num, "最小线数配置错误！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
     @unittest.skipIf(full_line is True, "满线项目不测试线数设置")
     def test_max_line_num(self):
         """ 最大线数 """
-        sleep(1)
-        current_max_line_num = self.common.get_max_line_num()
-        target_max_line_num = self.common.line_num_max
-        try:
-            self.assertEqual(current_max_line_num, target_max_line_num, "最大线数配置错误！")
-        except AssertionError:
-            self.daf.get_screenshot(self.browser)
-            raise
+        if self.full_line is False:
+            sleep(1)
+            current_max_line_num = self.common.get_max_line_num()
+            target_max_line_num = self.common.line_num_max
+            try:
+                self.assertEqual(current_max_line_num, target_max_line_num, "最大线数配置错误！")
+            except AssertionError:
+                self.daf.get_screenshot(self.browser)
+                raise
 
     def test_line_cost(self):
         """ 线注 """
