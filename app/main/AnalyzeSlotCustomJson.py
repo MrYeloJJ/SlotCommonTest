@@ -9,7 +9,7 @@ class AnalyzeSlotCustomJson(object):
 
     @staticmethod
     def analyze_json(data_json):
-        data = json.loads(data_json)
+        data = json.loads(str(data_json).replace("'", "\""))
 
         game_attr = data[0]["game_attr"]
         GameAttr().set_attr(game_attr)
