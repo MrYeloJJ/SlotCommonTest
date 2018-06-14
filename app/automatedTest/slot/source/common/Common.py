@@ -19,7 +19,7 @@ class Common(object):
         self.game_name = GameAttr.get_attr("game_name")                     # 游戏名字
         self.full_line = eval(str(GameAttr.get_attr("full_line")))          # 是否满线
         self.full_line_mulitiplier = \
-            eval(GameAttr.get_attr("full_line_mulitiplier"))                      # 满线项目总赌注倍数
+            eval(str(GameAttr.get_attr("full_line_mulitiplier")))           # 满线项目总赌注倍数
         self.line_num_min = GameAttr.get_attr("line_num_min")               # 最小线数
         self.line_num_max = GameAttr.get_attr("line_num_max")               # 最大线数
         self.line_cost = eval(str(GameAttr.get_attr("line_cost")))               # 所有线注
