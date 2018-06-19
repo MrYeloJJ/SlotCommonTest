@@ -2,6 +2,7 @@
 
 from multiprocessing import Process
 import os
+from flask import make_response
 from flask import Flask, request, jsonify, redirect
 from app.main.SlotReport import SlotReport
 from app.main.GameAttr import GameAttr
@@ -91,7 +92,11 @@ def slot_report(report_name):
 # 删除slot报告
 @app.route("/slot/delete_report/<report_name>", methods=["GET"])
 def delete_slot_report(report_name):
-    return SlotReport().delete_report(report_name)
+    res = make_response(SlotReport().delete_report(report_name))
+    res.headers['Access-Control-Allow-Origin'] = '*'
+    res.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    res.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'
+    return res
 
 
 if __name__ == "__main__":
